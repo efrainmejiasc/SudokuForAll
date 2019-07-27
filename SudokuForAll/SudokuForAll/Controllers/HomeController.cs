@@ -1,5 +1,6 @@
 ﻿using SudokuForAll.Engine;
 using SudokuForAll.Models;
+using SudokuForAll.Models.DbSistema;
 using SudokuForAll.Models.Sistema;
 using System;
 using System.Collections.Generic;
@@ -96,9 +97,118 @@ namespace SudokuForAll.Controllers
             return model;
         }
 
-        public ActionResult State(Respuesta model = null)
+        public ActionResult State(string email = "", string identidad = "", string date = "", string status = "", string ide = "", string type = "", Respuesta K = null)
         {
-            return View(model);
+            Respuesta R = new Respuesta();
+  
+            bool resultado = false;
+            Guid guidCliente = Guid.Empty;
+            int id = -1;
+
+            //Validar email
+            if (email != string.Empty && email != null)
+            {
+                if (Funcion.CadenaBase64Valida(email))
+                {
+                    email = Funcion.DecodeBase64(email);
+                }
+                resultado = Funcion.EmailEsValido(email);
+                if (!resultado)
+                {
+                    R = Funcion.RespuestaProceso(null,null,"Open", email ,null, "No es una direccion de correo valida.");
+                    return View(R);
+                }
+                id = Metodo.ObtenerIdCliente(email);
+                if (id <= 0)
+                {
+                    R = Funcion.RespuestaProceso(null, null, "Open", email , null, "Intento de violacion de seguridad.");
+                    return View(R);
+                }
+            }
+
+            //Validar GUID de identidad
+            if (identidad != string.Empty && identidad != null)
+            {
+                guidCliente = Metodo.ObtenerIdentidadCliente(email);
+                string identificador = Funcion.EncodeMd5(guidCliente.ToString());
+                resultado = Funcion.CompareString(identidad, identificador);
+                if (!resultado)
+                {
+                    R = Funcion.RespuestaProceso(null, null,"Open", email, null, "Intento de violacion de seguridad.");
+                    return View(R);
+                }
+            }
+
+            //validar tiempo de expiracion del link
+            if (date != string.Empty && date != null)
+            {
+                date = date.Replace('*', ' ');
+                date = date.Replace('+', '.');
+                DateTime fechaEnvio = Convert.ToDateTime(date);
+                DateTime fechaActivacion = DateTime.UtcNow;
+                resultado = Funcion.EstatusLink(fechaEnvio, fechaActivacion);
+                if (!resultado)
+                {
+                    resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, Funcion.ConvertirBase64(email), type, ide);
+                    R = Funcion.RespuestaProceso(null,null,"Open", email,null,"El tiempo valido para el link expiro, enviamos una nueva notificacion a tu correo.");
+                    return View(R);
+                }
+            }
+
+            //Activacion tiempo de prueba
+            if (type == EngineData.Test)
+            {
+                Cliente client = Funcion.ConstruirActualizarClienteTest(email, identidad);
+                EngineDb Metodo = new EngineDb();
+                int act = Metodo.UpdateClienteTest(client);
+                if (act > 0)
+                    R = Funcion.RespuestaProceso(null,null,"Contact", email ,null, "Activacion exitosa, ingresa con tu email.");
+                else
+                    R = Funcion.RespuestaProceso(null,null,"Open", email ,null, "Activacion fallida");
+            }
+            //Activacion cuanta del cliente
+            else if (type == EngineData.Register)
+            {
+                string password = Funcion.DecodeBase64(ide);
+                password = Funcion.ConvertirBase64(email + password);
+                ActivarCliente model = new ActivarCliente();
+                model = Funcion.ConstruirActivarCliente(email, password);
+                int act = Metodo.ClienteRegistroActivacion(model);
+                if (act >= 1)
+                    R = Funcion.RespuestaProceso(null,null,"Login", email, null, "Activacion exitosa, identificate con tu email y password");
+                else
+                    R = Funcion.RespuestaProceso(null,null,"Login",email,null, "Activacion Fallida");
+            }
+            // Enviar a restablecer password
+            else if (type == EngineData.ResetPassword)
+            {
+                if (ide == string.Empty || ide == null)
+                {
+                    R = Funcion.RespuestaProceso(null,null,"Open", email ,null, "Intento de violacion de seguridad.");
+                    return View(R);
+                }
+                string codigo = Funcion.DecodeBase64(ide);
+                string code = Metodo.ObtenerCodigoRestablecerPassword(email);
+                resultado = Funcion.CompareString(codigo, code);
+
+                R = Funcion.RespuestaProceso("Verificacion de codigo de seguridad", email, ide);
+                return RedirectToAction("EditPasswordNotify", "Home", R);
+            }
+
+            //Redireccionamiento entrada test
+            if (System.Web.HttpContext.Current.Session["ResultadoEntrada"] != null && System.Web.HttpContext.Current.Session["Email"] != null)
+            {
+                string valor = System.Web.HttpContext.Current.Session["ResultadoEntrada"].ToString();
+                email = System.Web.HttpContext.Current.Session["Email"].ToString();
+                string[] T = valor.Split('/');
+                R = Funcion.RespuestaProceso(T[1], email);
+            }
+
+            if (K.RespuestaAccion != null)
+                return View(K);
+
+
+            return View(R);
         }
 
         public ActionResult About()

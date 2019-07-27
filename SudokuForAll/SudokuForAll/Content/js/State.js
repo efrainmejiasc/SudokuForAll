@@ -80,7 +80,7 @@ function NotificacionPrueba() {
         data: { email: email },
         datatype: "json",
         success: function (data) {
-            AnularResultadoEntrada();
+            //AnularResultadoEntrada();
             console.log(data.RespuestaAccion);
             if (data.RespuestaAccion == 'Exito')
                 alert('Hemos enviado una notificacion a la direccion ' + data.Email);

@@ -38,6 +38,11 @@ namespace SudokuForAll.Engine
             return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
 
+        public bool CadenaBase64Valida(string cadena)
+        {
+            return (cadena.Length % 4 == 0) && Regex.IsMatch(cadena, @"^[a-zA-Z0-9\+/]*={0,3}$", RegexOptions.None);
+        }
+
         public bool EmailEsValido(string email)
         {
             string expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";

@@ -14,7 +14,8 @@ namespace SudokuForAll.Engine
         string EncodeMd5(string a);
         bool EmailEsValido(string email);
         string ConvertirBase64(string cadena);
-        bool CompareString(string a, string b);
+        bool CompareString(string a,string b);
+        bool CadenaBase64Valida(string cadena);
         string DecodeBase64(string base64EncodedData);
         Cliente ConstruirInsertarClienteTest(string email);
         string CrearEnlazePrueba(IEngineDb Metodo, string email);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SudokuForAll.Models.DbSistema
+namespace SudokuForAll.Models.Sistema
 {
     public class ActivarCliente
     {
@@ -24,6 +24,5 @@ namespace SudokuForAll.Models.DbSistema
         public bool Estatus { get; set; }
 
         public Guid Identidad { get; set; }
-
     }
 }

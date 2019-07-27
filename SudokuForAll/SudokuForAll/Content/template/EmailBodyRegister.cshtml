@@ -1,0 +1,87 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Notificacion Sudoku para todos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Content/bootstrap.css">
+    <link rel="stylesheet" href="/Content/bootstrap-theme.css">
+
+    <style type="text/css">
+        .cabezera {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #FFFFFF;
+            font-size: 18px;
+            background-color: #338dff;
+            border: black 0px solid;
+        }
+
+        .line {
+            background-color: #33ffc4;
+            border: black 0px solid;
+            height: 10px;
+        }
+
+        .celda {
+            background-color: white;
+            border: white 0px solid;
+        }
+    </style>
+</head>
+<body>
+    <div aling="center">
+        <table class="table table-responsive table-striped">
+            <tbody>
+                <tr>
+                    <td colspan="2" class="cabezera"><div align="center">Sudoku para todos</div></td>
+                </tr>
+                <tr>
+
+                    <td colspan="2"><div class="line"></div></td>
+                </tr>
+                <tr>
+                    <td class="celda">&nbsp;&nbsp;&nbsp; Saludos estimado(a):&nbsp;&nbsp;@Model.EmailDestinatario </td>
+                    <td class="celda">&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="celda">&nbsp;&nbsp;&nbsp; Hoy: @Model.Fecha</td>
+                    <td class="celda">&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="celda">&nbsp;&nbsp;&nbsp; @Model.Observacion</td>
+                    <td class="celda">&nbsp;&nbsp;&nbsp; </td>
+                </tr>
+                <tr>
+                    <td class="celda">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="celda">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="celda">&nbsp;&nbsp;&nbsp; @Model.Descripcion</td>
+                    <td class="celda">&nbsp;&nbsp;&nbsp; </td>
+                </tr>
+                <tr>
+                    <td class="celda" align="center"><a href="@Model.Link"><h2>@Model.ClickAqui</h2></a> </td>
+                    <td class="celda">&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="celda">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="celda">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="celda">&nbsp;&nbsp;&nbsp;Gracias...</td>
+                    <td class="celda">&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="celda">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td class="celda">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><div class="line"></div></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="cabezera"><div align="center"></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

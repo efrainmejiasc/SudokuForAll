@@ -1,5 +1,6 @@
 ﻿using SudokuForAll.Models;
 using SudokuForAll.Models.DbSistema;
+using SudokuForAll.Models.Sistema;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

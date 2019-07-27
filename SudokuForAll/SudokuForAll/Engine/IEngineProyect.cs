@@ -1,4 +1,5 @@
 ﻿using SudokuForAll.Models.DbSistema;
+using SudokuForAll.Models.Sistema;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +23,10 @@ namespace SudokuForAll.Engine
         ActivarCliente ConstruirActivarCliente(string email, string password);
         Cliente ConstruirActualizarClienteTest(string email, string Identidad);
         string CrearEnlazeRegistro(IEngineDb Metodo, string email, string password);
-        Respuesta RespuestaProceso(string respuesta, string email, string codigo = "");
         string CrearEnlazeRestablecerPassword(IEngineDb Metodo, string email, string codigo);
         EstructuraMail SetEstructuraMailTest(string enlaze, string email, EstructuraMail model);
-        EstructuraMail SetEstructuraMailRegister(string enlaze, string email, EstructuraMail model);
         EstructuraMail SetEstructuraMailResetPassword(string enlaze, string email, string codigo, EstructuraMail model);
         bool EnviarNuevaNotificacion(IEngineNotificacion Notificacion, IEngineDb Metodo, string email, string type, string password = "");
+        Respuesta RespuestaProceso(string nombreAccion ="", string nombreControlador="", string respuesta="", string email="", string codigo="", string descripcion="");
     }
 }

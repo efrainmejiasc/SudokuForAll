@@ -1,4 +1,5 @@
 ﻿using SudokuForAll.Models.DbSistema;
+using SudokuForAll.Models.Sistema;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -224,13 +225,16 @@ namespace SudokuForAll.Engine
             return model;
         }
 
-        public Respuesta RespuestaProceso(string respuesta, string email, string codigo = "")
+        public Respuesta RespuestaProceso(string nombreAccion="", string nombreControlador="", string respuesta="", string email="", string codigo="", string descripcion="")
         {
             Respuesta resultado = new Respuesta()
             {
+                NombreAccion = nombreAccion,
+                NombreControlador = nombreControlador,
                 RespuestaAccion = respuesta,
                 Email = email,
-                CodigoResetPassword = codigo
+                CodigoResetPassword = codigo,
+                Descripcion = descripcion
             };
             return resultado;
         }

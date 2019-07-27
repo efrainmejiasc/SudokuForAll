@@ -145,6 +145,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Engine\EngineData.cs" />
     <Compile Include="Engine\EngineDb.cs" />
@@ -171,14 +172,21 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\Global.css" />
+    <Content Include="Content\css\_MessagePartial.css" />
     <Content Include="Content\imagen\logo.png" />
     <Content Include="Content\imagen\SudokuEnCasa.ico" />
+    <Content Include="Content\js\Global.js" />
+    <Content Include="Content\js\State.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\template\EmailBodyRegister.cshtml" />
+    <Content Include="Content\template\EmailBodyResetPassword.cshtml" />
+    <Content Include="Content\template\EmailBodyTest.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -206,12 +214,15 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\State.cshtml" />
+    <Content Include="Views\Shared\_MessagePartial.cshtml" />
+    <Content Include="Views\Home\NotifySend.cshtml" />
+    <Content Include="Views\Game\PlayGame.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\css\" />
-    <Folder Include="Content\js\" />
-    <Folder Include="Content\template\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

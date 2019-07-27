@@ -1,0 +1,39 @@
+﻿.videoSize {
+    width: 60%;
+    height: 500px;
+    margin-left: 25%;
+    margin-top: 6%;
+}
+
+.logoInitial {
+    height: 8%;
+    width: 8%;
+    margin-right: 100%;
+    padding-top:2%;
+    margin-left:3%;
+}
+
+.izq1 {
+    margin-left: 90%;
+}
+
+.izq2 {
+    margin-left: 85%;
+}
+
+.lenguaje {
+    padding-top: 12%;
+    height:5%;
+    float: right;
+}
+
+.txtColor {
+   color:blue;
+}
+
+.divEmail {
+    margin-top: 15%;
+    margin-left: 10%;
+    width: 80%;
+    display: inline-block;
+}

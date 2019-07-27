@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SudokuForAll.Models.DbSistema
+namespace SudokuForAll.Models.Sistema
 {
     public class EstructuraMail
     {

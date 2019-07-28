@@ -7,7 +7,6 @@
 <link href="~/Content/css/Global.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script src="~/Content/js/State.js" type="text/javascript"></script>
-
 @{
     ViewBag.Title = "State";
 }
@@ -18,11 +17,14 @@
 @Html.Hidden("Email", Model.Email)
 
 <script type="text/javascript">
-        let openModal='@Model.RespuestaAccion' ;
-        if (openModal !='' )
-        {
-            AbrirModalIndicada(openModal);
-        }
+
+    OcultarObjeto('inicio');
+    OcultarObjeto('entrar');
+    let openModal='@Model.RespuestaAccion' ;
+    if (openModal !='' )
+    {
+       AbrirModalIndicada(openModal);
+    }
 
 </script>
 

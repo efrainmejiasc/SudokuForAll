@@ -51,25 +51,25 @@ function RedirectToIndex() {
 function RedirectToLogin() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
-    window.location.href = "http://localhost:49983/Home/Login?email=&password=";
+    window.location.href = "http://localhost:49983/Home/Login#";
 }
 
 function RedirectToContact() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
-    window.location.href = "http://localhost:49983/Home/Contact?model=null";
+    window.location.href = "http://localhost:49983/Home/Contact#";
 }
 
 function RedirectToRegister() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
-    window.location.href = "http://localhost:49983/Home/Register?model=null";
+    window.location.href = "http://localhost:49983/Home/Register#";
 }
 
 function RedirectToEditPasswordNotify() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
-    window.location.href = "http://localhost:49983/Home/EditPasswordNotify?K=null";
+    window.location.href = "http://localhost:49983/Home/EditPasswordNotify#";
 }
 
 function NotificacionPrueba() {
@@ -96,7 +96,12 @@ function NotificacionPrueba() {
     });
 }
 
-function AnularResultadoEntrada() {
+function OcultarObjeto(name) {
+    var objeto = '#'.concat(name);
+    $(objeto).hide();
+}
+
+/*function AnularResultadoEntrada() {
     $.ajax({
         type: "POST",
         url: "/Home/AnularEmailResultadoEntrada",
@@ -104,7 +109,7 @@ function AnularResultadoEntrada() {
             console.log('Exito');
         }
     });
-}
+}*/
 
 
 

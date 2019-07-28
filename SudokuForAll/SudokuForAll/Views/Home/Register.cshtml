@@ -1,7 +1,30 @@
 ﻿
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+<link href="~/Content/css/Global.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+
 @{
-    ViewBag.Title = "Register";
+    string chxNosoy = "  No soy un robot";
+    ViewBag.Title = "Registro de cliente";
 }
 
-<h2>Register</h2>
+<h2>Resgistro de usuario</h2>
+
+<div id="register" align="center" class="register">
+    @using (Html.BeginForm("Register", "Home"))
+    {
+        <input type="text" id="nombre" name="nombre" placeholder="Ingrese nombre" required class="form-control" style="text-align:center;" />
+        <input type="text" id="apellido" name="apellido" placeholder="Ingrese apellido" required class="form-control" style="text-align:center;" />
+        <input type="email" id="email" name="email" placeholder="Ingrese email" required class="form-control" style="text-align:center;" />
+        <input type="password" id="password" name="password" placeholder="Ingrese contraseña" required class="form-control" style="text-align:center;" />
+        <input type="password" id="password2" name="password2" placeholder="Confirme contraseña" required class="form-control" style="text-align:center;" /><br />
+        <label class="checkbox-inline"><input type="checkbox" id="chxNoSoy" name="chxNosoy" required class="btn btn btn-default active" />@chxNosoy </label><br /><br />
+        <input type="submit" id="sendData" name="sendData" value="Enviar" class="btn btn-primary" style="width:13%;" />
+        <input type="submit" id="cancel" name="cancel" value="Cancelar" class="btn btn-primary" style="width:13%;" />
+    }
+</div>
 

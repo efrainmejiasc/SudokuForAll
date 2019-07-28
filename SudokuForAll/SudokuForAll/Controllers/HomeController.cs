@@ -32,15 +32,88 @@ namespace SudokuForAll.Controllers
             return View(model);
         }
 
-        public ActionResult Login()
+        public ActionResult Login(string email = "", string password = "")
         {
+            Respuesta R = new Respuesta();
+            if (email == string.Empty || password == string.Empty)
+                return View(R);
+
+            bool resultado = Funcion.EmailEsValido(email);
+            if (!resultado)
+            {
+                R = Funcion.RespuestaProceso("State", "Home", "Login", email,null ,email + " No es una direccion de correo valida.");
+                return RedirectToAction(R.NombreAccion,R.NombreControlador, R);
+            }
+
+            password = Funcion.ConvertirBase64(email + password);
+            int result = Metodo.ResultadoLogin(password);
+            if (result == 0)
+            {
+                R = Funcion.RespuestaProceso("State", "Home", "Open", email,null, email + " Tu Tiempo de juego expiro,debes volver a comprar.");// Cuando RespuetaAccion = Open -> No redirecciona a ninguna pagina
+                return RedirectToAction("Buy", "Home");
+            }
+            else if (result == 1)
+            {
+                return RedirectToAction("PlayGame", "Game");// Entre 1 y 5 dias para expirar
+            }
+            else if (result == 2)
+            {
+                return RedirectToAction("PlayGame", "Game");//Mas de 6 dias para expirar
+            }
+            else if (result == -1)
+            {
+                R = Funcion.RespuestaProceso("State", "Home", "Login",email,null, email + "Identificacion fallida, compruebe su email y contraseña");
+             return RedirectToAction(R.NombreAccion,R.NombreControlador, R);
+            }
             return View();
         }
 
-        public ActionResult Register()
+        public ActionResult Register(ActivarCliente model = null)
         {
-            return View();
+            Respuesta R = new Respuesta();
+            if (model == null)
+                return View(R);
+            if (model.Email == null || model.Password == null || model.Password2 == null || model.Nombre == null || model.Apellido == null)
+                return View(R);
+
+            bool resultado = Funcion.EmailEsValido(model.Email);
+            if (!resultado)
+            {
+                R = Funcion.RespuestaProceso("State", "Home", "Register", model.Email, null, model.Email + " Es una direccion de correo electronica no valida.");
+                return RedirectToAction(R.NombreAccion,R.NombreControlador, R);
+            }
+            resultado = Funcion.CompareString(model.Password, model.Password2);
+            if (!resultado)
+            {
+                R = Funcion.RespuestaProceso("State","Home","Register",model.Email,null, model.Email + " Las contraseñas deben ser identicas.");
+                return RedirectToAction(R.NombreAccion, R.NombreControlador, R);
+            }
+            model.Estatus = false;
+            model.FechaRegistro = DateTime.UtcNow;
+            model.Password = Funcion.ConvertirBase64(model.Email + model.Password);
+            int result = Metodo.ClienteRegistro(model);
+            if (result <= 0)
+            {
+                R = Funcion.RespuestaProceso("State","Home","Register",model.Email,null, model.Email + " Error al registrar cliente.Puede ser que la direccion de email se diferente a la utilizada.");
+                return RedirectToAction(R.NombreAccion, R.NombreControlador, R);
+            }
+
+            string enlaze = Funcion.CrearEnlazeRegistro(Metodo, model.Email, model.Password2);
+            EstructuraMail estructura = new EstructuraMail();
+            estructura = Funcion.SetEstructuraMailRegister(enlaze, model.Email, estructura);
+            resultado = Notificacion.EnviarMailNotificacion(estructura);
+            if (resultado)
+            {
+                R = Funcion.RespuestaProceso("State", "Home", "Index", model.Email,null,"Registro exitoso " + model.Email + " Enviamos una notificacion a tu correo para activar tu cuenta.");
+                return RedirectToAction(R.NombreAccion, R.NombreControlador, R);
+            }
+            else
+            {
+                R = Funcion.RespuestaProceso("State", "Home", "Open",model.Email, null, model.Email + "Error enviando notificacion");
+                return RedirectToAction(R.NombreAccion, R.NombreControlador, R);
+            }
         }
+
         public ActionResult Contact(Respuesta model = null)
         {
             if (model == null || model.Email == string.Empty || model.Email == null )
@@ -49,8 +122,8 @@ namespace SudokuForAll.Controllers
             bool resultado = Funcion.EmailEsValido(model.Email);
             if (!resultado)
             {
-                model = Funcion.RespuestaProceso("State", "Home", "Contact",model.Email, null, model.Email + " Es una direccion de correo electronica no valida.");
-                return RedirectToAction(model.NombreAccion, model.NombreControlador, model);
+                model = Funcion.RespuestaProceso("State", "Home","Contact", model.Email, null, model.Email + " Es una direccion de correo electronica no valida.");
+                return RedirectToAction("State","Home", model);
             }
 
             // Suceso al entrar al sitio 
@@ -106,28 +179,24 @@ namespace SudokuForAll.Controllers
             int id = -1;
 
             //Validar email
-            if (email != string.Empty && email != null)
+            if (email != string.Empty && email != null )
             {
                 if (Funcion.CadenaBase64Valida(email))
-                {
                     email = Funcion.DecodeBase64(email);
-                }
+              
                 resultado = Funcion.EmailEsValido(email);
                 if (!resultado)
                 {
-                    R = Funcion.RespuestaProceso(null,null,"Open", email ,null, "No es una direccion de correo valida.");
-                    return View(R);
-                }
-                id = Metodo.ObtenerIdCliente(email);
-                if (id <= 0)
-                {
-                    R = Funcion.RespuestaProceso(null, null, "Open", email , null, "Intento de violacion de seguridad.");
-                    return View(R);
-                }
+                    if(K.RespuestaAccion != string.Empty && K.RespuestaAccion != null)
+                        R = Funcion.RespuestaProceso(null, null, K.RespuestaAccion, email, null, email + " Es una direccion de correo electronica no valida.");
+                    else if (type != string.Empty && type != null)
+                        R = Funcion.RespuestaProceso(null, null, "Open", email, null, email + " Es una direccion de correo electronica no valida.");
+                     return View(R);
+                }  
             }
 
             //Validar GUID de identidad
-            if (identidad != string.Empty && identidad != null)
+            if (identidad != string.Empty && identidad != null && type != string.Empty && type != null)
             {
                 guidCliente = Metodo.ObtenerIdentidadCliente(email);
                 string identificador = Funcion.EncodeMd5(guidCliente.ToString());
@@ -140,7 +209,7 @@ namespace SudokuForAll.Controllers
             }
 
             //validar tiempo de expiracion del link
-            if (date != string.Empty && date != null)
+            if (date != string.Empty && date != null && type != string.Empty && type != null)
             {
                 date = date.Replace('*', ' ');
                 date = date.Replace('+', '.');
@@ -193,15 +262,6 @@ namespace SudokuForAll.Controllers
 
                 R = Funcion.RespuestaProceso("Verificacion de codigo de seguridad", email, ide);
                 return RedirectToAction("EditPasswordNotify", "Home", R);
-            }
-
-            //Redireccionamiento entrada test
-            if (System.Web.HttpContext.Current.Session["ResultadoEntrada"] != null && System.Web.HttpContext.Current.Session["Email"] != null)
-            {
-                string valor = System.Web.HttpContext.Current.Session["ResultadoEntrada"].ToString();
-                email = System.Web.HttpContext.Current.Session["Email"].ToString();
-                string[] T = valor.Split('/');
-                R = Funcion.RespuestaProceso(T[1], email);
             }
 
             if (K.RespuestaAccion != null)

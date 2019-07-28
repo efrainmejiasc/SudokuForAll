@@ -26,6 +26,7 @@ namespace SudokuForAll.Engine
         string CrearEnlazeRegistro(IEngineDb Metodo, string email, string password);
         string CrearEnlazeRestablecerPassword(IEngineDb Metodo, string email, string codigo);
         EstructuraMail SetEstructuraMailTest(string enlaze, string email, EstructuraMail model);
+        EstructuraMail SetEstructuraMailRegister(string enlaze, string email, EstructuraMail model);
         EstructuraMail SetEstructuraMailResetPassword(string enlaze, string email, string codigo, EstructuraMail model);
         bool EnviarNuevaNotificacion(IEngineNotificacion Notificacion, IEngineDb Metodo, string email, string type, string password = "");
         Respuesta RespuestaProceso(string nombreAccion ="", string nombreControlador="", string respuesta="", string email="", string codigo="", string descripcion="");

@@ -18,8 +18,8 @@
 }
 
 .logo{
-    height:10%;
-    width:10%;
+    height:8%;
+    width:8%;
     margin-left:85%
 }
 
@@ -27,6 +27,10 @@
     height: 10%;
     width: 10%;
     margin-right: 100%
+}
+
+.modal{
+    padding:3px;
 }
 
 

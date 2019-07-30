@@ -27,6 +27,14 @@
                     <li id="inicio">@Html.ActionLink("Inicio", "Index", "Home")</li>
                     <li id="entrar">@Html.ActionLink("Entrar", "Contact", "Home")</li>
                 </ul>
+                <div id="lenguaje" style="float:right;">
+                    <select class="btn-primary btn" data-style="btn-primary">
+                        <option value="" disable>Seleccione Lenguaje . . .</option>
+                        <option value="1">Español</option>
+                        <option value="2">Ingles</option>
+                        <option value="2">Portugues</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
@@ -34,7 +42,17 @@
         @RenderBody()
         <hr />
         <footer>
-            <p><a class="w3-button w3-light-grey w3-block"> copyright&copy;@DateTime.Now.Year - Sudoku para todos</a></p>
+            <div class="navbar-collapse collapse">
+                <br />
+                <ul class="nav navbar-nav">
+                    <li></li>
+                    <li><a class="w3-button w3-light-grey w3-block"> copyright&copy;@DateTime.Now.Year - Sudoku para todos</a></li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li><a href="http://localhost:49799/Home/EditPasswordNotify">Olvido su contraseña</a></li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li></li>
+                </ul>
+            </div>
         </footer>
     </div>
 

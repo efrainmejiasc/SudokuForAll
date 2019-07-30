@@ -5,6 +5,8 @@
 <link href="~/Content/css/Global.css" rel="stylesheet" />
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="~/Content/js/Global.js" type="text/javascript"></script>
 
 @{
     string chxNosoy = "  No soy un robot";
@@ -22,5 +24,9 @@
         <input type="submit" id="sendData" name="sendData" value="Enviar" class="btn btn-primary" style="width:13%;" />
         <input type="submit" id="cancel" name="cancel" value="Cancelar" class="btn btn-primary" style="width:13%;" />
     }
+     <script>
+         OcultarObjeto('entrar');
+         GetEmail();
+    </script>
 </div>
 

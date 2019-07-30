@@ -35,6 +35,10 @@ function AbrirModalIndicada(openModal) {
         obj8.style.display = 'block';
         setTimeout(RedirectToEditPasswordNotify, 4000);
     }
+    else if (openModal == 'comprarRegistrarse') {
+        var obj10 = document.getElementById('comprarRegistrarse');
+        obj10.style.display = 'block';
+    }
 }
 
 function CerrarIntro() {
@@ -66,6 +70,10 @@ function RedirectToRegister() {
     window.location.href = "http://localhost:49983/Home/Register#";
 }
 
+function ComprarRegistrarse() {
+    window.location.href = "http://localhost:49983//Home/Register#";
+}
+
 function RedirectToEditPasswordNotify() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
@@ -80,7 +88,6 @@ function NotificacionPrueba() {
         data: { email: email },
         datatype: "json",
         success: function (data) {
-            //AnularResultadoEntrada();
             console.log(data.RespuestaAccion);
             if (data.RespuestaAccion == 'Exito')
                 alert('Hemos enviado una notificacion a la direccion ' + data.Email);
@@ -101,7 +108,28 @@ function OcultarObjeto(name) {
     $(objeto).hide();
 }
 
-/*function AnularResultadoEntrada() {
+
+
+function CerrarModalProbarSitio() {
+    var modal = document.getElementById('probarSitio');
+    modal.style.display = 'none';
+    AnularResultadoEntrada();
+    window.location.href = "http://localhost:49983/";
+}
+
+function CerrarModalComprarRegistrarse() {
+    var modal = document.getElementById('comprarRegistrarse');
+    modal.style.display = 'none';
+    window.location.href = "http://localhost:49983/";
+}
+
+function CerrarModalActivarCuenta() {
+    var modal = document.getElementById('activarCuenta');
+    modal.style.display = 'none';
+    window.location.href = "http://localhost:49983/";
+}
+
+function AnularResultadoEntrada() {
     $.ajax({
         type: "POST",
         url: "/Home/AnularEmailResultadoEntrada",
@@ -109,7 +137,9 @@ function OcultarObjeto(name) {
             console.log('Exito');
         }
     });
-}*/
+}
+
+
 
 
 

@@ -176,6 +176,7 @@
     <Content Include="Content\css\_MessagePartial.css" />
     <Content Include="Content\imagen\logo.png" />
     <Content Include="Content\imagen\SudokuEnCasa.ico" />
+    <Content Include="Content\js\EditPasswordNotify.js" />
     <Content Include="Content\js\Global.js" />
     <Content Include="Content\js\State.js" />
     <Content Include="favicon.ico" />
@@ -220,6 +221,7 @@
     <Content Include="Views\Game\PlayGame.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\EditPasswordNotify.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

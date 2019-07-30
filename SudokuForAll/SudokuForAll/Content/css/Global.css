@@ -2,7 +2,7 @@
     width: 60%;
     height: 500px;
     margin-left: 25%;
-    margin-top: 6%;
+    margin-top: 14%;
 }
 
 .logoInitial {
@@ -21,11 +21,6 @@
     margin-left: 85%;
 }
 
-.lenguaje {
-    padding-top: 12%;
-    height:5%;
-    float: right;
-}
 
 .txtColor {
    color:blue;

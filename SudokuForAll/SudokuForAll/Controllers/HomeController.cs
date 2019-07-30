@@ -62,7 +62,7 @@ namespace SudokuForAll.Controllers
             }
             else if (result == -1)
             {
-                R = Funcion.RespuestaProceso("State", "Home", "Login",email,null, email + "Identificacion fallida, compruebe su email y contraseña");
+                R = Funcion.RespuestaProceso("State", "Home", "Login",email,null, email + " Identificacion fallida, compruebe su email y contraseña");
              return RedirectToAction(R.NombreAccion,R.NombreControlador, R);
             }
             return View();
@@ -133,43 +133,30 @@ namespace SudokuForAll.Controllers
                 System.Web.HttpContext.Current.Session["Email"] = model.Email;
                 return RedirectToAction("PlayGame", "Game");//TIEMPO DE PRUEBA ES VALIDO
             }
-            else if (result == 2)
+            else if (result == 2 || result == 4)
             {
-                return RedirectToAction("NotifySend", "Home",Funcion.DecodeBase64(EngineData.Test)); //TIEMPO PRUEBA VALIDO CUENTA NO ACTIVADA
+                model = Funcion.RespuestaProceso("State", "Home", "comprarRegistrarse", model.Email, null, "Su tiempo de prueba expiro, desea comprar y registrase?");
+                return RedirectToAction(model.NombreAccion, model.NombreControlador,model);//TIEMPO DE PRUEBA EXPIRO
             }
             else if (result == 3)
             {
+                System.Web.HttpContext.Current.Session["Email"] = model.Email;
                 return RedirectToAction("Login", "Home"); //CUENTA ACTIVADA CLIENTE REGISTRADO
             }
-            else if (result == 4)
+            else if (result == 5 || result == 7)
             {
-                return RedirectToAction("Register", "Home");//TIEMPO DE PRUEBA EXPIRO
-            }
-            else if (result == 5)
-            {
-                return RedirectToAction("NotifySend", "Home", Funcion.DecodeBase64(EngineData.Register)); //CUENTA NO ACTIVADA CLIENTE REGISTRADO
+                model = Funcion.RespuestaProceso("State", "Home", "Index", model.Email, null, model.Email + " Su cuenta no ha sido activada,revise su bandeja de entrada");
+                return RedirectToAction(model.NombreAccion, model.NombreControlador,model); //CUENTA NO ACTIVADA CLIENTE REGISTRADO
             }
             else if (result == 6)
             {
-                model = Funcion.RespuestaProceso(null,null, Funcion.DecodeBase64(EngineData.Test), model.Email,null,null); //EMAIL NO EXISTE
+                model = Funcion.RespuestaProceso("State","Home", Funcion.DecodeBase64(EngineData.Test), model.Email,null,null); // EMAIL NO EXISTE
                 return RedirectToAction("State", "Home",model);
             }
             return View(model);
         }
     
-        private Respuesta SucesoMensaje (int result , Respuesta model)
-        {
-            string retorno = string.Empty;
-            switch (result)
-            {
-                case (1):
-                    model = Funcion.RespuestaProceso("PlayGame","Game"); //Tiempo de prueba valido
-                    break;
-
-            }
-            return model;
-        }
-
+        [HttpGet]
         public ActionResult State(string email = "", string identidad = "", string date = "", string status = "", string ide = "", string type = "", Respuesta K = null)
         {
             Respuesta R = new Respuesta();
@@ -283,6 +270,11 @@ namespace SudokuForAll.Controllers
             return View();
         }
 
+        public ActionResult EditPasswordNotify()
+        {
+            return View();
+        }
+
         [HttpPost]
         public JsonResult NotificacionPrueba(string email)
         {
@@ -310,6 +302,87 @@ namespace SudokuForAll.Controllers
 
             return Json(R);
         }
+
+        [HttpPost]
+        public JsonResult EmailUser()
+        {
+            Respuesta R = new Respuesta();
+            if (System.Web.HttpContext.Current.Session["Email"] != null)
+                R.Email = System.Web.HttpContext.Current.Session["Email"].ToString();
+            else
+                R.Email = string.Empty;
+            return Json(R);
+        }
+
+        [HttpPost]
+        public ActionResult NotificacionRestablecerPassword(string email)
+        {
+            Respuesta R = new Respuesta();
+            bool resultado = Funcion.EmailEsValido(email);
+            if (!resultado)
+            {
+                R = Funcion.RespuestaProceso("State","Home","Open",email,null, email + " No es una direccion de correo valida.");
+                return RedirectToAction("State", "Home", R);
+            }
+            Guid identidad = Metodo.ObtenerIdentidadCliente(email);
+            if (identidad == Guid.Empty)
+            {
+                R = Funcion.RespuestaProceso("State", "Home","Open",email,null, "La direccion " + email + " No esta registrada , verifiquela por favor.");
+                return RedirectToAction("State", "Home", R);
+            }
+
+            string codigo = Funcion.ConstruirCodigo();
+            string enlaze = Funcion.CrearEnlazeRestablecerPassword(Metodo, email, codigo);
+            EstructuraMail model = new EstructuraMail();
+            model = Funcion.SetEstructuraMailResetPassword(enlaze, email, codigo, model);
+            ResetPassword resetPassword = new ResetPassword();
+            resetPassword = Funcion.SetResetPassword(email, codigo);
+            resultado = Metodo.InsertarResetPassword(resetPassword);
+            if (!resultado)
+            {
+                R = Funcion.RespuestaProceso("State", "Home", "Open", email, null, email + " Error insertando codigo de restablecimiento de contraseña");
+                return RedirectToAction("State", "Home", R);
+            }
+            resultado = Notificacion.EnviarMailNotificacion(model);
+            if (resultado)
+                R = Funcion.RespuestaProceso(null,null,"Index", email,null, "Exito");
+            else
+                R = Funcion.RespuestaProceso(null,null,"Index",email,null,"Error Enviando");
+
+            return Json(R);
+        }
+
+        [HttpPost]
+        public ActionResult ValidarCodigoRestablecerPassword(string email, string codigo)
+        {
+            Respuesta R = new Respuesta();
+            bool resultado = Funcion.EmailEsValido(email);
+            if (!resultado)
+            {
+                R = Funcion.RespuestaProceso("State", "Home", "Open", email, null, email + " No es una direccion de correo valida.");
+                return RedirectToAction("State", "Home", R);
+            }
+            string code = Metodo.ObtenerCodigoRestablecerPassword(email).Trim();
+            codigo = codigo.Trim();
+            resultado = Funcion.CompareString(code, codigo.Trim());
+            if (!resultado)
+            {
+                R = Funcion.RespuestaProceso("State","Home","EditPasswordNotify",email, Funcion.ConvertirBase64("-1E-9R-2R-8O"), email + " El codigo suministrado no coincide ,intentelo de nuevo.");
+                return RedirectToAction("State", "Home", R);
+            }
+            int act = Metodo.UpdateResetPassword(email, codigo, true);
+            if (act >= 1)
+            {
+                R = Funcion.RespuestaProceso(null , null , "Index",email, null,"Exito, " +  email + " Codigo de verificacion validado exitosamente");
+            }
+            else
+            {
+                R = Funcion.RespuestaProceso(null, null, "Index", email, null, "Error, " + email + " Restriccion para restablecer password");
+
+            }
+            return Json(R);
+        }
+
 
     }
 }

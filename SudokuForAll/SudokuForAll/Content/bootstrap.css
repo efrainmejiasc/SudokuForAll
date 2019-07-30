@@ -4593,21 +4593,21 @@ fieldset[disabled] .navbar-default .btn-link:focus {
     border-color: transparent;
     font-size:18px;
 }
-.navbar-inverse .navbar-brand {
-  background-color:transparent;
-  color:black;
-}
+    .navbar-inverse .navbar-brand {
+        background-color: transparent;
+        color: #FE2E64; /*Color letra*/
+    }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
   color: #fff;
   background-color: transparent;
 }
-.navbar-inverse .navbar-text {
-  color:dodgerblue;
-}
-.navbar-inverse .navbar-nav > li > a {
-  color:dodgerblue;
-}
+    .navbar-inverse .navbar-text {
+        color: #084B8A;
+    }
+    .navbar-inverse .navbar-nav > li > a {
+        color: #084B8A;
+    }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
   color: #fff;

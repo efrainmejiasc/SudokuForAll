@@ -20,10 +20,10 @@ function NotificacionRestablecerPassword() {
         data: { email: email },
         datatype: "json",
         success: function (data) {
-            console.log(data.RespuestaAccion);
-            if (data.RespuestaAccion == 'Exito')
-                alert('Hemos enviado una notificacion a la direccion ' + data.Email + " ,con un password provicional");
-            else if (data.RespuestaAccion == 'Error Enviando')
+            console.log(data.Descripcion);
+            if (data.Descripcion == 'Exito')
+                alert('Hemos enviado una notificacion a la direccion ' + data.Email + " ,con un codigo de verificacion para restablecer contraseña");
+            else if (data.Descripcion == 'Error')
                 alert('Disculpe surgio un error al intentar enviar email a : ' + data.Email);
         },
         complete: function () {
@@ -34,17 +34,17 @@ function NotificacionRestablecerPassword() {
 
 function ValidarCodigo() {
     var email = $('#email').val();
-    var codigo = $('#codigo').val();
+    var codigo = $('#codigoReset').val();
     $.ajax({
         type: "POST",
         url: "/Home/ValidarCodigoRestablecerPassword",
         data: { email: email, codigo: codigo },
         datatype: "json",
         success: function (data) {
-            console.log(data.RespuestaAccion);
-            if (data.RespuestaAccion == 'Exito')
+            console.log(data.Descripcion);
+            if (data.Descripcion == 'Exito')
                 alert(data.Email);
-            else if (data.RespuestaAccion == 'Error')
+            else if (data.Descripcion == 'Error')
                 alert(data.Email);
         },
         complete: function () {
@@ -53,9 +53,20 @@ function ValidarCodigo() {
     });
 }
 function IrIndex() {
-        window.location.href = "http://localhost:49799/";
+       // window.location.href = "http://localhost:49983/";
+    window.location.href = "http://joselelu-001-site1.etempurl.com/";
 }
 
 function IrEditPassword() {
-    window.location.href = "http://localhost:49799/Home/EditPassword/";
+    //window.location.href = "http://joselelu-001-site1.etempurl.com/Home/EditPassword/";
+    window.location.href = "http://joselelu-001-site1.etempurl.com/Home/EditPassword/";
+}
+
+function OlvidoPassword() {
+    $('#olvidoPassword').hide();
+}
+
+function OcultarObjeto(name) {
+    var objeto = '#'.concat(name);
+    $(objeto).hide();
 }

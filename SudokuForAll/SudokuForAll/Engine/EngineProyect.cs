@@ -230,12 +230,10 @@ namespace SudokuForAll.Engine
             return model;
         }
 
-        public Respuesta RespuestaProceso(string nombreAccion="", string nombreControlador="", string respuesta="", string email="", string codigo="", string descripcion="")
+        public Respuesta RespuestaProceso(string respuesta="", string email="", string codigo="", string descripcion="")
         {
             Respuesta resultado = new Respuesta()
             {
-                NombreAccion = nombreAccion,
-                NombreControlador = nombreControlador,
                 RespuestaAccion = respuesta,
                 Email = email,
                 CodigoResetPassword = codigo,

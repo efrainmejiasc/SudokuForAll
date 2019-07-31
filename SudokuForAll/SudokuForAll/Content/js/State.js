@@ -49,35 +49,41 @@ function CerrarIntro() {
 function RedirectToIndex() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
-    window.location.href = "http://localhost:49983";
+   // window.location.href = "http://localhost:49983";
+    window.location.href = "http://joselelu-001-site1.etempurl.com#";
 }
 
 function RedirectToLogin() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
-    window.location.href = "http://localhost:49983/Home/Login#";
+   // window.location.href = "http://localhost:49983/Home/Login#";
+    window.location.href = "http://joselelu-001-site1.etempurl.com/Home/Login#";
 }
 
 function RedirectToContact() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
-    window.location.href = "http://localhost:49983/Home/Contact#";
+   // window.location.href = "http://localhost:49983/Home/Contact#";
+    window.location.href = "http://joselelu-001-site1.etempurl.com/Home/Contact#";
 }
 
 function RedirectToRegister() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
-    window.location.href = "http://localhost:49983/Home/Register#";
+    //window.location.href = "http://localhost:49983/Home/Register#";
+    window.location.href = "http://joselelu-001-site1.etempurl.com#";
 }
 
 function ComprarRegistrarse() {
-    window.location.href = "http://localhost:49983//Home/Register#";
+   // window.location.href = "http://localhost:49983//Home/Register#";
+    window.location.href = "http://joselelu-001-site1.etempurl.com/Home/Register#";
 }
 
 function RedirectToEditPasswordNotify() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
-    window.location.href = "http://localhost:49983/Home/EditPasswordNotify#";
+    //window.location.href = "http://localhost:49983/Home/EditPasswordNotify#";
+    window.location.href = "http://joselelu-001-site1.etempurl.com/Home/EditPasswordNotify#";
 }
 
 function NotificacionPrueba() {
@@ -108,25 +114,26 @@ function OcultarObjeto(name) {
     $(objeto).hide();
 }
 
-
-
 function CerrarModalProbarSitio() {
     var modal = document.getElementById('probarSitio');
     modal.style.display = 'none';
     AnularResultadoEntrada();
-    window.location.href = "http://localhost:49983/";
+    //window.location.href = "http://localhost:49983/";
+    window.location.href = "http://joselelu-001-site1.etempurl.com/";
 }
 
 function CerrarModalComprarRegistrarse() {
     var modal = document.getElementById('comprarRegistrarse');
     modal.style.display = 'none';
-    window.location.href = "http://localhost:49983/";
+   // window.location.href = "http://localhost:49983/";
+    window.location.href = "http://joselelu-001-site1.etempurl.com/";
 }
 
 function CerrarModalActivarCuenta() {
     var modal = document.getElementById('activarCuenta');
     modal.style.display = 'none';
-    window.location.href = "http://localhost:49983/";
+    //window.location.href = "http://localhost:49983/";
+    window.location.href = "http://joselelu-001-site1.etempurl.com/";
 }
 
 function AnularResultadoEntrada() {

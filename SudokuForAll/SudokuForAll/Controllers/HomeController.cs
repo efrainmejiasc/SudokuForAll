@@ -287,14 +287,14 @@ namespace SudokuForAll.Controllers
             model = Funcion.SetEstructuraMailTest(enlaze, email, model);
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso(null,null,"Error Registrando", email);
+                R = Funcion.RespuestaProceso(null, email,null, "Error Registrando");
                 return Json(R);
             }
             resultado = Notificacion.EnviarMailNotificacion(model);
             if (resultado)
-                R = Funcion.RespuestaProceso(null,null,"Exito", email);
+                R = Funcion.RespuestaProceso(null, email,null, "Exito");
             else
-                R = Funcion.RespuestaProceso(null,null,"Error Enviando", email);
+                R = Funcion.RespuestaProceso(null, email,null, "Error Enviando");
 
             return Json(R);
         }
@@ -391,5 +391,12 @@ namespace SudokuForAll.Controllers
         }
 
 
+        [HttpPost]
+        public JsonResult DireccionSite(string nombreControlador, string nombreAccion)
+        {
+            Respuesta Redireccion = new Respuesta();
+            Redireccion.Descripcion = EngineData.UrlBase + nombreControlador + "/" + nombreAccion + "/";
+            return Json(Redireccion);
+        }
     }
 }

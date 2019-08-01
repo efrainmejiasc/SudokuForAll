@@ -27,7 +27,7 @@ function NotificacionRestablecerPassword() {
                 alert('Disculpe surgio un error al intentar enviar email a : ' + data.Email);
         },
         complete: function () {
-            IrIndex();
+            DireccionSite('Home', 'Index');
         }
     });
 }
@@ -48,18 +48,22 @@ function ValidarCodigo() {
                 alert(data.Email);
         },
         complete: function () {
-            IrEditPassword();
+            DireccionSite('Home', 'EditPassword');
         }
     });
 }
-function IrIndex() {
-       // window.location.href = "http://localhost:49983/";
-    window.location.href = "http://joselelu-001-site1.etempurl.com/";
-}
 
-function IrEditPassword() {
-    //window.location.href = "http://joselelu-001-site1.etempurl.com/Home/EditPassword/";
-    window.location.href = "http://joselelu-001-site1.etempurl.com/Home/EditPassword/";
+
+function DireccionSite(nombreControlador, nombreAccion) {
+    $.ajax({
+        type: "POST",
+        url: "/Home/DireccionSite",
+        data: { nombreControlador: nombreControlador, nombreAccion: nombreAccion },
+        datatype: "json",
+        success: function (data) {
+            window.location.href = data.Descripcion;
+        }
+    });
 }
 
 function OlvidoPassword() {

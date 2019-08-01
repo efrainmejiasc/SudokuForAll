@@ -49,64 +49,35 @@ function CerrarIntro() {
 function RedirectToIndex() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
-   // window.location.href = "http://localhost:49983";
-    window.location.href = "http://joselelu-001-site1.etempurl.com#";
+    DireccionSite('Home', 'Index');
 }
 
 function RedirectToLogin() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
-   // window.location.href = "http://localhost:49983/Home/Login#";
-    window.location.href = "http://joselelu-001-site1.etempurl.com/Home/Login#";
+    DireccionSite('Home', 'Login');
 }
 
 function RedirectToContact() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
-   // window.location.href = "http://localhost:49983/Home/Contact#";
-    window.location.href = "http://joselelu-001-site1.etempurl.com/Home/Contact#";
+    DireccionSite('Home', 'Contact');
 }
 
 function RedirectToRegister() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
-    //window.location.href = "http://localhost:49983/Home/Register#";
-    window.location.href = "http://joselelu-001-site1.etempurl.com#";
+    DireccionSite('Home', 'Register');
 }
 
 function ComprarRegistrarse() {
-   // window.location.href = "http://localhost:49983//Home/Register#";
-    window.location.href = "http://joselelu-001-site1.etempurl.com/Home/Register#";
+    DireccionSite('Home', 'Register');
 }
 
 function RedirectToEditPasswordNotify() {
     var obj = document.getElementById('intro');
     obj.style.display = 'none';
-    //window.location.href = "http://localhost:49983/Home/EditPasswordNotify#";
-    window.location.href = "http://joselelu-001-site1.etempurl.com/Home/EditPasswordNotify#";
-}
-
-function NotificacionPrueba() {
-    var email = $('#Email').val();
-    $.ajax({
-        type: "POST",
-        url: "/Home/NotificacionPrueba",
-        data: { email: email },
-        datatype: "json",
-        success: function (data) {
-            console.log(data.RespuestaAccion);
-            if (data.RespuestaAccion == 'Exito')
-                alert('Hemos enviado una notificacion a la direccion ' + data.Email);
-            else if (data.RespuestaAccion == 'Error Registrando')
-                alert(data.Email + ' Ya esta registrado');
-            else if (data.RespuestaAccion == 'Error Enviando')
-                alert('Disculpe surgio un error al intentar enviar email a : ' + data.Email);
-        },
-        complete: function () {
-            var modal = document.getElementById('probarSitio');
-            modal.style.display = 'none';
-        }
-    });
+    DireccionSite('Home', 'EditPasswordNotify');
 }
 
 function OcultarObjeto(name) {
@@ -117,34 +88,57 @@ function OcultarObjeto(name) {
 function CerrarModalProbarSitio() {
     var modal = document.getElementById('probarSitio');
     modal.style.display = 'none';
-    AnularResultadoEntrada();
-    //window.location.href = "http://localhost:49983/";
-    window.location.href = "http://joselelu-001-site1.etempurl.com/";
+    DireccionSite('Home', 'Index');
 }
 
 function CerrarModalComprarRegistrarse() {
     var modal = document.getElementById('comprarRegistrarse');
     modal.style.display = 'none';
-   // window.location.href = "http://localhost:49983/";
-    window.location.href = "http://joselelu-001-site1.etempurl.com/";
+    DireccionSite('Home', 'Index');
 }
 
 function CerrarModalActivarCuenta() {
     var modal = document.getElementById('activarCuenta');
     modal.style.display = 'none';
-    //window.location.href = "http://localhost:49983/";
-    window.location.href = "http://joselelu-001-site1.etempurl.com/";
+    DireccionSite('Home', 'Index');
 }
 
-function AnularResultadoEntrada() {
+function DireccionSite(nombreControlador, nombreAccion) {
     $.ajax({
         type: "POST",
-        url: "/Home/AnularEmailResultadoEntrada",
+        url: "/Home/DireccionSite",
+        data: { nombreControlador: nombreControlador, nombreAccion: nombreAccion },
+        datatype: "json",
         success: function (data) {
-            console.log('Exito');
+            window.location.href = data.Descripcion;
         }
     });
 }
+
+function NotificacionPrueba() {
+    var email = $('#Email').val();
+    $.ajax({
+        type: "POST",
+        url: "/Home/NotificacionPrueba",
+        data: { email: email },
+        datatype: "json",
+        success: function (data) {
+            console.log(data.Descripcion);
+            if (data.Descripcion == 'Exito')
+                alert('Hemos enviado una notificacion a la direccion ' + data.Email);
+            else if (data.Descripcion == 'Error Registrando')
+                alert(data.Email + ' Ya esta registrado');
+            else if (data.Descripcion == 'Error Enviando')
+                alert('Disculpe surgio un error al intentar enviar email a : ' + data.Email);
+        },
+        complete: function () {
+            var modal = document.getElementById('probarSitio');
+            modal.style.display = 'none';
+            DireccionSite('Home', 'Index');
+        }
+    });
+}
+
 
 
 

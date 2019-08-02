@@ -49,7 +49,7 @@ namespace SudokuForAll.Controllers
             int result = Metodo.ResultadoLogin(password);
             if (result == 0)
             {
-                R = Funcion.RespuestaProceso("Open", email,null, email + " Tu Tiempo de juego expiro,debes volver a comprar.");// Cuando RespuetaAccion = Open -> No redirecciona a ninguna pagina
+                R = Funcion.RespuestaProceso("Open", email, null, email + " Tu Tiempo de juego expiro,debes volver a comprar.");// Cuando RespuetaAccion = Open -> No redirecciona a ninguna pagina
                 return RedirectToAction("Buy", "Home");
             }
             else if (result == 1)
@@ -62,7 +62,7 @@ namespace SudokuForAll.Controllers
             }
             else if (result == -1)
             {
-                R = Funcion.RespuestaProceso("Login",email,null, email + " Identificacion fallida, compruebe su email y contraseña");
+                R = Funcion.RespuestaProceso("Login", email, null, email + " Identificacion fallida, compruebe su email y contraseña");
                 return RedirectToAction("State", "Home", R);
             }
             return View();

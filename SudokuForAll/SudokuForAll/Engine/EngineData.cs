@@ -49,7 +49,7 @@ namespace SudokuForAll.Engine
 
         // Parametros notificacion para restablecer password
         public static string AsuntoResetPassword = "Restablecer password Sudoku para todos";
-        public static string ClickAqui3 = "Hazme Click para ir a la Pagina de Restablecimiento de Contraseña";
+        public static string ClickAqui3 = "Hazme Click para ir a la Pagina de ingresar codigo para restablecimiento de Contraseña";
         public static string DescripcionRestablecerPassword = "Haz click en el enlaze e ingresa el codigo para restablecer tu contraseña";
         public static string ObservacionRestablecerPassword = "Este codigo tiene un tiempo de expiracion de 2 horas";
         public static string PathLecturaArchivoRestablecerPassword = @"/Content/template/EmailBodyResetPassword.cshtml";

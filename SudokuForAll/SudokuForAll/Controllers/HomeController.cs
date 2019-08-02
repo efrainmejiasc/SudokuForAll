@@ -169,14 +169,14 @@ namespace SudokuForAll.Controllers
 
             //Validar email
             if (email != string.Empty && email != null )
-            {              
+            {
+                if (Funcion.CadenaBase64Valida(email))
+                    email = Funcion.DecodeBase64(email);
+
                 resultado = Funcion.EmailEsValido(email);
                 emailCode64 = Funcion.ConvertirBase64(email);
                 if (!resultado)
                 {
-                    if (Funcion.CadenaBase64Valida(email))
-                        email = Funcion.DecodeBase64(email);
-
                     if (K.RespuestaAccion != string.Empty && K.RespuestaAccion != null)
                         R = Funcion.RespuestaProceso(K.RespuestaAccion, emailCode64, null, email + " Es una direccion de correo electronica no valida.");
                     else if (type != string.Empty && type != null)

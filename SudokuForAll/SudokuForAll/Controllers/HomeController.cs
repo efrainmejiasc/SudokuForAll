@@ -153,7 +153,7 @@ namespace SudokuForAll.Controllers
             }
             else if (result == 6)
             {
-                model = Funcion.RespuestaProceso(Funcion.DecodeBase64(EngineData.Test), emailCode64, null,null); // EMAIL NO EXISTE
+                model = Funcion.RespuestaProceso(Funcion.DecodeBase64(EngineData.Test), model.Email, null,null); // EMAIL NO EXISTE
                 return RedirectToAction("State", "Home",model);
             }
             return View(model);

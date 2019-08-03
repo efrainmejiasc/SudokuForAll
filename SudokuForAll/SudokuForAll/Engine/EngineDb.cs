@@ -278,17 +278,20 @@ namespace SudokuForAll.Engine
 
         public string ObtenerCodigoRestablecerPassword(string email)
         {
-            ResetPassword C = new ResetPassword();
+            string C = string.Empty;
+            int id = 0;
             try
             {
                 using (SudokuContext context = new SudokuContext())
                 {
-                    C = context.ResetPassword.OrderByDescending(x => x.Email == email && x.Estatus == false).Take(1).FirstOrDefault();
-                    if (C.Codigo != string.Empty && C.Codigo != null)
-                        return C.Codigo;
+                    id = context.ResetPassword.Where(z => z.Email == email && z.Estatus == false).Max(z => z.Id);
+                    C = context.ResetPassword.Where(z => z.Email == email && z.Estatus == false && z.Id == id).Max(z => z.Codigo);
+                    if (C != string.Empty && C != null)
+                        return C;
                 }
             }
-            catch { }
+            catch
+            { }
             return string.Empty;
         }
     }

@@ -249,7 +249,11 @@ namespace SudokuForAll.Controllers
                 string codigo = Funcion.DecodeBase64(ide);
                 string code = Metodo.ObtenerCodigoRestablecerPassword(email);
                 resultado = Funcion.CompareString(codigo, code);
-
+                if (!resultado)
+                {
+                    R = Funcion.RespuestaProceso("Open", emailCode64, null, "Intento de violacion de seguridad.");
+                    return View(R);
+                }
                 R = Funcion.RespuestaProceso(null, emailCode64, "codeVerify","Ingrese codigo de verificacion");
                 return RedirectToAction("EditPasswordNotify", "Home", R);
             }
@@ -324,6 +328,13 @@ namespace SudokuForAll.Controllers
         }
 
 
+        public ActionResult EditPassword()
+        {
+
+            return View();
+        }
+
+
         [HttpPost]
         public ActionResult NotificacionRestablecerPassword(string email)
         {
@@ -332,14 +343,14 @@ namespace SudokuForAll.Controllers
             bool resultado = Funcion.EmailEsValido(email);
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso("Open", emailCode64, null, email + " No es una direccion de correo valida.");
-                return RedirectToAction("State", "Home", R);
+                R = Funcion.RespuestaProceso("Email_No_Valido", emailCode64, null, email + " No es una direccion de correo valida.");
+                return Json(R);
             }
             Guid identidad = Metodo.ObtenerIdentidadCliente(email);
             if (identidad == Guid.Empty)
             {
-                R = Funcion.RespuestaProceso("Open", emailCode64, null, "La direccion " + email + " No esta registrada , verifiquela por favor.");
-                return RedirectToAction("State", "Home", R);
+                R = Funcion.RespuestaProceso("Email_No_Registrado", emailCode64, null, "La direccion " + email + " No esta registrada , verifiquela por favor.");
+                return Json(R);
             }
 
             string codigo = Funcion.ConstruirCodigo();
@@ -351,14 +362,14 @@ namespace SudokuForAll.Controllers
             resultado = Metodo.InsertarResetPassword(resetPassword);
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso( "Open", emailCode64, null, email + " Error insertando codigo de restablecimiento de contraseña");
-                return RedirectToAction("State", "Home", R);
+                R = Funcion.RespuestaProceso( "Error_Insertando_Codigo", emailCode64, null, email + " Error insertando codigo de restablecimiento de contraseña");
+                return Json(R);
             }
             resultado = Notificacion.EnviarMailNotificacion(model);
             if (resultado)
-                R = Funcion.RespuestaProceso("Index", email,null, "Exito");
+                R = Funcion.RespuestaProceso("Exito", email,null, "Hemos enviado una notificacion a la direccion " + email + " ,con un codigo de verificacion para restablecer contraseña");
             else
-                R = Funcion.RespuestaProceso("Index",email,null,"Error");
+                R = Funcion.RespuestaProceso("Error",email,null, "Disculpe surgio un error al intentar enviar email a : " + email);
 
             return Json(R);
         }
@@ -371,25 +382,26 @@ namespace SudokuForAll.Controllers
             bool resultado = Funcion.EmailEsValido(email);
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso("Open", emailCode64 , null, email + " No es una direccion de correo valida.");
-                return RedirectToAction("State", "Home", R);
+                R = Funcion.RespuestaProceso("Email_No_Valido", emailCode64 , null, email + " No es una direccion de correo valida.");
+                return Json(R);
             }
             string code = Metodo.ObtenerCodigoRestablecerPassword(email).Trim();
             codigo = codigo.Trim();
             resultado = Funcion.CompareString(code, codigo.Trim());
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso("EditPasswordNotify", emailCode64 , Funcion.ConvertirBase64("1E-9R-2R-8O"), email + " El codigo suministrado no coincide ,intentelo de nuevo.");
-                return RedirectToAction("State", "Home", R);
+                R = Funcion.RespuestaProceso("Codigo_No_Match", emailCode64 , Funcion.ConvertirBase64("1E-9R-2R-8O"), email + " El codigo suministrado no coincide ,intentelo de nuevo.");
+                return Json(R);
             }
             int act = Metodo.UpdateResetPassword(email, codigo, true);
             if (act >= 1)
             {
-                R = Funcion.RespuestaProceso("Index", emailCode64, null,"Exito");
+                System.Web.HttpContext.Current.Session["Email"] = email;
+                R = Funcion.RespuestaProceso("Exito", emailCode64, null, "Exito");
             }
             else
             {
-                R = Funcion.RespuestaProceso("Index", emailCode64, null, "Error");
+                R = Funcion.RespuestaProceso("Error", emailCode64, null, email + " Disculpe surgio un error al validar el codigo.");
 
             }
             return Json(R);

@@ -5,7 +5,7 @@ function SeleccionarProceso() {
     {
         NotificacionRestablecerPassword();
     }
-    else
+    else if (lblTexto =='Ingrese Codigo')
     {
         ValidarCodigo();
     }
@@ -20,13 +20,7 @@ function NotificacionRestablecerPassword() {
         data: { email: email },
         datatype: "json",
         success: function (data) {
-            console.log(data.Descripcion);
-            if (data.Descripcion == 'Exito')
-                alert('Hemos enviado una notificacion a la direccion ' + data.Email + " ,con un codigo de verificacion para restablecer contraseña");
-            else if (data.Descripcion == 'Error')
-                alert('Disculpe surgio un error al intentar enviar email a : ' + data.Email);
-        },
-        complete: function () {
+            alert(data.Descripcion);
             DireccionSite('Home', 'Index');
         }
     });
@@ -41,14 +35,14 @@ function ValidarCodigo() {
         data: { email: email, codigo: codigo },
         datatype: "json",
         success: function (data) {
-            console.log(data.Descripcion);
-            if (data.Descripcion == 'Exito')
-                alert(data.Email);
-            else if (data.Descripcion == 'Error')
-                alert(data.Email);
-        },
-        complete: function () {
-            DireccionSite('Home', 'EditPassword');
+            console.log(data.RespuestaAccion);
+            if (data.RespuestaAccion == 'Exito') {
+                DireccionSite('Home', 'EditPassword');
+            }
+            else {
+                alert(data.Descripcion);
+                DireccionSite('Home', 'Index');
+            }
         }
     });
 }

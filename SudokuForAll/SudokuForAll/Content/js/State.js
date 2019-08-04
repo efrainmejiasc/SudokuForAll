@@ -37,6 +37,7 @@ function AbrirModalIndicada(openModal) {
     }
     else if (openModal == 'EditPassword') {
         intro.style.display = 'block';
+        RedirectToEditPassword();
     }
 }
 
@@ -77,6 +78,12 @@ function RedirectToEditPasswordNotify() {
     var intro = document.getElementById('intro');
     intro.style.display = 'none';
     DireccionSite('Home', 'EditPasswordNotify');
+}
+
+function RedirectToEditPassword() {
+    var intro = document.getElementById('intro');
+    intro.style.display = 'none';
+    DireccionSite('Home', 'EditPassword');
 }
 
 function OcultarObjeto(name) {

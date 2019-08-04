@@ -17,6 +17,7 @@ namespace SudokuForAll.Engine
         int ClienteRegistro(ActivarCliente model);
         Guid ObtenerIdentidadCliente(string email);
         bool InsertarResetPassword(ResetPassword model);
+        int ClienteUpdatePassword(ActivarCliente model);
         int ClienteRegistroActivacion(ActivarCliente model);
         string ObtenerCodigoRestablecerPassword(string email);
         bool InsertarClienteTest(string email, IEngineProyect Funcion);

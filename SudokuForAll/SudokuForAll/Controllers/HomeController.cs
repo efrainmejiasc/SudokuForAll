@@ -336,33 +336,22 @@ namespace SudokuForAll.Controllers
             resultado = Funcion.CompareString(model.Password, model.Password2);
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso("Register", emailCode64, null, model.Email + " Las contraseñas deben ser identicas.");
+                R = Funcion.RespuestaProceso("EditPassword", emailCode64, null, model.Email + " Las contraseñas deben ser identicas.");
                 return RedirectToAction("State", "Home", R);
             }
             model.Estatus = false;
             model.FechaRegistro = DateTime.UtcNow;
             model.Password = Funcion.ConvertirBase64(model.Email + model.Password);
-            int result = Metodo.ClienteRegistro(model);
+            int result = Metodo.ClienteUpdatePassword(model);
             if (result <= 0)
             {
-                R = Funcion.RespuestaProceso("Register", emailCode64, null, model.Email + " Error al registrar cliente.Puede ser que la direccion de email se diferente a la utilizada.");
+                R = Funcion.RespuestaProceso("EditPassword", emailCode64, null, model.Email + " Error al modificar la contraseña.Puede ser que la direccion de email se diferente a la utilizada.");
                 return RedirectToAction("State", "Home", R);
             }
 
-            string enlaze = Funcion.CrearEnlazeRegistro(Metodo, model.Email, model.Password2);
-            EstructuraMail estructura = new EstructuraMail();
-            estructura = Funcion.SetEstructuraMailRegister(enlaze, model.Email, estructura);
-            resultado = Notificacion.EnviarMailNotificacion(estructura);
-            if (resultado)
-            {
-                R = Funcion.RespuestaProceso("Index", emailCode64, null, "Registro exitoso " + model.Email + " Enviamos una notificacion a tu correo para activar tu cuenta.");
-                return RedirectToAction("State", "Home", R);
-            }
-            else
-            {
-                R = Funcion.RespuestaProceso("Open", emailCode64, null, model.Email + "Error enviando notificacion");
-                return RedirectToAction("State", "Home", R);
-            }
+            R = Funcion.RespuestaProceso("Login", emailCode64, null, model.Email + " La contraseña fue modificada exitosamente");
+            return RedirectToAction("State", "Home", R);
+
         }
 
 

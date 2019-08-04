@@ -210,6 +210,36 @@ namespace SudokuForAll.Engine
             return resultado;
         }
 
+        public int ClienteUpdatePassword(ActivarCliente model)
+        {
+            int resultado = -1;
+            object obj = new object();
+            SqlConnection Conexion = new SqlConnection(cadenaConexion);
+            SqlCommand command = new SqlCommand("Sp_PutPassword", Conexion);
+            try
+            {
+                using (Conexion)
+                {
+                    Conexion.Open();
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Clear();
+                    command.Parameters.AddWithValue("@Email", model.Email);
+                    command.Parameters.AddWithValue("@Password", model.Password);
+                    obj = command.ExecuteScalar();
+                    Conexion.Close();
+                }
+                if (obj != DBNull.Value && obj != null)
+                {
+                    resultado = Convert.ToInt32(obj);
+                }
+            }
+            catch
+            {
+                Conexion.Close();
+            }
+            return resultado;
+        }
+
         public DataTable SeleccionProductosAll()
         {
             DataTable dataTabla = new DataTable();

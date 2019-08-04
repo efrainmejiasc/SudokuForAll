@@ -1,4 +1,5 @@
 ﻿
+
 function SeleccionarProceso() {
     var lblTexto = document.getElementById('lblTexto').innerText;
     if (lblTexto == 'Restablecer Password')
@@ -41,7 +42,7 @@ function ValidarCodigo() {
             }
             else {
                 alert(data.Descripcion);
-                DireccionSite('Home', 'Index');
+                IrIndex();
             }
         }
     });
@@ -67,4 +68,20 @@ function OlvidoPassword() {
 function OcultarObjeto(name) {
     var objeto = '#'.concat(name);
     $(objeto).hide();
+}
+
+function IrIndex() {
+    DireccionSite('Home', 'Index');
+}
+
+function GetEmail() {
+    $.ajax({
+        type: "POST",
+        url: "/Home/EmailUser",
+        datatype: "json",
+        success: function (data) {
+            if (data.Email != '')
+                $('#email').val(data.Email);
+        }
+    });
 }

@@ -254,6 +254,7 @@ namespace SudokuForAll.Controllers
                     R = Funcion.RespuestaProceso("Open", emailCode64, null, "Intento de violacion de seguridad.");
                     return View(R);
                 }
+                System.Web.HttpContext.Current.Session["Email"] = email;
                 R = Funcion.RespuestaProceso(null, emailCode64, "codeVerify","Ingrese codigo de verificacion");
                 return RedirectToAction("EditPasswordNotify", "Home", R);
             }
@@ -306,17 +307,6 @@ namespace SudokuForAll.Controllers
             return Json(R);
         }
 
-        [HttpPost]
-        public JsonResult EmailUser()
-        {
-            Respuesta R = new Respuesta();
-            if (System.Web.HttpContext.Current.Session["Email"] != null)
-                R.Email = System.Web.HttpContext.Current.Session["Email"].ToString();
-            else
-                R.Email = string.Empty;
-            return Json(R);
-        }
-
 
         public ActionResult EditPasswordNotify(Respuesta K = null)
         {
@@ -328,10 +318,51 @@ namespace SudokuForAll.Controllers
         }
 
 
-        public ActionResult EditPassword()
+        public ActionResult EditPassword(ActivarCliente model)
         {
+            Respuesta R = new Respuesta();
+            if (model == null)
+                return View(R);
+            if (model.Email == null || model.Password == null || model.Password2 == null || model.Nombre == null || model.Apellido == null)
+                return View(R);
 
-            return View();
+            bool resultado = Funcion.EmailEsValido(model.Email);
+            string emailCode64 = Funcion.ConvertirBase64(model.Email);
+            if (!resultado)
+            {
+                R = Funcion.RespuestaProceso("EditPassword", emailCode64, null, model.Email + " Es una direccion de correo electronica no valida.");
+                return RedirectToAction("State", "Home", R);
+            }
+            resultado = Funcion.CompareString(model.Password, model.Password2);
+            if (!resultado)
+            {
+                R = Funcion.RespuestaProceso("Register", emailCode64, null, model.Email + " Las contraseñas deben ser identicas.");
+                return RedirectToAction("State", "Home", R);
+            }
+            model.Estatus = false;
+            model.FechaRegistro = DateTime.UtcNow;
+            model.Password = Funcion.ConvertirBase64(model.Email + model.Password);
+            int result = Metodo.ClienteRegistro(model);
+            if (result <= 0)
+            {
+                R = Funcion.RespuestaProceso("Register", emailCode64, null, model.Email + " Error al registrar cliente.Puede ser que la direccion de email se diferente a la utilizada.");
+                return RedirectToAction("State", "Home", R);
+            }
+
+            string enlaze = Funcion.CrearEnlazeRegistro(Metodo, model.Email, model.Password2);
+            EstructuraMail estructura = new EstructuraMail();
+            estructura = Funcion.SetEstructuraMailRegister(enlaze, model.Email, estructura);
+            resultado = Notificacion.EnviarMailNotificacion(estructura);
+            if (resultado)
+            {
+                R = Funcion.RespuestaProceso("Index", emailCode64, null, "Registro exitoso " + model.Email + " Enviamos una notificacion a tu correo para activar tu cuenta.");
+                return RedirectToAction("State", "Home", R);
+            }
+            else
+            {
+                R = Funcion.RespuestaProceso("Open", emailCode64, null, model.Email + "Error enviando notificacion");
+                return RedirectToAction("State", "Home", R);
+            }
         }
 
 
@@ -415,5 +446,17 @@ namespace SudokuForAll.Controllers
             Redireccion.Descripcion = EngineData.UrlBase + nombreControlador + "/" + nombreAccion + "/";
             return Json(Redireccion);
         }
+
+        [HttpPost]
+        public JsonResult EmailUser()
+        {
+            Respuesta R = new Respuesta();
+            if (System.Web.HttpContext.Current.Session["Email"] != null)
+                R.Email = System.Web.HttpContext.Current.Session["Email"].ToString();
+            else
+                R.Email = string.Empty;
+            return Json(R);
+        }
+
     }
 }

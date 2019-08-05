@@ -348,7 +348,7 @@ namespace SudokuForAll.Controllers
                 R = Funcion.RespuestaProceso("EditPassword", emailCode64, null, model.Email + " Error al modificar la contraseña.Puede ser que la direccion de email se diferente a la utilizada.");
                 return RedirectToAction("State", "Home", R);
             }
-            System.Web.HttpContext.Current.Session["Email"] = email;
+            System.Web.HttpContext.Current.Session["Email"] = model.Email;
             R = Funcion.RespuestaProceso("Login", emailCode64, null, model.Email + " La contraseña fue modificada exitosamente, Ingresa usando tu email y contraseña");
             return RedirectToAction("State", "Home", R);
 

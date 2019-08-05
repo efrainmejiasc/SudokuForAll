@@ -35,9 +35,9 @@ function AbrirModalIndicada(openModal) {
     else if (openModal == 'comprarRegistrarse') {
         comprarRegistrarse.style.display = 'block';
     }
-    else if (openModal == 'EditPassword') {
+    else if (openModal == 'EditPassword') {//Redirecciona a EditPassword
         intro.style.display = 'block';
-        RedirectToEditPassword();
+        setTimeout(RedirectToEditPassword, 4000);
     }
 }
 

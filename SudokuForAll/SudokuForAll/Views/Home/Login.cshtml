@@ -18,16 +18,17 @@
 <div id="logeo" align="center" class="logeo">
     @using (Html.BeginForm("Login", "Home"))
     {
+        <h4 class="text-primary" id="lblTexto">Autentificate</h4>
         <input type="email" id="email" name="email" placeholder="Ingrese email" required class="form-control" style="text-align:center;" />
         <input type="password" id="password" name="password" placeholder="Ingrese contraseña" required class="form-control" style="text-align:center;" /><br />
         <label class="checkbox-inline"><input type="checkbox" id="chxNoSoy" name="chxNosoy" required class="btn btn btn-default active" />@chxNosoy </label><br /><br />
         <input type="submit" id="sendData" name="sendData" value="Enviar" class="btn btn-primary" style="width:13%;" />
         <input type="submit" id="cancel" name="cancel" value="Cancelar" class="btn btn-primary" style="width:13%;" />
     }
-     <script>
-         OcultarObjeto('entrar');
-         OcultarObjeto('lenguaje');
-         GetEmail();
+    <script>
+        OcultarObjeto('entrar');
+        OcultarObjeto('lenguaje');
+        GetEmail();
     </script>
 </div>
 

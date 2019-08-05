@@ -323,7 +323,7 @@ namespace SudokuForAll.Controllers
             Respuesta R = new Respuesta();
             if (model == null)
                 return View(R);
-            if (model.Email == null || model.Password == null || model.Password2 == null || model.Nombre == null || model.Apellido == null)
+            if (model.Email == null || model.Password == null || model.Password2 == null )
                 return View(R);
 
             bool resultado = Funcion.EmailEsValido(model.Email);
@@ -348,8 +348,8 @@ namespace SudokuForAll.Controllers
                 R = Funcion.RespuestaProceso("EditPassword", emailCode64, null, model.Email + " Error al modificar la contraseña.Puede ser que la direccion de email se diferente a la utilizada.");
                 return RedirectToAction("State", "Home", R);
             }
-
-            R = Funcion.RespuestaProceso("Login", emailCode64, null, model.Email + " La contraseña fue modificada exitosamente");
+            System.Web.HttpContext.Current.Session["Email"] = email;
+            R = Funcion.RespuestaProceso("Login", emailCode64, null, model.Email + " La contraseña fue modificada exitosamente, Ingresa usando tu email y contraseña");
             return RedirectToAction("State", "Home", R);
 
         }
@@ -432,7 +432,7 @@ namespace SudokuForAll.Controllers
         public JsonResult DireccionSite(string nombreControlador, string nombreAccion)
         {
             Respuesta Redireccion = new Respuesta();
-            Redireccion.Descripcion = EngineData.UrlBase + nombreControlador + "/" + nombreAccion + "/";
+            Redireccion.Descripcion = EngineData.UrlBase + nombreControlador + "/" + nombreAccion ;
             return Json(Redireccion);
         }
 

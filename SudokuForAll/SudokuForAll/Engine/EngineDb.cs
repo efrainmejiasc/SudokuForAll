@@ -233,7 +233,7 @@ namespace SudokuForAll.Engine
                     resultado = Convert.ToInt32(obj);
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 Conexion.Close();
             }
@@ -308,16 +308,14 @@ namespace SudokuForAll.Engine
 
         public string ObtenerCodigoRestablecerPassword(string email)
         {
-            string C = string.Empty;
-            int id = 0;
+            ResetPassword C = new ResetPassword();
             try
             {
                 using (SudokuContext context = new SudokuContext())
                 {
-                    id = context.ResetPassword.Where(z => z.Email == email && z.Estatus == false).Max(z => z.Id);
-                    C = context.ResetPassword.Where(z => z.Email == email && z.Estatus == false && z.Id == id).Max(z => z.Codigo);
-                    if (C != string.Empty && C != null)
-                        return C;
+                    C = context.ResetPassword.Where(x => x.Email == email && x.Estatus == false) .OrderByDescending(x => x.Id) .Take(1).FirstOrDefault();
+                    if (C != null)
+                        return C.Codigo;
                 }
             }
             catch

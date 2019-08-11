@@ -237,7 +237,8 @@ namespace SudokuForAll.Engine
                 RespuestaAccion = respuesta,
                 Email = email,
                 CodigoResetPassword = codigo,
-                Descripcion = descripcion
+                Descripcion = descripcion,
+                CulturaInfo = EngineData.GetCultura()
             };
             return resultado;
         }

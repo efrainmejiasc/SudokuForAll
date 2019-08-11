@@ -29,7 +29,7 @@ namespace SudokuForAll
             else
                 System.Web.HttpContext.Current.Session["Cultura"] = EngineData.Cultura("Español");
 
-            CultureInfo ci = new CultureInfo(EngineData.Cultura(cultura));
+            CultureInfo ci = new CultureInfo(EngineData.GetCultura());
             Thread.CurrentThread.CurrentUICulture = ci;
             Thread.CurrentThread.CurrentCulture = ci;
         }

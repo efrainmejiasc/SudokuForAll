@@ -58,7 +58,7 @@ namespace SudokuForAll.Engine
             return respuesta;
         }
 
-        private static string GetCultura()
+        public static string GetCultura()
         {
             if (System.Web.HttpContext.Current.Session["Cultura"] == null)
                 System.Web.HttpContext.Current.Session["Cultura"] = CulturaEspañol;

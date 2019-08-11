@@ -32,7 +32,7 @@ namespace SudokuForAll.Controllers
             Respuesta model = new Respuesta();
             if (lenguaje != string.Empty && lenguaje != null)
             {
-                System.Web.HttpContext.Current.Session["Cultura"] = lenguaje;
+                System.Web.HttpContext.Current.Session["Cultura"] = EngineData.Cultura(lenguaje);
                 model.Id = index;
             }
             model.Descripcion = "ocultarInicio";

@@ -22,4 +22,9 @@
 </section>
 <script>
     OcultarObjeto('inicio');
+    let index = '@Model.Id'
+    if (index != '')
+        $('#traductor').val(index);
+    else
+        $('#traductor').val(0);
 </script>

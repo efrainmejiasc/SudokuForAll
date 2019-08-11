@@ -28,12 +28,14 @@
                     <li id="entrar">@Html.ActionLink("Entrar", "Contact", "Home")</li>
                 </ul>
                 <div name ="lenguaje" id="lenguaje" style="float:right;">
-                    <select class="btn-primary btn" data-style="btn-primary">
-                        <option value="" disable>Seleccione Lenguaje . . .</option>
-                        <option value="1">Español</option>
-                        <option value="2">Ingles</option>
-                        <option value="2">Portugues</option>
-                    </select>
+            
+                        <select id="traductor" name ="traductor" class="btn-primary btn" data-style="btn-primary">
+                            <option value="0" disable>Seleccione Lenguaje . . .</option>
+                            <option value="1">Español</option>
+                            <option value="2">Ingles</option>
+                            <option value="3">Portugues</option>
+                        </select>
+                   
                 </div>
             </div>
         </div>

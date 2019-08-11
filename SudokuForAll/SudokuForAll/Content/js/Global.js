@@ -16,4 +16,18 @@ function GetEmail() {
         }
     });
 }
+
+
+
+$('#traductor').on('change', function (e) {
+    var lenguaje = $('#traductor option:selected').html();
+    var index = $('#traductor option:selected').val();
+    console.log(lenguaje);
+    $.ajax({
+        type: "POST",
+        url: "/Home/Index",
+        data: { lenguaje: lenguaje , index: index},
+        datatype: "json"
+    });
+}); 
   

@@ -7,6 +7,8 @@ namespace SudokuForAll.Models.Sistema
 {
     public class Respuesta
     {
+        public int Id { get; set; }
+
         public string RespuestaAccion { get; set; }
 
         public string Email { get; set; }

@@ -394,6 +394,25 @@ namespace SudokuForAll.Engine
         }
 
 
+        public static string IngreseCodigoVerificacion()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Ingrese codigo de verificacion";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Enter verification code";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Insira o código de verificação";
+                    break;
+            }
+            return respuesta;
+        }
+
+
 
 
         // Parametros notificacion para prueba del sitio

@@ -230,7 +230,7 @@ namespace SudokuForAll.Controllers
                 date = date.Replace('m', ' ');
                 date = date.Trim();
                 Funcion.SetCultureInfo(cultureInfo);
-                CultureInfo ci = new CultureInfo(EngineData.GetCultura());
+                CultureInfo ci = new CultureInfo(cultureInfo);
                 Thread.CurrentThread.CurrentUICulture = ci;
                 Thread.CurrentThread.CurrentCulture = ci;
                 DateTime fechaEnvio = Convert.ToDateTime(date);
@@ -285,7 +285,7 @@ namespace SudokuForAll.Controllers
                     return View(R);
                 }
                 System.Web.HttpContext.Current.Session["Email"] = email;
-                R = Funcion.RespuestaProceso(null, emailCode64, "codeVerify","Ingrese codigo de verificacion");
+                R = Funcion.RespuestaProceso(null, emailCode64, "codeVerify",EngineData.IngreseCodigoVerificacion());
                 return RedirectToAction("EditPasswordNotify", "Home", R);
             }
 

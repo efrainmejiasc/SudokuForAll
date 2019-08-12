@@ -182,7 +182,7 @@ namespace SudokuForAll.Controllers
         }
     
         [HttpGet]
-        public ActionResult State(string email = "", string identidad = "", string date = "", string status = "", string ide = "", string type = "", Respuesta K = null)
+        public ActionResult State(string email = "", string identidad = "", string date = "", string status = "", string ide = "", string type = "",  string cultureInfo = "", Respuesta K = null)
         {
             Respuesta R = new Respuesta();
             bool resultado = false;
@@ -228,7 +228,11 @@ namespace SudokuForAll.Controllers
                 date = date.Replace('a', ' ');
                 date = date.Replace('p', ' ');
                 date = date.Replace('m', ' ');
-                date = date.Trim(); 
+                date = date.Trim();
+                Funcion.SetCultureInfo(cultureInfo);
+                CultureInfo ci = new CultureInfo(EngineData.GetCultura());
+                Thread.CurrentThread.CurrentUICulture = ci;
+                Thread.CurrentThread.CurrentCulture = ci;
                 DateTime fechaEnvio = Convert.ToDateTime(date);
                 DateTime fechaActivacion = DateTime.UtcNow;
                 resultado = Funcion.EstatusLink(fechaEnvio, fechaActivacion);

@@ -13,6 +13,7 @@ namespace SudokuForAll.Engine
         string ConstruirCodigo();
         string EncodeMd5(string a);
         bool EmailEsValido(string email);
+        void SetCultureInfo(string cultura);
         string ConvertirBase64(string cadena);
         bool CompareString(string a,string b);
         bool CadenaBase64Valida(string cadena);

@@ -35,9 +35,9 @@ namespace SudokuForAll.Engine
         public static string UrlBase = WebConfigurationManager.AppSettings["UrlBase"];
 
         // Globalization
-        public const string CulturaEspañol = "ES-VE";
-        private const string CulturaIngles = "EN-US";
-        private const string CulturaPortugues = "PT-PT";
+        public const string CulturaEspañol = "es-VE";
+        private const string CulturaIngles = "en-US";
+        private const string CulturaPortugues = "pt-PT";
         private static string respuesta = string.Empty;
         private static string cultura = string.Empty;
 
@@ -66,7 +66,6 @@ namespace SudokuForAll.Engine
         }
 
         //Mensajes Index 
-
         public static string EmailNoValido()
         {
             cultura = GetCultura();

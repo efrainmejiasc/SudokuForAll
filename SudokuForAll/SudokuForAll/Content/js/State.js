@@ -142,37 +142,37 @@ function MostrarAlert(descripcion, cultura, email) {
     let respuesta = '';
     console.log(cultura);
     if (descripcion == 'Exito') {
-        if (cultura == 'ES-VE') {
+        if (cultura == 'es-VE') {
             respuesta = 'Hemos enviado una notificacion a la direccion ';
         }
-        else if (cultura == 'EN-US') {
+        else if (cultura == 'en-US') {
             respuesta = 'We have sent a notification to the address ';
         }
-        else if (cultura == 'PT-PT') {
+        else if (cultura == 'pt-PT') {
             respuesta = 'Enviamos uma notificação para o endereço ';
         }
         alert(respuesta + email);
     }
     else if (descripcion == 'Error Registrando') {
-        if (cultura == 'ES-VE') {
+        if (cultura == 'es-VE') {
             respuesta = ' Ya esta registrado';
         }
-        else if (cultura == 'EN-US') {
+        else if (cultura == 'en-US') {
             respuesta = ' Are you already registered';
         }
-        else if (cultura == 'PT-PT') {
+        else if (cultura == 'pt-PT') {
             respuesta = ' Já cadastrado';
         }
         alert(data.Email +  respuesta);
     }
     else if (descripcion == 'Error Enviando') {
-        if (cultura == 'ES-VE') {
+        if (cultura == 'es-VE') {
             respuesta = 'Disculpe surgio un error al intentar enviar email a : ';
         }
-        else if (cultura == 'EN-US') {
+        else if (cultura == 'en-US') {
             respuesta = 'You are already registered Sorry for an error when trying to send email to: ';
         }
-        else if (cultura == 'PT-PT') {
+        else if (cultura == 'pt-PT') {
             respuesta = 'Desculpe, ocorreu um erro ao tentar enviar um email para: ';
         }
         alert(respuesta + email);

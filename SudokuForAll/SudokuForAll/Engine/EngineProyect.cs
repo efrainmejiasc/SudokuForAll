@@ -145,6 +145,7 @@ namespace SudokuForAll.Engine
             link = link + "&status=" + "1";
             link = link + "&date=" + fecha;
             link = link + "&type=" + EngineData.Test;
+            link = link + "&cultureInfo=" + EngineData.GetCultura();
             return link;
         }
 
@@ -160,6 +161,7 @@ namespace SudokuForAll.Engine
             link = link + "&status=" + "1";
             link = link + "&date=" + fecha;
             link = link + "&type=" + EngineData.Register;
+            link = link + "&cultureInfol=" + EngineData.GetCultura();
             return link;
         }
 
@@ -175,6 +177,7 @@ namespace SudokuForAll.Engine
             link = link + "&status=" + "0";
             link = link + "&date=" + fecha;
             link = link + "&type=" + EngineData.ResetPassword;
+            link = link + "&cultureInfo=" + EngineData.GetCultura();
             return link;
         }
 
@@ -327,6 +330,11 @@ namespace SudokuForAll.Engine
             Random rnd = new Random(semilla);
             double n = rnd.NextDouble();
             return n;
+        }
+
+        public void SetCultureInfo(string cultura)
+        {
+            System.Web.HttpContext.Current.Session["Cultura"] = cultura;
         }
     }
 }

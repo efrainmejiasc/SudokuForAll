@@ -224,7 +224,11 @@ namespace SudokuForAll.Controllers
             if (date != string.Empty && date != null && type != string.Empty && type != null)
             {
                 date = date.Replace('*', ' ');
-                date = date.Replace('+', '.');
+                date = date.Replace('+', ' ');
+                date = date.Replace('a', ' ');
+                date = date.Replace('p', ' ');
+                date = date.Replace('m', ' ');
+                date = date.Trim(); 
                 DateTime fechaEnvio = Convert.ToDateTime(date);
                 DateTime fechaActivacion = DateTime.UtcNow;
                 resultado = Funcion.EstatusLink(fechaEnvio, fechaActivacion);

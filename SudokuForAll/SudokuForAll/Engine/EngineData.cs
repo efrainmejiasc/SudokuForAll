@@ -20,7 +20,6 @@ namespace SudokuForAll.Engine
             return valor;
         }
 
-
         public static string IdSite = EngineProyect.DecodeBase642(WebConfigurationManager.AppSettings["IdSite"]);
 
         //Parametros e-mail notificacion

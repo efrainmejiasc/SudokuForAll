@@ -34,8 +34,12 @@ namespace SudokuForAll.Engine
         public static string EndPointValidation = WebConfigurationManager.AppSettings["EndPointValidation"];
         public static string UrlBase = WebConfigurationManager.AppSettings["UrlBase"];
 
+        //Construccion de codigos
+        public static string[] AlfabetoG = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//0-25
+        public static string[] AlfabetoP = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+
         // Globalization
-        public const string CulturaEspañol = "es-VE";
+        public const string CulturaEspañol = "es-ES";
         private const string CulturaIngles = "en-US";
         private const string CulturaPortugues = "pt-PT";
         private static string respuesta = string.Empty;
@@ -412,33 +416,242 @@ namespace SudokuForAll.Engine
             return respuesta;
         }
 
-
-
-
         // Parametros notificacion para prueba del sitio
-        public static string AsuntoTest = "Por favor verifica tu e-mail...";
-        public static string ClickAqui = "Hazme Click Para Verificar Tu Identidad!";
-        public static string DescripcionTest = "Por favor verifica tu direccion de correo electronico, para saber que eres realmente tu.";
-        public static string ObservacionTest = "Bienvenido a nuestra aplicacion Sudoku para todos, haz click en el link y disfruta 2 dias de prueba </br>" +
-            "El tiempo valido para este link es de 2 horas,</br>No tendras que aportar datos personales adicionales, tu direccion e-mail sera confidencial.";
         public static string PathLecturaArchivoTest = @"/Content/template/EmailBodyTest.cshtml";
 
+        public static string AsuntoTest()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Por favor verifica tu e-mail...";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Please verify your e-mail ...";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Por favor, verifique seu e-mail ...";
+                    break;
+            }
+            return respuesta;
+        }
+
+        public static string ClickAqui()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Hazme Click Para Confirmar Tu Identidad!";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Click Me To Confirm Your Identity!";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Clique Em Mim Para Confirmar Sua Identidade!";
+                    break;
+            }
+            return respuesta;
+        }
+
+        public static string DescripcionTest()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Por favor confirma la direccion de correo electronico, para saber que eres realmente tu.";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Please confirm the email address, to know that it is really you.";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Por favor confirme o endereço de e-mail, para saber que é realmente você.";
+                    break;
+            }
+            return respuesta;
+        }
+
+        public static string ObservacionTest()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Bienvenido a nuestra aplicacion SudokuParaTodos, haz click en el link y disfruta 2 dias de prueba gratis </br>" + 
+                                "El tiempo valido para este link es de 2 horas,</br>No tendras que aportar datos personales adicionales, tu direccion e-mail y toda tu informacion sera confidencial."; 
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Welcome to our SudokuParaTodos app, click on the link and enjoy 2 days of free trial </br> " + 
+                                "The valid time for this link is 2 hours, </br> You will not have to provide additional personal data, Your e-mail address and all your information will be confidential.";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Bem-vindo ao nosso aplicativo SudokuParaTodos, clique no link e aproveite 2 dias de teste gratuito</ br > " + 
+                                "O horário válido para este link é 2 horas, Você não terá que fornecer dados pessoais adicionais, seu endereço de e-mail e todas as suas informações serão confidenciais.";
+                    break;
+            }
+            return respuesta;
+        }
+
+
         // Parametros notificacion para registro de clientes
-        public static string AsuntoRegistro = "Por favor completa tu registro...";
-        public static string ClickAqui2 = "Hazme Click Para Verificar Tu Identidad!";
-        public static string DescripcionRegistro = "Por favor verifica tu direccion de correo electronico, para saber que eres realmente tu.";
-        public static string ObservacionRegistro = "Bienvenido a nuestra aplicacion Sudoku para todos, haz click en el link y completa tu registro </br>" +
-            "El tiempo valido para este link es de 2 horas,</br>Todos tus datos seran estrictamente cofidenciales.";
         public static string PathLecturaArchivoRegistro = @"/Content/template/EmailBodyRegister.cshtml";
 
+        public static string AsuntoRegistro()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Por favor completa tu registro...";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Please complete your registration...";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Por favor complete seu cadastro...";
+                    break;
+            }
+            return respuesta;
+        }
+
+
+        public static string ClickAqui2()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Hazme Click Para Confirmar Tu Identidad!";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Click Me To Confirm Your Identity!";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Clique Em Mim Para Confirmar Sua Identidade!";
+                    break;
+            }
+            return respuesta;
+        }
+
+
+        public static string DescripcionRegistro()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Por favor confirma la direccion de correo electronico, para saber que eres realmente tu.";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Please confirm the email address, to know that it is really you.";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Por favor confirme o endereço de e-mail, para saber que é realmente você.";
+                    break;
+            }
+            return respuesta;
+        }
+
+        public static string ObservacionRegistro()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Bienvenido a nuestra aplicacion SudokuParaTodos, haz click en el link y disfruta 2 dias de prueba gratis </br>" +
+                                "El tiempo valido para este link es de 2 horas,</br>No tendras que aportar datos personales adicionales, tu direccion e-mail y toda tu informacion sera confidencial.";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Welcome to our SudokuParaTodos, click on the link and complete your registration </br>" +
+                                "The valid time for this link is 2 hours, </br> All your information will be strictly confidential.";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Bem-vindo ao nosso aplicativo SudokuParaTodos, clique no link e complete seu registro</ br > " +
+                                 "O tempo válido para este link é de 2 horas, </br> Todas as suas informações serão estritamente confidenciais.";
+                    break;
+            }
+            return respuesta;
+        }
+
+
         // Parametros notificacion para restablecer password
-        public static string AsuntoResetPassword = "Restablecer password Sudoku para todos";
-        public static string ClickAqui3 = "Hazme Click para ir a la Pagina de ingresar codigo para restablecimiento de Contraseña";
-        public static string DescripcionRestablecerPassword = "Haz click en el enlaze e ingresa el codigo para restablecer tu contraseña";
-        public static string ObservacionRestablecerPassword = "Este codigo tiene un tiempo de expiracion de 2 horas";
         public static string PathLecturaArchivoRestablecerPassword = @"/Content/template/EmailBodyResetPassword.cshtml";
 
-        public static string[] AlfabetoG = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//0-25
-        public static string[] AlfabetoP = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+        public static string AsuntoResetPassword()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Restablecer password SudokuParaTodos";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Reset password SudokuParaTodos";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Redefinir senha SudokuParaTodos";
+                    break;
+            }
+            return respuesta;
+        }
+
+
+        public static string ClickAqui3()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Hazme click para ir a la pagina de ingresar codigo para el restablecimiento de contraseña";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Click me to go to the code entry page for password reset";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Clique em mim para ir para a página de entrada de código para redefinição de senha";
+                    break;
+            }
+            return respuesta;
+        }
+
+        public static string DescripcionRestablecerPassword()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Haz click en el enlaze e ingresa el codigo para restablecer tu contraseña.";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Click on the link and enter the code to reset your password.";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Clique no link e insira o código para redefinir sua senha.";
+                    break;
+            }
+            return respuesta;
+        }
+
+        
+        public static string ObservacionRestablecerPassword()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Este codigo es valido durante 2 horas.";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "This code is valid for 2 hours.";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Este código é válido por 2 horas.";
+                    break;
+            }
+            return respuesta;
+        }
+
     }
 }

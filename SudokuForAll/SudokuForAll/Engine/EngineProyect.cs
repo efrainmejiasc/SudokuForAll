@@ -186,10 +186,10 @@ namespace SudokuForAll.Engine
             model.Link = enlaze;
             model.EmailDestinatario = email;
             model.Fecha = DateTime.UtcNow.ToString();
-            model.Descripcion = EngineData.DescripcionTest;
-            model.ClickAqui = EngineData.ClickAqui;
-            model.Asunto = EngineData.AsuntoTest;
-            model.Observacion = EngineData.ObservacionTest;
+            model.Descripcion = EngineData.DescripcionTest();
+            model.ClickAqui = EngineData.ClickAqui();
+            model.Asunto = EngineData.AsuntoTest();
+            model.Observacion = EngineData.ObservacionTest();
             model.PathLecturaArchivo = EngineData.PathLecturaArchivoTest;
             return model;
         }
@@ -199,10 +199,10 @@ namespace SudokuForAll.Engine
             model.Link = enlaze;
             model.EmailDestinatario = email;
             model.Fecha = DateTime.UtcNow.ToString();
-            model.Descripcion = EngineData.DescripcionRegistro;
-            model.ClickAqui = EngineData.ClickAqui2;
-            model.Asunto = EngineData.AsuntoRegistro;
-            model.Observacion = EngineData.ObservacionRegistro;
+            model.Descripcion = EngineData.DescripcionRegistro();
+            model.ClickAqui = EngineData.ClickAqui2();
+            model.Asunto = EngineData.AsuntoRegistro();
+            model.Observacion = EngineData.ObservacionRegistro();
             model.PathLecturaArchivo = EngineData.PathLecturaArchivoRegistro;
             return model;
         }
@@ -212,10 +212,10 @@ namespace SudokuForAll.Engine
             model.Link = enlaze;
             model.EmailDestinatario = email;
             model.Fecha = DateTime.UtcNow.ToString();
-            model.Descripcion = EngineData.DescripcionRestablecerPassword;
-            model.ClickAqui = EngineData.ClickAqui3;
-            model.Asunto = EngineData.AsuntoResetPassword;
-            model.Observacion = EngineData.ObservacionRestablecerPassword;
+            model.Descripcion = EngineData.DescripcionRestablecerPassword();
+            model.ClickAqui = EngineData.ClickAqui3();
+            model.Asunto = EngineData.AsuntoResetPassword();
+            model.Observacion = EngineData.ObservacionRestablecerPassword();
             model.PathLecturaArchivo = EngineData.PathLecturaArchivoRestablecerPassword;
             model.CodigoResetPassword = codigo;
             return model;
@@ -241,7 +241,8 @@ namespace SudokuForAll.Engine
                 Email = email,
                 CodigoResetPassword = codigo,
                 Descripcion = descripcion,
-                CulturaInfo = EngineData.GetCultura()
+                CulturaInfo = EngineData.GetCultura(),
+                Id = -1
             };
             return resultado;
         }

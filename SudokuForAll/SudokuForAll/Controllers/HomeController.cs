@@ -181,7 +181,7 @@ namespace SudokuForAll.Controllers
             return View(model);
         }
     
-        [HttpGet]
+       [HttpGet]
         public ActionResult State(string email = "", string identidad = "", string date = "", string status = "", string ide = "", string type = "",  string cultureInfo = "", Respuesta K = null)
         {
             Respuesta R = new Respuesta();

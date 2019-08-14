@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SudokuForAll.Models.Sistema;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -32,6 +33,8 @@ namespace SudokuForAll.Engine
         // Url & EndPoints
         public static string EndPointValidation = WebConfigurationManager.AppSettings["EndPointValidation"];
         public static string UrlBase = WebConfigurationManager.AppSettings["UrlBase"];
+        public static string EndPointResetPassword = WebConfigurationManager.AppSettings["EndPointResetPassword"];
+        public static string EndPointTerminos= WebConfigurationManager.AppSettings["EndPointTerminos"];
 
         //Construccion de codigos
         public static string[] AlfabetoG = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//0-25
@@ -44,17 +47,61 @@ namespace SudokuForAll.Engine
         private static string respuesta = string.Empty;
         private static string cultura = string.Empty;
 
-        public static string Cultura (string nombreIdioma)
+        private static Idiomas I = new Idiomas();
+
+        public static Idiomas Idiomas(int index)
         {
-            switch (nombreIdioma)
+            string cultura = GetCultura();
+            switch (cultura)
             {
-                case ("Español"):
+                case (CulturaEspañol):
+                    I.Español = "Español";
+                    I.Ingles = "Ingles";
+                    I.Portugues = "Portugues";
+                    I.Terminos = "Terminos y condiciones de uso";
+                    I.ResetPassword = "Olvido su contraseña";
+                    I.Entrar = "Entrar";
+                    I.Inicio = "Inicio";
+                    I.Id = 1;
+                    break;
+                case (CulturaIngles):
+                    I.Español = "Spanish";
+                    I.Ingles = "English";
+                    I.Portugues = "Portuguese";
+                    I.Terminos = "Terms and conditions of use";
+                    I.ResetPassword = "Forgot your password";
+                    I.Entrar = "Get in";
+                    I.Inicio = "Home";
+                    I.Id = 2;
+                    break;
+                case (CulturaPortugues):
+                    I.Español = "Espanhol";
+                    I.Ingles = "Inglês";
+                    I.Portugues = "Português";
+                    I.Terminos = "Termos e condições de uso";
+                    I.ResetPassword = "Esqueceu sua senha";
+                    I.Entrar = "Para entrar";
+                    I.Inicio = "Home";
+                    I.Id = 3;
+                    break;
+            }
+            if (index > 0)
+                I.Id = index;
+
+            return I;
+        }
+
+        public static string Cultura (int index)
+        {
+            switch (index)
+            {
+                case (1):
                     respuesta = CulturaEspañol;
                     break;
-                case ("Ingles"):
+                case (2):
                     respuesta = CulturaIngles;
                     break;
-                case ("Portugues"):
+                case (3):
                     respuesta = CulturaPortugues;
                     break;
             }
@@ -410,6 +457,43 @@ namespace SudokuForAll.Engine
                     break;
                 case (CulturaPortugues):
                     respuesta = "Insira o código de verificação";
+                    break;
+            }
+            return respuesta;
+        }
+
+
+        public static string ActualizarContraseña()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Actualizar contraseña";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Update password";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Atualizar senha";
+                    break;
+            }
+            return respuesta;
+        }
+
+        public static string IngreseCodigo()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Ingrese codigo";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Enter code";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Digite o código";
                     break;
             }
             return respuesta;

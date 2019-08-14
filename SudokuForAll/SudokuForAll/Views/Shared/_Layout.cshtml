@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using SudokuForAll.Engine;
+@using SudokuForAll.StringResx;
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -21,21 +23,18 @@
 
             </div>
             <div class="navbar-collapse collapse">
-                <img  id="logSudoku" class="logoInitial" />
+                <img id="logSudoku" class="logoInitial" />
                 <label class="navbar-brand"> SudokuParaTodos </label>
                 <ul class="nav navbar-nav">
-                    <li id="inicio">@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li id="entrar">@Html.ActionLink("Entrar", "Contact", "Home")</li>
+                    <li><a href="/Home/Index" id="inicio">@Resources.Inicio</a></li>
+                    <li><a href="/Home/Contact"  id="entrar">@Resources.Entrar</a></li>
                 </ul>
-                <div name ="lenguaje" id="lenguaje" style="float:right;">
-            
-                        <select id="traductor" name ="traductor" class="btn-primary btn" data-style="btn-primary">
-                            <option value="0" disable>Seleccione Lenguaje . . .</option>
-                            <option value="1">Español</option>
-                            <option value="2">Ingles</option>
-                            <option value="3">Portugues</option>
-                        </select>
-                   
+                <div name="lenguaje" id="lenguaje" style="float:right;">
+
+                    <select id="traductor" name="traductor" class="btn-primary btn" data-style="btn-primary">
+                     
+                    </select>
+
                 </div>
             </div>
         </div>
@@ -50,9 +49,9 @@
                     <li></li>
                     <li><a class="w3-button w3-light-grey w3-block"> copyright&copy;@DateTime.Now.Year - SudokuParaTodos </a></li>
                     <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                    <li><a id="olvidoPassword" name="olvidoPassword" href="http://localhost:49983/Home/EditPasswordNotify">Olvido su contraseña</a></li>
+                    <li><a id="olvidoPassword" name="olvidoPassword" href="@EngineData.EndPointResetPassword">@Resources.OlvidoSuContraseña</a></li>
                     <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                    <li><a id="normas" name="normas" href="http://localhost:49983/Home/About">Normas y condiciones de uso</a></li>
+                    <li><a id="normas" name="normas" href="@EngineData.EndPointTerminos">@Resources.Terminos</a></li>
                     <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
                 </ul>
             </div>

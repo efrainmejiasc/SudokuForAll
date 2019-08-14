@@ -337,5 +337,6 @@ namespace SudokuForAll.Engine
         {
             System.Web.HttpContext.Current.Session["Cultura"] = cultura;
         }
+
     }
 }

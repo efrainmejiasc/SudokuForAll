@@ -1,4 +1,4 @@
-﻿
+﻿@using SudokuForAll.StringResx;
 @model SudokuForAll.Models.Sistema.Respuesta
 
 
@@ -21,10 +21,31 @@
     </div>
 </section>
 <script>
+    $(document).ready(function () {
     OcultarObjeto('inicio');
     let index = '@Model.Id'
     if (index != '')
         $('#traductor').val(index);
     else
         $('#traductor').val(0);
+
+        GetIdiomas();
+    });
+
+    function GetIdiomas() {
+        $.ajax({
+            type: "POST",
+            url: "/Home/ListaLenguaje",
+            data: { index: 0 },
+            dataType: "json",
+            success: function (data) {
+                $('#triggerModal').removeAttr('disabled') 
+                $("#traductor").empty();
+                $('#traductor').append('<option selected disabled value="0">Seleccione Idioma. . .</option>');
+                $('#traductor').append('<option  value="' + 1 + '">' + data.Español + '</option>');
+                $('#traductor').append('<option  value="' + 2 + '">' + data.Ingles + '</option>');
+                $('#traductor').append('<option  value="' + 3 + '">' + data.Portugues + '</option>');
+            }
+        });
+    }
 </script>

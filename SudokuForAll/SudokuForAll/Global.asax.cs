@@ -24,7 +24,7 @@ namespace SudokuForAll
         protected void Application_AcquireRequestState(object sender, EventArgs e)
         {
             if (System.Web.HttpContext.Current.Session["Cultura"] == null)
-                System.Web.HttpContext.Current.Session["Cultura"] = EngineData.Cultura("Español");
+                System.Web.HttpContext.Current.Session["Cultura"] = EngineData.Cultura(1);
 
             CultureInfo ci = new CultureInfo(EngineData.GetCultura());
             Thread.CurrentThread.CurrentUICulture = ci;

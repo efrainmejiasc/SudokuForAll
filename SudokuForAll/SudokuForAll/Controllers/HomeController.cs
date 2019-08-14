@@ -30,14 +30,15 @@ namespace SudokuForAll.Controllers
         public ActionResult Index(string lenguaje = "",int index = 0)
         {
             Respuesta model = new Respuesta();
-            if (lenguaje != string.Empty && lenguaje != null)
+            if (index > 0)
             {
-                System.Web.HttpContext.Current.Session["Cultura"] = EngineData.Cultura(lenguaje);
+                System.Web.HttpContext.Current.Session["Cultura"] = EngineData.Cultura(index);
                 model.Id = index;
             }
             model.Descripcion = "ocultarInicio";
             return View(model);
         }
+
 
         public ActionResult Login(string email = "", string password = "")
         {
@@ -340,10 +341,10 @@ namespace SudokuForAll.Controllers
 
         public ActionResult EditPasswordNotify(Respuesta K = null)
         {
-            if(K.CodigoResetPassword != "codeVerify")
-               K.Descripcion = "Restablecer Password";
+            if (K.CodigoResetPassword != "codeVerify")
+                K.Descripcion = EngineData.ActualizarContraseña(); 
             else
-                K.Descripcion = "Ingrese Codigo";
+                K.Descripcion = EngineData.IngreseCodigo();
             return View(K);
         }
 
@@ -484,6 +485,14 @@ namespace SudokuForAll.Controllers
             else
                 R.Email = string.Empty;
             return Json(R);
+        }
+
+        [HttpPost]
+        public JsonResult ListaLenguaje (int index = 0)
+        {
+            Idiomas idiomas = new Idiomas();
+            idiomas = EngineData.Idiomas(index);
+            return Json(idiomas);
         }
 
     }

@@ -1,5 +1,4 @@
-﻿
-
+﻿@using SudokuForAll.StringResx;
 @model SudokuForAll.Models.Sistema.Respuesta
 
 
@@ -14,7 +13,7 @@
 }
 <div id="comprarRegistrarse" name="comprarRegistrarse" align="center" class="modales">
     <div class="modal-header">
-        <img id ="img1" class="logo" /><br />
+        <img id="img1" class="logo" /><br />
         <label id="msjCR" name="msjCR">@Model.Descripcion</label><br /><br />
         <div class="modal-body">
             <input type="button" id="si" name="si" value="Si" onclick="ComprarRegistrarse();" class="btn btn-primary" />
@@ -25,7 +24,7 @@
 
 <div id="activarCuenta" name="activarCuenta" class="modales">
     <div class="modal-header">
-        <img  id="img2" class="logo" /><br />
+        <img id="img2" class="logo" /><br />
         <label id="msjAC" name="msjAc">@Model.Descripcion</label><br /><br />
         <div class="modal-body">
             <input type="button" id="aceptar" name="aceptar" value="Si" onclick="NotificacionActivarCuenta();" class="btn btn-primary" />
@@ -37,7 +36,7 @@
 <div id="probarSitio" name="probarSitio" class="modales">
     <div class="modal-header">
         <img id="img3" class="logo" /><br /><br />
-        <label id="msjPS" name="msjPS">Desea probar nuestro sitio, enviaremos una notificacion a su cuenta de correo para que disfrute 2 dias de prueba </label><br />
+        <label id="msjPS" name="msjPS">@Resources.MsjPruebaSitio</label><br />
         <div class="modal-body">
             <input type="button" id="aceptarPrueba" name="aceptarPrueba" value="Aceptar" onclick="NotificacionPrueba();" class="btn btn-primary" />
             <input type="submit" id="cancelarPrueba" name="cancelarPrueba" value="Cancelar" onclick="CerrarModalProbarSitio();" class="btn btn-primary" />

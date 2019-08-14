@@ -16,4 +16,45 @@ function GetEmail() {
         }
     });
 }
-  
+
+
+
+$('#traductor').on('change', function (e) {
+    var lenguaje = $('#traductor option:selected').html();
+    var index = $('#traductor option:selected').val();
+    console.log(lenguaje);
+    $.ajax({
+        type: "POST",
+        url: "/Home/Index",
+        data: { lenguaje: lenguaje , index: index},
+        datatype: "json",
+        success: function () {
+            if (index > 0)
+                SetObjectsLayount(index);
+        }
+    });
+}); 
+
+function SetObjectsLayount(index) {
+    $.ajax({
+        type: "POST",
+        url: "/Home/ListaLenguaje",
+        data: { index: index },
+        datatype: "json",
+        success: function (data) {
+            $('#olvidoPassword').text(data.ResetPassword);
+            $('#normas').text(data.Terminos);
+            $('#inicio').text(data.Inicio);
+            $('#entrar').text(data.Entrar);
+            $('#triggerModal').removeAttr('disabled');
+            $("#traductor").empty();
+            $('#traductor').append('<option selected disabled value="0">Seleccione Idioma. . .</option>');
+            $('#traductor').append('<option  value="' + 1 + '">' + data.Español + '</option>');
+            $('#traductor').append('<option  value="' + 2 + '">' + data.Ingles + '</option>');
+            $('#traductor').append('<option  value="' + 3 + '">' + data.Portugues + '</option>');
+            $('#traductor').val(data.Id);
+           // $('#entrar').text('@Html.ActionLink("Get In", "Contact", "Home")');
+        }
+    });
+}
+ 

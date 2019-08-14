@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <resource culture="es-es" name="IngreseEmail" value="Ingrese email"></resource>
+  <resource culture="en-us" name="IngreseEmail" value="Enter email"></resource>
+  <resource culture="pt-pt" name="IngreseEmail" value="Digite o email"></resource>
+  
+  <resource culture="es-es" name="ModificarContraseña" value="Modificar contraseña"></resource>
+  <resource culture="en-us" name="ModificarContraseña" value="Modify password"></resource>
+  <resource culture="pt-pt" name="ModificarContraseña" value="Editar senha"></resource>
+
+  <resource culture="es-es" name="IngreseContraseña" value="Ingrese contraseña"></resource>
+  <resource culture="en-us" name="IngreseContraseña" value="Enter password"></resource>
+  <resource culture="pt-pt" name="IngreseContraseña" value="Digite o senha"></resource>
+
+  <resource culture="es-es" name="ConfirmeContraseña" value="Confirme contraseña"></resource>
+  <resource culture="en-us" name="ConfirmeContraseña" value="Confirm password"></resource>
+  <resource culture="pt-pt" name="ConfirmeContraseña" value="Confirme a senha"></resource>
+
+  <resource culture="es-es" name="NoSoyUnRobot" value="No soy un robot"></resource>
+  <resource culture="en-us" name="NoSoyUnRobot" value="I'm not a robot"></resource>
+  <resource culture="pt-pt" name="NoSoyUnRobot" value="Eu não sou um robô"></resource>
+
+  <resource culture="es-es" name="Enviar" value="Enviar"></resource>
+  <resource culture="en-us" name="Enviar" value="Send"></resource>
+  <resource culture="pt-pt" name="Enviar" value="Enviar"></resource>
+
+  <resource culture="es-es" name="Cancelar" value="Cancelar"></resource>
+  <resource culture="en-us" name="Cancelar" value="Cancel"></resource>
+  <resource culture="pt-pt" name="Cancelar" value="Cancelar"></resource>
+
+  <resource culture="es-es" name="IngreseCodigoDeVerificacion" value="Ingrese codigo de verificacion"></resource>
+  <resource culture="en-us" name="IngreseCodigoDeVerificacion" value="Enter verification code"></resource>
+  <resource culture="pt-pt" name="IngreseCodigoDeVerificacion" value="Insira o código de verificação"></resource>
+
+  <resource culture="es-es" name="IngreseNombre" value="Ingrese nombre"></resource>
+  <resource culture="en-us" name="IngreseNombre" value="Enter name"></resource>
+  <resource culture="pt-pt" name="IngreseNombre" value="Digite o nome"></resource>
+
+  <resource culture="es-es" name="IngreseApellido" value="Ingrese apellido"></resource>
+  <resource culture="en-us" name="IngreseApellido" value="Enter last name"></resource>
+  <resource culture="pt-pt" name="IngreseApellido" value="Digite o sobrenome"></resource>
+
+  <resource culture="es-es" name="MsjPruebaSitio" value="Desea probar nuestro sitio, enviaremos una notificacion a su cuenta de correo para que disfrute 2 dias de prueba"></resource>
+  <resource culture="en-us" name="MsjPruebaSitio" value="Want to try our site, we will send a notification to your email account so you can enjoy 2 days of trial"></resource>
+  <resource culture="pt-pt" name="MsjPruebaSitio" value="Quer experimentar o nosso site, vamos enviar uma notificação para sua conta de e-mail para que você possa desfrutar de 2 dias de teste"></resource>
+
+  <resource culture="es-es" name="Entrar" value="Entrar"></resource>
+  <resource culture="en-us" name="Entrar" value="Get in"></resource>
+  <resource culture="pt-pt" name="Entrar" value="Para entrar"></resource>
+
+  <resource culture="es-es" name="Inicio" value="Inicio"></resource>
+  <resource culture="en-us" name="Inicio" value="Home"></resource>
+  <resource culture="pt-pt" name="Inicio" value="Home"></resource>
+
+  <resource culture="es-es" name="OlvidoSuContraseña" value="Olvido su contraseña"></resource>
+  <resource culture="en-us" name="OlvidoSuContraseña" value="Forgot your password"></resource>
+  <resource culture="pt-pt" name="OlvidoSuContraseña" value="Esqueceu sua senha"></resource>
+
+  <resource culture="es-es" name="Terminos" value="Terminos y condiciones de uso"></resource>
+  <resource culture="en-us" name="Terminos" value="Terms and conditions of use"></resource>
+  <resource culture="pt-pt" name="Terminos" value="Termos e condições de uso"></resource>
+
+</resources>

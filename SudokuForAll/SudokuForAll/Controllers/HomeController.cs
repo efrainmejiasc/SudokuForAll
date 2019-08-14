@@ -4,7 +4,9 @@ using SudokuForAll.Models.DbSistema;
 using SudokuForAll.Models.Sistema;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -17,7 +19,6 @@ namespace SudokuForAll.Controllers
         private IEngineNotificacion Notificacion;
         private readonly SudokuContext Context;
 
-
         public HomeController(IEngineDb _Metodo, IEngineProyect _Funcion, IEngineNotificacion _Notificacion, SudokuContext _Context)
         {
             this.Metodo = _Metodo;
@@ -25,12 +26,19 @@ namespace SudokuForAll.Controllers
             this.Funcion = _Funcion;
             this.Notificacion = _Notificacion;
         }
-        public ActionResult Index()
+
+        public ActionResult Index(string lenguaje = "",int index = 0)
         {
             Respuesta model = new Respuesta();
+            if (index > 0)
+            {
+                System.Web.HttpContext.Current.Session["Cultura"] = EngineData.Cultura(index);
+                model.Id = index;
+            }
             model.Descripcion = "ocultarInicio";
             return View(model);
         }
+
 
         public ActionResult Login(string email = "", string password = "")
         {
@@ -42,7 +50,8 @@ namespace SudokuForAll.Controllers
             string emailCode64 = Funcion.ConvertirBase64(email);
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso( "Login", emailCode64 ,null ,email + " No es una direccion de correo valida.");
+                //Email no valido
+                R = Funcion.RespuestaProceso( "Login", emailCode64 ,null ,email + EngineData.EmailNoValido());
                 return RedirectToAction("State", "Home", R);
             }
 
@@ -50,20 +59,24 @@ namespace SudokuForAll.Controllers
             int result = Metodo.ResultadoLogin(password);
             if (result == 0)
             {
-                R = Funcion.RespuestaProceso("Open",emailCode64, null, email + " Tu Tiempo de juego expiro,debes volver a comprar.");// Cuando RespuetaAccion = Open -> No redirecciona a ninguna pagina
+                // Cuando RespuetaAccion = Open -> No redirecciona a ninguna pagina
+                R = Funcion.RespuestaProceso("Open",emailCode64, null, email + EngineData.TiempoJuegoExpiro());
                 return RedirectToAction("Buy", "Home");
             }
             else if (result == 1)
             {
-                return RedirectToAction("PlayGame", "Game");// Entre 1 y 5 dias para expirar
+                // Entre 1 y 5 dias para expirar
+                return RedirectToAction("PlayGame", "Game");
             }
             else if (result == 2)
             {
-                return RedirectToAction("PlayGame", "Game");//Mas de 6 dias para expirar
+                //Mas de 6 dias para expirar
+                return RedirectToAction("PlayGame", "Game");
             }
             else if (result == -1)
             {
-                R = Funcion.RespuestaProceso("Login", emailCode64, null, email + " Identificacion fallida, compruebe su email y contraseña");
+                //Login fallido
+                R = Funcion.RespuestaProceso("Login", emailCode64, null, email + EngineData.LoginFallido());
                 return RedirectToAction("State", "Home", R);
             }
             return View();
@@ -81,13 +94,15 @@ namespace SudokuForAll.Controllers
             string emailCode64 = Funcion.ConvertirBase64(model.Email);
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso( "Register", emailCode64 , null, model.Email + " Es una direccion de correo electronica no valida.");
+                //Email no valido
+                R = Funcion.RespuestaProceso( "Register", emailCode64 , null, model.Email + EngineData.EmailNoValido());
                 return RedirectToAction("State", "Home", R);
             }
             resultado = Funcion.CompareString(model.Password, model.Password2);
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso("Register", emailCode64 , null, model.Email + " Las contraseñas deben ser identicas.");
+                //Las contraseñas deben ser iguales
+                R = Funcion.RespuestaProceso("Register", emailCode64 , null, model.Email + EngineData.PasswordNoIdenticos());
                 return RedirectToAction("State", "Home", R);
             }
             model.Estatus = false;
@@ -96,7 +111,8 @@ namespace SudokuForAll.Controllers
             int result = Metodo.ClienteRegistro(model);
             if (result <= 0)
             {
-                R = Funcion.RespuestaProceso("Register", emailCode64 , null, model.Email + " Error al registrar cliente.Puede ser que la direccion de email se diferente a la utilizada.");
+                //Error al registrar cliente
+                R = Funcion.RespuestaProceso("Register", emailCode64 , null, model.Email + EngineData.ErrorRegistroCliente());
                 return RedirectToAction("State", "Home", R);
             }
 
@@ -106,12 +122,14 @@ namespace SudokuForAll.Controllers
             resultado = Notificacion.EnviarMailNotificacion(estructura);
             if (resultado)
             {
-                R = Funcion.RespuestaProceso("Index", emailCode64 , null,"Registro exitoso " + model.Email + " Enviamos una notificacion a tu correo para activar tu cuenta.");
+                //Registro exitoso
+                R = Funcion.RespuestaProceso("Index", emailCode64 , null, model.Email + EngineData.RegistroExitoso());
                 return RedirectToAction("State", "Home", R);
             }
             else
             {
-                R = Funcion.RespuestaProceso("Open", emailCode64 , null, model.Email + "Error enviando notificacion");
+                //Error enviando notficacion - error interno
+                R = Funcion.RespuestaProceso("Open", emailCode64 , null, model.Email + EngineData.ErrorEnviandoMail());
                 return RedirectToAction("State", "Home", R);
             }
         }
@@ -125,7 +143,7 @@ namespace SudokuForAll.Controllers
             string emailCode64 = Funcion.ConvertirBase64(model.Email);
             if (!resultado)
             {
-                model = Funcion.RespuestaProceso("Contact", emailCode64, null, model.Email + " Es una direccion de correo electronica no valida.");
+                model = Funcion.RespuestaProceso("Contact", emailCode64, null, model.Email + EngineData.EmailNoValido());
                 return RedirectToAction("State","Home", model);
             }
 
@@ -133,34 +151,39 @@ namespace SudokuForAll.Controllers
             int result = Metodo.ResultadoEntradaAlSitio(model.Email);
             if (result == 1)
             {
+                //TIEMPO DE PRUEBA ES VALIDO
                 System.Web.HttpContext.Current.Session["Email"] = model.Email;
-                return RedirectToAction("PlayGame", "Game");//TIEMPO DE PRUEBA ES VALIDO
+                return RedirectToAction("PlayGame", "Game");
             }
             else if (result == 2 || result == 4)
             {
-                model = Funcion.RespuestaProceso( "comprarRegistrarse", emailCode64, null, "Su tiempo de prueba expiro, desea comprar y registrase?");
-                return RedirectToAction("State", "Home", model);//TIEMPO DE PRUEBA EXPIRO
+                //TIEMPO DE PRUEBA EXPIRO
+                model = Funcion.RespuestaProceso( "comprarRegistrarse", emailCode64, null, EngineData.TiempoPruebaJuegoExpiro());
+                return RedirectToAction("State", "Home", model);
             }
             else if (result == 3)
             {
+                //CUENTA ACTIVADA CLIENTE REGISTRADO
                 System.Web.HttpContext.Current.Session["Email"] = model.Email;
-                return RedirectToAction("Login", "Home"); //CUENTA ACTIVADA CLIENTE REGISTRADO
+                return RedirectToAction("Login", "Home");
             }
             else if (result == 5 || result == 7)
             {
-                model = Funcion.RespuestaProceso("Index", emailCode64, null, model.Email + " Su cuenta no ha sido activada,revise su bandeja de entrada");
-                return RedirectToAction("State", "Home", model); //CUENTA NO ACTIVADA CLIENTE REGISTRADO
+                //CUENTA NO ACTIVADA CLIENTE REGISTRADO
+                model = Funcion.RespuestaProceso("Index", emailCode64, null, model.Email + EngineData.CuentaNoActivada());
+                return RedirectToAction("State", "Home", model); 
             }
             else if (result == 6)
             {
-                model = Funcion.RespuestaProceso(Funcion.DecodeBase64(EngineData.Test), model.Email, null,null); // EMAIL NO EXISTE
+                // EMAIL NO EXISTE PUEDE PROBAR
+                model = Funcion.RespuestaProceso(Funcion.DecodeBase64(EngineData.Test), model.Email, null,null);
                 return RedirectToAction("State", "Home",model);
             }
             return View(model);
         }
     
-        [HttpGet]
-        public ActionResult State(string email = "", string identidad = "", string date = "", string status = "", string ide = "", string type = "", Respuesta K = null)
+       [HttpGet]
+        public ActionResult State(string email = "", string identidad = "", string date = "", string status = "", string ide = "", string type = "",  string cultureInfo = "", Respuesta K = null)
         {
             Respuesta R = new Respuesta();
             bool resultado = false;
@@ -178,9 +201,9 @@ namespace SudokuForAll.Controllers
                 if (!resultado)
                 {
                     if (K.RespuestaAccion != string.Empty && K.RespuestaAccion != null)
-                        R = Funcion.RespuestaProceso(K.RespuestaAccion, emailCode64, null, email + " Es una direccion de correo electronica no valida.");
+                        R = Funcion.RespuestaProceso(K.RespuestaAccion, emailCode64, null, email + EngineData.EmailNoValido());
                     else if (type != string.Empty && type != null)
-                        R = Funcion.RespuestaProceso("Index", emailCode64, null, email + " Es una direccion de correo electronica no valida.");
+                        R = Funcion.RespuestaProceso("Index", emailCode64, null, email + EngineData.EmailNoValido());
                      return View(R);
                 }  
             }
@@ -193,7 +216,7 @@ namespace SudokuForAll.Controllers
                 resultado = Funcion.CompareString(identidad, identificador);
                 if (!resultado)
                 {
-                    R = Funcion.RespuestaProceso("Open", emailCode64, null, "Intento de violacion de seguridad.");
+                    R = Funcion.RespuestaProceso("Open", emailCode64, null,  EngineData.ErrorInternoServidor());
                     return View(R);
                 }
             }
@@ -202,14 +225,22 @@ namespace SudokuForAll.Controllers
             if (date != string.Empty && date != null && type != string.Empty && type != null)
             {
                 date = date.Replace('*', ' ');
-                date = date.Replace('+', '.');
+                date = date.Replace('+', ' ');
+                date = date.Replace('a', ' ');
+                date = date.Replace('p', ' ');
+                date = date.Replace('m', ' ');
+                date = date.Trim();
+                Funcion.SetCultureInfo(cultureInfo);
+                CultureInfo ci = new CultureInfo(cultureInfo);
+                Thread.CurrentThread.CurrentUICulture = ci;
+                Thread.CurrentThread.CurrentCulture = ci;
                 DateTime fechaEnvio = Convert.ToDateTime(date);
                 DateTime fechaActivacion = DateTime.UtcNow;
                 resultado = Funcion.EstatusLink(fechaEnvio, fechaActivacion);
                 if (!resultado)
                 {
                     resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, Funcion.ConvertirBase64(email), type, ide);
-                    R = Funcion.RespuestaProceso("Index", emailCode64 , null,"El tiempo valido para el link expiro, enviamos una nueva notificacion a tu correo.");
+                    R = Funcion.RespuestaProceso("Index", emailCode64 , null,EngineData.TiempoLinkExpiro());
                     return View(R);
                 }
             }
@@ -221,9 +252,9 @@ namespace SudokuForAll.Controllers
                 EngineDb Metodo = new EngineDb();
                 int act = Metodo.UpdateClienteTest(client);
                 if (act > 0)
-                    R = Funcion.RespuestaProceso("Contact", emailCode64, null, "Activacion exitosa, ingresa con tu email.");
+                    R = Funcion.RespuestaProceso("Contact", emailCode64, null, EngineData.ActivacionExitosa());
                 else
-                    R = Funcion.RespuestaProceso("Index", emailCode64, null, "Activacion fallida");
+                    R = Funcion.RespuestaProceso("Index", emailCode64, null, EngineData.ActivacionFallida());
             }
             //Activacion cuanta del cliente
             else if (type == EngineData.Register)
@@ -234,16 +265,16 @@ namespace SudokuForAll.Controllers
                 model = Funcion.ConstruirActivarCliente(email, password);
                 int act = Metodo.ClienteRegistroActivacion(model);
                 if (act >= 1)
-                    R = Funcion.RespuestaProceso("Login", emailCode64, null, "Activacion exitosa, identificate con tu email y password");
+                    R = Funcion.RespuestaProceso("Login", emailCode64, null, EngineData.ActivacionExitosa());
                 else
-                    R = Funcion.RespuestaProceso("Login", emailCode64, null, "Activacion Fallida");
+                    R = Funcion.RespuestaProceso("Login", emailCode64, null, EngineData.ActivacionFallida());
             }
             // Enviar a restablecer password
             else if (type == EngineData.ResetPassword)
             {
                 if (ide == string.Empty || ide == null)
                 {
-                    R = Funcion.RespuestaProceso("Open", emailCode64, null, "Intento de violacion de seguridad.");
+                    R = Funcion.RespuestaProceso("Open", emailCode64, null, EngineData.ErrorInternoServidor());
                     return View(R);
                 }
                 string codigo = Funcion.DecodeBase64(ide);
@@ -251,11 +282,11 @@ namespace SudokuForAll.Controllers
                 resultado = Funcion.CompareString(codigo, code);
                 if (!resultado)
                 {
-                    R = Funcion.RespuestaProceso("Open", emailCode64, null, "Intento de violacion de seguridad.");
+                    R = Funcion.RespuestaProceso("Open", emailCode64, null, EngineData.ErrorInternoServidor());
                     return View(R);
                 }
                 System.Web.HttpContext.Current.Session["Email"] = email;
-                R = Funcion.RespuestaProceso(null, emailCode64, "codeVerify","Ingrese codigo de verificacion");
+                R = Funcion.RespuestaProceso(null, emailCode64, "codeVerify",EngineData.IngreseCodigoVerificacion());
                 return RedirectToAction("EditPasswordNotify", "Home", R);
             }
 
@@ -286,7 +317,7 @@ namespace SudokuForAll.Controllers
             bool resultado = Funcion.EmailEsValido(email);
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso(null, null, "Direccion de correo electronica no valido", email);
+                R = Funcion.RespuestaProceso(null, null, EngineData.EmailNoValido(), email);
                 return Json(R);
             }
             resultado = Metodo.InsertarClienteTest(email, Funcion);
@@ -310,10 +341,10 @@ namespace SudokuForAll.Controllers
 
         public ActionResult EditPasswordNotify(Respuesta K = null)
         {
-            if(K.CodigoResetPassword != "codeVerify")
-               K.Descripcion = "Restablecer Password";
+            if (K.CodigoResetPassword != "codeVerify")
+                K.Descripcion = EngineData.ActualizarContraseña(); 
             else
-                K.Descripcion = "Ingrese Codigo";
+                K.Descripcion = EngineData.IngreseCodigo();
             return View(K);
         }
 
@@ -330,13 +361,15 @@ namespace SudokuForAll.Controllers
             string emailCode64 = Funcion.ConvertirBase64(model.Email);
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso("EditPassword", emailCode64, null, model.Email + " Es una direccion de correo electronica no valida.");
+                //Email no valido
+                R = Funcion.RespuestaProceso("EditPassword", emailCode64, null, model.Email + EngineData.EmailNoValido());
                 return RedirectToAction("State", "Home", R);
             }
             resultado = Funcion.CompareString(model.Password, model.Password2);
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso("EditPassword", emailCode64, null, model.Email + " Las contraseñas deben ser identicas.");
+                //Las contraseñas deben ser identicas
+                R = Funcion.RespuestaProceso("EditPassword", emailCode64, null, model.Email + EngineData.PasswordNoIdenticos());
                 return RedirectToAction("State", "Home", R);
             }
             model.Estatus = false;
@@ -345,11 +378,12 @@ namespace SudokuForAll.Controllers
             int result = Metodo.ClienteUpdatePassword(model);
             if (result <= 0)
             {
-                R = Funcion.RespuestaProceso("EditPassword", emailCode64, null, model.Email + " Error al modificar la contraseña.Puede ser que la direccion de email se diferente a la utilizada.");
+                //Fallo modificar contraseña
+                R = Funcion.RespuestaProceso("EditPassword", emailCode64, null, model.Email + EngineData.RestablecerContraseñaFallida());
                 return RedirectToAction("State", "Home", R);
             }
             System.Web.HttpContext.Current.Session["Email"] = model.Email;
-            R = Funcion.RespuestaProceso("Login", emailCode64, null, model.Email + " La contraseña fue modificada exitosamente, Ingresa usando tu email y contraseña");
+            R = Funcion.RespuestaProceso("Login", emailCode64, null, model.Email + EngineData.RestablecerContraseñaExito());
             return RedirectToAction("State", "Home", R);
 
         }
@@ -363,13 +397,15 @@ namespace SudokuForAll.Controllers
             bool resultado = Funcion.EmailEsValido(email);
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso("Email_No_Valido", emailCode64, null, email + " No es una direccion de correo valida.");
+                //Email no valido
+                R = Funcion.RespuestaProceso("Email_No_Valido", emailCode64, null, email + EngineData.EmailNoValido());
                 return Json(R);
             }
             Guid identidad = Metodo.ObtenerIdentidadCliente(email);
             if (identidad == Guid.Empty)
             {
-                R = Funcion.RespuestaProceso("Email_No_Registrado", emailCode64, null, "La direccion " + email + " No esta registrada , verifiquela por favor.");
+                // Email no registrado
+                R = Funcion.RespuestaProceso("Email_No_Registrado", emailCode64, null, email +  EngineData.EmailNoRegistrado());
                 return Json(R);
             }
 
@@ -382,14 +418,15 @@ namespace SudokuForAll.Controllers
             resultado = Metodo.InsertarResetPassword(resetPassword);
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso( "Error_Insertando_Codigo", emailCode64, null, email + " Error insertando codigo de restablecimiento de contraseña");
+                // Error insertando codigo
+                R = Funcion.RespuestaProceso( "Error_Insertando_Codigo", emailCode64, null, email +  EngineData.ErrorInternoServidor());
                 return Json(R);
             }
             resultado = Notificacion.EnviarMailNotificacion(model);
             if (resultado)
-                R = Funcion.RespuestaProceso("Exito", email,null, "Hemos enviado una notificacion a la direccion " + email + " ,con un codigo de verificacion para restablecer contraseña");
+                R = Funcion.RespuestaProceso("Exito", email,null, email + EngineData.EnvioCodigoRestablecerPassword()); //Envio de codigo restablecer password
             else
-                R = Funcion.RespuestaProceso("Error",email,null, "Disculpe surgio un error al intentar enviar email a : " + email);
+                R = Funcion.RespuestaProceso("Error",email,null, email + EngineData.ErrorEnviandoMail()); //Error enviando notificacion
 
             return Json(R);
         }
@@ -402,7 +439,8 @@ namespace SudokuForAll.Controllers
             bool resultado = Funcion.EmailEsValido(email);
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso("Email_No_Valido", emailCode64 , null, email + " No es una direccion de correo valida.");
+                //Email no valido
+                R = Funcion.RespuestaProceso("Email_No_Valido", emailCode64 , null, email + EngineData.EmailNoValido());
                 return Json(R);
             }
             string code = Metodo.ObtenerCodigoRestablecerPassword(email).Trim();
@@ -410,7 +448,8 @@ namespace SudokuForAll.Controllers
             resultado = Funcion.CompareString(code, codigo.Trim());
             if (!resultado)
             {
-                R = Funcion.RespuestaProceso("Codigo_No_Match", emailCode64 , Funcion.ConvertirBase64("1E-9R-2R-8O"), email + " El codigo suministrado no coincide ,intentelo de nuevo.");
+                //El codigo ingresado no coincide
+                R = Funcion.RespuestaProceso("Codigo_No_Match", emailCode64 , Funcion.ConvertirBase64("1E-9R-2R-8O"), email + EngineData.CodigoNoCoincide());
                 return Json(R);
             }
             int act = Metodo.UpdateResetPassword(email, codigo, true);
@@ -421,7 +460,8 @@ namespace SudokuForAll.Controllers
             }
             else
             {
-                R = Funcion.RespuestaProceso("Error", emailCode64, null, email + " Disculpe surgio un error al validar el codigo.");
+                //Error al validar el codigo
+                R = Funcion.RespuestaProceso("Error", emailCode64, null, email +  EngineData.ErrorInternoServidor());
 
             }
             return Json(R);
@@ -445,6 +485,14 @@ namespace SudokuForAll.Controllers
             else
                 R.Email = string.Empty;
             return Json(R);
+        }
+
+        [HttpPost]
+        public JsonResult ListaLenguaje (int index = 0)
+        {
+            Idiomas idiomas = new Idiomas();
+            idiomas = EngineData.Idiomas(index);
+            return Json(idiomas);
         }
 
     }

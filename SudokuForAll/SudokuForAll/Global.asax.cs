@@ -1,6 +1,9 @@
-﻿using System;
+﻿using SudokuForAll.Engine;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -16,6 +19,16 @@ namespace SudokuForAll
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        protected void Application_AcquireRequestState(object sender, EventArgs e)
+        {
+            if (System.Web.HttpContext.Current.Session["Cultura"] == null)
+                System.Web.HttpContext.Current.Session["Cultura"] = EngineData.Cultura(1);
+
+            CultureInfo ci = new CultureInfo(EngineData.GetCultura());
+            Thread.CurrentThread.CurrentUICulture = ci;
+            Thread.CurrentThread.CurrentCulture = ci;
         }
     }
 }

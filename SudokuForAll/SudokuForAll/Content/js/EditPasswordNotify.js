@@ -2,14 +2,22 @@
 
 function SeleccionarProceso() {
     var lblTexto = document.getElementById('lblTexto').innerText;
-    if (lblTexto == 'Restablecer Password')
-    {
-        NotificacionRestablecerPassword();
-    }
-    else if (lblTexto =='Ingrese Codigo')
-    {
-        ValidarCodigo();
-    }
+    var email = $('#email').val();
+    $.ajax({
+        type: "POST",
+        url: "/Home/CheckProcessEditPasswordNotify",
+        data: { lblTexto: lblTexto, email: email },
+        datatype: "json",
+        success: function (data) {
+
+            if (data.RespuestaAccion == 'ResetPassword')
+                NotificacionRestablecerPassword();
+            else if (data.RespuestaAccion == 'EnterCode')
+                ValidarCodigo();
+            else
+                DireccionSite('Home', 'Contact');
+        }
+    });
 }
 
 

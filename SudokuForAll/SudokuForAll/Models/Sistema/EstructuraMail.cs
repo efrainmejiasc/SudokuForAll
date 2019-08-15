@@ -28,5 +28,7 @@ namespace SudokuForAll.Models.Sistema
         public string PathLecturaArchivo { get; set; }
 
         public string CodigoResetPassword { get; set; }
+
+        public string Saludo { get; set; }
     }
 }

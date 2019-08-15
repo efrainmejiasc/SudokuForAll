@@ -48,6 +48,7 @@ namespace SudokuForAll.Engine
         {
             string body = HttpContext.Current.Server.MapPath(model.PathLecturaArchivo);
             body = File.ReadAllText(body);
+            body = body.Replace("@Model.Saludo", model.Saludo);
             body = body.Replace("@Model.Fecha", model.Fecha);
             body = body.Replace("@Model.EmailDestinatario", model.EmailDestinatario);
             body = body.Replace("@Model.Observacion", model.Observacion);

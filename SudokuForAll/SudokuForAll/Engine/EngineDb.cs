@@ -290,6 +290,40 @@ namespace SudokuForAll.Engine
             return 0;
         }
 
+        public int ObtenerIdCliente(string email,bool estatus)
+        {
+            Cliente C = new Cliente();
+            try
+            {
+                using (SudokuContext context = new SudokuContext())
+                {
+                    C = context.Cliente.Where(s => s.Email == email && s.Estatus == estatus).FirstOrDefault();
+                    if (C.Id > 0)
+                        return C.Id;
+                }
+            }
+            catch(Exception ex)
+            {
+            }
+            return 0;
+        }
+
+        public string ObtenerPasswordCliente(string email)
+        {
+            Cliente C = new Cliente();
+            try
+            {
+                using (SudokuContext context = new SudokuContext())
+                {
+                    C = context.Cliente.Where(s => s.Email == email).FirstOrDefault();
+                    if (C.Password != string.Empty || C.Password != null)
+                        return C.Password;
+                }
+            }
+            catch { }
+            return string.Empty;
+        }
+
         public bool InsertarResetPassword(ResetPassword model)
         {
             bool resultado = false;

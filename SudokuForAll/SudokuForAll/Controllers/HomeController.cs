@@ -170,6 +170,24 @@ namespace SudokuForAll.Controllers
             else if (result == 5 || result == 7)
             {
                 //CUENTA NO ACTIVADA CLIENTE REGISTRADO
+                string enlaze = string.Empty;
+                if (result == 5)
+                {
+                    string password = Metodo.ObtenerPasswordCliente(model.Email);
+                    password = Funcion.DecodeBase64(password);
+                    password = password.Replace(model.Email, "");
+                    enlaze = Funcion.CrearEnlazeRegistro(Metodo,model.Email,password);
+                    EstructuraMail estructura = new EstructuraMail();
+                    estructura = Funcion.SetEstructuraMailRegister(enlaze, model.Email, estructura);
+                    resultado = Notificacion.EnviarMailNotificacion(estructura);
+                }
+                else if (result == 7)
+                {
+                    enlaze = Funcion.CrearEnlazePrueba(Metodo, model.Email);
+                    EstructuraMail estructura = new EstructuraMail();
+                    estructura = Funcion.SetEstructuraMailTest(enlaze, model.Email, estructura);
+                    resultado = Notificacion.EnviarMailNotificacion(estructura);
+                }
                 model = Funcion.RespuestaProceso("Index", emailCode64, null, model.Email + EngineData.CuentaNoActivada());
                 return RedirectToAction("State", "Home", model); 
             }
@@ -388,6 +406,7 @@ namespace SudokuForAll.Controllers
 
         }
 
+        //*************************************************** Invoke AJAX ***********************************************************
 
         [HttpPost]
         public ActionResult NotificacionRestablecerPassword(string email)
@@ -493,6 +512,30 @@ namespace SudokuForAll.Controllers
             Idiomas idiomas = new Idiomas();
             idiomas = EngineData.Idiomas(index);
             return Json(idiomas);
+        }
+
+        [HttpPost]
+        public JsonResult CheckProcessEditPasswordNotify (string lblTexto, string email = "")
+        {
+            Respuesta model = new Respuesta();
+            string texto = EngineData.ActualizarContraseña();
+            int idCliente = 0;
+            bool resultado = Funcion.CompareString(lblTexto, texto);
+            if (resultado)
+            {
+                idCliente = Metodo.ObtenerIdCliente(email, true);
+                if (idCliente > 0)
+                    model.RespuestaAccion = "ResetPassword";
+            }
+            else
+            {
+                texto = EngineData.IngreseCodigo();
+                resultado = Funcion.CompareString(lblTexto, texto);
+                if(resultado)
+                    model.RespuestaAccion = "EnterCode";
+            }
+
+            return Json(model);
         }
 
     }

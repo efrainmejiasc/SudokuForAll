@@ -17,7 +17,7 @@
 <div id="logeo" align="center" class="logeo">
     @using (Html.BeginForm("Login", "Home"))
     {
-        <h4 class="text-primary" id="lblTexto">Autentificate</h4>
+        <h4 class="text-primary" id="lblTexto">@Resources.Autentificate</h4>
         <input type="email" id="email" name="email" placeholder="@Resources.IngreseEmail" required class="boxTxt form-control"  />
         <input type="password" id="password" name="password" placeholder="@Resources.IngreseContraseña" required class="boxTxt form-control"/><br />
         <label class="checkbox-inline"><input type="checkbox" id="chxNoSoy" name="chxNosoy" required class="btn btn btn-default active" />@Resources.NoSoyUnRobot</label><br /><br />

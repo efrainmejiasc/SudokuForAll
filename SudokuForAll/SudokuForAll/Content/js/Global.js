@@ -53,7 +53,6 @@ function SetObjectsLayount(index) {
             $('#traductor').append('<option  value="' + 2 + '">' + data.Ingles + '</option>');
             $('#traductor').append('<option  value="' + 3 + '">' + data.Portugues + '</option>');
             $('#traductor').val(data.Id);
-           // $('#entrar').text('@Html.ActionLink("Get In", "Contact", "Home")');
         }
     });
 }

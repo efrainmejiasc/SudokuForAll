@@ -89,5 +89,15 @@ namespace SudokuForAll.StringResx
             get { return resourceProvider.GetResource("Terminos", CultureInfo.CurrentUICulture.Name) as String; }
         }
 
+        public static string Autentificate
+        {
+            get { return resourceProvider.GetResource("Autentificate", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string Registrate
+        {
+            get { return resourceProvider.GetResource("Registrate", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
     }
 }

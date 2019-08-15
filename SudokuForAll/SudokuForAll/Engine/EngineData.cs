@@ -500,6 +500,25 @@ namespace SudokuForAll.Engine
         }
 
         // Parametros notificacion para prueba del sitio
+
+        public static string Saludo()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = "Saludos estimado(a) : ";
+                    break;
+                case (CulturaIngles):
+                    respuesta = "Regards dear : ";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = "Saudações querida : ";
+                    break;
+            }
+            return respuesta;
+        }
+
         public static string PathLecturaArchivoTest = @"/Content/template/EmailBodyTest.cshtml";
 
         public static string AsuntoTest()

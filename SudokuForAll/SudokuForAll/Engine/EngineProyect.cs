@@ -161,7 +161,7 @@ namespace SudokuForAll.Engine
             link = link + "&status=" + "1";
             link = link + "&date=" + fecha;
             link = link + "&type=" + EngineData.Register;
-            link = link + "&cultureInfol=" + EngineData.GetCultura();
+            link = link + "&cultureInfo=" + EngineData.GetCultura();
             return link;
         }
 
@@ -184,6 +184,7 @@ namespace SudokuForAll.Engine
         public EstructuraMail SetEstructuraMailTest(string enlaze, string email, EstructuraMail model)
         {
             model.Link = enlaze;
+            model.Saludo = EngineData.Saludo();
             model.EmailDestinatario = email;
             model.Fecha = DateTime.UtcNow.ToString();
             model.Descripcion = EngineData.DescripcionTest();
@@ -197,6 +198,7 @@ namespace SudokuForAll.Engine
         public EstructuraMail SetEstructuraMailRegister(string enlaze, string email, EstructuraMail model)
         {
             model.Link = enlaze;
+            model.Saludo = EngineData.Saludo();
             model.EmailDestinatario = email;
             model.Fecha = DateTime.UtcNow.ToString();
             model.Descripcion = EngineData.DescripcionRegistro();
@@ -210,6 +212,7 @@ namespace SudokuForAll.Engine
         public EstructuraMail SetEstructuraMailResetPassword(string enlaze, string email, string codigo, EstructuraMail model)
         {
             model.Link = enlaze;
+            model.Saludo = EngineData.Saludo();
             model.EmailDestinatario = email;
             model.Fecha = DateTime.UtcNow.ToString();
             model.Descripcion = EngineData.DescripcionRestablecerPassword();
@@ -253,9 +256,9 @@ namespace SudokuForAll.Engine
             {
                 Email = email,
                 FechaRegistroPrueba = DateTime.UtcNow,
-                FechaActivacion = Convert.ToDateTime("01/01/1900"),
-                FechaActivacionPrueba = Convert.ToDateTime("01-01-1900"),
-                FechaRegistro = Convert.ToDateTime("01-01-1900"),
+                FechaActivacion = Convert.ToDateTime("01/01/1900 00:00:00.000"),
+                FechaActivacionPrueba = DateTime.UtcNow,
+                FechaRegistro = Convert.ToDateTime("01-01-1900 00:00:00.000"),
                 Estatus = false,
                 EstatusEnvioNotificacion = false,
                 Identidad = IdentificadorReg()

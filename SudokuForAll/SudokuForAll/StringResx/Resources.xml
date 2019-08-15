@@ -60,4 +60,12 @@
   <resource culture="en-us" name="Terminos" value="Terms and conditions of use"></resource>
   <resource culture="pt-pt" name="Terminos" value="Termos e condições de uso"></resource>
 
+  <resource culture="es-es" name="Autentificate" value="Autentificate"></resource>
+  <resource culture="en-us" name="Autentificate" value="Authentication"></resource>
+  <resource culture="pt-pt" name="Autentificate" value="Autenticação"></resource>
+
+  <resource culture="es-es" name="Registrate" value="Registrate"></resource>
+  <resource culture="en-us" name="Registrate" value="Sign up"></resource>
+  <resource culture="pt-pt" name="Registrate" value="Inscreva-se"></resource>
+
 </resources>

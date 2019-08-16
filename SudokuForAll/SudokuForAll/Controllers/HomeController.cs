@@ -61,7 +61,7 @@ namespace SudokuForAll.Controllers
             {
                 // Cuando RespuetaAccion = Open -> No redirecciona a ninguna pagina
                 R = Funcion.RespuestaProceso("Open",emailCode64, null, email + EngineData.TiempoJuegoExpiro());
-                return RedirectToAction("Buy", "Home");
+                return RedirectToAction("BuyGame", "Game");
             }
             else if (result == 1)
             {
@@ -201,7 +201,7 @@ namespace SudokuForAll.Controllers
         }
     
        [HttpGet]
-        public ActionResult State(string email = "", string identidad = "", string date = "", string status = "", string ide = "", string type = "",  string cultureInfo = "", Respuesta K = null)
+        public ActionResult State(int Id = 0 ,string email = "", string identidad = "", string date = "", string status = "", string ide = "", string type = "",  string cultureInfo = "", Respuesta K = null)
         {
             Respuesta R = new Respuesta();
             bool resultado = false;

@@ -245,7 +245,7 @@ namespace SudokuForAll.Engine
                 CodigoResetPassword = codigo,
                 Descripcion = descripcion,
                 CulturaInfo = EngineData.GetCultura(),
-                Id = -1
+                Id = 0
             };
             return resultado;
         }

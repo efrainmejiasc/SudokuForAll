@@ -184,7 +184,9 @@
     <Content Include="Content\css\_MessagePartial.css" />
     <Content Include="Content\imagen\logo.png" />
     <Content Include="Content\imagen\SudokuEnCasa.ico" />
-    <Content Include="Content\js\EditPasswordNotify.js" />
+    <Content Include="..\..\..\..\..\Downloads\Sudoku\Publish\Content\js\EditPasswordNotify.js">
+      <Link>Content\js\EditPasswordNotify.js</Link>
+    </Content>
     <Content Include="Content\js\Global.js" />
     <Content Include="Content\js\State.js" />
     <Content Include="favicon.ico" />
@@ -235,6 +237,7 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\EditPasswordNotify.cshtml" />
     <Content Include="Views\Home\EditPassword.cshtml" />
+    <Content Include="Views\Game\BuyGame.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

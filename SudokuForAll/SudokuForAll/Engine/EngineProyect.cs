@@ -140,6 +140,7 @@ namespace SudokuForAll.Engine
             fecha = fecha.Replace(".", "+");
             string link = string.Empty;
             link = EngineData.EndPointValidation;
+            link = link + "Id=" + "0&";
             link = link + "email=" + ConvertirBase64(email);
             link = link + "&identidad=" + EncodeMd5(Metodo.ObtenerIdentidadCliente(email).ToString());
             link = link + "&status=" + "1";
@@ -155,6 +156,7 @@ namespace SudokuForAll.Engine
             fecha = fecha.Replace(".", "+");
             string link = string.Empty;
             link = EngineData.EndPointValidation;
+            link = link + "Id=" + "0&";
             link = link + "email=" + ConvertirBase64(email);
             link = link + "&ide=" + ConvertirBase64(password);
             link = link + "&identidad=" + EncodeMd5(Metodo.ObtenerIdentidadCliente(email).ToString());
@@ -171,6 +173,7 @@ namespace SudokuForAll.Engine
             fecha = fecha.Replace(".", "+");
             string link = string.Empty;
             link = EngineData.EndPointValidation;
+            link = link + "Id=" + "1&";
             link = link + "email=" + ConvertirBase64(email);
             link = link + "&ide=" + ConvertirBase64(codigo);
             link = link + "&identidad=" + EncodeMd5(Metodo.ObtenerIdentidadCliente(email).ToString());

@@ -8,8 +8,14 @@ namespace SudokuForAll.Controllers
 {
     public class GameController : Controller
     {
-        // GET: Game
+
         public ActionResult PlayGame()
+        {
+            return View();
+        }
+
+
+        public ActionResult BuyGame()
         {
             return View();
         }

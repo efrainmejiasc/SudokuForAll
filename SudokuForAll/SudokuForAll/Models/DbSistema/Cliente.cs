@@ -30,7 +30,7 @@ namespace SudokuForAll.Models.DbSistema
         public string Email { get; set; }
 
         [Column(Order = 5, TypeName = "VARCHAR")]
-        [StringLength(50)]
+        [StringLength(100)]
         public string Password { get; set; }
 
         [Column(Order = 6, TypeName = "DATETIME")]

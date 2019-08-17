@@ -61,7 +61,7 @@ namespace SudokuForAll.Controllers
             {
                 // Cuando RespuetaAccion = Open -> No redirecciona a ninguna pagina
                 R = Funcion.RespuestaProceso("Open",emailCode64, null, email + EngineData.TiempoJuegoExpiro());
-                return RedirectToAction("Buy", "Home");
+                return RedirectToAction("BuyGame", "Game");
             }
             else if (result == 1)
             {
@@ -174,19 +174,11 @@ namespace SudokuForAll.Controllers
                 if (result == 5)
                 {
                     string password = Metodo.ObtenerPasswordCliente(model.Email);
-                    password = Funcion.DecodeBase64(password);
-                    password = password.Replace(model.Email, "");
-                    enlaze = Funcion.CrearEnlazeRegistro(Metodo,model.Email,password);
-                    EstructuraMail estructura = new EstructuraMail();
-                    estructura = Funcion.SetEstructuraMailRegister(enlaze, model.Email, estructura);
-                    resultado = Notificacion.EnviarMailNotificacion(estructura);
+                    resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, emailCode64, EngineData.Register , password);
                 }
                 else if (result == 7)
                 {
-                    enlaze = Funcion.CrearEnlazePrueba(Metodo, model.Email);
-                    EstructuraMail estructura = new EstructuraMail();
-                    estructura = Funcion.SetEstructuraMailTest(enlaze, model.Email, estructura);
-                    resultado = Notificacion.EnviarMailNotificacion(estructura);
+                    resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, emailCode64, EngineData.Test);
                 }
                 model = Funcion.RespuestaProceso("Index", emailCode64, null, model.Email + EngineData.CuentaNoActivada());
                 return RedirectToAction("State", "Home", model); 
@@ -201,7 +193,7 @@ namespace SudokuForAll.Controllers
         }
     
        [HttpGet]
-        public ActionResult State(string email = "", string identidad = "", string date = "", string status = "", string ide = "", string type = "",  string cultureInfo = "", Respuesta K = null)
+        public ActionResult State(int Id = 0 ,string email = "", string identidad = "", string date = "", string status = "", string ide = "", string type = "",  string cultureInfo = "", Respuesta K = null)
         {
             Respuesta R = new Respuesta();
             bool resultado = false;

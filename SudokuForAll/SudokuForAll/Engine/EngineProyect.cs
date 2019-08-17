@@ -117,10 +117,10 @@ namespace SudokuForAll.Engine
             bool resultado = false;
             EstructuraMail model = new EstructuraMail();
             email = DecodeBase64(email);
+
             if (type == EngineData.Test)
             {
                 string enlaze = CrearEnlazePrueba(Metodo, email);
-
                 model = SetEstructuraMailTest(enlaze, email, model);
             }
             else if (type == EngineData.Register)
@@ -140,6 +140,7 @@ namespace SudokuForAll.Engine
             fecha = fecha.Replace(".", "+");
             string link = string.Empty;
             link = EngineData.EndPointValidation;
+            link = link + "Id=" + "0&";
             link = link + "email=" + ConvertirBase64(email);
             link = link + "&identidad=" + EncodeMd5(Metodo.ObtenerIdentidadCliente(email).ToString());
             link = link + "&status=" + "1";
@@ -155,6 +156,7 @@ namespace SudokuForAll.Engine
             fecha = fecha.Replace(".", "+");
             string link = string.Empty;
             link = EngineData.EndPointValidation;
+            link = link + "Id=" + "0&";
             link = link + "email=" + ConvertirBase64(email);
             link = link + "&ide=" + ConvertirBase64(password);
             link = link + "&identidad=" + EncodeMd5(Metodo.ObtenerIdentidadCliente(email).ToString());
@@ -171,6 +173,7 @@ namespace SudokuForAll.Engine
             fecha = fecha.Replace(".", "+");
             string link = string.Empty;
             link = EngineData.EndPointValidation;
+            link = link + "Id=" + "1&";
             link = link + "email=" + ConvertirBase64(email);
             link = link + "&ide=" + ConvertirBase64(codigo);
             link = link + "&identidad=" + EncodeMd5(Metodo.ObtenerIdentidadCliente(email).ToString());
@@ -245,7 +248,7 @@ namespace SudokuForAll.Engine
                 CodigoResetPassword = codigo,
                 Descripcion = descripcion,
                 CulturaInfo = EngineData.GetCultura(),
-                Id = -1
+                Id = 0
             };
             return resultado;
         }

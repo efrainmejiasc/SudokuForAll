@@ -141,6 +141,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201908171626440_PassExtend.cs" />
+    <Compile Include="Migrations\201908171626440_PassExtend.Designer.cs">
+      <DependentUpon>201908171626440_PassExtend.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Sistema\Idiomas.cs" />
     <Compile Include="StringResx\Abstract\BaseResourceProvider.cs" />
     <Compile Include="StringResx\Abstract\IResourceProvider.cs" />
@@ -254,6 +258,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201908171626440_PassExtend.resx">
+      <DependentUpon>201908171626440_PassExtend.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

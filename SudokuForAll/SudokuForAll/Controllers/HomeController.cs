@@ -174,19 +174,11 @@ namespace SudokuForAll.Controllers
                 if (result == 5)
                 {
                     string password = Metodo.ObtenerPasswordCliente(model.Email);
-                    password = Funcion.DecodeBase64(password);
-                    password = password.Replace(model.Email, "");
-                    enlaze = Funcion.CrearEnlazeRegistro(Metodo,model.Email,password);
-                    EstructuraMail estructura = new EstructuraMail();
-                    estructura = Funcion.SetEstructuraMailRegister(enlaze, model.Email, estructura);
-                    resultado = Notificacion.EnviarMailNotificacion(estructura);
+                    resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, emailCode64, EngineData.Register , password);
                 }
                 else if (result == 7)
                 {
-                    enlaze = Funcion.CrearEnlazePrueba(Metodo, model.Email);
-                    EstructuraMail estructura = new EstructuraMail();
-                    estructura = Funcion.SetEstructuraMailTest(enlaze, model.Email, estructura);
-                    resultado = Notificacion.EnviarMailNotificacion(estructura);
+                    resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, emailCode64, EngineData.Test);
                 }
                 model = Funcion.RespuestaProceso("Index", emailCode64, null, model.Email + EngineData.CuentaNoActivada());
                 return RedirectToAction("State", "Home", model); 

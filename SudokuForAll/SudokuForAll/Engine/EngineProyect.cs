@@ -117,10 +117,10 @@ namespace SudokuForAll.Engine
             bool resultado = false;
             EstructuraMail model = new EstructuraMail();
             email = DecodeBase64(email);
+
             if (type == EngineData.Test)
             {
                 string enlaze = CrearEnlazePrueba(Metodo, email);
-
                 model = SetEstructuraMailTest(enlaze, email, model);
             }
             else if (type == EngineData.Register)

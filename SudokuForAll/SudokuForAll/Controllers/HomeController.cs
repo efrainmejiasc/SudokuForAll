@@ -249,7 +249,11 @@ namespace SudokuForAll.Controllers
                 resultado = Funcion.EstatusLink(fechaEnvio, fechaActivacion);
                 if (!resultado)
                 {
-                    resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, Funcion.ConvertirBase64(email), type, ide);
+                    if (type== EngineData.Register)
+                        resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, email, type, Metodo.ObtenerPasswordCliente(email));
+                    else if (type== EngineData.Test)
+                        resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo,email, type);
+
                     R = Funcion.RespuestaProceso("Index", emailCode64 , null,EngineData.TiempoLinkExpiro());
                     return View(R);
                 }

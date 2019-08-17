@@ -112,7 +112,8 @@ namespace SudokuForAll.Engine
         }
 
         //********************************METODOS DEL SITIO *********************************************************************************
-        public bool EnviarNuevaNotificacion(IEngineNotificacion Notificacion, IEngineDb Metodo, string email, string type, string password = "")
+
+       public bool EnviarNuevaNotificacion(IEngineNotificacion Notificacion, IEngineDb Metodo, string email, string type, string password = "")
         {
             bool resultado = false;
             EstructuraMail model = new EstructuraMail();

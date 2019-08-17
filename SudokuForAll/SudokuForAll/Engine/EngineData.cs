@@ -231,10 +231,10 @@ namespace SudokuForAll.Engine
             switch (cultura)
             {
                 case (CulturaEspañol):
-                    respuesta = " Registro exitoso, Enviamos una notificacion a tu correo para que actives tu cuenta";
+                    respuesta = " Registro exitoso, enviamos una notificacion a tu correo para que actives tu cuenta";
                     break;
                 case (CulturaIngles):
-                    respuesta = " Successful registration, We send a notification to your e-mail to activate your account";
+                    respuesta = " Successful registration, we send a notification to your e-mail to activate your account";
                     break;
                 case (CulturaPortugues):
                     respuesta = " Inscrição bem sucedida, enviamos uma notificação para o seu e-mail para ativar sua conta";
@@ -285,13 +285,13 @@ namespace SudokuForAll.Engine
             switch (cultura)
             {
                 case (CulturaEspañol):
-                    respuesta = " Su cuenta no ha sido activada, revise su bandeja de entrada";
+                    respuesta = " Su cuenta no ha sido activada, enviamos una notificacion a tu correo para que actives tu cuenta";
                     break;
                 case (CulturaIngles):
-                    respuesta = " Your account has not been activated, check your inbox";
+                    respuesta = " Your account has not been activated, we send a notification to your e-mail to activate your account";
                     break;
                 case (CulturaPortugues):
-                    respuesta = " Sua conta não foi ativada, verifique sua caixa de entrada";
+                    respuesta = " Sua conta não foi ativada, enviamos uma notificação para o seu e-mail para ativar sua conta";
                     break;
             }
             return respuesta;

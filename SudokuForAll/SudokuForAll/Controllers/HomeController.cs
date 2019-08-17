@@ -174,6 +174,7 @@ namespace SudokuForAll.Controllers
                 if (result == 5)
                 {
                     string password = Metodo.ObtenerPasswordCliente(model.Email);
+                    password = password.Replace(model.Email, "");
                     resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, emailCode64, EngineData.Register , password);
                 }
                 else if (result == 7)
@@ -249,10 +250,18 @@ namespace SudokuForAll.Controllers
                 resultado = Funcion.EstatusLink(fechaEnvio, fechaActivacion);
                 if (!resultado)
                 {
-                    if (type== EngineData.Register)
-                        resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, email, type, Metodo.ObtenerPasswordCliente(email));
-                    else if (type== EngineData.Test)
-                        resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo,email, type);
+                    if (type == EngineData.Register)
+                    {
+                        string contraseña = Metodo.ObtenerPasswordCliente(email);
+                        contraseña = contraseña.Replace(email, "");
+                        resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, email, EngineData.Register, contraseña);
+                    }
+                       
+                    else if (type == EngineData.Test)
+                    {
+                        resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, email, EngineData.Test);
+                    }
+                       
 
                     R = Funcion.RespuestaProceso("Index", emailCode64 , null,EngineData.TiempoLinkExpiro());
                     return View(R);
@@ -273,8 +282,7 @@ namespace SudokuForAll.Controllers
             //Activacion cuanta del cliente
             else if (type == EngineData.Register)
             {
-                string password = Funcion.DecodeBase64(ide);
-                password = Funcion.ConvertirBase64(email + password);
+                string password = ide;
                 ActivarCliente model = new ActivarCliente();
                 model = Funcion.ConstruirActivarCliente(email, password);
                 int act = Metodo.ClienteRegistroActivacion(model);

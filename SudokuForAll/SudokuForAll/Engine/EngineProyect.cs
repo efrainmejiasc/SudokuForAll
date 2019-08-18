@@ -117,7 +117,9 @@ namespace SudokuForAll.Engine
         {
             bool resultado = false;
             EstructuraMail model = new EstructuraMail();
-            email = DecodeBase64(email);
+            resultado = CadenaBase64Valida(email);
+            if (resultado)
+                email = DecodeBase64(email);
 
             if (type == EngineData.Test)
             {

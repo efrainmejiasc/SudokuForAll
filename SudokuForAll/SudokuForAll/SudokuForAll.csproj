@@ -145,6 +145,11 @@
     <Compile Include="Migrations\201908171626440_PassExtend.Designer.cs">
       <DependentUpon>201908171626440_PassExtend.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908182348525_PassExtend1.cs" />
+    <Compile Include="Migrations\201908182348525_PassExtend1.Designer.cs">
+      <DependentUpon>201908182348525_PassExtend1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbSistema\SucesoLog.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />
     <Compile Include="StringResx\Abstract\BaseResourceProvider.cs" />
     <Compile Include="StringResx\Abstract\IResourceProvider.cs" />
@@ -260,6 +265,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201908171626440_PassExtend.resx">
       <DependentUpon>201908171626440_PassExtend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908182348525_PassExtend1.resx">
+      <DependentUpon>201908182348525_PassExtend1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

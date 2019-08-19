@@ -14,25 +14,34 @@ namespace SudokuForAll.Engine
     public class EngineDb : IEngineDb
     {
         private static string cadenaConexion = ConfigurationManager.ConnectionStrings["CnxSudoku"].ToString();
+        private EngineProyect _Funcion = new EngineProyect();
 
         public int ResultadoEntradaAlSitio(string email)
         {
             object obj = new object();
             int resultado = 0;
             SqlConnection Conexion = new SqlConnection(cadenaConexion);
-            using (Conexion)
+            try
             {
-                Conexion.Open();
-                SqlCommand command = new SqlCommand("Sp_GetResultToIntro", Conexion);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Clear();
-                command.Parameters.AddWithValue("@Email", email);
-                obj = command.ExecuteScalar();
-                Conexion.Close();
+                using (Conexion)
+                {
+                    Conexion.Open();
+                    SqlCommand command = new SqlCommand("Sp_GetResultToIntro", Conexion);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Clear();
+                    command.Parameters.AddWithValue("@Email", email);
+                    obj = command.ExecuteScalar();
+                    Conexion.Close();
+                }
+                if (obj != DBNull.Value && obj != null)
+                {
+                    resultado = Convert.ToInt32(obj);
+                }
             }
-            if (obj != DBNull.Value && obj != null)
+            catch(Exception ex)
             {
-                resultado = Convert.ToInt32(obj);
+                Conexion.Close();
+                InsertarSucesoLog(_Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ResultadoEntradaAlSitio&" + email));
             }
             return resultado;
         }
@@ -42,24 +51,32 @@ namespace SudokuForAll.Engine
             object obj = new object();
             int resultado = 0;
             SqlConnection Conexion = new SqlConnection(cadenaConexion);
-            using (Conexion)
+            try
             {
-                Conexion.Open();
-                SqlCommand command = new SqlCommand("Sp_LoginCliente", Conexion);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Clear();
-                command.Parameters.AddWithValue("@Password", password);
-                obj = command.ExecuteScalar();
-                Conexion.Close();
+                using (Conexion)
+                {
+                    Conexion.Open();
+                    SqlCommand command = new SqlCommand("Sp_LoginCliente", Conexion);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Clear();
+                    command.Parameters.AddWithValue("@Password", password);
+                    obj = command.ExecuteScalar();
+                    Conexion.Close();
+                }
+                if (obj != DBNull.Value && obj != null)
+                {
+                    resultado = Convert.ToInt32(obj);
+                }
             }
-            if (obj != DBNull.Value && obj != null)
+            catch (Exception ex)
             {
-                resultado = Convert.ToInt32(obj);
+                Conexion.Close();
+                InsertarSucesoLog(_Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ResultadoLogin&" + _Funcion.DecodeBase64(password)));
             }
             return resultado;
         }
 
-        public bool InsertarClienteTest(string email, IEngineProyect Funcion)
+        public bool InsertarClienteTest(IEngineProyect Funcion,string email)
         {
             bool resultado = false;
             Cliente model = new Cliente();
@@ -74,7 +91,7 @@ namespace SudokuForAll.Engine
                 }
                 catch (Exception ex)
                 {
-                    string n = ex.ToString();
+                    InsertarSucesoLog(_Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/InsertarClienteTest&" + email));
                 }
             };
             return resultado;
@@ -105,9 +122,10 @@ namespace SudokuForAll.Engine
                     resultado = Convert.ToInt32(obj);
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 Conexion.Close();
+                InsertarSucesoLog(_Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/UpdateClienteTest&" + model.Email));
             }
             return resultado;
         }
@@ -139,9 +157,10 @@ namespace SudokuForAll.Engine
                     resultado = Convert.ToInt32(obj);
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 Conexion.Close();
+                InsertarSucesoLog(_Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ClienteRegistro&" + model.Email));
             }
             return resultado;
         }
@@ -172,9 +191,10 @@ namespace SudokuForAll.Engine
                     resultado = Convert.ToInt32(obj);
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 Conexion.Close();
+                InsertarSucesoLog(_Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ClienteRegistroActivacion&" + model.Email));
             }
             return resultado;
         }
@@ -203,9 +223,10 @@ namespace SudokuForAll.Engine
                     resultado = Convert.ToInt32(obj);
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 Conexion.Close();
+                InsertarSucesoLog(_Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/UpdateResetPassword&" + email));
             }
             return resultado;
         }
@@ -236,6 +257,7 @@ namespace SudokuForAll.Engine
             catch(Exception ex)
             {
                 Conexion.Close();
+                InsertarSucesoLog(_Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ClienteUpdatePassword&" + model.Email));
             }
             return resultado;
         }
@@ -270,7 +292,10 @@ namespace SudokuForAll.Engine
                         return C.Identidad;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(_Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ObtenerIdentidadCliente&" + email));
+            }
             return Guid.Empty;
         }
 
@@ -286,7 +311,10 @@ namespace SudokuForAll.Engine
                         return C.Id;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(_Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ObtenerIdCliente&" + email));
+            }
             return 0;
         }
 
@@ -304,6 +332,7 @@ namespace SudokuForAll.Engine
             }
             catch(Exception ex)
             {
+                InsertarSucesoLog(_Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ObtenerIdCliente2&" + email));
             }
             return 0;
         }
@@ -320,7 +349,10 @@ namespace SudokuForAll.Engine
                         return C.Password;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(_Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ObtenerPasswordCliente&" + email));
+            }
             return string.Empty;
         }
 
@@ -336,7 +368,10 @@ namespace SudokuForAll.Engine
                     resultado = true;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(_Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/InsertarResetPassword&" + model.Email));
+            }
             return resultado;
         }
 
@@ -352,9 +387,27 @@ namespace SudokuForAll.Engine
                         return C.Codigo;
                 }
             }
-            catch
-            { }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(_Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ObtenerCodigoRestablecerPassword&" + email));
+            }
             return string.Empty;
+        }
+
+        public bool InsertarSucesoLog(SucesoLog model)
+        {
+            bool resultado = false;
+            try
+            {
+                using (SudokuContext context = new SudokuContext())
+                {
+                    context.SucesoLog.Add(model);
+                    context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch {}
+            return resultado;
         }
     }
 }

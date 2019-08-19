@@ -13,6 +13,7 @@ namespace SudokuForAll.Engine
         int ObtenerIdCliente(string email);
         int ResultadoLogin(string password);
         int UpdateClienteTest(Cliente model);
+        bool InsertarSucesoLog(SucesoLog model);
         int ResultadoEntradaAlSitio(string email);
         int ClienteRegistro(ActivarCliente model);
         Guid ObtenerIdentidadCliente(string email);
@@ -22,7 +23,7 @@ namespace SudokuForAll.Engine
         int ObtenerIdCliente(string email, bool estatus);
         int ClienteRegistroActivacion(ActivarCliente model);
         string ObtenerCodigoRestablecerPassword(string email);
-        bool InsertarClienteTest(string email, IEngineProyect Funcion);
+        bool InsertarClienteTest(IEngineProyect Funcion,string email);
         int UpdateResetPassword(string email, string codigo, bool estatus);
     }
 }

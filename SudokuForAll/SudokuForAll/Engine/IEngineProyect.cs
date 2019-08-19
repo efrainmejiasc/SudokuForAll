@@ -19,14 +19,15 @@ namespace SudokuForAll.Engine
         bool CadenaBase64Valida(string cadena);
         string DecodeBase64(string base64EncodedData);
         Cliente ConstruirInsertarClienteTest(string email);
+        bool ConstruirSucesoLog(string cadena, IEngineDb Metodo);
         string CrearEnlazePrueba(IEngineDb Metodo, string email);
         ResetPassword SetResetPassword(string email, string codigo);
         bool EstatusLink(DateTime fechaEnvio, DateTime fechaActivacion);
-        ActivarCliente ConstruirActivarCliente(string email, string password);
-        Cliente ConstruirActualizarClienteTest(string email, string Identidad);
         string CrearEnlazeRegistro(IEngineDb Metodo, string email, string password);
         string CrearEnlazeRestablecerPassword(IEngineDb Metodo, string email, string codigo);
-        EstructuraMail SetEstructuraMailTest(string enlaze, string email, EstructuraMail model);
+        EstructuraMail SetEstructuraMailTest(string enlaze,string email, EstructuraMail model);
+        ActivarCliente ConstruirActivarCliente(IEngineDb Metodo, string email, string password);
+        Cliente ConstruirActualizarClienteTest(IEngineDb Metodo, string email, string Identidad);
         EstructuraMail SetEstructuraMailRegister(string enlaze, string email, EstructuraMail model);
         EstructuraMail SetEstructuraMailResetPassword(string enlaze, string email, string codigo, EstructuraMail model);
         Respuesta RespuestaProceso(string respuesta = "", string email = "", string codigo = "", string descripcion = "");

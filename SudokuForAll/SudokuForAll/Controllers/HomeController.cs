@@ -112,6 +112,7 @@ namespace SudokuForAll.Controllers
             if (result <= 0)
             {
                 //Error al registrar cliente
+                Funcion.ConstruirSucesoLog("Error registrando cliente&Home/Register&" + model.Email, Metodo);
                 R = Funcion.RespuestaProceso("Register", emailCode64 , null, model.Email + EngineData.ErrorRegistroCliente());
                 return RedirectToAction("State", "Home", R);
             }
@@ -129,6 +130,7 @@ namespace SudokuForAll.Controllers
             else
             {
                 //Error enviando notficacion - error interno
+                Funcion.ConstruirSucesoLog("Error enviando email&Home/Register&" + model.Email, Metodo);
                 R = Funcion.RespuestaProceso("Open", emailCode64 , null, model.Email + EngineData.ErrorEnviandoMail());
                 return RedirectToAction("State", "Home", R);
             }
@@ -228,6 +230,7 @@ namespace SudokuForAll.Controllers
                 if (!resultado)
                 {
                     R = Funcion.RespuestaProceso("Open", emailCode64, null,  EngineData.ErrorInternoServidor());
+                    Funcion.ConstruirSucesoLog("GUID no concuerda&Home/State&" + email,Metodo);
                     return View(R);
                 }
             }
@@ -271,8 +274,7 @@ namespace SudokuForAll.Controllers
             //Activacion tiempo de prueba
             if (type == EngineData.Test)
             {
-                Cliente client = Funcion.ConstruirActualizarClienteTest(email, identidad);
-                EngineDb Metodo = new EngineDb();
+                Cliente client = Funcion.ConstruirActualizarClienteTest(Metodo ,email, identidad);
                 int act = Metodo.UpdateClienteTest(client);
                 if (act > 0)
                     R = Funcion.RespuestaProceso("Contact", emailCode64, null, EngineData.ActivacionExitosa());
@@ -284,7 +286,7 @@ namespace SudokuForAll.Controllers
             {
                 string password = ide;
                 ActivarCliente model = new ActivarCliente();
-                model = Funcion.ConstruirActivarCliente(email, password);
+                model = Funcion.ConstruirActivarCliente(Metodo,email, password);
                 int act = Metodo.ClienteRegistroActivacion(model);
                 if (act >= 1)
                     R = Funcion.RespuestaProceso("Login", emailCode64, null, EngineData.ActivacionExitosa());
@@ -297,6 +299,7 @@ namespace SudokuForAll.Controllers
                 if (ide == string.Empty || ide == null)
                 {
                     R = Funcion.RespuestaProceso("Open", emailCode64, null, EngineData.ErrorInternoServidor());
+                    Funcion.ConstruirSucesoLog("CODIGO restablecer password vacio&Home/State&" + email, Metodo);
                     return View(R);
                 }
                 string codigo = Funcion.DecodeBase64(ide);
@@ -305,6 +308,7 @@ namespace SudokuForAll.Controllers
                 if (!resultado)
                 {
                     R = Funcion.RespuestaProceso("Open", emailCode64, null, EngineData.ErrorInternoServidor());
+                    Funcion.ConstruirSucesoLog("CODIGO restablecer password no coinciden&Home/State&" + email, Metodo);
                     return View(R);
                 }
                 System.Web.HttpContext.Current.Session["Email"] = email;
@@ -342,7 +346,7 @@ namespace SudokuForAll.Controllers
                 R = Funcion.RespuestaProceso(null, null, EngineData.EmailNoValido(), email);
                 return Json(R);
             }
-            resultado = Metodo.InsertarClienteTest(email, Funcion);
+            resultado = Metodo.InsertarClienteTest(Funcion,email);
             string enlaze = Funcion.CrearEnlazePrueba(Metodo, email);
             EstructuraMail model = new EstructuraMail();
             model = Funcion.SetEstructuraMailTest(enlaze, email, model);
@@ -484,6 +488,7 @@ namespace SudokuForAll.Controllers
             else
             {
                 //Error al validar el codigo
+                Funcion.ConstruirSucesoLog("Error al validar codigo&Home/ValidarCodigoRestablecerPassword&" + email, Metodo);
                 R = Funcion.RespuestaProceso("Error", emailCode64, null, email +  EngineData.ErrorInternoServidor());
 
             }

@@ -12,6 +12,7 @@ namespace SudokuForAll.Engine
 {
     public class EngineProyect : IEngineProyect
     {
+
         public string ConvertirBase64(string cadena)
         {
             var comprobanteXmlPlainTextBytes = Encoding.UTF8.GetBytes(cadena);
@@ -272,9 +273,8 @@ namespace SudokuForAll.Engine
             return R;
         }
 
-        public Cliente ConstruirActualizarClienteTest(string email, string identidad)
+        public Cliente ConstruirActualizarClienteTest(IEngineDb Metodo, string email, string identidad)
         {
-            EngineDb Metodo = new EngineDb();
             Guid guid = Metodo.ObtenerIdentidadCliente(email);
             Cliente R = new Cliente()
             {
@@ -286,9 +286,8 @@ namespace SudokuForAll.Engine
             return R;
         }
 
-        public ActivarCliente ConstruirActivarCliente(string email, string password)
+        public ActivarCliente ConstruirActivarCliente(IEngineDb Metodo ,string email, string password)
         {
-            EngineDb Metodo = new EngineDb();
             Guid guid = Metodo.ObtenerIdentidadCliente(email);
             ActivarCliente R = new ActivarCliente()
             {
@@ -299,6 +298,32 @@ namespace SudokuForAll.Engine
                 Identidad = guid
             };
             return R;
+        }
+
+        public bool ConstruirSucesoLog(string cadena , IEngineDb Metodo)
+        {
+            string [] x = cadena.Split('&');
+            SucesoLog modelo = new SucesoLog()
+            {
+                Fecha = DateTime.UtcNow,
+                Excepcion = x[0],
+                Metodo = x[1],
+                Email = x[2]
+            };
+            return Metodo.InsertarSucesoLog(modelo);
+        }
+
+        public SucesoLog ConstruirSucesoLog(string cadena)
+        {
+            string[] x = cadena.Split('&');
+            SucesoLog modelo = new SucesoLog()
+            {
+                Fecha = DateTime.UtcNow,
+                Excepcion = x[0],
+                Metodo = x[1],
+                Email = x[2]
+            };
+            return modelo;
         }
 
         public string ConstruirCodigo()

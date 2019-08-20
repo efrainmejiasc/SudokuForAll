@@ -40,6 +40,13 @@ namespace SudokuForAll.Engine
         public static string[] AlfabetoG = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//0-25
         public static string[] AlfabetoP = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
+        //Paypal 
+        public static string EndPointTokenPaypal = WebConfigurationManager.AppSettings["EndPointTokenPaypal"];
+        public static string ClientId  = WebConfigurationManager.AppSettings["ClientId"];
+        public static string KeySecret = WebConfigurationManager.AppSettings["KeySecret"];
+        public static string Client_Credentials = WebConfigurationManager.AppSettings["Client_Credentials"];
+        public static string Grant_Type = "grant_type";
+
         // Globalization
         public const string CulturaEspañol = "es-ES";
         private const string CulturaIngles = "en-US";

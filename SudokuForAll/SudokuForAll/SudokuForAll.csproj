@@ -52,6 +52,9 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="SimpleInjector, Version=4.6.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleInjector.4.6.1\lib\net45\SimpleInjector.dll</HintPath>
     </Reference>
@@ -141,6 +144,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\EnginePaypal.cs" />
+    <Compile Include="Engine\IEnginePaypal.cs" />
     <Compile Include="Migrations\201908171626440_PassExtend.cs" />
     <Compile Include="Migrations\201908171626440_PassExtend.Designer.cs">
       <DependentUpon>201908171626440_PassExtend.cs</DependentUpon>
@@ -151,6 +156,7 @@
     </Compile>
     <Compile Include="Models\DbSistema\SucesoLog.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />
+    <Compile Include="Models\Sistema\RespuestaPaypalToken.cs" />
     <Compile Include="StringResx\Abstract\BaseResourceProvider.cs" />
     <Compile Include="StringResx\Abstract\IResourceProvider.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

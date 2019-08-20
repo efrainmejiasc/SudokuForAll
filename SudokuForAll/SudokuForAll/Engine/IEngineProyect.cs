@@ -17,6 +17,7 @@ namespace SudokuForAll.Engine
         string ConvertirBase64(string cadena);
         bool CompareString(string a,string b);
         bool CadenaBase64Valida(string cadena);
+        SucesoLog ConstruirSucesoLog(string cadena);
         string DecodeBase64(string base64EncodedData);
         Cliente ConstruirInsertarClienteTest(string email);
         bool ConstruirSucesoLog(string cadena, IEngineDb Metodo);

@@ -10,6 +10,7 @@ namespace SudokuForAll.Engine
 {
     public interface IEngineDb
     {
+        int ObtenerNumeroDePago();
         int ObtenerIdCliente(string email);
         int ResultadoLogin(string password);
         int UpdateClienteTest(Cliente model);

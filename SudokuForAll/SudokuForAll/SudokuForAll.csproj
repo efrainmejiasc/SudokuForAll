@@ -144,6 +144,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\PayByPaypalController.cs" />
     <Compile Include="Engine\EnginePaypal.cs" />
     <Compile Include="Engine\IEnginePaypal.cs" />
     <Compile Include="Migrations\201908171626440_PassExtend.cs" />
@@ -250,7 +251,7 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\EditPasswordNotify.cshtml" />
     <Content Include="Views\Home\EditPassword.cshtml" />
-    <Content Include="Views\Game\BuyGame.cshtml" />
+    <Content Include="Views\PayByPaypal\BusinessGame.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

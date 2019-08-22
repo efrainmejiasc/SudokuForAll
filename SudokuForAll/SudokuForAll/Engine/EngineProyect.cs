@@ -302,7 +302,7 @@ namespace SudokuForAll.Engine
 
         public bool ConstruirSucesoLog(string cadena , IEngineDb Metodo)
         {
-            string [] x = cadena.Split('&');
+            string [] x = cadena.Split('*');
             SucesoLog modelo = new SucesoLog()
             {
                 Fecha = DateTime.UtcNow,
@@ -315,7 +315,7 @@ namespace SudokuForAll.Engine
 
         public SucesoLog ConstruirSucesoLog(string cadena)
         {
-            string[] x = cadena.Split('&');
+            string[] x = cadena.Split('*');
             SucesoLog modelo = new SucesoLog()
             {
                 Fecha = DateTime.UtcNow,

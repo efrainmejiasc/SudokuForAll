@@ -14,9 +14,9 @@ namespace SudokuForAll.Engine
     public class EngineDb : IEngineDb
     {
         private static string cadenaConexion = ConfigurationManager.ConnectionStrings["CnxSudoku"].ToString();
-        private IEngineProyect Funcion;
+        private readonly IEngineProyect Funcion;
 
-        public EngineDb( IEngineProyect _Funcion , SudokuContext _Context)
+        public EngineDb( IEngineProyect _Funcion)
         {
             this.Funcion = _Funcion;
         }
@@ -47,7 +47,7 @@ namespace SudokuForAll.Engine
             catch(Exception ex)
             {
                 Conexion.Close();
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ResultadoEntradaAlSitio&" + email));
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0,300) + "*EngineDb/ResultadoEntradaAlSitio*" + email));
             }
             return resultado;
         }
@@ -77,7 +77,7 @@ namespace SudokuForAll.Engine
             catch (Exception ex)
             {
                 Conexion.Close();
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ResultadoLogin&" + Funcion.DecodeBase64(password)));
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0,300) + "*EngineDb/ResultadoLogin*" + Funcion.DecodeBase64(password)));
             }
             return resultado;
         }
@@ -97,7 +97,7 @@ namespace SudokuForAll.Engine
                 }
                 catch (Exception ex)
                 {
-                    InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/InsertarClienteTest&" + email));
+                    InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0,300) + "*EngineDb/InsertarClienteTest*" + email));
                 }
             };
             return resultado;
@@ -131,7 +131,7 @@ namespace SudokuForAll.Engine
             catch (Exception ex)
             {
                 Conexion.Close();
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/UpdateClienteTest&" + model.Email));
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0,300) + "*EngineDb/UpdateClienteTest*" + model.Email));
             }
             return resultado;
         }
@@ -166,7 +166,7 @@ namespace SudokuForAll.Engine
             catch (Exception ex)
             {
                 Conexion.Close();
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ClienteRegistro&" + model.Email));
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0,300) + "*EngineDb/ClienteRegistro*" + model.Email));
             }
             return resultado;
         }
@@ -200,7 +200,7 @@ namespace SudokuForAll.Engine
             catch (Exception ex)
             {
                 Conexion.Close();
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ClienteRegistroActivacion&" + model.Email));
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0,300) + "*EngineDb/ClienteRegistroActivacion*" + model.Email));
             }
             return resultado;
         }
@@ -232,7 +232,7 @@ namespace SudokuForAll.Engine
             catch (Exception ex)
             {
                 Conexion.Close();
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/UpdateResetPassword&" + email));
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0,300) + "*EngineDb/UpdateResetPassword*" + email));
             }
             return resultado;
         }
@@ -263,7 +263,7 @@ namespace SudokuForAll.Engine
             catch(Exception ex)
             {
                 Conexion.Close();
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ClienteUpdatePassword&" + model.Email));
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0,300) + "*EngineDb/ClienteUpdatePassword*" + model.Email));
             }
             return resultado;
         }
@@ -291,16 +291,16 @@ namespace SudokuForAll.Engine
             Cliente C = new Cliente();
             try
             {
-                using (SudokuContext context = new SudokuContext())
+                using (SudokuContext Context = new SudokuContext())
                 {
-                    C = context.Cliente.Where(s => s.Email == email).FirstOrDefault();
+                    C = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
                     if (C.Identidad != null)
                         return C.Identidad;
                 }
             }
             catch (Exception ex)
             {
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ObtenerIdentidadCliente&" + email));
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0,300) + "*EngineDb/ObtenerIdentidadCliente*" + email));
             }
             return Guid.Empty;
         }
@@ -310,16 +310,16 @@ namespace SudokuForAll.Engine
             Cliente C = new Cliente();
             try
             {
-                using (SudokuContext context = new SudokuContext())
+                using (SudokuContext Context = new SudokuContext())
                 {
-                    C = context.Cliente.Where(s => s.Email == email).FirstOrDefault();
+                    C = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
                     if (C.Id > 0)
                         return C.Id;
                 }
             }
             catch (Exception ex)
             {
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ObtenerIdCliente&" + email));
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0,300) + "*EngineDb/ObtenerIdCliente*" + email));
             }
             return 0;
         }
@@ -329,16 +329,16 @@ namespace SudokuForAll.Engine
             Cliente C = new Cliente();
             try
             {
-                using (SudokuContext context = new SudokuContext())
+                using (SudokuContext Context = new SudokuContext())
                 {
-                    C = context.Cliente.Where(s => s.Email == email && s.Estatus == estatus).FirstOrDefault();
+                    C = Context.Cliente.Where(s => s.Email == email && s.Estatus == estatus).FirstOrDefault();
                     if (C.Id > 0)
                         return C.Id;
                 }
             }
             catch(Exception ex)
             {
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ObtenerIdCliente2&" + email));
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0,300) + "*EngineDb/ObtenerIdCliente2*" + email));
             }
             return 0;
         }
@@ -348,16 +348,16 @@ namespace SudokuForAll.Engine
             Cliente C = new Cliente();
             try
             {
-                using (SudokuContext context = new SudokuContext())
+                using (SudokuContext Context = new SudokuContext())
                 {
-                    C = context.Cliente.Where(s => s.Email == email).FirstOrDefault();
+                    C = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
                     if (C.Password != string.Empty || C.Password != null)
                         return C.Password;
                 }
             }
             catch (Exception ex)
             {
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ObtenerPasswordCliente&" + email));
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0,300) + "*EngineDb/ObtenerPasswordCliente*" + email));
             }
             return string.Empty;
         }
@@ -367,16 +367,16 @@ namespace SudokuForAll.Engine
             bool resultado = false;
             try
             {
-                using (SudokuContext context = new SudokuContext())
+                using (SudokuContext Context = new SudokuContext())
                 {
-                    context.ResetPassword.Add(model);
-                    context.SaveChanges();
+                    Context.ResetPassword.Add(model);
+                    Context.SaveChanges();
                     resultado = true;
                 }
             }
             catch (Exception ex)
             {
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/InsertarResetPassword&" + model.Email));
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0,300) + "*EngineDb/InsertarResetPassword*" + model.Email));
             }
             return resultado;
         }
@@ -386,18 +386,36 @@ namespace SudokuForAll.Engine
             ResetPassword C = new ResetPassword();
             try
             {
-                using (SudokuContext context = new SudokuContext())
+                using (SudokuContext Context = new SudokuContext())
                 {
-                    C = context.ResetPassword.Where(x => x.Email == email && x.Estatus == false) .OrderByDescending(x => x.Id) .Take(1).FirstOrDefault();
+                    C = Context.ResetPassword.Where(x => x.Email == email && x.Estatus == false) .OrderByDescending(x => x.Id).Take(1).FirstOrDefault();
                     if (C != null)
                         return C.Codigo;
                 }
             }
             catch (Exception ex)
             {
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "&EngineDb/ObtenerCodigoRestablecerPassword&" + email));
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0,300) + "*EngineDb/ObtenerCodigoRestablecerPassword*" + email));
             }
             return string.Empty;
+        }
+
+        public int ObtenerNumeroDePago()
+        {
+            int numero = 0;
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    numero = Context.PagoCliente.Max(x => x.Id) + 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/ObtenerNumeroDePago*" + ""));
+            }
+            return numero;
+
         }
 
         public bool InsertarSucesoLog(SucesoLog model)
@@ -405,10 +423,10 @@ namespace SudokuForAll.Engine
             bool resultado = false;
             try
             {
-                using (SudokuContext context = new SudokuContext())
+                using (SudokuContext Context = new SudokuContext())
                 {
-                    context.SucesoLog.Add(model);
-                    context.SaveChanges();
+                    Context.SucesoLog.Add(model);
+                    Context.SaveChanges();
                     resultado = true;
                 }
             }

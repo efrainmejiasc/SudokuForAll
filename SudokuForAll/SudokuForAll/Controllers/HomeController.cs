@@ -61,7 +61,7 @@ namespace SudokuForAll.Controllers
             {
                 // Cuando RespuetaAccion = Open -> No redirecciona a ninguna pagina
                 R = Funcion.RespuestaProceso("Open",emailCode64, null, email + EngineData.TiempoJuegoExpiro());
-                return RedirectToAction("BuyGame", "Game");
+                return RedirectToAction("BusinessGame", "Paypal");
             }
             else if (result == 1)
             {
@@ -112,7 +112,7 @@ namespace SudokuForAll.Controllers
             if (result <= 0)
             {
                 //Error al registrar cliente
-                Funcion.ConstruirSucesoLog("Error registrando cliente&Home/Register&" + model.Email, Metodo);
+                Funcion.ConstruirSucesoLog("Error registrando cliente*Home/Register*" + model.Email, Metodo);
                 R = Funcion.RespuestaProceso("Register", emailCode64 , null, model.Email + EngineData.ErrorRegistroCliente());
                 return RedirectToAction("State", "Home", R);
             }
@@ -130,7 +130,7 @@ namespace SudokuForAll.Controllers
             else
             {
                 //Error enviando notficacion - error interno
-                Funcion.ConstruirSucesoLog("Error enviando email&Home/Register&" + model.Email, Metodo);
+                Funcion.ConstruirSucesoLog("Error enviando email*Home/Register*" + model.Email, Metodo);
                 R = Funcion.RespuestaProceso("Open", emailCode64 , null, model.Email + EngineData.ErrorEnviandoMail());
                 return RedirectToAction("State", "Home", R);
             }
@@ -230,7 +230,7 @@ namespace SudokuForAll.Controllers
                 if (!resultado)
                 {
                     R = Funcion.RespuestaProceso("Open", emailCode64, null,  EngineData.ErrorInternoServidor());
-                    Funcion.ConstruirSucesoLog("GUID no concuerda&Home/State&" + email,Metodo);
+                    Funcion.ConstruirSucesoLog("GUID no concuerda*Home/State*" + email,Metodo);
                     return View(R);
                 }
             }
@@ -299,7 +299,7 @@ namespace SudokuForAll.Controllers
                 if (ide == string.Empty || ide == null)
                 {
                     R = Funcion.RespuestaProceso("Open", emailCode64, null, EngineData.ErrorInternoServidor());
-                    Funcion.ConstruirSucesoLog("CODIGO restablecer password vacio&Home/State&" + email, Metodo);
+                    Funcion.ConstruirSucesoLog("CODIGO restablecer password vacio*Home/State*" + email, Metodo);
                     return View(R);
                 }
                 string codigo = Funcion.DecodeBase64(ide);
@@ -308,7 +308,7 @@ namespace SudokuForAll.Controllers
                 if (!resultado)
                 {
                     R = Funcion.RespuestaProceso("Open", emailCode64, null, EngineData.ErrorInternoServidor());
-                    Funcion.ConstruirSucesoLog("CODIGO restablecer password no coinciden&Home/State&" + email, Metodo);
+                    Funcion.ConstruirSucesoLog("CODIGO restablecer password no coinciden*Home/State*" + email, Metodo);
                     return View(R);
                 }
                 System.Web.HttpContext.Current.Session["Email"] = email;
@@ -488,7 +488,7 @@ namespace SudokuForAll.Controllers
             else
             {
                 //Error al validar el codigo
-                Funcion.ConstruirSucesoLog("Error al validar codigo&Home/ValidarCodigoRestablecerPassword&" + email, Metodo);
+                Funcion.ConstruirSucesoLog("Error al validar codigo*Home/ValidarCodigoRestablecerPassword*" + email, Metodo);
                 R = Funcion.RespuestaProceso("Error", emailCode64, null, email +  EngineData.ErrorInternoServidor());
 
             }

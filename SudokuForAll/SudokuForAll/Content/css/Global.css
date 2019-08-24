@@ -67,3 +67,15 @@
     float: left;
 }
 
+.divProducto {
+    margin-top: 15%;
+    margin-left: 10%;
+    width: 80%;
+    display: inline-block;
+}
+
+.txtLog{
+    color:red;
+    font-size:10px;
+}
+

@@ -13,12 +13,14 @@ namespace SudokuForAll.Engine
         int ObtenerNumeroDePago();
         int ObtenerIdCliente(string email);
         int ResultadoLogin(string password);
+        List<Producto> ProductosParaVenta();
         int UpdateClienteTest(Cliente model);
         bool InsertarSucesoLog(SucesoLog model);
         int ResultadoEntradaAlSitio(string email);
         int ClienteRegistro(ActivarCliente model);
         Guid ObtenerIdentidadCliente(string email);
         string ObtenerPasswordCliente(string email);
+        bool InsertarProductoParaVenta(Producto model);
         bool InsertarResetPassword(ResetPassword model);
         int ClienteUpdatePassword(ActivarCliente model);
         int ObtenerIdCliente(string email, bool estatus);

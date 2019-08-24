@@ -10,6 +10,7 @@ namespace SudokuForAll.Engine
 {
     public interface IEngineProyect
     {
+        List<Moneda> Monedas();
         string ConstruirCodigo();
         string EncodeMd5(string a);
         bool EmailEsValido(string email);

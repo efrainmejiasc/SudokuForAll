@@ -372,5 +372,19 @@ namespace SudokuForAll.Engine
             System.Web.HttpContext.Current.Session["Cultura"] = cultura;
         }
 
+        public List<Moneda> Monedas()
+        {
+            List<Moneda> m = new List<Moneda>();
+            Moneda m1 = new Moneda();
+            m1.Id = "USD";
+            m1.Nombre= "USD";
+            m.Insert(0, m1);
+            Moneda m2 = new Moneda();
+            m2.Id = "EUR";
+            m2.Nombre = "EUR";
+            m.Insert(1, m2);
+            return m;
+        }
+
     }
 }

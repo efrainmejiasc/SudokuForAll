@@ -56,4 +56,16 @@ function SetObjectsLayount(index) {
         }
     });
 }
+
+function DireccionSite(nombreControlador, nombreAccion) {
+    $.ajax({
+        type: "POST",
+        url: "/Home/DireccionSite",
+        data: { nombreControlador: nombreControlador, nombreAccion: nombreAccion },
+        datatype: "json",
+        success: function (data) {
+            window.location.href = data.Descripcion;
+        }
+    });
+}
  

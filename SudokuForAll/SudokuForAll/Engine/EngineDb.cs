@@ -418,6 +418,43 @@ namespace SudokuForAll.Engine
 
         }
 
+        public bool InsertarProductoParaVenta(Producto model)
+        {
+            bool resultado = false;
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    Context.Producto.Add(model);
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/InsertarProductoParaVenta*" + ""));
+            }
+            return resultado;
+        }
+
+        public List<Producto> ProductosParaVenta()
+        {
+            List<Producto> P = new List<Producto>();
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                   int id = Context.Producto.Where(u => u.Estatus == true ).Max(u => u.Id);
+                   P = Context.Producto.Where(x => x.Id == id).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/ProductosParaVenta*" + ""));
+            }
+            return P;
+        }
+
         public bool InsertarSucesoLog(SucesoLog model)
         {
             bool resultado = false;

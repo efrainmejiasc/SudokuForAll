@@ -21,6 +21,8 @@ namespace SudokuForAll.Models
 
         public DbSet<SucesoLog> SucesoLog{ get; set; }
 
+        public DbSet<Producto> Producto { get; set; }
+
         // 1. Instalar Entity Framework
         // 2. Crear clase que herede de DbContext
         // 3. Ejecutar enable-migratios

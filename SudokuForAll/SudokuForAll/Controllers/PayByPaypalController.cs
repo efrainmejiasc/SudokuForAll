@@ -1,5 +1,6 @@
 ﻿using SudokuForAll.Engine;
 using SudokuForAll.Models;
+using SudokuForAll.Models.DbSistema;
 using SudokuForAll.Models.Sistema;
 using System;
 using System.Collections.Generic;
@@ -27,13 +28,16 @@ namespace SudokuForAll.Controllers
             this.Paypal = _Paypal;
         }
 
-        public async Task<ActionResult> BusinessGame()
+        public ActionResult BusinessGame()
         {
             //RespuestaPaypalToken Respuesta = new RespuestaPaypalToken();
             //Respuesta = await Task.Run(() => Paypal.GetTokenPaypal());
             //PayPal.Api.APIContext apiContext = Paypal.GetApiContext(Respuesta.access_token);
             //int n = Metodo.ObtenerNumeroDePago();
-            return View();
+
+            List<Producto> model = new List<Producto>();
+            model = Metodo.ProductosParaVenta();
+            return View(model);
         }
 
         [HttpPost]

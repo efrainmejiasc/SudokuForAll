@@ -455,6 +455,70 @@ namespace SudokuForAll.Engine
             return P;
         }
 
+        public List<Producto> GetProductosParaVenta()
+        {
+            List<Producto> P = new List<Producto>();
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    P = Context.Producto.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/GetProductosParaVenta*" + ""));
+            }
+            return P;
+        }
+
+        public Producto GetProducto(string codigo)
+        {
+            Producto P = new Producto();
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    P = Context.Producto.Where(x => x.Codigo == codigo).First();
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/GetProducto*" + ""));
+            }
+            return P;
+        }
+
+        public bool PutProducto(Producto m)
+        {
+            bool resultado = false;
+            Producto P = new Producto();
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    P = Context.Producto.Where(x => x.Codigo == m.Codigo).First();
+                    if (P != null)
+                    {
+                        P.Nombre = m.Nombre;
+                        P.Descripcion = m.Descripcion;
+                        P.Precio = m.Precio;
+                        P.Impuesto = m.Impuesto;
+                        P.Moneda = m.Moneda;
+                        P.Estatus = m.Estatus;
+                        P.FechaActualizacion = m.FechaActualizacion;
+                        Context.SaveChanges();
+                        resultado = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/PutProducto*" + ""));
+            }
+            return resultado;
+        }
+
         public bool InsertarSucesoLog(SucesoLog model)
         {
             bool resultado = false;

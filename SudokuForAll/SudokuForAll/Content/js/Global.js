@@ -18,7 +18,6 @@ function GetEmail() {
 }
 
 
-
 $('#traductor').on('change', function (e) {
     var lenguaje = $('#traductor option:selected').html();
     var index = $('#traductor option:selected').val();
@@ -34,6 +33,7 @@ $('#traductor').on('change', function (e) {
         }
     });
 }); 
+
 
 function SetObjectsLayount(index) {
     $.ajax({
@@ -68,4 +68,11 @@ function DireccionSite(nombreControlador, nombreAccion) {
         }
     });
 }
+
+function AgregarOption(name) {
+    var objeto = '#'.concat(name);
+    $(objeto).append('<option selected disabled value="0">Seleccione codigo...</option>');
+}
+
+ 
  

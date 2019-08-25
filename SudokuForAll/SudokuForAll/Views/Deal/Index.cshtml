@@ -85,7 +85,7 @@
             </div>
 
             <div>
-                <br /> <br /> <br /><br /><br /><br /><br /><br /><br /><br /> <br /> <br /><br /><br />
+                <br />
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="submit" value="Crear" class="votones btn btn-primary" />
                 <input type="button" value="Cancelar" onclick="Redirect();" class="votones btn btn-primary" />
@@ -99,6 +99,7 @@
     OcultarObjeto('inicio');
     OcultarObjeto('entrar');
     OcultarObjeto('traductor');
+    OcultarObjeto('footPage');
     let respuesta = '@ViewBag.Respuesta'
     if (respuesta != '') {
         alert(respuesta + ' al crear nuevo producto');

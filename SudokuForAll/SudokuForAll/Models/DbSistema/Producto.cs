@@ -49,5 +49,9 @@ namespace SudokuForAll.Models.DbSistema
         [Column(Order = 9, TypeName = "BIT")]
         public bool Estatus { get; set; }
 
+        [Required]
+        [Column(Order = 10, TypeName = "DATETIME")]
+        public DateTime FechaActualizacion { get; set; }
+
     }
 }

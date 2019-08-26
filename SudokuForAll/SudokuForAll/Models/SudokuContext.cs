@@ -21,7 +21,11 @@ namespace SudokuForAll.Models
 
         public DbSet<SucesoLog> SucesoLog{ get; set; }
 
+
+        //Deal SUDOKU
         public DbSet<Producto> Producto { get; set; }
+
+        public DbSet<Gerente> Gerente { get; set; }
 
         // 1. Instalar Entity Framework
         // 2. Crear clase que herede de DbContext

@@ -156,6 +156,7 @@
     <Compile Include="Migrations\201908182348525_PassExtend1.Designer.cs">
       <DependentUpon>201908182348525_PassExtend1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\DbSistema\Gerente.cs" />
     <Compile Include="Models\DbSistema\Producto.cs" />
     <Compile Include="Models\DbSistema\SucesoLog.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />
@@ -257,6 +258,8 @@
     <Content Include="Views\PayByPaypal\BusinessGame.cshtml" />
     <Content Include="Views\Deal\Index.cshtml" />
     <Content Include="Views\Deal\Update.cshtml" />
+    <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Manager\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

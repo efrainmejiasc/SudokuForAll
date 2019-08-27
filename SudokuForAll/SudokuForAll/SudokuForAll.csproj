@@ -163,6 +163,7 @@
     <Compile Include="Models\Sistema\Idiomas.cs" />
     <Compile Include="Models\Sistema\Moneda.cs" />
     <Compile Include="Models\Sistema\RespuestaPaypalToken.cs" />
+    <Compile Include="Models\Sistema\Roles.cs" />
     <Compile Include="StringResx\Abstract\BaseResourceProvider.cs" />
     <Compile Include="StringResx\Abstract\IResourceProvider.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

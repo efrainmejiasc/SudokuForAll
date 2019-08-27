@@ -1,5 +1,7 @@
 ﻿using SudokuForAll.Engine;
 using SudokuForAll.Models;
+using SudokuForAll.Models.DbSistema;
+using SudokuForAll.Models.Sistema;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,14 +25,92 @@ namespace SudokuForAll.Controllers
             this.Notificacion = _Notificacion;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(Gerente modelo = null)
         {
-            return View();
+            ViewBag.Respuesta = null;
+            ViewBag.Roles = Funcion.Roles();
+            modelo.FechaRegistro = DateTime.Now;
+            modelo.FechaActualizacion = DateTime.Now;
+
+            if (Request.HttpMethod == "POST")
+            {
+                if (modelo.Nombre == string.Empty || modelo.NombreUsuario == string.Empty || modelo.Email == string.Empty || modelo.Rol == string.Empty || modelo.Nombre == null || modelo.NombreUsuario == null || modelo.Email == null || modelo.Rol == null)
+                {
+                    ViewBag.Respuesta = "Todos los campos son requeridos, completelos por favor";
+                    return View(modelo);
+                }
+                bool resultado = false;
+                resultado = Funcion.EmailEsValido(modelo.Email);
+                if (!resultado)
+                {
+                    ViewBag.Respuesta = "La direccion de correo no es valida";
+                    return View(modelo);
+                }
+                modelo.Identidad = Funcion.IdentificadorReg();
+                resultado = Metodo.InsertarNuevoGerente(modelo);
+                if (!resultado)
+                {
+                    ViewBag.Respuesta = "Error al crear administrador";
+                    return View(modelo);
+                }
+                string enlaze = Funcion.CrearEnlazeRegistroGerente(Metodo, modelo.Email);
+                EstructuraMail estructura = new EstructuraMail();
+                estructura = Funcion.SetEstructuraMailRegisterManager(enlaze, modelo.Email, estructura);
+                resultado = Notificacion.EnviarMailNotificacion(estructura);
+                ViewBag.Respuesta = "Administrador creado exitosamente,debe revisar bandeja de entrada";
+                modelo = new Gerente();
+                modelo.FechaActualizacion = DateTime.Now;
+                return View(modelo);
+
+            }
+
+
+
+            return View(modelo);
         }
 
-        public ActionResult Update()
+        public ActionResult Update(Gerente modelo = null)
         {
-            return View();
+            ViewBag.Respuesta = null;
+            ViewBag.Gerentes = Funcion.Gerentes();
+            ViewBag.Type = null;
+            ViewBag.Roles = Funcion.Roles();
+            modelo.FechaActualizacion = DateTime.Now;
+            if (Request.HttpMethod == "GET")
+            {
+                if (modelo.Id == EngineData.IdActivacion)
+                {
+                    ViewBag.Type = Funcion.DecodeBase64(EngineData.RegisterManager);
+                    Gerente gerente = new Gerente();
+                    gerente = Metodo.GetGerente(modelo.Email);
+                    gerente.FechaActualizacion = DateTime.Now;
+                    return View(gerente);
+                }
+                else
+                {
+                    ViewBag.Type = "Alto";
+                    ViewBag.Gerentes = Metodo.GetAllGerentes();
+                }
+            }
+          
+            if(Request.HttpMethod == "POST")
+            {
+                if (modelo.Nombre == string.Empty || modelo.NombreUsuario == string.Empty || modelo.Email == string.Empty || modelo.Nombre == null || modelo.NombreUsuario == null || modelo.Email == null )
+                {
+                    ViewBag.Respuesta = "Todos los campos son requeridos, completelos por favor";
+                    return View(modelo);
+                }
+            }
+
+            return View(modelo);
+        }
+
+        [HttpPost]
+        public JsonResult GetGerente(string nombre)
+        {
+            Gerente Gerente = new Gerente();
+            Gerente = Metodo.GetGerenteName(nombre);
+            return Json(Gerente);
         }
     }
 }

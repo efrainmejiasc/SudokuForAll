@@ -224,7 +224,11 @@ namespace SudokuForAll.Controllers
             //Validar GUID de identidad
             if (identidad != string.Empty && identidad != null && type != string.Empty && type != null)
             {
-                guidCliente = Metodo.ObtenerIdentidadCliente(email);
+                if (type == EngineData.RegisterManager)
+                    guidCliente = Metodo.ObtenerIdentidadGerente(email);
+                else
+                    guidCliente = Metodo.ObtenerIdentidadCliente(email);
+
                 string identificador = Funcion.EncodeMd5(guidCliente.ToString());
                 resultado = Funcion.CompareString(identidad, identificador);
                 if (!resultado)
@@ -258,14 +262,16 @@ namespace SudokuForAll.Controllers
                         string contraseña = Metodo.ObtenerPasswordCliente(email);
                         contraseña = contraseña.Replace(email, "");
                         resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, email, EngineData.Register, contraseña);
-                    }
-                       
+                    }     
                     else if (type == EngineData.Test)
                     {
                         resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, email, EngineData.Test);
                     }
+                    else if (type == EngineData.RegisterManager)
+                    {
+                        resultado = Funcion.EnviarNuevaNotificacion(Notificacion, Metodo, email, EngineData.RegisterManager);
+                    }
                        
-
                     R = Funcion.RespuestaProceso("Index", emailCode64 , null,EngineData.TiempoLinkExpiro());
                     return View(R);
                 }
@@ -314,6 +320,14 @@ namespace SudokuForAll.Controllers
                 System.Web.HttpContext.Current.Session["Email"] = email;
                 R = Funcion.RespuestaProceso(null, emailCode64, "codeVerify",EngineData.IngreseCodigoVerificacion());
                 return RedirectToAction("EditPasswordNotify", "Home", R);
+            }
+            //Resdireccionar a actualizar el perfil de administrador
+            else if (type == EngineData.RegisterManager)
+            {
+                Gerente G = new Gerente();
+                G.Email = email;
+                G.Id = EngineData.IdActivacion;
+                return RedirectToAction("Update", "Manager", G);
             }
 
             if (K.RespuestaAccion != null)

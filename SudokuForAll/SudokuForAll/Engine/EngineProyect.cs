@@ -114,7 +114,7 @@ namespace SudokuForAll.Engine
 
         //********************************METODOS DEL SITIO *********************************************************************************
 
-       public bool EnviarNuevaNotificacion(IEngineNotificacion Notificacion, IEngineDb Metodo, string email, string type, string password = "")
+       public bool EnviarNuevaNotificacion(IEngineNotificacion Notificacion, IEngineDb Metodo, string email = "", string type = "", string password = "")
         {
             bool resultado = false;
             EstructuraMail model = new EstructuraMail();
@@ -132,6 +132,11 @@ namespace SudokuForAll.Engine
                 password = DecodeBase64(password);
                 string enlaze = CrearEnlazeRegistro(Metodo, email, password);
                 model = SetEstructuraMailRegister(enlaze, email, model);
+            }
+            else if (type == EngineData.RegisterManager)
+            {
+                string enlaze = CrearEnlazeRegistroGerente(Metodo, email);
+                model = SetEstructuraMailRegisterManager(enlaze, email, model);
             }
             resultado = Notificacion.EnviarMailNotificacion(model);
             return resultado;
@@ -188,6 +193,22 @@ namespace SudokuForAll.Engine
             return link;
         }
 
+        public string CrearEnlazeRegistroGerente(IEngineDb Metodo ,string email)
+        {
+            string fecha = Convert.ToString(DateTime.UtcNow).Replace(" ", "*");
+            fecha = fecha.Replace(".", "+");
+            string link = string.Empty;
+            link = EngineData.EndPointValidation;
+            link = link + "Id=" + "0&";
+            link = link + "email=" + ConvertirBase64(email);
+            link = link + "&identidad=" + EncodeMd5(Metodo.ObtenerIdentidadGerente(email).ToString());
+            link = link + "&status=" + "1";
+            link = link + "&date=" + fecha;
+            link = link + "&type=" + EngineData.RegisterManager;
+            link = link + "&cultureInfo=" + EngineData.GetCultura();
+            return link;
+        }
+
         public EstructuraMail SetEstructuraMailTest(string enlaze, string email, EstructuraMail model)
         {
             model.Link = enlaze;
@@ -212,6 +233,20 @@ namespace SudokuForAll.Engine
             model.ClickAqui = EngineData.ClickAqui2();
             model.Asunto = EngineData.AsuntoRegistro();
             model.Observacion = EngineData.ObservacionRegistro();
+            model.PathLecturaArchivo = EngineData.PathLecturaArchivoRegistro;
+            return model;
+        }
+
+        public EstructuraMail SetEstructuraMailRegisterManager(string enlaze, string email, EstructuraMail model)
+        {
+            model.Link = enlaze;
+            model.Saludo = EngineData.Saludo();
+            model.EmailDestinatario = email;
+            model.Fecha = DateTime.UtcNow.ToString();
+            model.Descripcion = EngineData.DescripcionRegistroGerente();
+            model.ClickAqui = EngineData.ClickAqui4();
+            model.Asunto = EngineData.AsuntoRegistroGerente();
+            model.Observacion = EngineData.ObservacionRegistroGerente();
             model.PathLecturaArchivo = EngineData.PathLecturaArchivoRegistro;
             return model;
         }
@@ -383,6 +418,34 @@ namespace SudokuForAll.Engine
             m2.Id = "EUR";
             m2.Nombre = "EUR";
             m.Insert(1, m2);
+            return m;
+        }
+
+        public List<Roles> Roles()
+        {
+            List<Roles> m = new List<Roles>();
+            Roles m1 = new Roles();
+            m1.Id = "Alto";
+            m1.Nombre = "Alto";
+            m.Insert(0, m1);
+            Roles m2 = new Roles();
+            m2.Id = "Medio";
+            m2.Nombre = "Medio";
+            m.Insert(1, m2);
+            Roles m3 = new Roles();
+            m3.Id = "Normal";
+            m3.Nombre = "Normal";
+            m.Insert(2, m3);
+            return m;
+        }
+
+        public List<Roles> Gerentes()
+        {
+            List<Roles> m = new List<Roles>();
+            Roles m1 = new Roles();
+            m1.Id = "";
+            m1.Nombre = "";
+            m.Insert(0, m1);
             return m;
         }
 

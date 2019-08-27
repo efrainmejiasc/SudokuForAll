@@ -10,7 +10,10 @@ namespace SudokuForAll.Engine
 {
     public interface IEngineProyect
     {
+        List<Roles> Roles();
         List<Moneda> Monedas();
+        List<Roles> Gerentes();
+        Guid IdentificadorReg();
         string ConstruirCodigo();
         string EncodeMd5(string a);
         bool EmailEsValido(string email);
@@ -25,12 +28,14 @@ namespace SudokuForAll.Engine
         string CrearEnlazePrueba(IEngineDb Metodo, string email);
         ResetPassword SetResetPassword(string email, string codigo);
         bool EstatusLink(DateTime fechaEnvio, DateTime fechaActivacion);
+        string CrearEnlazeRegistroGerente(IEngineDb Metodo, string email);
         string CrearEnlazeRegistro(IEngineDb Metodo, string email, string password);
         string CrearEnlazeRestablecerPassword(IEngineDb Metodo, string email, string codigo);
         EstructuraMail SetEstructuraMailTest(string enlaze,string email, EstructuraMail model);
         ActivarCliente ConstruirActivarCliente(IEngineDb Metodo, string email, string password);
         Cliente ConstruirActualizarClienteTest(IEngineDb Metodo, string email, string Identidad);
         EstructuraMail SetEstructuraMailRegister(string enlaze, string email, EstructuraMail model);
+        EstructuraMail SetEstructuraMailRegisterManager(string enlaze, string email, EstructuraMail model);
         EstructuraMail SetEstructuraMailResetPassword(string enlaze, string email, string codigo, EstructuraMail model);
         Respuesta RespuestaProceso(string respuesta = "", string email = "", string codigo = "", string descripcion = "");
         bool EnviarNuevaNotificacion(IEngineNotificacion Notificacion, IEngineDb Metodo, string email, string type, string password = "");

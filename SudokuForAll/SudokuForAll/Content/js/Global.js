@@ -71,8 +71,10 @@ function DireccionSite(nombreControlador, nombreAccion) {
 
 function AgregarOption(name) {
     var objeto = '#'.concat(name);
-    $(objeto).append('<option selected disabled value="0">Seleccione codigo...</option>');
+    $(objeto).append('<option selected disabled value="0">Seleccione...</option>');
 }
+
+
 
  
  

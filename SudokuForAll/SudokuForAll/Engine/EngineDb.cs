@@ -519,6 +519,140 @@ namespace SudokuForAll.Engine
             return resultado;
         }
 
+
+        public bool InsertarNuevoGerente(Gerente model)
+        {
+            bool resultado = false;
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    Context.Gerente.Add(model);
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/InsertarNuevoGerente*" + ""));
+            }
+            return resultado;
+        }
+
+
+        public Guid ObtenerIdentidadGerente(string email)
+        {
+            Gerente C = new Gerente();
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    C = Context.Gerente.Where(s => s.Email == email).FirstOrDefault();
+                    if (C.Identidad != null)
+                        return C.Identidad;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/ObtenerIdentidadGerente*" + email));
+            }
+            return Guid.Empty;
+        }
+
+        public bool PutGerente(Gerente m)
+        {
+            bool resultado = false;
+            Gerente P = new Gerente();
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    P = Context.Gerente.Where(x => x.Email == m.Email).First();
+                    if (P != null)
+                    {
+                        P.Nombre = m.Nombre;
+                        P.NombreUsuario = m.NombreUsuario;
+                        P.FechaActualizacion = m.FechaActualizacion;
+                        P.Email = m.Email;
+                        P.Estatus = m.Estatus;
+                        Context.SaveChanges();
+                        resultado = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/PutGerente*" + ""));
+            }
+            return resultado;
+        }
+
+        public Gerente GetGerente(string email)
+        {
+            Gerente P = new Gerente();
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    P = Context.Gerente.Where(x => x.Email == email).First();
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/GetGerente*" + ""));
+            }
+            return P;
+        }
+
+        public Gerente GetGerenteName(string nombre)
+        {
+            Gerente P = new Gerente();
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    P = Context.Gerente.Where(x => x.Nombre == nombre).First();
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/GetGerenteName*" + ""));
+            }
+            return P;
+        }
+
+        public List<Roles> GetAllGerentes()
+        {
+            List<Gerente> P = new List<Gerente>();
+            List<Roles> G = new List<Roles>();
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    P = Context.Gerente.ToList();
+                }
+                if (P.Count > 0)
+                {
+                    int n = 0;
+                    foreach (Gerente I in P)
+                    {
+                        Roles R = new Roles();
+                        R.Id = I.Nombre;
+                        R.Nombre = I.Nombre;
+                        G.Insert(n, R);
+                        n++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/GetAllGerentes*" + ""));
+            }
+            return G;
+        }
+
+
+
         public bool InsertarSucesoLog(SucesoLog model)
         {
             bool resultado = false;

@@ -22,6 +22,7 @@ namespace SudokuForAll.Engine
         }
 
         public static string IdSite = EngineProyect.DecodeBase642(WebConfigurationManager.AppSettings["IdSite"]);
+        public static int IdActivacion = -9182;
 
         //Parametros e-mail notificacion
         public static string UserMail = EngineProyect.DecodeBase642(WebConfigurationManager.AppSettings["UserMail"]);
@@ -29,12 +30,13 @@ namespace SudokuForAll.Engine
         public static string Register = EngineProyect.ConvertirBase642("registro");
         public static string Test = EngineProyect.ConvertirBase642("prueba");
         public static string ResetPassword = EngineProyect.ConvertirBase642("resetPassword");
+        public static string RegisterManager = EngineProyect.ConvertirBase642("registroAdministrador");
 
         // Url & EndPoints
         public static string EndPointValidation = WebConfigurationManager.AppSettings["EndPointValidation"];
         public static string UrlBase = WebConfigurationManager.AppSettings["UrlBase"];
         public static string EndPointResetPassword = WebConfigurationManager.AppSettings["EndPointResetPassword"];
-        public static string EndPointTerminos= WebConfigurationManager.AppSettings["EndPointTerminos"];
+        public static string EndPointTerminos = WebConfigurationManager.AppSettings["EndPointTerminos"];
 
         //Construccion de codigos
         public static string[] AlfabetoG = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//0-25
@@ -42,7 +44,7 @@ namespace SudokuForAll.Engine
 
         //Paypal 
         public static string EndPointTokenPaypal = WebConfigurationManager.AppSettings["EndPointTokenPaypal"];
-        public static string ClientId  = WebConfigurationManager.AppSettings["ClientId"];
+        public static string ClientId = WebConfigurationManager.AppSettings["ClientId"];
         public static string KeySecret = WebConfigurationManager.AppSettings["KeySecret"];
         public static string Client_Credentials = WebConfigurationManager.AppSettings["Client_Credentials"];
         public static string Grant_Type = "grant_type";
@@ -98,7 +100,7 @@ namespace SudokuForAll.Engine
             return I;
         }
 
-        public static string Cultura (int index)
+        public static string Cultura(int index)
         {
             switch (index)
             {
@@ -119,7 +121,7 @@ namespace SudokuForAll.Engine
         {
             if (System.Web.HttpContext.Current.Session["Cultura"] == null)
                 System.Web.HttpContext.Current.Session["Cultura"] = CulturaEspañol;
-                return cultura = System.Web.HttpContext.Current.Session["Cultura"].ToString();
+            return cultura = System.Web.HttpContext.Current.Session["Cultura"].ToString();
         }
 
         //Mensajes Index 
@@ -166,7 +168,7 @@ namespace SudokuForAll.Engine
             switch (cultura)
             {
                 case (CulturaEspañol):
-                    respuesta =  " ¿Su tiempo de prueba expiro, desea comprar y registrase?";
+                    respuesta = " ¿Su tiempo de prueba expiro, desea comprar y registrase?";
                     break;
                 case (CulturaIngles):
                     respuesta = " Does your trial time expire, do you want to buy and register?";
@@ -588,15 +590,15 @@ namespace SudokuForAll.Engine
             switch (cultura)
             {
                 case (CulturaEspañol):
-                    respuesta = "Bienvenido a nuestra aplicacion SudokuParaTodos, haz click en el link y disfruta 2 dias de prueba gratis </br>" + 
-                                "El tiempo valido para este link es de 2 horas,</br>No tendras que aportar datos personales adicionales, tu direccion e-mail y toda tu informacion sera confidencial."; 
+                    respuesta = "Bienvenido a nuestra aplicacion SudokuParaTodos, haz click en el link y disfruta 2 dias de prueba gratis </br>" +
+                                "El tiempo valido para este link es de 2 horas,</br>No tendras que aportar datos personales adicionales, tu direccion e-mail y toda tu informacion sera confidencial.";
                     break;
                 case (CulturaIngles):
-                    respuesta = "Welcome to our SudokuParaTodos app, click on the link and enjoy 2 days of free trial </br> " + 
+                    respuesta = "Welcome to our SudokuParaTodos app, click on the link and enjoy 2 days of free trial </br> " +
                                 "The valid time for this link is 2 hours, </br> You will not have to provide additional personal data, Your e-mail address and all your information will be confidential.";
                     break;
                 case (CulturaPortugues):
-                    respuesta = "Bem-vindo ao nosso aplicativo SudokuParaTodos, clique no link e aproveite 2 dias de teste gratuito</ br > " + 
+                    respuesta = "Bem-vindo ao nosso aplicativo SudokuParaTodos, clique no link e aproveite 2 dias de teste gratuito</ br > " +
                                 "O horário válido para este link é 2 horas, Você não terá que fornecer dados pessoais adicionais, seu endereço de e-mail e todas as suas informações serão confidenciais.";
                     break;
             }
@@ -743,7 +745,7 @@ namespace SudokuForAll.Engine
             return respuesta;
         }
 
-        
+
         public static string ObservacionRestablecerPassword()
         {
             cultura = GetCultura();
@@ -762,5 +764,31 @@ namespace SudokuForAll.Engine
             return respuesta;
         }
 
+
+        public static string AsuntoRegistroGerente()
+        {
+            respuesta = "Por favor activa tu cuenta de administrador ...";
+            return respuesta;
+        }
+
+
+        public static string ClickAqui4()
+        {
+            respuesta = "Hazme Click Para Confirmar Tu Identidad!";
+            return respuesta;
+        }
+
+
+        public static string DescripcionRegistroGerente()
+        {
+            respuesta = "Por favor confirma la direccion de correo electronico, para saber que eres realmente tu.";
+            return respuesta;
+        }
+
+        public static string ObservacionRegistroGerente()
+        {
+            respuesta = "Tu cuenta de administrador SudokuParaTodos fue creada, haz click para que actualizes tu contraseña y perfil";
+            return respuesta;
+        }
     }
 }

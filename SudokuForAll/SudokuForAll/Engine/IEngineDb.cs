@@ -11,17 +11,23 @@ namespace SudokuForAll.Engine
     public interface IEngineDb
     {
         int ObtenerNumeroDePago();
+        bool PutGerente(Gerente m);
         bool PutProducto(Producto m);
+        List<Roles> GetAllGerentes();
+        Gerente GetGerente(string email);
         int ObtenerIdCliente(string email);
         int ResultadoLogin(string password);
         Producto GetProducto(string codigo);
         List<Producto> ProductosParaVenta();
         int UpdateClienteTest(Cliente model);
+        Gerente GetGerenteName(string nombre);
         List<Producto> GetProductosParaVenta();
         bool InsertarSucesoLog(SucesoLog model);
+        bool InsertarNuevoGerente(Gerente model);
         int ResultadoEntradaAlSitio(string email);
         int ClienteRegistro(ActivarCliente model);
         Guid ObtenerIdentidadCliente(string email);
+        Guid ObtenerIdentidadGerente(string email);
         string ObtenerPasswordCliente(string email);
         bool InsertarProductoParaVenta(Producto model);
         bool InsertarResetPassword(ResetPassword model);

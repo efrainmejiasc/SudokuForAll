@@ -11,7 +11,6 @@ namespace SudokuForAll.Engine
     public interface IEngineDb
     {
         int ObtenerNumeroDePago();
-        bool PutGerente(Gerente m);
         bool PutProducto(Producto m);
         List<Roles> GetAllGerentes();
         Gerente GetGerente(string email);
@@ -23,6 +22,7 @@ namespace SudokuForAll.Engine
         Gerente GetGerenteName(string nombre);
         List<Producto> GetProductosParaVenta();
         bool InsertarSucesoLog(SucesoLog model);
+        Gerente GetLoginGerente(string password);
         bool InsertarNuevoGerente(Gerente model);
         int ResultadoEntradaAlSitio(string email);
         int ClienteRegistro(ActivarCliente model);
@@ -30,6 +30,7 @@ namespace SudokuForAll.Engine
         Guid ObtenerIdentidadGerente(string email);
         string ObtenerPasswordCliente(string email);
         bool InsertarProductoParaVenta(Producto model);
+        bool PutGerente(Gerente m, string subEjecutada);
         bool InsertarResetPassword(ResetPassword model);
         int ClienteUpdatePassword(ActivarCliente model);
         int ObtenerIdCliente(string email, bool estatus);

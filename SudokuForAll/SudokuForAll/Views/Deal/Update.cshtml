@@ -15,11 +15,10 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-
         <div>
             <h4>
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                Modificar Producto
+                Actualizar Producto
             </h4>
         </div>
 
@@ -83,6 +82,7 @@
                 <div class="col-md-10">
                     <div class="checkbox">
                         @Html.EditorFor(model => model.Estatus)
+                        @Html.Label("txtEstatus", "Activar / Desactivar", new { @class = "caption" })
                     </div>
                 </div>
             </div>

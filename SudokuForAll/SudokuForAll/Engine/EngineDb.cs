@@ -559,7 +559,7 @@ namespace SudokuForAll.Engine
             return Guid.Empty;
         }
 
-        public bool PutGerente(Gerente m)
+        public bool PutGerente(Gerente m,string subEjecutada)
         {
             bool resultado = false;
             Gerente P = new Gerente();
@@ -570,11 +570,22 @@ namespace SudokuForAll.Engine
                     P = Context.Gerente.Where(x => x.Email == m.Email).First();
                     if (P != null)
                     {
-                        P.Nombre = m.Nombre;
-                        P.NombreUsuario = m.NombreUsuario;
-                        P.FechaActualizacion = m.FechaActualizacion;
-                        P.Email = m.Email;
-                        P.Estatus = m.Estatus;
+                        if(subEjecutada == "Alto")
+                        {
+                            P.NombreUsuario = m.NombreUsuario;
+                            P.FechaActualizacion = m.FechaActualizacion;
+                            P.Estatus = m.Estatus;
+                            P.Rol = m.Rol;
+                        }
+                        else
+                        {
+                            P.Nombre = m.Nombre;
+                            P.NombreUsuario = m.NombreUsuario;
+                            P.FechaActualizacion = m.FechaActualizacion;
+                            P.Email = m.Email;
+                            P.Password = m.Password;
+                            P.Estatus = m.Estatus;
+                        }
                         Context.SaveChanges();
                         resultado = true;
                     }
@@ -600,6 +611,23 @@ namespace SudokuForAll.Engine
             catch (Exception ex)
             {
                 InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/GetGerente*" + ""));
+            }
+            return P;
+        }
+
+        public Gerente GetLoginGerente(string password)
+        {
+            Gerente P = new Gerente();
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    P = Context.Gerente.Where(x => x.Password == password).First();
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/GetLoginGerente*" + ""));
             }
             return P;
         }

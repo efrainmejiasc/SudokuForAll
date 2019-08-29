@@ -14,16 +14,18 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
+     
         <div>
             <h4>
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-                Actualizar Administrador 
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                Actualizar Administrador
             </h4>
         </div>
 
         <div class="form-horizontal">
 
             <hr />
+            @Html.Hidden("actualizador", "Bajo")
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
 
@@ -31,7 +33,7 @@
                 @Html.LabelFor(model => model.Nombre, "Nombre Completo", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.DropDownListFor(model => model.Rol, new SelectList(ViewBag.Gerentes, "Id", "Nombre"), htmlAttributes:  new { @class = "form-control", @Id="gerentes" })
+                    @Html.DropDownListFor(model => model.Rol, new SelectList(ViewBag.Gerentes, "Id", "Nombre"), htmlAttributes: new { @class = "form-control", @Id = "gerentes" })
                 </div>
             </div>
 
@@ -49,19 +51,20 @@
                 </div>
             </div>
 
-                <div class="form-group" id="Password1">
-                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2", @Id = "lPassword" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @Type = "Password" } })
-                    </div>
+            <div class="form-group" id="Password1">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2", @Id = "lPassword" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @Type = "Password" } })
                 </div>
+            </div>
 
-                <div class="form-group"  id="Password2">
-                    @Html.LabelFor(model => model.Password, "Confirme Password", htmlAttributes: new { @class = "control-label col-md-2", @Id = "cPassword" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @Type = "Password", @Id = "ConfirmarPassword" } })
-                    </div>
+            <div class="form-group" id="Password2">
+                @Html.LabelFor(model => model.Password, "Confirme Password", htmlAttributes: new { @class = "control-label col-md-2", @Id = "cPassword" })
+                <div class="col-md-10">
+                   
+                    <input type="text" id="ConfirmarPassword" class="form-control" />
                 </div>
+            </div>
 
             <div class="form-group" id="roless">
                 @Html.LabelFor(model => model.Rol, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -82,6 +85,7 @@
                 <div class="col-md-10">
                     <div class="checkbox">
                         @Html.EditorFor(model => model.Estatus)
+                        @Html.Label("txtEstatus", "Activar / Desactivar", new { @class = "caption" })
                     </div>
                 </div>
             </div>
@@ -98,15 +102,21 @@
 
 </div>
 <script>
+    let respuesta = '@ViewBag.Respuesta';
+    if (respuesta != '') {
+        alert(respuesta);
+    }
     OcultarObjeto('inicio');
     OcultarObjeto('entrar');
     OcultarObjeto('traductor');
     AgregarOption('Codigo');
     AgregarOption('Rol');
+    $("#Email").prop("readonly", true);
+    $("#FechaActualizacion").prop("readonly", true);
     let tipo = '@ViewBag.Type'
     if (tipo != '') {
         if (tipo == 'registroAdministrador') {
-            OcultarObjeto('Roless');
+            OcultarObjeto('roless');
             OcultarObjeto('gerentes');
             $("#Estatus").prop("checked", true);
             $("#Email").prop("readonly", true);
@@ -114,7 +124,7 @@
         }
         else if (tipo == 'Alto') {
             AgregarOption('gerentes')
-            $("#Email").prop("readonly", true);
+            $("#actualizador").val("Alto");
             OcultarObjeto('Nombre');
             OcultarObjeto('Password1');
             OcultarObjeto('Password2');
@@ -126,13 +136,14 @@
         $.ajax({
             type: "POST",
             url: "/Manager/GetGerente",
-            data: { gerente: gerente },
+            data: { nombre: gerente },
             datatype: "json",
             success: function (data) {
+                console.log(data.Rol);
                 $('#Email').val(data.Email);
                 $('#NombreUsuario').val(data.NombreUsuario);
                 $("#Estatus").prop("checked", data.Estatus);
-                $('#Rol option:selected').val(data.Rol);
+                document.getElementById('Rol').value = data.Rol;
             }
         });
     }); 

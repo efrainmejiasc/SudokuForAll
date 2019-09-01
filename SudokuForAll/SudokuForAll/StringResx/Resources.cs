@@ -99,5 +99,10 @@ namespace SudokuForAll.StringResx
             get { return resourceProvider.GetResource("Registrate", CultureInfo.CurrentUICulture.Name) as String; }
         }
 
+        public static string Equipo
+        {
+            get { return resourceProvider.GetResource("Equipo", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
     }
 }

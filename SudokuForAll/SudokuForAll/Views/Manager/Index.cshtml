@@ -1,0 +1,94 @@
+﻿@model SudokuForAll.Models.DbSistema.Gerente
+
+@{
+    ViewBag.Title = "";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/css/Global.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="~/Content/js/Global.js" type="text/javascript"></script>
+
+
+<div id="nuevoGerente" class="text-primary divProducto">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <h4>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+                Nuevo Administrador
+            </h4>
+        </div>
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre, "Nombre Completo", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NombreUsuario, "Nombre Usuario", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NombreUsuario, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Rol, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Rol, new SelectList(ViewBag.Roles, "Id", "Nombre"), new { @class = "form-control"  ,@Name="Rol"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FechaRegistro, "Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaRegistro, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div>
+                <br />
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Crear" class="votones btn btn-primary" />
+                <input type="button" value="Cancelar" onclick="IrMainManager();" class="votones btn btn-primary" />
+            </div>
+
+        </div>
+    }
+
+</div>
+<script>
+    OcultarObjeto('inicio');
+    OcultarObjeto('entrar');
+    OcultarObjeto('traductor');
+    AgregarOption('Codigo');
+    AgregarOption('Rol');
+
+    let respuesta = '@ViewBag.Respuesta'
+    if (respuesta != '') {
+        alert(respuesta);
+        if (respuesta == 'Administrador creado exitosamente, debe revisar bandeja de entrada') {
+            window.location.href = '/Manager/Login';
+        }
+    }
+   function  IrMainManager(){
+        window.location.href = '/Manager/MainManager';
+    }
+  
+</script>
+

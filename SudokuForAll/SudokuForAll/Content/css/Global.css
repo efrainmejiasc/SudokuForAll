@@ -55,3 +55,27 @@
     width: 13%;
 }
 
+.divCentrada{
+    float:initial;
+}
+
+.divDerecha {
+    float:right;
+}
+
+.divIzquierda {
+    float: left;
+}
+
+.divProducto {
+    margin-top: 10%;
+    margin-left: 10%;
+    width: 100%;
+    display: inline-block;
+}
+
+.txtLog{
+    color:red;
+    font-size:10px;
+}
+

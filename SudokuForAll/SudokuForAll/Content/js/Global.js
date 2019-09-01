@@ -18,7 +18,6 @@ function GetEmail() {
 }
 
 
-
 $('#traductor').on('change', function (e) {
     var lenguaje = $('#traductor option:selected').html();
     var index = $('#traductor option:selected').val();
@@ -35,6 +34,7 @@ $('#traductor').on('change', function (e) {
     });
 }); 
 
+
 function SetObjectsLayount(index) {
     $.ajax({
         type: "POST",
@@ -46,6 +46,7 @@ function SetObjectsLayount(index) {
             $('#normas').text(data.Terminos);
             $('#inicio').text(data.Inicio);
             $('#entrar').text(data.Entrar);
+            $('#equipo').text(data.Equipo);
             $('#triggerModal').removeAttr('disabled');
             $("#traductor").empty();
             $('#traductor').append('<option selected disabled value="0">Seleccione Idioma. . .</option>');
@@ -56,4 +57,25 @@ function SetObjectsLayount(index) {
         }
     });
 }
+
+function DireccionSite(nombreControlador, nombreAccion) {
+    $.ajax({
+        type: "POST",
+        url: "/Home/DireccionSite",
+        data: { nombreControlador: nombreControlador, nombreAccion: nombreAccion },
+        datatype: "json",
+        success: function (data) {
+            window.location.href = data.Descripcion;
+        }
+    });
+}
+
+function AgregarOption(name) {
+    var objeto = '#'.concat(name);
+    $(objeto).append('<option selected disabled value="0">Seleccione...</option>');
+}
+
+
+
+ 
  

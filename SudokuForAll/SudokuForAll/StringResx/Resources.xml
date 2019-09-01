@@ -68,4 +68,8 @@
   <resource culture="en-us" name="Registrate" value="Sign up"></resource>
   <resource culture="pt-pt" name="Registrate" value="Inscreva-se"></resource>
 
+  <resource culture="es-es" name="Equipo" value="Equipo"></resource>
+  <resource culture="en-us" name="Equipo" value="Team"></resource>
+  <resource culture="pt-pt" name="Equipo" value="Equipa"></resource>
+
 </resources>

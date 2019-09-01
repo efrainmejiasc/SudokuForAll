@@ -1,0 +1,40 @@
+﻿@using SudokuForAll.StringResx;
+
+@{
+    ViewBag.Title = "";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/css/Global.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="~/Content/js/Global.js" type="text/javascript"></script>
+
+<div id="logeo" align="center" class="logeo">
+    @using (Html.BeginForm("Login", "Manager"))
+    {
+        <h4 class="text-primary" id="lblTexto">@Resources.Autentificate</h4>
+        <input type="text" id="NombreUsuario" name="NombreUsuario" placeholder="Ingrese nombre de usuario" required class="boxTxt form-control" />
+        <input type="password" id="Password" name="Password" placeholder="Ingrese contraseña" required  class="boxTxt form-control" /><br />
+        <label class="checkbox-inline"><input type="checkbox" id="chxNoSoy" name="chxNosoy" required  class="btn btn btn-default active" />@Resources.NoSoyUnRobot</label><br /><br />
+        <input type="submit" id="sendData" name="sendData" value="@Resources.Enviar" class="votones btn btn-primary" />
+        <input type="button" id="cancel" name="cancel" value="@Resources.Cancelar"  onclick="IrMainManager();"   class="votones btn btn-primary" />
+    }
+    <script>
+
+        OcultarObjeto('inicio');
+        OcultarObjeto('entrar');
+        OcultarObjeto('traductor');
+        $('#NombreUsuario').val('');
+        $('#Password').val('');
+
+    let respuesta = '@ViewBag.Respuesta';
+        if (respuesta != '') {
+            alert(respuesta);
+    }
+   
+    function IrMainManager(){
+            window.location.href = '/Manager/MainManager';
+        }
+    </script>
+</div>

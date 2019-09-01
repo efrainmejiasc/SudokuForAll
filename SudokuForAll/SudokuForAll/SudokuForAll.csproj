@@ -52,6 +52,9 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="SimpleInjector, Version=4.6.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleInjector.4.6.1\lib\net45\SimpleInjector.dll</HintPath>
     </Reference>
@@ -141,11 +144,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\DealController.cs" />
+    <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="Controllers\PayByPaypalController.cs" />
+    <Compile Include="Engine\EnginePaypal.cs" />
+    <Compile Include="Engine\IEnginePaypal.cs" />
     <Compile Include="Migrations\201908171626440_PassExtend.cs" />
     <Compile Include="Migrations\201908171626440_PassExtend.Designer.cs">
       <DependentUpon>201908171626440_PassExtend.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908182348525_PassExtend1.cs" />
+    <Compile Include="Migrations\201908182348525_PassExtend1.Designer.cs">
+      <DependentUpon>201908182348525_PassExtend1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DbSistema\Gerente.cs" />
+    <Compile Include="Models\DbSistema\Producto.cs" />
+    <Compile Include="Models\DbSistema\SucesoLog.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />
+    <Compile Include="Models\Sistema\Moneda.cs" />
+    <Compile Include="Models\Sistema\RespuestaPaypalToken.cs" />
+    <Compile Include="Models\Sistema\Roles.cs" />
     <Compile Include="StringResx\Abstract\BaseResourceProvider.cs" />
     <Compile Include="StringResx\Abstract\IResourceProvider.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -185,6 +203,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\Global.css" />
+    <Content Include="Content\css\MainManager.css" />
     <Content Include="Content\css\_MessagePartial.css" />
     <Content Include="Content\imagen\logo.png" />
     <Content Include="Content\imagen\SudokuEnCasa.ico" />
@@ -239,7 +258,13 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\EditPasswordNotify.cshtml" />
     <Content Include="Views\Home\EditPassword.cshtml" />
-    <Content Include="Views\Game\BuyGame.cshtml" />
+    <Content Include="Views\PayByPaypal\BusinessGame.cshtml" />
+    <Content Include="Views\Deal\Index.cshtml" />
+    <Content Include="Views\Deal\Update.cshtml" />
+    <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Manager\Update.cshtml" />
+    <Content Include="Views\Manager\MainManager.cshtml" />
+    <Content Include="Views\Manager\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -260,6 +285,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201908171626440_PassExtend.resx">
       <DependentUpon>201908171626440_PassExtend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908182348525_PassExtend1.resx">
+      <DependentUpon>201908182348525_PassExtend1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

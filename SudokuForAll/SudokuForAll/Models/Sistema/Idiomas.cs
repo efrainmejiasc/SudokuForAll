@@ -22,5 +22,7 @@ namespace SudokuForAll.Models.Sistema
         public string Entrar { get; set; }
 
         public string Inicio { get; set; }
+
+        public string Equipo { get; set; }
     }
 }

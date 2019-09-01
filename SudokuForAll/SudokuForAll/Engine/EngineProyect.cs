@@ -12,6 +12,7 @@ namespace SudokuForAll.Engine
 {
     public class EngineProyect : IEngineProyect
     {
+
         public string ConvertirBase64(string cadena)
         {
             var comprobanteXmlPlainTextBytes = Encoding.UTF8.GetBytes(cadena);
@@ -113,11 +114,19 @@ namespace SudokuForAll.Engine
 
         //********************************METODOS DEL SITIO *********************************************************************************
 
-       public bool EnviarNuevaNotificacion(IEngineNotificacion Notificacion, IEngineDb Metodo, string email, string type, string password = "")
+        public void AnularGerente()
+        {
+            HttpContext.Current.Session["Gerente"] = null;
+            HttpContext.Current.Session["Rol"] = null;
+        }
+
+       public bool EnviarNuevaNotificacion(IEngineNotificacion Notificacion, IEngineDb Metodo, string email = "", string type = "", string password = "")
         {
             bool resultado = false;
             EstructuraMail model = new EstructuraMail();
-            email = DecodeBase64(email);
+            resultado = CadenaBase64Valida(email);
+            if (resultado)
+                email = DecodeBase64(email);
 
             if (type == EngineData.Test)
             {
@@ -129,6 +138,11 @@ namespace SudokuForAll.Engine
                 password = DecodeBase64(password);
                 string enlaze = CrearEnlazeRegistro(Metodo, email, password);
                 model = SetEstructuraMailRegister(enlaze, email, model);
+            }
+            else if (type == EngineData.RegisterManager)
+            {
+                string enlaze = CrearEnlazeRegistroGerente(Metodo, email);
+                model = SetEstructuraMailRegisterManager(enlaze, email, model);
             }
             resultado = Notificacion.EnviarMailNotificacion(model);
             return resultado;
@@ -185,6 +199,22 @@ namespace SudokuForAll.Engine
             return link;
         }
 
+        public string CrearEnlazeRegistroGerente(IEngineDb Metodo ,string email)
+        {
+            string fecha = Convert.ToString(DateTime.UtcNow).Replace(" ", "*");
+            fecha = fecha.Replace(".", "+");
+            string link = string.Empty;
+            link = EngineData.EndPointValidation;
+            link = link + "Id=" + "0&";
+            link = link + "email=" + ConvertirBase64(email);
+            link = link + "&identidad=" + EncodeMd5(Metodo.ObtenerIdentidadGerente(email).ToString());
+            link = link + "&status=" + "1";
+            link = link + "&date=" + fecha;
+            link = link + "&type=" + EngineData.RegisterManager;
+            link = link + "&cultureInfo=" + EngineData.GetCultura();
+            return link;
+        }
+
         public EstructuraMail SetEstructuraMailTest(string enlaze, string email, EstructuraMail model)
         {
             model.Link = enlaze;
@@ -213,6 +243,20 @@ namespace SudokuForAll.Engine
             return model;
         }
 
+        public EstructuraMail SetEstructuraMailRegisterManager(string enlaze, string email, EstructuraMail model)
+        {
+            model.Link = enlaze;
+            model.Saludo = EngineData.Saludo();
+            model.EmailDestinatario = email;
+            model.Fecha = DateTime.UtcNow.ToString();
+            model.Descripcion = EngineData.DescripcionRegistroGerente();
+            model.ClickAqui = EngineData.ClickAqui4();
+            model.Asunto = EngineData.AsuntoRegistroGerente();
+            model.Observacion = EngineData.ObservacionRegistroGerente();
+            model.PathLecturaArchivo = EngineData.PathLecturaArchivoRegistro;
+            return model;
+        }
+
         public EstructuraMail SetEstructuraMailResetPassword(string enlaze, string email, string codigo, EstructuraMail model)
         {
             model.Link = enlaze;
@@ -226,6 +270,20 @@ namespace SudokuForAll.Engine
             model.PathLecturaArchivo = EngineData.PathLecturaArchivoRestablecerPassword;
             model.CodigoResetPassword = codigo;
             return model;
+        }
+
+        public PagoCliente ConstruirPagoCliente (int idCliente)
+        {
+            PagoCliente pagoCliente = new PagoCliente
+            {
+                IdCliente = idCliente,
+                FechaPago = DateTime.UtcNow,
+                FechaVencimiento = DateTime.UtcNow.AddDays(30),
+                MontoPago = 9.99,
+                Impuesto = 7,
+                MontoTotal  = 10.69
+            };
+            return pagoCliente;
         }
 
         public ResetPassword SetResetPassword(string email, string codigo)
@@ -270,9 +328,8 @@ namespace SudokuForAll.Engine
             return R;
         }
 
-        public Cliente ConstruirActualizarClienteTest(string email, string identidad)
+        public Cliente ConstruirActualizarClienteTest(IEngineDb Metodo, string email, string identidad)
         {
-            EngineDb Metodo = new EngineDb();
             Guid guid = Metodo.ObtenerIdentidadCliente(email);
             Cliente R = new Cliente()
             {
@@ -284,9 +341,8 @@ namespace SudokuForAll.Engine
             return R;
         }
 
-        public ActivarCliente ConstruirActivarCliente(string email, string password)
+        public ActivarCliente ConstruirActivarCliente(IEngineDb Metodo ,string email, string password)
         {
-            EngineDb Metodo = new EngineDb();
             Guid guid = Metodo.ObtenerIdentidadCliente(email);
             ActivarCliente R = new ActivarCliente()
             {
@@ -297,6 +353,32 @@ namespace SudokuForAll.Engine
                 Identidad = guid
             };
             return R;
+        }
+
+        public bool ConstruirSucesoLog(string cadena , IEngineDb Metodo)
+        {
+            string [] x = cadena.Split('*');
+            SucesoLog modelo = new SucesoLog()
+            {
+                Fecha = DateTime.UtcNow,
+                Excepcion = x[0],
+                Metodo = x[1],
+                Email = x[2]
+            };
+            return Metodo.InsertarSucesoLog(modelo);
+        }
+
+        public SucesoLog ConstruirSucesoLog(string cadena)
+        {
+            string[] x = cadena.Split('*');
+            SucesoLog modelo = new SucesoLog()
+            {
+                Fecha = DateTime.UtcNow,
+                Excepcion = x[0],
+                Metodo = x[1],
+                Email = x[2]
+            };
+            return modelo;
         }
 
         public string ConstruirCodigo()
@@ -343,6 +425,48 @@ namespace SudokuForAll.Engine
         public void SetCultureInfo(string cultura)
         {
             System.Web.HttpContext.Current.Session["Cultura"] = cultura;
+        }
+
+        public List<Moneda> Monedas()
+        {
+            List<Moneda> m = new List<Moneda>();
+            Moneda m1 = new Moneda();
+            m1.Id = "USD";
+            m1.Nombre= "USD";
+            m.Insert(0, m1);
+            Moneda m2 = new Moneda();
+            m2.Id = "EUR";
+            m2.Nombre = "EUR";
+            m.Insert(1, m2);
+            return m;
+        }
+
+        public List<Roles> Roles()
+        {
+            List<Roles> m = new List<Roles>();
+            Roles m1 = new Roles();
+            m1.Id = "Alto";
+            m1.Nombre = "Alto";
+            m.Insert(0, m1);
+            Roles m2 = new Roles();
+            m2.Id = "Medio";
+            m2.Nombre = "Medio";
+            m.Insert(1, m2);
+            Roles m3 = new Roles();
+            m3.Id = "Bajo";
+            m3.Nombre = "Bajo";
+            m.Insert(2, m3);
+            return m;
+        }
+
+        public List<Roles> Gerentes()
+        {
+            List<Roles> m = new List<Roles>();
+            Roles m1 = new Roles();
+            m1.Id = "";
+            m1.Nombre = "";
+            m.Insert(0, m1);
+            return m;
         }
 
     }

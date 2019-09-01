@@ -34,6 +34,7 @@ namespace SudokuForAll.App_Start
             container.Register<IEngineDb, EngineDb>(Lifestyle.Scoped);
             container.Register<IEngineProyect, EngineProyect>(Lifestyle.Scoped);
             container.Register<IEngineNotificacion, EngineNotificacion>(Lifestyle.Scoped);
+            container.Register<IEnginePaypal, EnginePaypal>(Lifestyle.Scoped);
         }
 
         //1.Instalar SimpleInjector.MVC3

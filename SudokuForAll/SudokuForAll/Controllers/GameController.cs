@@ -1,21 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using SudokuForAll.Engine;
+using SudokuForAll.Models;
 using System.Web.Mvc;
 
 namespace SudokuForAll.Controllers
 {
     public class GameController : Controller
     {
+        private IEngineDb Metodo;
+        private IEngineProyect Funcion;
+        private readonly SudokuContext Context;
 
-        public ActionResult PlayGame()
+        public GameController(IEngineDb _Metodo, IEngineProyect _Funcion,SudokuContext _Context)
         {
-            return View();
+            this.Metodo = _Metodo;
+            this.Context = _Context;
+            this.Funcion = _Funcion;
         }
 
-
-        public ActionResult BuyGame()
+        public ActionResult PlayGame()
         {
             return View();
         }

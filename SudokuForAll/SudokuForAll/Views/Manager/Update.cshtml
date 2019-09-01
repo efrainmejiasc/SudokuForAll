@@ -1,0 +1,160 @@
+﻿@model SudokuForAll.Models.DbSistema.Gerente
+
+@{
+    ViewBag.Title = "";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/css/Global.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="~/Content/js/Global.js" type="text/javascript"></script>
+
+
+<div id="actualizarGerente" class="text-primary divProducto">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+     
+        <div>
+            <h4>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                Actualizar Administrador
+            </h4>
+        </div>
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.Hidden("subEjecutada", "Bajo")
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre, "Nombre Completo", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.Rol, new SelectList(ViewBag.Gerentes, "Id", "Nombre"), htmlAttributes: new { @class = "form-control", @Id = "gerentes" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NombreUsuario, "Nombre Usuario", htmlAttributes: new { @class = "control-label col-md-2", @Text = "Nombre Usuario" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NombreUsuario, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group" id="Password1">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2", @Id = "lPassword" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @Type = "Password" } })
+                </div>
+            </div>
+
+            <div class="form-group" id="Password2">
+                @Html.LabelFor(model => model.Password, "Confirme Password", htmlAttributes: new { @class = "control-label col-md-2", @Id = "lPassword2" })
+                <div class="col-md-10">
+
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @Type = "Password" , @Name="CPassword" , @Id="CPassword"} })
+                </div>
+            </div>
+
+            <div class="form-group" id="roless">
+                @Html.LabelFor(model => model.Rol, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Rol, new SelectList(ViewBag.Roles, "Id", "Nombre"), new { @class = "form-control"  , @Name="Rol"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FechaActualizacion, "Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaActualizacion, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Estatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Estatus)
+                        @Html.Label("txtEstatus", "Activar / Desactivar", new { @class = "caption" })
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <br />
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Actualizar" class="votones btn btn-primary" />
+                <input type="button" value="Cancelar" onclick="IrMainManager();" class="votones btn btn-primary" />
+            </div>
+
+        </div>
+    }
+
+</div>
+<script>
+    $('#Password').val('');
+    $('#CPassword').val('');
+    let respuesta = '@ViewBag.Respuesta';
+    if (respuesta != '') {
+        alert(respuesta);
+        if (respuesta == 'Actualizacion exitosa') {
+            window.location.href = '/Manager/Login';
+        }
+    }
+    OcultarObjeto('inicio');
+    OcultarObjeto('entrar');
+    OcultarObjeto('traductor');
+    AgregarOption('Codigo');
+    AgregarOption('Rol');
+    $("#Email").prop("readonly", true);
+    $("#FechaActualizacion").prop("readonly", true);
+    let tipo = '@ViewBag.Type'
+    if (tipo != '') {
+        if (tipo == 'Bajo'|| tipo == 'Medio') {
+            OcultarObjeto('roless');
+            OcultarObjeto('gerentes');
+            $("#Estatus").prop("checked", true);
+            $("#Email").prop("readonly", true);
+            $("#FechaActualizacion").val('@Model.FechaActualizacion')
+        }
+        else if (tipo == 'Alto') {
+            AgregarOption('gerentes')
+            $("#actualizador").val("Alto");
+            OcultarObjeto('Nombre');
+            OcultarObjeto('Password1');
+            OcultarObjeto('Password2');
+        }
+    }
+
+    $('#gerentes').on('change', function (e) {
+        var gerente = $('#gerentes option:selected').html();
+        $.ajax({
+            type: "POST",
+            url: "/Manager/GetGerente",
+            data: { nombre: gerente },
+            datatype: "json",
+            success: function (data) {
+                console.log(data.Rol);
+                $('#Email').val(data.Email);
+                $('#NombreUsuario').val(data.NombreUsuario);
+                $("#Estatus").prop("checked", data.Estatus);
+                document.getElementById('Rol').value = data.Rol;
+            }
+        });
+    }); 
+
+    function IrMainManager() {
+        window.location.href = '/Manager/MainManager';
+    }
+</script>
+

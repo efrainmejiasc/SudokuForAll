@@ -18,5 +18,6 @@ namespace SudokuForAll.Models.Sistema
         public string Descripcion { get; set; }
 
         public string CulturaInfo { get; set; }
+
     }
 }

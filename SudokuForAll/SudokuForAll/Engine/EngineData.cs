@@ -37,7 +37,6 @@ namespace SudokuForAll.Engine
         public static string UrlBase = WebConfigurationManager.AppSettings["UrlBase"];
         public static string EndPointResetPassword = WebConfigurationManager.AppSettings["EndPointResetPassword"];
         public static string EndPointTerminos = WebConfigurationManager.AppSettings["EndPointTerminos"];
-        public static string EndPointEquipo = WebConfigurationManager.AppSettings["EndPointEquipo"];
 
         //Construccion de codigos
         public static string[] AlfabetoG = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//0-25

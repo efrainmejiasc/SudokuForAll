@@ -11,6 +11,7 @@ namespace SudokuForAll.Engine
     public interface IEngineProyect
     {
         List<Roles> Roles();
+        void AnularGerente();
         List<Moneda> Monedas();
         List<Roles> Gerentes();
         Guid IdentificadorReg();

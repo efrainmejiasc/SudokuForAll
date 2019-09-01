@@ -25,7 +25,7 @@
         <div class="form-horizontal">
 
             <hr />
-            @Html.Hidden("actualizador", "Bajo")
+            @Html.Hidden("subEjecutada", "Bajo")
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
 
@@ -59,17 +59,17 @@
             </div>
 
             <div class="form-group" id="Password2">
-                @Html.LabelFor(model => model.Password, "Confirme Password", htmlAttributes: new { @class = "control-label col-md-2", @Id = "cPassword" })
+                @Html.LabelFor(model => model.Password, "Confirme Password", htmlAttributes: new { @class = "control-label col-md-2", @Id = "lPassword2" })
                 <div class="col-md-10">
-                   
-                    <input type="text" id="ConfirmarPassword" class="form-control" />
+
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @Type = "Password" , @Name="CPassword" , @Id="CPassword"} })
                 </div>
             </div>
 
             <div class="form-group" id="roless">
                 @Html.LabelFor(model => model.Rol, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Rol, new SelectList(ViewBag.Roles, "Id", "Nombre"), new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.Rol, new SelectList(ViewBag.Roles, "Id", "Nombre"), new { @class = "form-control"  , @Name="Rol"})
                 </div>
             </div>
 
@@ -94,7 +94,7 @@
                 <br />
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="submit" value="Actualizar" class="votones btn btn-primary" />
-                <input type="button" value="Cancelar" onclick="Redirect();" class="votones btn btn-primary" />
+                <input type="button" value="Cancelar" onclick="IrMainManager();" class="votones btn btn-primary" />
             </div>
 
         </div>
@@ -102,9 +102,14 @@
 
 </div>
 <script>
+    $('#Password').val('');
+    $('#CPassword').val('');
     let respuesta = '@ViewBag.Respuesta';
     if (respuesta != '') {
         alert(respuesta);
+        if (respuesta == 'Actualizacion exitosa') {
+            window.location.href = '/Manager/Login';
+        }
     }
     OcultarObjeto('inicio');
     OcultarObjeto('entrar');
@@ -115,7 +120,7 @@
     $("#FechaActualizacion").prop("readonly", true);
     let tipo = '@ViewBag.Type'
     if (tipo != '') {
-        if (tipo == 'registroAdministrador') {
+        if (tipo == 'Bajo'|| tipo == 'Medio') {
             OcultarObjeto('roless');
             OcultarObjeto('gerentes');
             $("#Estatus").prop("checked", true);
@@ -147,5 +152,9 @@
             }
         });
     }); 
+
+    function IrMainManager() {
+        window.location.href = '/Manager/MainManager';
+    }
 </script>
 

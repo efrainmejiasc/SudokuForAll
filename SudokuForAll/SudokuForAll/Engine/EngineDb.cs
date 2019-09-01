@@ -649,6 +649,23 @@ namespace SudokuForAll.Engine
             return P;
         }
 
+        public Gerente GetGerenteUserName(string nombreUsuario)
+        {
+            Gerente P = new Gerente();
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    P = Context.Gerente.Where(x => x.NombreUsuario == nombreUsuario).First();
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/GetGerenteUserName*" + ""));
+            }
+            return P;
+        }
+
         public List<Roles> GetAllGerentes()
         {
             List<Gerente> P = new List<Gerente>();

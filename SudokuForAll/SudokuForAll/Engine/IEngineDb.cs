@@ -14,7 +14,7 @@ namespace SudokuForAll.Engine
         bool PutProducto(Producto m);
         List<Roles> GetAllGerentes();
         Gerente GetGerente(string email);
-        int ObtenerIdCliente(string email);
+        int ObtenerIdCliente(string email);   
         int ResultadoLogin(string password);
         Producto GetProducto(string codigo);
         List<Producto> ProductosParaVenta();
@@ -34,6 +34,7 @@ namespace SudokuForAll.Engine
         bool InsertarResetPassword(ResetPassword model);
         int ClienteUpdatePassword(ActivarCliente model);
         int ObtenerIdCliente(string email, bool estatus);
+        Gerente GetGerenteUserName(string nombreUsuario);
         int ClienteRegistroActivacion(ActivarCliente model);
         string ObtenerCodigoRestablecerPassword(string email);
         bool InsertarClienteTest(IEngineProyect Funcion,string email);

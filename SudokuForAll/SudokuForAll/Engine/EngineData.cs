@@ -37,6 +37,7 @@ namespace SudokuForAll.Engine
         public static string UrlBase = WebConfigurationManager.AppSettings["UrlBase"];
         public static string EndPointResetPassword = WebConfigurationManager.AppSettings["EndPointResetPassword"];
         public static string EndPointTerminos = WebConfigurationManager.AppSettings["EndPointTerminos"];
+        public static string EndPointEquipo = WebConfigurationManager.AppSettings["EndPointEquipo"];
 
         //Construccion de codigos
         public static string[] AlfabetoG = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };//0-25
@@ -65,32 +66,35 @@ namespace SudokuForAll.Engine
             {
                 case (CulturaEspañol):
                     I.Español = "Español";
-                    I.Ingles = "Ingles";
-                    I.Portugues = "Portugues";
+                    I.Ingles = "English";
+                    I.Portugues = "Português";
                     I.Terminos = "Terminos y condiciones de uso";
                     I.ResetPassword = "Olvido su contraseña";
                     I.Entrar = "Entrar";
                     I.Inicio = "Inicio";
+                    I.Equipo = "Equipo";
                     I.Id = 1;
                     break;
                 case (CulturaIngles):
-                    I.Español = "Spanish";
+                    I.Español = "Español";
                     I.Ingles = "English";
-                    I.Portugues = "Portuguese";
+                    I.Portugues = "Português";
                     I.Terminos = "Terms and conditions of use";
                     I.ResetPassword = "Forgot your password";
                     I.Entrar = "Get in";
                     I.Inicio = "Home";
+                    I.Equipo = "Team";
                     I.Id = 2;
                     break;
                 case (CulturaPortugues):
-                    I.Español = "Espanhol";
-                    I.Ingles = "Inglês";
+                    I.Español = "Español";
+                    I.Ingles = "English";
                     I.Portugues = "Português";
                     I.Terminos = "Termos e condições de uso";
                     I.ResetPassword = "Esqueceu sua senha";
                     I.Entrar = "Para entrar";
                     I.Inicio = "Home";
+                    I.Equipo = "Equipa";
                     I.Id = 3;
                     break;
             }

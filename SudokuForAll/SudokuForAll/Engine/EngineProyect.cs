@@ -114,6 +114,12 @@ namespace SudokuForAll.Engine
 
         //********************************METODOS DEL SITIO *********************************************************************************
 
+        public void AnularGerente()
+        {
+            HttpContext.Current.Session["Gerente"] = null;
+            HttpContext.Current.Session["Rol"] = null;
+        }
+
        public bool EnviarNuevaNotificacion(IEngineNotificacion Notificacion, IEngineDb Metodo, string email = "", string type = "", string password = "")
         {
             bool resultado = false;
@@ -433,8 +439,8 @@ namespace SudokuForAll.Engine
             m2.Nombre = "Medio";
             m.Insert(1, m2);
             Roles m3 = new Roles();
-            m3.Id = "Normal";
-            m3.Nombre = "Normal";
+            m3.Id = "Bajo";
+            m3.Nombre = "Bajo";
             m.Insert(2, m3);
             return m;
         }

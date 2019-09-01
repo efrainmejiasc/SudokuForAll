@@ -29,6 +29,8 @@ namespace SudokuForAll.Controllers
 
         public ActionResult Index(string lenguaje = "",int index = 0)
         {
+            Funcion.AnularGerente();
+            GetGalleta();
             Respuesta model = new Respuesta();
             if (index > 0)
             {
@@ -37,6 +39,23 @@ namespace SudokuForAll.Controllers
             }
             model.Descripcion = "ocultarInicio";
             return View(model);
+        }
+
+        private  void GetGalleta()
+        {
+            if (Request.Cookies["GalletaSudokuForAllId"] != null)
+            {
+                HttpCookie MiGalletaId = Request.Cookies["GalletaSudokuForAllId"];
+                HttpCookie MiGalletaExpire = Request.Cookies["GalletaSudokuForAllExpire"];
+                string identificadorGalleta = MiGalletaId.Value;
+                string fechaExpiracion = MiGalletaExpire.Value;
+                System.Web.HttpContext.Current.Session["MiGalleta"] = true;
+            }
+            else
+            {
+                System.Web.HttpContext.Current.Session["MiGalleta"] = false;
+            }
+
         }
 
 
@@ -559,6 +578,19 @@ namespace SudokuForAll.Controllers
             }
 
             return Json(model);
+        }
+
+        [HttpPost]
+        public JsonResult ExisteGalleta()
+        {
+            Respuesta respuesta = new Respuesta();
+            bool existe = (bool) System.Web.HttpContext.Current.Session["MiGalleta"];
+            if (existe)
+                respuesta.Descripcion = string.Empty;
+            else
+                respuesta.Descripcion = "Equipo no registrado, desea continuar y registrarlo ?";
+
+            return Json(respuesta);
         }
 
     }

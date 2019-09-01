@@ -46,6 +46,7 @@ function SetObjectsLayount(index) {
             $('#normas').text(data.Terminos);
             $('#inicio').text(data.Inicio);
             $('#entrar').text(data.Entrar);
+            $('#equipo').text(data.Equipo);
             $('#triggerModal').removeAttr('disabled');
             $("#traductor").empty();
             $('#traductor').append('<option selected disabled value="0">Seleccione Idioma. . .</option>');

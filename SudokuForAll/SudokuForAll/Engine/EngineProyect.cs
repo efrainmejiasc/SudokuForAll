@@ -272,6 +272,20 @@ namespace SudokuForAll.Engine
             return model;
         }
 
+        public PagoCliente ConstruirPagoCliente (int idCliente)
+        {
+            PagoCliente pagoCliente = new PagoCliente
+            {
+                IdCliente = idCliente,
+                FechaPago = DateTime.UtcNow,
+                FechaVencimiento = DateTime.UtcNow.AddDays(30),
+                MontoPago = 9.99,
+                Impuesto = 7,
+                MontoTotal  = 10.69
+            };
+            return pagoCliente;
+        }
+
         public ResetPassword SetResetPassword(string email, string codigo)
         {
             ResetPassword model = new ResetPassword

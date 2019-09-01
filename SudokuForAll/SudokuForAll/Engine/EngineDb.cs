@@ -286,6 +286,25 @@ namespace SudokuForAll.Engine
 
         //************************************EntityFramework***********************************************************************************
 
+        public bool SetPagoCliente (PagoCliente model)
+        {
+            bool resultado = false;
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    Context.PagoCliente.Add(model);
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/SetPagoCliente*"));
+            }
+            return resultado;
+        }
+
         public Guid ObtenerIdentidadCliente(string email)
         {
             Cliente C = new Cliente();

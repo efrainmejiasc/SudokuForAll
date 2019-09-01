@@ -55,7 +55,6 @@ namespace SudokuForAll.Controllers
             {
                 System.Web.HttpContext.Current.Session["MiGalleta"] = false;
             }
-
         }
 
 
@@ -135,6 +134,11 @@ namespace SudokuForAll.Controllers
                 R = Funcion.RespuestaProceso("Register", emailCode64 , null, model.Email + EngineData.ErrorRegistroCliente());
                 return RedirectToAction("State", "Home", R);
             }
+
+            //*****************PAGO HARCODE**************************
+            PagoCliente pago = Funcion.ConstruirPagoCliente(result);
+            Metodo.SetPagoCliente(pago);
+            //***************************************************
 
             string enlaze = Funcion.CrearEnlazeRegistro(Metodo, model.Email, model.Password2);
             EstructuraMail estructura = new EstructuraMail();

@@ -10,6 +10,7 @@ namespace SudokuForAll.Engine
 {
     public interface IEngineProyect
     {
+        PagoCliente ConstruirPagoCliente(int idCliente);
         List<Roles> Roles();
         void AnularGerente();
         List<Moneda> Monedas();

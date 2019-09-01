@@ -20,6 +20,7 @@ namespace SudokuForAll.Engine
         List<Producto> ProductosParaVenta();
         int UpdateClienteTest(Cliente model);
         Gerente GetGerenteName(string nombre);
+        bool SetPagoCliente(PagoCliente model);
         List<Producto> GetProductosParaVenta();
         bool InsertarSucesoLog(SucesoLog model);
         Gerente GetLoginGerente(string password);

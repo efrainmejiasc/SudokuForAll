@@ -7,8 +7,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace SudokuForAll.Controllers
 {
+    [Authorize]
     public class DealController : Controller
     {
         private IEngineDb Metodo;
@@ -80,6 +82,7 @@ namespace SudokuForAll.Controllers
             return View(modelo);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public JsonResult GetProducto (string codigo)
         {

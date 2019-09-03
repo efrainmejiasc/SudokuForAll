@@ -4,6 +4,7 @@ using System.Web.Mvc;
 
 namespace SudokuForAll.Controllers
 {
+    [Authorize]
     public class GameController : Controller
     {
         private IEngineDb Metodo;

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace SudokuForAll.Controllers
 {
+    [Authorize]
     public class ManagerController : Controller
     {
         private IEngineDb Metodo;
@@ -25,6 +26,7 @@ namespace SudokuForAll.Controllers
             this.Notificacion = _Notificacion;
         }
 
+        [AllowAnonymous]
         public ActionResult Login(string nombreUsuario = "" , string password = "")
         {
             ViewBag.Respuesta = null;
@@ -48,7 +50,7 @@ namespace SudokuForAll.Controllers
             return View();
         }
 
-    
+       
         public ActionResult MainManager()
         {
             CreateGalleta();
@@ -84,7 +86,7 @@ namespace SudokuForAll.Controllers
             }
         }
 
-
+     
         public ActionResult Index(Gerente modelo = null)
         {
             CreateGalleta();
@@ -217,7 +219,7 @@ namespace SudokuForAll.Controllers
             return View(modelo);
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
         public JsonResult GetGerente(string nombre)
         {

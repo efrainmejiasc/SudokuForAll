@@ -28,6 +28,7 @@ namespace SudokuForAll.Controllers
             this.Paypal = _Paypal;
         }
 
+        [Authorize]
         public ActionResult BusinessGame()
         {
             //RespuestaPaypalToken Respuesta = new RespuestaPaypalToken();
@@ -40,6 +41,7 @@ namespace SudokuForAll.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public void WebHookPay()
         {

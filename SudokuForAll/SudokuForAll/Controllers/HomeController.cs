@@ -27,6 +27,7 @@ namespace SudokuForAll.Controllers
             this.Notificacion = _Notificacion;
         }
 
+        [AllowAnonymous]
         public ActionResult Index(string lenguaje = "",int index = 0)
         {
             Funcion.AnularGerente();
@@ -57,7 +58,7 @@ namespace SudokuForAll.Controllers
             }
         }
 
-
+        [AllowAnonymous]
         public ActionResult Login(string email = "", string password = "")
         {
             Respuesta R = new Respuesta();
@@ -100,6 +101,7 @@ namespace SudokuForAll.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Register(ActivarCliente model = null)
         {
             Respuesta R = new Respuesta();
@@ -159,6 +161,7 @@ namespace SudokuForAll.Controllers
             }
         }
 
+        [AllowAnonymous]
         public ActionResult Contact(Respuesta model = null)
         {
             if (model == null || model.Email == string.Empty || model.Email == null )
@@ -218,6 +221,7 @@ namespace SudokuForAll.Controllers
             return View(model);
         }
     
+       [AllowAnonymous]
        [HttpGet]
         public ActionResult State(int Id = 0 ,string email = "", string identidad = "", string date = "", string status = "", string ide = "", string type = "",  string cultureInfo = "", Respuesta K = null)
         {
@@ -370,8 +374,8 @@ namespace SudokuForAll.Controllers
         {
             return View();
         }
-
-
+   
+        [AllowAnonymous]
         [HttpPost]
         public JsonResult NotificacionPrueba(string email)
         {
@@ -401,7 +405,7 @@ namespace SudokuForAll.Controllers
             return Json(R);
         }
 
-
+        [AllowAnonymous]
         public ActionResult EditPasswordNotify(Respuesta K = null)
         {
             if (K.CodigoResetPassword != "codeVerify")
@@ -411,7 +415,7 @@ namespace SudokuForAll.Controllers
             return View(K);
         }
 
-
+        [Authorize]
         public ActionResult EditPassword(ActivarCliente model)
         {
             Respuesta R = new Respuesta();
@@ -453,6 +457,7 @@ namespace SudokuForAll.Controllers
 
         //*************************************************** Invoke AJAX ***********************************************************
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult NotificacionRestablecerPassword(string email)
         {
@@ -495,6 +500,7 @@ namespace SudokuForAll.Controllers
             return Json(R);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult ValidarCodigoRestablecerPassword(string email, string codigo)
         {
@@ -532,7 +538,7 @@ namespace SudokuForAll.Controllers
             return Json(R);
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
         public JsonResult DireccionSite(string nombreControlador, string nombreAccion)
         {
@@ -541,6 +547,7 @@ namespace SudokuForAll.Controllers
             return Json(Redireccion);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public JsonResult EmailUser()
         {
@@ -552,6 +559,7 @@ namespace SudokuForAll.Controllers
             return Json(R);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public JsonResult ListaLenguaje (int index = 0)
         {
@@ -560,6 +568,7 @@ namespace SudokuForAll.Controllers
             return Json(idiomas);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public JsonResult CheckProcessEditPasswordNotify (string lblTexto, string email = "")
         {
@@ -584,6 +593,7 @@ namespace SudokuForAll.Controllers
             return Json(model);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public JsonResult ExisteGalleta()
         {

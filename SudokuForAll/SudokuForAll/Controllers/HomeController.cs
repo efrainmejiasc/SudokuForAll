@@ -375,7 +375,12 @@ namespace SudokuForAll.Controllers
         {
             return View();
         }
-   
+
+        public ActionResult NoAuth()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
 
         [HttpPost]
         public JsonResult NotificacionPrueba(string email)

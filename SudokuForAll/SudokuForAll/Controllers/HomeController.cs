@@ -80,7 +80,7 @@ namespace SudokuForAll.Controllers
             {
                 // Cuando RespuetaAccion = Open -> No redirecciona a ninguna pagina
                 R = Funcion.RespuestaProceso("Open",emailCode64, null, email + EngineData.TiempoJuegoExpiro());
-                return RedirectToAction("BusinessGame", "Paypal");
+                return RedirectToAction("BusinessGame", "PayByPaypal");
             }
             else if (result == 1)
             {

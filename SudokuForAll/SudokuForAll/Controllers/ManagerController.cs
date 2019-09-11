@@ -62,10 +62,12 @@ namespace SudokuForAll.Controllers
             if (Request.Cookies["GalletaSudokuForAllId"] == null)
             {
                 HttpCookie MiGalletaId = new HttpCookie("GalletaSudokuForAllId");
-                HttpCookie MiGalletaExpire = new HttpCookie("GalletaSudokuForAllExpire");
                 MiGalletaId.Value = System.Web.HttpContext.Current.Session["Gerente"].ToString();
+                MiGalletaId.Expires = DateTime.UtcNow.AddDays(1);
+                HttpCookie MiGalletaExpire = new HttpCookie("GalletaSudokuForAllExpire");
+                MiGalletaExpire.Value = DateTime.UtcNow.AddDays(1).ToString();
+                MiGalletaExpire.Expires = DateTime.UtcNow.AddDays(1);
                 Response.Cookies.Add(MiGalletaId);
-                MiGalletaExpire.Value = DateTime.UtcNow.AddHours(1).ToString();
                 Response.Cookies.Add(MiGalletaExpire);
             }
             else
@@ -77,9 +79,11 @@ namespace SudokuForAll.Controllers
                     HttpCookie MiGalletaId = new HttpCookie("GalletaSudokuForAllId");
                     HttpCookie MiGalletaExpire = new HttpCookie("GalletaSudokuForAllExpire");
                     MiGalletaId.Value = System.Web.HttpContext.Current.Session["Gerente"].ToString();
+                    MiGalletaId.Expires = DateTime.UtcNow.AddDays(1);
                     Response.SetCookie(MiGalletaId);
                     Response.Flush();
                     MiGalletaExpire.Value = DateTime.UtcNow.AddHours(1).ToString();
+                    MiGalletaExpire.Expires = DateTime.UtcNow.AddDays(1);
                     Response.SetCookie(MiGalletaExpire);
                     Response.Flush();
                 }

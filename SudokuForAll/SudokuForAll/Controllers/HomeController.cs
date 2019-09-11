@@ -180,6 +180,7 @@ namespace SudokuForAll.Controllers
             {
                 //TIEMPO DE PRUEBA ES VALIDO
                 System.Web.HttpContext.Current.Session["Email"] = model.Email;
+                System.Web.HttpContext.Current.Session["Usuario"] = model.Email;
                 Metodo.EstablecerCulturaCliente(model.Email);
                 return RedirectToAction("PlayGame", "Game");
             }

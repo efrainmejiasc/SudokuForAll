@@ -144,6 +144,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthData\AuthAttribute.cs" />
     <Compile Include="Controllers\DealController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\PayByPaypalController.cs" />

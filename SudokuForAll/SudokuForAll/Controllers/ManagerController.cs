@@ -7,10 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SudokuForAll.AuthData;
 
 namespace SudokuForAll.Controllers
 {
-    [Authorize]
     public class ManagerController : Controller
     {
         private IEngineDb Metodo;
@@ -26,7 +26,6 @@ namespace SudokuForAll.Controllers
             this.Notificacion = _Notificacion;
         }
 
-        [AllowAnonymous]
         public ActionResult Login(string nombreUsuario = "" , string password = "")
         {
             ViewBag.Respuesta = null;
@@ -42,6 +41,7 @@ namespace SudokuForAll.Controllers
                 Gerente gerente = Metodo.GetLoginGerente(password);
                 if(gerente.NombreUsuario != null && gerente.NombreUsuario != string.Empty)
                 {
+                    System.Web.HttpContext.Current.Session["Usuario"] = gerente.NombreUsuario;
                     System.Web.HttpContext.Current.Session["Gerente"] = gerente.NombreUsuario;
                     System.Web.HttpContext.Current.Session["Rol"] = gerente.Rol;
                     return RedirectToAction("MainManager", "Manager");
@@ -50,7 +50,7 @@ namespace SudokuForAll.Controllers
             return View();
         }
 
-       
+        [Auth]
         public ActionResult MainManager()
         {
             CreateGalleta();
@@ -90,7 +90,7 @@ namespace SudokuForAll.Controllers
             }
         }
 
-     
+        [Auth]
         public ActionResult Index(Gerente modelo = null)
         {
             CreateGalleta();
@@ -134,6 +134,7 @@ namespace SudokuForAll.Controllers
             return View(modelo);
         }
 
+        [Auth]
         public ActionResult Update(Gerente modelo = null,string CPassword = "")
         {
             ViewBag.Respuesta = null;
@@ -160,6 +161,7 @@ namespace SudokuForAll.Controllers
                     gerente.FechaActualizacion = DateTime.Now;
                     ViewBag.Type = "Bajo";
                     System.Web.HttpContext.Current.Session["Rol"] = "Bajo";
+                    System.Web.HttpContext.Current.Session["Usuario"] = EngineData.usuarioTemporal;
                     return View(gerente);
                 }
                 else
@@ -223,7 +225,6 @@ namespace SudokuForAll.Controllers
             return View(modelo);
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public JsonResult GetGerente(string nombre)
         {

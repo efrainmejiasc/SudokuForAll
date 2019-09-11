@@ -24,6 +24,7 @@ namespace SudokuForAll.Engine
         public static string IdSite = EngineProyect.DecodeBase642(WebConfigurationManager.AppSettings["IdSite"]);
         public static int IdActivacion = Convert.ToInt32(WebConfigurationManager.AppSettings["IdActivacion"]);
         public static int DiasValidos = Convert.ToInt32(WebConfigurationManager.AppSettings["DiasValidos"]);
+        public static string usuarioTemporal = "usuarioTemporal";
 
         //Parametros e-mail notificacion
         public static string UserMail = EngineProyect.DecodeBase642(WebConfigurationManager.AppSettings["UserMail"]);

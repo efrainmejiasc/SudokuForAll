@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SudokuForAll.AuthData;
 
 
 namespace SudokuForAll.Controllers
 {
-    [Authorize]
     public class DealController : Controller
     {
         private IEngineDb Metodo;
@@ -26,6 +26,7 @@ namespace SudokuForAll.Controllers
             this.Paypal = _Paypal;
         }
 
+        [Auth]
         public ActionResult Index(Producto model = null)
         {
             ViewBag.Respuesta = null;
@@ -54,6 +55,7 @@ namespace SudokuForAll.Controllers
             return View(model);
         }
 
+        [Auth]
         public ActionResult Update (Producto modelo = null)
         {
             ViewBag.Moneda = Funcion.Monedas();
@@ -82,7 +84,6 @@ namespace SudokuForAll.Controllers
             return View(modelo);
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public JsonResult GetProducto (string codigo)
         {

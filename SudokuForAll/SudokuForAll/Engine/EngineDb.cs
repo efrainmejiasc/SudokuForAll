@@ -362,6 +362,25 @@ namespace SudokuForAll.Engine
             return 0;
         }
 
+
+        public void EstablecerCulturaCliente (string email)
+        {
+            Cliente C = new Cliente();
+            try
+            {
+                using (SudokuContext Context = new SudokuContext())
+                {
+                    C = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
+                    if(C.Cultura != null)
+                       Funcion.SetCultureInfo(C.Cultura);
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/EstablecerCulturaCliente*" + email));
+            }
+        }
+
         public string ObtenerPasswordCliente(string email)
         {
             Cliente C = new Cliente();

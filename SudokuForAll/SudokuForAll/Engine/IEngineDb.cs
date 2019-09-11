@@ -30,6 +30,7 @@ namespace SudokuForAll.Engine
         Guid ObtenerIdentidadCliente(string email);
         Guid ObtenerIdentidadGerente(string email);
         string ObtenerPasswordCliente(string email);
+        void EstablecerCulturaCliente(string email);
         bool InsertarProductoParaVenta(Producto model);
         bool PutGerente(Gerente m, string subEjecutada);
         bool InsertarResetPassword(ResetPassword model);

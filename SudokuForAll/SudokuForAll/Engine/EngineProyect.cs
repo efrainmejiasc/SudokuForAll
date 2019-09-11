@@ -2,10 +2,12 @@
 using SudokuForAll.Models.Sistema;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Web;
 
 namespace SudokuForAll.Engine
@@ -323,7 +325,8 @@ namespace SudokuForAll.Engine
                 FechaRegistro = Convert.ToDateTime("01-01-1900 00:00:00.000"),
                 Estatus = false,
                 EstatusEnvioNotificacion = false,
-                Identidad = IdentificadorReg()
+                Identidad = IdentificadorReg(),
+                Cultura = EngineData.GetCultura()
             };
             return R;
         }
@@ -424,6 +427,9 @@ namespace SudokuForAll.Engine
 
         public void SetCultureInfo(string cultura)
         {
+            CultureInfo ci = new CultureInfo(cultura);
+            Thread.CurrentThread.CurrentUICulture = ci;
+            Thread.CurrentThread.CurrentCulture = ci;
             System.Web.HttpContext.Current.Session["Cultura"] = cultura;
         }
 

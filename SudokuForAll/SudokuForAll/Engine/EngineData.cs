@@ -22,7 +22,9 @@ namespace SudokuForAll.Engine
         }
 
         public static string IdSite = EngineProyect.DecodeBase642(WebConfigurationManager.AppSettings["IdSite"]);
-        public static int IdActivacion = -9182;
+        public static int IdActivacion = Convert.ToInt32(WebConfigurationManager.AppSettings["IdActivacion"]);
+        public static int DiasValidos = Convert.ToInt32(WebConfigurationManager.AppSettings["DiasValidos"]);
+        public static string usuarioTemporal = "usuarioTemporal";
 
         //Parametros e-mail notificacion
         public static string UserMail = EngineProyect.DecodeBase642(WebConfigurationManager.AppSettings["UserMail"]);
@@ -674,7 +676,7 @@ namespace SudokuForAll.Engine
             switch (cultura)
             {
                 case (CulturaEspañol):
-                    respuesta = "Bienvenido a nuestra aplicacion SudokuParaTodos, haz click en el link y disfruta 2 dias de prueba gratis </br>" +
+                    respuesta = "Bienvenido a nuestra aplicacion SudokuParaTodos, haz click en el link y completa tu registro </br>" +
                                 "El tiempo valido para este link es de 2 horas,</br>No tendras que aportar datos personales adicionales, tu direccion e-mail y toda tu informacion sera confidencial.";
                     break;
                 case (CulturaIngles):

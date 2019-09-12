@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SudokuForAll.AuthData;
 
 namespace SudokuForAll.Controllers
 {
@@ -40,6 +41,7 @@ namespace SudokuForAll.Controllers
                 Gerente gerente = Metodo.GetLoginGerente(password);
                 if(gerente.NombreUsuario != null && gerente.NombreUsuario != string.Empty)
                 {
+                    System.Web.HttpContext.Current.Session["Usuario"] = gerente.NombreUsuario;
                     System.Web.HttpContext.Current.Session["Gerente"] = gerente.NombreUsuario;
                     System.Web.HttpContext.Current.Session["Rol"] = gerente.Rol;
                     return RedirectToAction("MainManager", "Manager");
@@ -48,7 +50,7 @@ namespace SudokuForAll.Controllers
             return View();
         }
 
-    
+        [Auth]
         public ActionResult MainManager()
         {
             CreateGalleta();
@@ -60,10 +62,12 @@ namespace SudokuForAll.Controllers
             if (Request.Cookies["GalletaSudokuForAllId"] == null)
             {
                 HttpCookie MiGalletaId = new HttpCookie("GalletaSudokuForAllId");
-                HttpCookie MiGalletaExpire = new HttpCookie("GalletaSudokuForAllExpire");
                 MiGalletaId.Value = System.Web.HttpContext.Current.Session["Gerente"].ToString();
+                MiGalletaId.Expires = DateTime.UtcNow.AddDays(1);
+                HttpCookie MiGalletaExpire = new HttpCookie("GalletaSudokuForAllExpire");
+                MiGalletaExpire.Value = DateTime.UtcNow.AddDays(1).ToString();
+                MiGalletaExpire.Expires = DateTime.UtcNow.AddDays(1);
                 Response.Cookies.Add(MiGalletaId);
-                MiGalletaExpire.Value = DateTime.UtcNow.AddHours(1).ToString();
                 Response.Cookies.Add(MiGalletaExpire);
             }
             else
@@ -75,16 +79,18 @@ namespace SudokuForAll.Controllers
                     HttpCookie MiGalletaId = new HttpCookie("GalletaSudokuForAllId");
                     HttpCookie MiGalletaExpire = new HttpCookie("GalletaSudokuForAllExpire");
                     MiGalletaId.Value = System.Web.HttpContext.Current.Session["Gerente"].ToString();
+                    MiGalletaId.Expires = DateTime.UtcNow.AddDays(1);
                     Response.SetCookie(MiGalletaId);
                     Response.Flush();
                     MiGalletaExpire.Value = DateTime.UtcNow.AddHours(1).ToString();
+                    MiGalletaExpire.Expires = DateTime.UtcNow.AddDays(1);
                     Response.SetCookie(MiGalletaExpire);
                     Response.Flush();
                 }
             }
         }
 
-
+        [Auth]
         public ActionResult Index(Gerente modelo = null)
         {
             CreateGalleta();
@@ -128,6 +134,7 @@ namespace SudokuForAll.Controllers
             return View(modelo);
         }
 
+        [Auth]
         public ActionResult Update(Gerente modelo = null,string CPassword = "")
         {
             ViewBag.Respuesta = null;
@@ -154,6 +161,7 @@ namespace SudokuForAll.Controllers
                     gerente.FechaActualizacion = DateTime.Now;
                     ViewBag.Type = "Bajo";
                     System.Web.HttpContext.Current.Session["Rol"] = "Bajo";
+                    System.Web.HttpContext.Current.Session["Usuario"] = EngineData.usuarioTemporal;
                     return View(gerente);
                 }
                 else
@@ -216,7 +224,6 @@ namespace SudokuForAll.Controllers
 
             return View(modelo);
         }
-
 
         [HttpPost]
         public JsonResult GetGerente(string nombre)

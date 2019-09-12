@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SudokuForAll.AuthData;
+
 
 namespace SudokuForAll.Controllers
 {
@@ -24,6 +26,7 @@ namespace SudokuForAll.Controllers
             this.Paypal = _Paypal;
         }
 
+        [Auth]
         public ActionResult Index(Producto model = null)
         {
             ViewBag.Respuesta = null;
@@ -52,6 +55,7 @@ namespace SudokuForAll.Controllers
             return View(model);
         }
 
+        [Auth]
         public ActionResult Update (Producto modelo = null)
         {
             ViewBag.Moneda = Funcion.Monedas();

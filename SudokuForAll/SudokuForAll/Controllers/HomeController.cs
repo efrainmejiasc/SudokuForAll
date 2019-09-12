@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using SudokuForAll.AuthData;
 
 namespace SudokuForAll.Controllers
 {
@@ -57,7 +58,6 @@ namespace SudokuForAll.Controllers
             }
         }
 
-
         public ActionResult Login(string email = "", string password = "")
         {
             Respuesta R = new Respuesta();
@@ -79,16 +79,18 @@ namespace SudokuForAll.Controllers
             {
                 // Cuando RespuetaAccion = Open -> No redirecciona a ninguna pagina
                 R = Funcion.RespuestaProceso("Open",emailCode64, null, email + EngineData.TiempoJuegoExpiro());
-                return RedirectToAction("BusinessGame", "Paypal");
+                return RedirectToAction("BusinessGame", "PayByPaypal");
             }
             else if (result == 1)
             {
                 // Entre 1 y 5 dias para expirar
+                System.Web.HttpContext.Current.Session["Usuario"] = email;
                 return RedirectToAction("PlayGame", "Game");
             }
             else if (result == 2)
             {
                 //Mas de 6 dias para expirar
+                System.Web.HttpContext.Current.Session["Usuario"] = email;
                 return RedirectToAction("PlayGame", "Game");
             }
             else if (result == -1)
@@ -178,24 +180,29 @@ namespace SudokuForAll.Controllers
             {
                 //TIEMPO DE PRUEBA ES VALIDO
                 System.Web.HttpContext.Current.Session["Email"] = model.Email;
+                System.Web.HttpContext.Current.Session["Usuario"] = model.Email;
+                Metodo.EstablecerCulturaCliente(model.Email);
                 return RedirectToAction("PlayGame", "Game");
             }
             else if (result == 2 || result == 4)
             {
                 //TIEMPO DE PRUEBA EXPIRO
                 model = Funcion.RespuestaProceso( "comprarRegistrarse", emailCode64, null, EngineData.TiempoPruebaJuegoExpiro());
+                Metodo.EstablecerCulturaCliente(model.Email);
                 return RedirectToAction("State", "Home", model);
             }
             else if (result == 3)
             {
                 //CUENTA ACTIVADA CLIENTE REGISTRADO
                 System.Web.HttpContext.Current.Session["Email"] = model.Email;
+                Metodo.EstablecerCulturaCliente(model.Email);
                 return RedirectToAction("Login", "Home");
             }
             else if (result == 5 || result == 7)
             {
                 //CUENTA NO ACTIVADA CLIENTE REGISTRADO
                 string enlaze = string.Empty;
+                Metodo.EstablecerCulturaCliente(model.Email);
                 if (result == 5)
                 {
                     string password = Metodo.ObtenerPasswordCliente(model.Email);
@@ -218,9 +225,11 @@ namespace SudokuForAll.Controllers
             return View(model);
         }
     
+       [Auth]
        [HttpGet]
         public ActionResult State(int Id = 0 ,string email = "", string identidad = "", string date = "", string status = "", string ide = "", string type = "",  string cultureInfo = "", Respuesta K = null)
         {
+            System.Web.HttpContext.Current.Session["Usuario"] = EngineData.usuarioTemporal;
             Respuesta R = new Respuesta();
             bool resultado = false;
             Guid guidCliente = Guid.Empty;
@@ -272,9 +281,9 @@ namespace SudokuForAll.Controllers
                 date = date.Replace('m', ' ');
                 date = date.Trim();
                 Funcion.SetCultureInfo(cultureInfo);
-                CultureInfo ci = new CultureInfo(cultureInfo);
-                Thread.CurrentThread.CurrentUICulture = ci;
-                Thread.CurrentThread.CurrentCulture = ci;
+                //CultureInfo ci = new CultureInfo(cultureInfo);
+                //Thread.CurrentThread.CurrentUICulture = ci;
+                //Thread.CurrentThread.CurrentCulture = ci;
                 DateTime fechaEnvio = Convert.ToDateTime(date);
                 DateTime fechaActivacion = DateTime.UtcNow;
                 resultado = Funcion.EstatusLink(fechaEnvio, fechaActivacion);
@@ -310,7 +319,7 @@ namespace SudokuForAll.Controllers
                 else
                     R = Funcion.RespuestaProceso("Index", emailCode64, null, EngineData.ActivacionFallida());
             }
-            //Activacion cuanta del cliente
+            //Activacion cuenta del cliente
             else if (type == EngineData.Register)
             {
                 string password = ide;
@@ -366,9 +375,15 @@ namespace SudokuForAll.Controllers
             return View();
         }
 
+
         public ActionResult NotifySend()
         {
             return View();
+        }
+
+        public ActionResult NoAuth()
+        {
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -401,7 +416,6 @@ namespace SudokuForAll.Controllers
             return Json(R);
         }
 
-
         public ActionResult EditPasswordNotify(Respuesta K = null)
         {
             if (K.CodigoResetPassword != "codeVerify")
@@ -410,7 +424,6 @@ namespace SudokuForAll.Controllers
                 K.Descripcion = EngineData.IngreseCodigo();
             return View(K);
         }
-
 
         public ActionResult EditPassword(ActivarCliente model)
         {
@@ -531,7 +544,6 @@ namespace SudokuForAll.Controllers
             }
             return Json(R);
         }
-
 
         [HttpPost]
         public JsonResult DireccionSite(string nombreControlador, string nombreAccion)

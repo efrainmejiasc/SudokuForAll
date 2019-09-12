@@ -1,9 +1,11 @@
 ﻿using SudokuForAll.Engine;
 using SudokuForAll.Models;
 using System.Web.Mvc;
+using SudokuForAll.AuthData;
 
 namespace SudokuForAll.Controllers
 {
+    [Auth]
     public class GameController : Controller
     {
         private IEngineDb Metodo;
@@ -17,6 +19,7 @@ namespace SudokuForAll.Controllers
             this.Funcion = _Funcion;
         }
 
+        [Auth]
         public ActionResult PlayGame()
         {
             return View();

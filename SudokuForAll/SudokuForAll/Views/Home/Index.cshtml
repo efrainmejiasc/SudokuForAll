@@ -15,8 +15,8 @@
 
 <section id="videoSection" class="videoInitial">
     <div id="video" class="video videoInitial">
-        <div class="video-container">
-            <iframe id="videoInit" controls="autoplay1" allow="autoplay; encrypted-media" src="https://www.youtube.com/embed/SkRyiELVpO4?autoplay=0" class="videoSize"></iframe>
+        <div id="videoContainer" class="video-container">
+            <iframe id="videoInit" controls="autoplay1" allow="autoplay; encrypted-media" src="~/Content/imagen/initSudoku.mp4?autoplay=1" class="videoSize"></iframe>
         </div>
     </div>
 </section>
@@ -45,8 +45,11 @@
                 $('#traductor').append('<option  value="' + 1 + '">' + data.Español + '</option>');
                 $('#traductor').append('<option  value="' + 2 + '">' + data.Ingles + '</option>');
                 $('#traductor').append('<option  value="' + 3 + '">' + data.Portugues + '</option>');
-                if (data.Id > 1)
+                if (data.Id > 1) 
                     $('#traductor').val(data.Id);
+                else 
+                    OcultarObjeto('entrar');
+
             }
         });
     }

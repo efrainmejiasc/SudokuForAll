@@ -5,6 +5,11 @@ function OcultarObjeto(name)
     $(objeto).hide();
 }
 
+function MostrarObjeto(name) {
+    var objeto = '#'.concat(name);
+    $(objeto).show();
+}
+
 function GetEmail() {
     $.ajax({
         type: "POST",
@@ -46,7 +51,9 @@ function SetObjectsLayount(index) {
             $('#normas').text(data.Terminos);
             $('#inicio').text(data.Inicio);
             $('#entrar').text(data.Entrar);
+            $('#entrar').show();
             $('#equipo').text(data.Equipo);
+            $('#videoInit').attr('src', '../Content/imagen/expSudoku.mp4');
             $('#triggerModal').removeAttr('disabled');
             $("#traductor").empty();
             $('#traductor').append('<option selected disabled value="0">Seleccione Idioma. . .</option>');

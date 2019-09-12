@@ -206,6 +206,9 @@
     <Content Include="Content\css\Global.css" />
     <Content Include="Content\css\MainManager.css" />
     <Content Include="Content\css\_MessagePartial.css" />
+    <Content Include="Content\imagen\flecha.JPG" />
+    <Content Include="Content\imagen\expSudoku.mp4" />
+    <Content Include="Content\imagen\initSudoku.mp4" />
     <Content Include="Content\imagen\logo.png" />
     <Content Include="Content\imagen\SudokuEnCasa.ico" />
     <Content Include="Content\js\EditPasswordNotify.js" />

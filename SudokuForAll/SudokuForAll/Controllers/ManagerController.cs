@@ -180,6 +180,7 @@ namespace SudokuForAll.Controllers
                             ViewBag.Type = gerente.Rol;
                         }
                     }
+                    gerente.FechaActualizacion = DateTime.Now;
                     return View(gerente);
                 }
             }
@@ -232,5 +233,14 @@ namespace SudokuForAll.Controllers
             Gerente = Metodo.GetGerenteName(nombre);
             return Json(Gerente);
         }
+
+        [HttpPost]
+        public void AnularGerente()
+        {
+            System.Web.HttpContext.Current.Session["Gerente"] = null;
+            System.Web.HttpContext.Current.Session["Usuario"] = null;
+            System.Web.HttpContext.Current.Session["Rol"] = null;
+        }
+
     }
 }

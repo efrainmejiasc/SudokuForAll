@@ -33,7 +33,7 @@
                 @Html.LabelFor(model => model.Nombre, "Nombre Completo", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.DropDownListFor(model => model.Rol, new SelectList(ViewBag.Gerentes, "Id", "Nombre"), htmlAttributes: new { @class = "form-control", @Id = "gerentes" })
+                    @Html.DropDownListFor(model => model.Rol, new SelectList(ViewBag.Gerentes, "Id", "Nombre"), htmlAttributes: new { @class = "form-control", @Id = "gerentes" , @Name="gerentes"})
                 </div>
             </div>
 
@@ -152,9 +152,5 @@
             }
         });
     }); 
-
-    function IrMainManager() {
-        window.location.href = '/Manager/MainManager';
-    }
 </script>
 

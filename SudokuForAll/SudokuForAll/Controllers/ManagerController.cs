@@ -134,8 +134,8 @@ namespace SudokuForAll.Controllers
             return View(modelo);
         }
 
-        [Auth]
-        public ActionResult Update(Gerente modelo = null,string CPassword = "")
+        //[Auth]
+        public ActionResult Update(Gerente modelo = null,string CPassword = "",string gerentes = "")
         {
             ViewBag.Respuesta = null;
             ViewBag.Gerentes = Funcion.Gerentes();
@@ -188,6 +188,9 @@ namespace SudokuForAll.Controllers
            
             if (Request.HttpMethod == "POST")
             {
+                if (gerentes != string.Empty && gerentes != null)
+                    modelo.Nombre = gerentes;
+
                 if(subEjecutada == "Alto")
                 {
                     if (modelo.Nombre == string.Empty || modelo.NombreUsuario == string.Empty || modelo.Email == string.Empty || modelo.Rol == string.Empty
@@ -201,6 +204,7 @@ namespace SudokuForAll.Controllers
                 }
                 else
                 {
+
                     if (modelo.Nombre == string.Empty || modelo.NombreUsuario == string.Empty || modelo.Email == string.Empty || modelo.Password == string.Empty 
                     || CPassword == string.Empty || modelo.Nombre == null || modelo.NombreUsuario == null || modelo.Email == null ||  modelo.Password == null || CPassword == null)
                     {
@@ -222,6 +226,13 @@ namespace SudokuForAll.Controllers
                 ViewBag.Respuesta = "Actualizacion fallida";
             else
                 ViewBag.Respuesta = "Actualizacion exitosa";
+
+            if (System.Web.HttpContext.Current.Session["Gerente"] != null)
+            {
+                string nombreUsuario = System.Web.HttpContext.Current.Session["Gerente"].ToString();
+                modelo = Metodo.GetGerenteUserName(nombreUsuario);
+                ViewBag.Type = modelo.Rol;
+            }
 
             return View(modelo);
         }

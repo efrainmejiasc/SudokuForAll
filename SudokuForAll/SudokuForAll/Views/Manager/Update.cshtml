@@ -14,7 +14,7 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-     
+
         <div>
             <h4>
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -33,7 +33,7 @@
                 @Html.LabelFor(model => model.Nombre, "Nombre Completo", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.DropDownListFor(model => model.Rol, new SelectList(ViewBag.Gerentes, "Id", "Nombre"), htmlAttributes: new { @class = "form-control", @Id = "gerentes" })
+                    @Html.DropDownListFor(model => model.Rol, new SelectList(ViewBag.Gerentes, "Id", "Nombre"), htmlAttributes: new { @class = "form-control", @Id = "gerentes" ,@Name="gerentes" })
                 </div>
             </div>
 
@@ -62,14 +62,14 @@
                 @Html.LabelFor(model => model.Password, "Confirme Password", htmlAttributes: new { @class = "control-label col-md-2", @Id = "lPassword2" })
                 <div class="col-md-10">
 
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @Type = "Password" , @Name="CPassword" , @Id="CPassword"} })
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @Type = "Password", @Name = "CPassword", @Id = "CPassword" } })
                 </div>
             </div>
 
             <div class="form-group" id="roless">
                 @Html.LabelFor(model => model.Rol, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Rol, new SelectList(ViewBag.Roles, "Id", "Nombre"), new { @class = "form-control"  , @Name="Rol"})
+                    @Html.DropDownListFor(model => model.Rol, new SelectList(ViewBag.Roles, "Id", "Nombre"), new { @class = "form-control", @Name = "Rol" })
                 </div>
             </div>
 
@@ -108,9 +108,10 @@
     if (respuesta != '') {
         alert(respuesta);
         if (respuesta == 'Actualizacion exitosa') {
-            window.location.href = '/Manager/Login';
+           // window.location.href = '/Manager/Login';
         }
     }
+
     OcultarObjeto('inicio');
     OcultarObjeto('entrar');
     OcultarObjeto('traductor');
@@ -133,7 +134,9 @@
             OcultarObjeto('Nombre');
             OcultarObjeto('Password1');
             OcultarObjeto('Password2');
+            MostrarObjeto('gerentes');
         }
+        $('#Nombre').val('@Model.Nombre');
     }
 
     $('#gerentes').on('change', function (e) {
@@ -151,8 +154,7 @@
                 document.getElementById('Rol').value = data.Rol;
             }
         });
-    }); 
-
+    });
     function IrMainManager() {
         window.location.href = '/Manager/MainManager';
     }

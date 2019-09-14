@@ -18,10 +18,9 @@
         <input type="password" id="Password" name="Password" placeholder="Ingrese contraseña" required  class="boxTxt form-control" /><br />
         <label class="checkbox-inline"><input type="checkbox" id="chxNoSoy" name="chxNosoy" required  class="btn btn btn-default active" />@Resources.NoSoyUnRobot</label><br /><br />
         <input type="submit" id="sendData" name="sendData" value="@Resources.Enviar" class="votones btn btn-primary" />
-        <input type="button" id="cancel" name="cancel" value="@Resources.Cancelar"  onclick="IrMainManager();"   class="votones btn btn-primary" />
+        <input type="button" id="cancel" name="cancel" value="@Resources.Cancelar"  onclick="IrInicio();"   class="votones btn btn-primary" />
     }
     <script>
-
         OcultarObjeto('inicio');
         OcultarObjeto('entrar');
         OcultarObjeto('traductor');
@@ -32,9 +31,5 @@
         if (respuesta != '') {
             alert(respuesta);
     }
-   
-    function IrMainManager(){
-            window.location.href = '/Manager/MainManager';
-        }
     </script>
 </div>

@@ -82,6 +82,29 @@ function AgregarOption(name) {
     $(objeto).append('<option selected disabled value="0">Seleccione...</option>');
 }
 
+function IrMainManager() {
+    window.location.href = '/Manager/MainManager';
+}
+
+function IrInicio() {
+    window.location.href = '/Home/Index';
+}
+
+function AnularGerente() {
+    $.ajax({
+        type: "POST",
+        url: "/Manager/AnularGerente",
+        datatype: "json",
+        success: function () {
+            console.log('exito');
+            window.location.href = '/Manager/Login';
+        }
+    });
+}
+
+
+
+
 
 
  

@@ -90,7 +90,7 @@ namespace SudokuForAll.Controllers
             }
         }
 
-    
+        [Auth]
         public ActionResult Index(Gerente modelo = null)
         {
             CreateGalleta();

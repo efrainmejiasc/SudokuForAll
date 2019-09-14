@@ -134,7 +134,7 @@ namespace SudokuForAll.Controllers
             return View(modelo);
         }
 
-        //[Auth]
+        [Auth]
         public ActionResult Update(Gerente modelo = null,string CPassword = "",string gerentes = "")
         {
             ViewBag.Respuesta = null;

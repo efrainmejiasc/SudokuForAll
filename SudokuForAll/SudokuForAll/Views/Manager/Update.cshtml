@@ -111,6 +111,7 @@
            // window.location.href = '/Manager/Login';
         }
     }
+
     OcultarObjeto('inicio');
     OcultarObjeto('entrar');
     OcultarObjeto('traductor');
@@ -137,6 +138,7 @@
         }
         $('#Nombre').val('@Model.Nombre');
     }
+
     $('#gerentes').on('change', function (e) {
         var gerente = $('#gerentes option:selected').html();
         $.ajax({

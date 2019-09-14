@@ -201,6 +201,7 @@ namespace SudokuForAll.Controllers
                         return View(modelo);
                     }
 
+                    ViewBag.Gerentes = Metodo.GetAllGerentes();
                 }
                 else
                 {

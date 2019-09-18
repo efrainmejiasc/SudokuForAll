@@ -1,6 +1,25 @@
 ﻿@using SudokuForAll.StringResx;
+@using SudokuForAll.Engine;
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+<link href="~/Content/css/Global.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="~/Content/js/Global.js" type="text/javascript"></script>
 
 @{
-     ViewBag.Title = "";
+    ViewBag.Title = "";
 }
 
+<div id="terminos" class="divProducto container">
+    <iframe id="iframe" style="width: 1000px; height: 550px;"></iframe>
+</div>
+
+<script>
+    $(document).ready(function () {
+        OcultarObjeto('traductor');
+        $("#iframe").attr("src", 'http://docs.google.com/gview?url=http://joselelu-001-site1.etempurl.com/Content/template/TerminosCondiciones.pdf&embedded=true');
+});
+
+</script>

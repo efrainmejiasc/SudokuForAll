@@ -21,6 +21,8 @@ namespace SudokuForAll.Engine
             return valor;
         }
 
+        private static string DateFormat = "yyyy-MM-ddTHH:mm:ss.000Z";
+
         public static string IdSite = EngineProyect.DecodeBase642(WebConfigurationManager.AppSettings["IdSite"]);
         public static int IdActivacion = Convert.ToInt32(WebConfigurationManager.AppSettings["IdActivacion"]);
         public static int DiasValidos = Convert.ToInt32(WebConfigurationManager.AppSettings["DiasValidos"]);

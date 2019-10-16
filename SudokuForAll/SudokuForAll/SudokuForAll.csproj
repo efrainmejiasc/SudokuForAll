@@ -161,6 +161,7 @@
     <Compile Include="Models\DbSistema\Gerente.cs" />
     <Compile Include="Models\DbSistema\Producto.cs" />
     <Compile Include="Models\DbSistema\SucesoLog.cs" />
+    <Compile Include="Models\DbSistema\TransaccionPaypal.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />
     <Compile Include="Models\Sistema\Moneda.cs" />
     <Compile Include="Models\Sistema\RespuestaPaypalToken.cs" />

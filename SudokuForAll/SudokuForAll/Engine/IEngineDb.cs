@@ -39,6 +39,7 @@ namespace SudokuForAll.Engine
         Gerente GetGerenteUserName(string nombreUsuario);
         int ClienteRegistroActivacion(ActivarCliente model);
         string ObtenerCodigoRestablecerPassword(string email);
+        bool InsertarTransaccionPaypal(TransaccionPaypal model);
         bool InsertarClienteTest(IEngineProyect Funcion,string email);
         int UpdateResetPassword(string email, string codigo, bool estatus);
     }

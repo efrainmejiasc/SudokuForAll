@@ -56,6 +56,15 @@ namespace SudokuForAll.Controllers
                 stream.BaseStream.Seek(0, SeekOrigin.Begin);
                 cadena = stream.ReadToEnd();
             }
+            TransaccionPaypal modelo = new TransaccionPaypal();
+            if (cadena != string.Empty)
+                modelo.Descripcion = cadena.Substring(0,499);
+            else
+                modelo.Descripcion = "sin respuesta";
+
+            modelo.Fecha = DateTime.UtcNow;
+            Metodo.InsertarTransaccionPaypal(modelo);
         }
+
     }
 }

@@ -41,6 +41,7 @@ namespace SudokuForAll.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public void WebHookPay()
         {

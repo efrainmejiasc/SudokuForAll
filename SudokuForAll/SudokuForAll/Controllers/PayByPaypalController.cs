@@ -31,8 +31,7 @@ namespace SudokuForAll.Controllers
 
         public ActionResult BusinessGame()
         {
-            GetTokenAsync();
-
+            //GetTokenAsync();
             List<Producto> model = new List<Producto>();
             model = Metodo.ProductosParaVenta();
             return View(model);

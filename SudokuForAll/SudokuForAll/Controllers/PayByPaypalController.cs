@@ -31,14 +31,19 @@ namespace SudokuForAll.Controllers
 
         public ActionResult BusinessGame()
         {
-            //RespuestaPaypalToken Respuesta = new RespuestaPaypalToken();
-            //Respuesta = await Task.Run(() => Paypal.GetTokenPaypal());
-            //PayPal.Api.APIContext apiContext = Paypal.GetApiContext(Respuesta.access_token);
-            //int n = Metodo.ObtenerNumeroDePago();
+            GetTokenAsync();
 
             List<Producto> model = new List<Producto>();
             model = Metodo.ProductosParaVenta();
             return View(model);
+        }
+
+        private async Task GetTokenAsync()
+        {
+            RespuestaPaypalToken Respuesta = new RespuestaPaypalToken();
+            Respuesta = await Task.Run(() => Paypal.GetTokenPaypal());
+            PayPal.Api.APIContext apiContext = Paypal.GetApiContext(Respuesta.access_token);
+            int n = Metodo.ObtenerNumeroDePago();
         }
 
         [AllowAnonymous]

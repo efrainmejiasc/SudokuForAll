@@ -3,7 +3,7 @@
 
 @{
 
-   ViewBag.Title = "";
+    ViewBag.Title = "";
 }
 
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -40,7 +40,7 @@
                 {
                     foreach (var item in Model)
                     {
-                        <tr>  
+                        <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Nombre)
                             </td>
@@ -54,19 +54,19 @@
                                 @DateTime.Now.Date.ToString().Substring(0, 10)
                             </td>
                             <td>
-                                @DateTime.Now.AddDays(30).ToString().Substring(0,10)
+                                @DateTime.Now.AddDays(30).ToString().Substring(0, 10)
                             </td>
-                             <td>
-                               @item.Precio.ToString("N2")
-                            </td>
-                             <td>
-                                 @item.Impuesto.ToString("N2")
-                             </td>
                             <td>
-                               @{ 
-                                 double total =  item.Impuesto * item.Precio / 100;
-                                   total = total + item.Precio;
-                               }
+                                @item.Precio.ToString("N2")
+                            </td>
+                            <td>
+                                @item.Impuesto.ToString("N2")
+                            </td>
+                            <td>
+                                @{
+                                    double total = item.Impuesto * item.Precio / 100;
+                                    total = total + item.Precio;
+                                }
                                 @total.ToString("N2")
                             </td>
                         </tr>
@@ -118,7 +118,6 @@
     </A>
     <!--https://www.paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=J54EPFNPQC8WG -->
 </div>
-
 
 <script>
     $('#normas').text('');

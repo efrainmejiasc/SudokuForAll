@@ -17,7 +17,7 @@ namespace SudokuForAll.Models.DbSistema
 
         [Required]
         [Column(Order = 2, TypeName = "VARCHAR")]
-        [StringLength(500)]
+        [StringLength(8000)]
         public string Descripcion { get; set; }
 
         [Required]

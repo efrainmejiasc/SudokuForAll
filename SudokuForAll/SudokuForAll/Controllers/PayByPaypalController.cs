@@ -58,7 +58,7 @@ namespace SudokuForAll.Controllers
             }
             TransaccionPaypal modelo = new TransaccionPaypal();
             if (cadena != string.Empty)
-                modelo.Descripcion = cadena.Substring(0,499);
+                modelo.Descripcion = cadena;
             else
                 modelo.Descripcion = "sin respuesta";
 

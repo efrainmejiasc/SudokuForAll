@@ -271,6 +271,7 @@
     <Content Include="Views\Manager\Update.cshtml" />
     <Content Include="Views\Manager\MainManager.cshtml" />
     <Content Include="Views\Manager\Login.cshtml" />
+    <Content Include="Views\Home\Log.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

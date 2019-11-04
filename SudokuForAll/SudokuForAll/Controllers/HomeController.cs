@@ -28,11 +28,6 @@ namespace SudokuForAll.Controllers
             this.Notificacion = _Notificacion;
         }
 
-        public ActionResult Log()
-        {
-        
-            return View();
-        }
 
         public ActionResult Index(string lenguaje = "",int index = 0)
         {

@@ -198,12 +198,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringResx\Resources.cs" />
     <Compile Include="StringResx\Utility\ResourceBuilder.cs" />
-    <Compile Include="Views\Game\Juego.aspx.cs">
-      <DependentUpon>Juego.aspx</DependentUpon>
+    <Compile Include="View\PlayGame.aspx.cs">
+      <DependentUpon>PlayGame.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Game\Juego.aspx.designer.cs">
-      <DependentUpon>Juego.aspx</DependentUpon>
+    <Compile Include="View\PlayGame.aspx.designer.cs">
+      <DependentUpon>PlayGame.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -248,7 +248,7 @@
     <Content Include="StringResx\Resources.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Game\Juego.aspx" />
+    <Content Include="View\PlayGame.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

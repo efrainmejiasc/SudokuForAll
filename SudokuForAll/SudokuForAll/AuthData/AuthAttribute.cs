@@ -13,17 +13,17 @@ namespace SudokuForAll.AuthData
 
         public void OnAuthentication(AuthenticationContext filterContext)
         {
-            this.auth = (filterContext.ActionDescriptor.GetCustomAttributes(typeof(OverrideAuthenticationAttribute), true).Length == 0);
+           // this.auth = (filterContext.ActionDescriptor.GetCustomAttributes(typeof(OverrideAuthenticationAttribute), true).Length == 0);
 
         }
 
         public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext)
         {
-            var user = filterContext.HttpContext.User;
+           /* var user = filterContext.HttpContext.User;
             if (System.Web.HttpContext.Current.Session["Usuario"] == null )
             {
                 filterContext.Result = new HttpUnauthorizedResult();
-            }
+            }*/
         }
     }
 }

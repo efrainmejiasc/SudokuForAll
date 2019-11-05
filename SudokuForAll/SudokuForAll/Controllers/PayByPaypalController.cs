@@ -31,16 +31,21 @@ namespace SudokuForAll.Controllers
 
         public ActionResult BusinessGame()
         {
-            //RespuestaPaypalToken Respuesta = new RespuestaPaypalToken();
-            //Respuesta = await Task.Run(() => Paypal.GetTokenPaypal());
-            //PayPal.Api.APIContext apiContext = Paypal.GetApiContext(Respuesta.access_token);
-            //int n = Metodo.ObtenerNumeroDePago();
-
+            //GetTokenAsync();
             List<Producto> model = new List<Producto>();
             model = Metodo.ProductosParaVenta();
             return View(model);
         }
 
+        private async Task GetTokenAsync()
+        {
+            RespuestaPaypalToken Respuesta = new RespuestaPaypalToken();
+            Respuesta = await Task.Run(() => Paypal.GetTokenPaypal());
+            PayPal.Api.APIContext apiContext = Paypal.GetApiContext(Respuesta.access_token);
+            int n = Metodo.ObtenerNumeroDePago();
+        }
+
+        [AllowAnonymous]
         [HttpPost]
         public void WebHookPay()
         {
@@ -51,6 +56,15 @@ namespace SudokuForAll.Controllers
                 stream.BaseStream.Seek(0, SeekOrigin.Begin);
                 cadena = stream.ReadToEnd();
             }
+            TransaccionPaypal modelo = new TransaccionPaypal();
+            if (cadena != string.Empty)
+                modelo.Descripcion = cadena;
+            else
+                modelo.Descripcion = "sin respuesta";
+
+            modelo.Fecha = DateTime.UtcNow;
+            Metodo.InsertarTransaccionPaypal(modelo);
         }
+
     }
 }

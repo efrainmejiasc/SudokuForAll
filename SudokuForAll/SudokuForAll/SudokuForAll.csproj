@@ -161,6 +161,7 @@
     <Compile Include="Models\DbSistema\Gerente.cs" />
     <Compile Include="Models\DbSistema\Producto.cs" />
     <Compile Include="Models\DbSistema\SucesoLog.cs" />
+    <Compile Include="Models\DbSistema\TransaccionPaypal.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />
     <Compile Include="Models\Sistema\Moneda.cs" />
     <Compile Include="Models\Sistema\RespuestaPaypalToken.cs" />
@@ -205,6 +206,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\Global.css" />
     <Content Include="Content\css\MainManager.css" />
+    <Content Include="Content\css\style.css" />
     <Content Include="Content\css\_MessagePartial.css" />
     <Content Include="Content\imagen\flecha.JPG" />
     <Content Include="Content\imagen\expSudoku.mp4" />
@@ -223,6 +225,7 @@
     <Content Include="Content\template\EmailBodyRegister.cshtml" />
     <Content Include="Content\template\EmailBodyResetPassword.cshtml" />
     <Content Include="Content\template\EmailBodyTest.cshtml" />
+    <Content Include="Content\template\TerminosCondiciones.pdf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

@@ -181,28 +181,28 @@ namespace SudokuForAll.Controllers
                 //TIEMPO DE PRUEBA ES VALIDO
                 System.Web.HttpContext.Current.Session["Email"] = model.Email;
                 System.Web.HttpContext.Current.Session["Usuario"] = model.Email;
-                Metodo.EstablecerCulturaCliente(model.Email);
+               // Metodo.EstablecerCulturaCliente(model.Email);
                 return RedirectToAction("PlayGame", "Game");
             }
             else if (result == 2 || result == 4)
             {
                 //TIEMPO DE PRUEBA EXPIRO
-                model = Funcion.RespuestaProceso( "comprarRegistrarse", emailCode64, null, EngineData.TiempoPruebaJuegoExpiro());
                 Metodo.EstablecerCulturaCliente(model.Email);
+                model = Funcion.RespuestaProceso( "comprarRegistrarse", emailCode64, null, EngineData.TiempoPruebaJuegoExpiro());
                 return RedirectToAction("State", "Home", model);
             }
             else if (result == 3)
             {
                 //CUENTA ACTIVADA CLIENTE REGISTRADO
+                //Metodo.EstablecerCulturaCliente(model.Email);
                 System.Web.HttpContext.Current.Session["Email"] = model.Email;
-                Metodo.EstablecerCulturaCliente(model.Email);
                 return RedirectToAction("Login", "Home");
             }
             else if (result == 5 || result == 7)
             {
                 //CUENTA NO ACTIVADA CLIENTE REGISTRADO
                 string enlaze = string.Empty;
-                Metodo.EstablecerCulturaCliente(model.Email);
+               // Metodo.EstablecerCulturaCliente(model.Email);
                 if (result == 5)
                 {
                     string password = Metodo.ObtenerPasswordCliente(model.Email);

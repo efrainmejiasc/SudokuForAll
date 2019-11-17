@@ -13,8 +13,8 @@
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/css/Global.css" rel="stylesheet" />
     <link href="~/Content/css/style.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
-    <script src="~/Content/js/Global.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="../Content/js/Global.js" type="text/javascript"></script>
     <title></title>
 </head>
 <body>
@@ -60,6 +60,9 @@
 <br /><br />
       <div class="container-fluid">
           <div class="container">
+               <div>
+                   <asp:Button ID="crearJuego" runat="server" Text="Guardar Juego" />
+              </div>
               <div class="grid">
                   <div class="innerGrid">
                       <!--FILA 1  -->
@@ -134,7 +137,7 @@
 
     <script>
         function KeyPress(e, id) {
-            console.log(id);
+           // console.log(id);
               var key;
             if (window.event) 
             {
@@ -144,27 +147,28 @@
             {
                 key = e.which;
             }
-            if (key > 48 && key < 58)  {
+            if (key >= 48 && key < 58)  {
                 return true;
             }
             return false; 
         }
 
         function KeyUp(e, id) {
-            console.log(id);
-            var numero = document.getElementById(id).value;
-                if (/^([0-9])*$/.test(numero))
-                    alert("El valor " + numero );
+            //console.log(id);
             var key;
             if (window.event) 
             {
                 key = e.keyCode;
+                if (key == 48) {
+                    document.getElementById(id).value = '';
+                }
             }
             else if (e.which) 
             {
                 key = e.which;
+
             }
-            if (key > 48 && key < 58)   {
+            if (key >= 48 && key < 58) {
                 return true;
             }
             return false; 

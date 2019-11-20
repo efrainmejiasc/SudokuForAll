@@ -1,0 +1,29 @@
+﻿.divBanner {
+    background-color: lawngreen;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    height: 20vh;
+    margin-top: 0px;
+}
+
+.logoInitial {
+    height: 100px;
+    width:6vh;
+    margin-right: 100%;
+    padding-top: 1%;
+    margin-left: 18%;
+    margin-top:0%;
+}
+
+.fontInitial {
+    height: auto;
+    width: 8%;
+    margin-right: 100%;
+    padding-top: 0%;
+    margin-left: 17%;
+    color: white;
+    font-size:20px;
+}
+
+
+

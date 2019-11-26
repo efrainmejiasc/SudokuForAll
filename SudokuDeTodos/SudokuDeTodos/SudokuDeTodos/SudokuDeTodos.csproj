@@ -145,6 +145,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringResx\Resources.cs" />
     <Compile Include="StringResx\Utility\ResourceBuilder.cs" />
+    <Compile Include="Vista\GameOne.aspx.cs">
+      <DependentUpon>GameOne.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\GameOne.aspx.designer.cs">
+      <DependentUpon>GameOne.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -154,6 +161,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\global.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\imagen\logo.png" />
     <Content Include="Content\js\global.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -200,6 +209,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="StringResx\Resources.xml" />
+    <Content Include="Vista\GameOne.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

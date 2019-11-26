@@ -135,7 +135,12 @@
      </div>
     </form>
 
-    <script>
+   
+</body>
+
+ 
+</html>
+ <script>
         function KeyPress(e, id) {
            // console.log(id);
               var key;
@@ -175,7 +180,3 @@
          
         }
     </script>
-</body>
-
- 
-</html>

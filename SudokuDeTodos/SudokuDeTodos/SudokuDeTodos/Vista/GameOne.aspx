@@ -25,8 +25,9 @@
              </div>  
      
        <div id="contenido" class="menuStick">    
-         <div id="sidebar" class="sidebar" >
-           <ul style="margin-top:50%;">
+         <div id="sidebar" class="sidebar" >         
+           <ul style="margin-top:50%;"> 
+               <li style="list-style:none;margin-right:15%;"><button type="button" class="close listStick" data-dismiss="modal" onclick="MenuStick()">&times;</button></li> <br />
                <li style="list-style:none;"><a href="#" class="listStick">Opción 1</a></li>
                <li style="list-style:none;"><a href="#" class="listStick">Opción 2</a></li>
                <li style="list-style:none;"><a href="#" class="listStick">Opción 3</a></li>

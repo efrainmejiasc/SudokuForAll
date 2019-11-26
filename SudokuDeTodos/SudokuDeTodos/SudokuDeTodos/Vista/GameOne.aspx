@@ -17,25 +17,25 @@
             <div id="banner" class="divBanner container-fluid">
                         <img id="logSudoku"  class="logoInitial"/>
                           <ul class="row" style="margin-left:16%">   
-                           <li style="list-style:none;"><a href="javascript:void(0)"  id="sudoku" style="color:white;font-size:26px;">Sudoku de Todos</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                           <li style="list-style:none;"><a href="javascript:void(0)"   id="menuStick" class="abrir-cerrar" onclick="MenuStick()" style="color:white;font-size:18px;"> Menu </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                           <li style="list-style:none;"><a href="/Home/Index" id="inicio" style="color:white;font-size:18px;">Inicio</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                           <li style="list-style:none;"><a href="/Home/Contact" id="entrar" style="color:white;font-size:18px;">Entrar</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                           <li style="list-style:none;"><a href="javascript:void(0)" id="sudoku"  class="listBanner">Sudoku de Todos</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           <li style="list-style:none;"><a href="javascript:void(0)" id="menuStick" class="listBanner" onclick="MenuStick()"> Menu </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           <li style="list-style:none;"><a href="/Home/Index" id="inicio" class="listBanner">Inicio</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           <li style="list-style:none;"><a href="/Home/Contact" id="entrar"  class="listBanner">Entrar</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
                          </ul>
              </div>  
      
-  <div id="contenido">
-       <div id="sidebar" class="sidebar" >
-           <ul class="menu">
-               <li style="list-style:none;"><a href="#">Opción 1</a></li>
-               <li style="list-style:none;"><a href="#">Opción 2</a></li>
-               <li style="list-style:none;"><a href="#">Opción 3</a></li>
-               <li style="list-style:none;"><a href="#">Opción 4</a></li>
-              <li style="list-style:none;"><a href="#">Opción 5</a></li>
-        </ul>
-    </div>  
-  </div>
-
+       <div id="contenido" class="menuStick">    
+         <div id="sidebar" class="sidebar" >
+           <ul style="margin-top:50%;">
+               <li style="list-style:none;"><a href="#" class="listStick">Opción 1</a></li>
+               <li style="list-style:none;"><a href="#" class="listStick">Opción 2</a></li>
+               <li style="list-style:none;"><a href="#" class="listStick">Opción 3</a></li>
+               <li style="list-style:none;"><a href="#" class="listStick">Opción 4</a></li>
+               <li style="list-style:none;"><a href="#" class="listStick">Opción 5</a></li>
+          </ul>
+       </div>   
+     </div>
+           <br />
              <div class="container">
               <div class="grid">
                   <div class="innerGrid">

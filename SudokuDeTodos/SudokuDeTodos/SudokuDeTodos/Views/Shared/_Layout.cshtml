@@ -15,12 +15,12 @@
     <script src="~/Content/js/global.js" type="text/javascript"></script>
 </head>
 <body>
-    <div id="banner" name="banner" class="divBanner row container-fluid col-12">
-        <img id="logSudoku" name="logSudoku" class="logoInitial col-1" />
-        <label class="fontInitial col-12"> Sudoku de Todos </label>
-        <ul class="row" style="margin-left:30%">
-            <li style="list-style:none;"><a href="/Home/Index" id="inicio" style="color:white;font-size:18px;">@Resources.Inicio</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <li style="list-style:none;"><a href="/Home/Contact" id="entrar" style="color:white;font-size:18px;">@Resources.Entrar</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div id="banner" class="divBanner container-fluid">
+        <img id="logSudoku" class="logoInitial" />
+        <ul class="row" style="margin-left:16%">
+            <li style="list-style:none;"><a href="javascript:void(0)" id="sudoku" class="listBanner">Sudoku de Todos</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li style="list-style:none;"><a href="/Home/Index" id="inicio" class="listBanner">@Resources.Inicio </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li style="list-style:none;"><a href="/Home/Contact" id="entrar" class="listBanner">@Resources.Entrar</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
         </ul>
     </div>
     <div class="container body-content">

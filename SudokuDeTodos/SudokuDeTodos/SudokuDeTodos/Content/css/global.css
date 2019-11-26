@@ -10,7 +10,7 @@
     width:180px;
     margin-right: 100%;
     padding-top:1%;
-    margin-left: 18%;
+    margin-left: 19%;
     margin-top:0%;
 }
 
@@ -60,6 +60,16 @@
     font-size: 20px;
 }
 
+.listBanner {
+    color: white;
+    font-size: 30px;
+}
+
+.listBanner:hover {
+    color: lawngreen;
+    text-decoration: none;
+}
+
 .sidebar {
     position: fixed;
     height: 100%;
@@ -67,15 +77,25 @@
     top: 0;
     left: 0;
     z-index: 1;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
-    color: white;
     background-color: orange;
     overflow-x: hidden;
     transition: 0.4s;
     padding: 1rem 0;
     box-sizing: border-box;
 }
+
+.listStick {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 28px;
+    color: white;
+    text-decoration: none;
+    color: lawngreen;
+}
+
+    .listStick:hover {
+        color: green;
+        text-decoration: none;
+    } 
 /******************MENU VERTICAL ***********************************************************************************************************/
 .menuVertical {
     /*width: 60%;

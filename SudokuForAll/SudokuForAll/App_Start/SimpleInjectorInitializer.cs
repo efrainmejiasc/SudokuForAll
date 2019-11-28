@@ -17,14 +17,10 @@ namespace SudokuForAll.App_Start
         public static void Initialize()
         {
             var container = new Container();
-            container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
-            
+            container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();    
             InitializeContainer(container);
-
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
-            
             container.Verify();
-            
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
         }
      

@@ -14,6 +14,7 @@ namespace SudokuDeTodos.Engine
         private string[,] valorCandidatoSinEliminados = new string[9, 9];
         private string[,] valorInicio = new string[9, 9];
         private string[,] valorSolucion = new string[9, 9];
+
         public bool AbrirJuego(string pathArchivo)
         {
             EngineDataGame ValorGame = EngineDataGame.Instance();

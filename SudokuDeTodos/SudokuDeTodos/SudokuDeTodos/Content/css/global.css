@@ -6,12 +6,15 @@
 }
 
 .logoInitial {
-    height: 14vh;
-    width:180px;
+    //height: 14vh;
+    // width: 180px;
+    height: 7vh;
+    width: 80px;
     margin-right: 100%;
-    padding-top:1%;
-    margin-left: 19%;
-    margin-top:0%;
+    padding-top: 1%;
+    //margin-left: 19%;
+    margin-left: 21%;
+    margin-top: 0%;
 }
 
 

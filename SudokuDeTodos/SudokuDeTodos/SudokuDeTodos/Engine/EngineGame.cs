@@ -481,6 +481,7 @@ namespace SudokuDeTodos.Engine
                 for (int c = 0; c <= 8; c++)
                 {
                     cajaTexto[f, c].ForeColor = Color.Blue;
+                    cajaTexto[f, c].ReadOnly = false;
                     if (vIngresado[f, c] != null && vIngresado[f, c] != string.Empty)
                     {
                         cajaTexto[f, c].ForeColor = Color.Blue;
@@ -489,6 +490,7 @@ namespace SudokuDeTodos.Engine
                         if (vInicio[f, c] != null && vInicio[f, c] != string.Empty)
                         {
                             cajaTexto[f, c].ForeColor = Color.Black;
+                            cajaTexto[f, c].ReadOnly = true;
                         }
 
                     }

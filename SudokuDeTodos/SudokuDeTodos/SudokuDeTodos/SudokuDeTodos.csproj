@@ -146,6 +146,7 @@
     <Compile Include="Engine\IEngineGame.cs" />
     <Compile Include="Engine\IEngineProyect.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />
+    <Compile Include="Models\Sistema\Response.cs" />
     <Compile Include="StringResx\Abstract\BaseResourceProvider.cs" />
     <Compile Include="StringResx\Abstract\IResourceProvider.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -181,6 +182,7 @@
     <Content Include="Content\css\global.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\imagen\logo.png" />
+    <Content Include="Content\js\game.js" />
     <Content Include="Content\js\global.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

@@ -1,4 +1,5 @@
 ﻿using SudokuDeTodos.Engine;
+using SudokuDeTodos.Models.Sistema;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -100,10 +101,17 @@ namespace SudokuDeTodos.Vista
 
         private void SetearJuego()
         {
-            EngineDataGame ValorGame = EngineDataGame.Instance();
             valorCandidato = Game.ElejiblesInstantaneos(ValorGame.valorIngresado, ValorGame.valorCandidato);
             valorCandidatoSinEliminados = Game.CandidatosSinEliminados(ValorGame.valorIngresado, ValorGame.valorCandidato, ValorGame.valorEliminado);
             txtSudoku = Game.SetearTextBoxJuego(txtSudoku, ValorGame.valorIngresado, ValorGame.valorInicio);
+        }
+
+        [System.Web.Services.WebMethod] 
+        public string GuardarJuego(int value, int i, int j)
+        {
+            Response response = new Response();
+            string respuesta = Newtonsoft.Json.JsonConvert.SerializeObject(response);
+            return respuesta;
         }
 
     }

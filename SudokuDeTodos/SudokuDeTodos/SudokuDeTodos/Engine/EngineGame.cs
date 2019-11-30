@@ -480,11 +480,12 @@ namespace SudokuDeTodos.Engine
             {
                 for (int c = 0; c <= 8; c++)
                 {
+                    cajaTexto[f, c].ForeColor = Color.Blue;
                     if (vIngresado[f, c] != null && vIngresado[f, c] != string.Empty)
                     {
+                        cajaTexto[f, c].ForeColor = Color.Blue;
                         cajaTexto[f, c].Text = vIngresado[f, c];
                         //cajaTexto[f, c].Font = new Font(EngineData.TipoLetra, 20);
-                        cajaTexto[f, c].ForeColor = Color.Blue;
                         if (vInicio[f, c] != null && vInicio[f, c] != string.Empty)
                         {
                             cajaTexto[f, c].ForeColor = Color.Black;

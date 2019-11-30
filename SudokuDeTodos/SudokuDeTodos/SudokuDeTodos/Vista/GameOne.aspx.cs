@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -107,7 +108,7 @@ namespace SudokuDeTodos.Vista
         }
 
         [System.Web.Services.WebMethod] 
-        public string GuardarJuego(int value, int i, int j)
+        public string GuardarJuego(int valor, int i, int j)
         {
             Response response = new Response();
             string respuesta = Newtonsoft.Json.JsonConvert.SerializeObject(response);

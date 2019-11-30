@@ -15,7 +15,6 @@
     });
 }
 
-
 function TextNumero(id,value) {
     if (document.getElementById(id).style.color === 'black') {
         document.getElementById(id).value;
@@ -35,6 +34,10 @@ function TextZero(id) {
         document.getElementById(id).value = '';
     }
 } 
+
+function Navegacion(page) {
+    window.open(page, '_self');
+}
 
 /*function TextLetra(id) {
     if (document.getElementById(id).style.color === 'black' || document.getElementById(id).style.color === 'blue') {

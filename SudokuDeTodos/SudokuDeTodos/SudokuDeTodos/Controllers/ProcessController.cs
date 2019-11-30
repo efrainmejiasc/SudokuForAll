@@ -18,9 +18,24 @@ namespace SudokuDeTodos.Controllers
         }
 
         [HttpPost]
-        public string GuardarJuego(int valor, int i, int j)
+        public string GuardarJuego(string valor, int i, int j)
         {
+            bool resultado = false;
+            try
+            {
+                EngineDataGame ValorGame = EngineDataGame.Instance();
+                string pathArchivo = ValorGame.PathArchivo;
+                ValorGame.valorIngresado[i, j] = valor;
+                this.Proceso.GuardarValoresIngresados(pathArchivo, ValorGame.valorIngresado);
+                this.Proceso.GuardarValoresEliminados(pathArchivo, ValorGame.valorEliminado);
+                this.Proceso.GuardarValoresInicio(pathArchivo, ValorGame.valorInicio);
+                this.Proceso.GuardarValoresSolucion(pathArchivo, ValorGame.valorSolucion);
+                resultado = true;
+            }
+            catch { }
+          
             Response response = new Response();
+            response.Status = resultado;
             string respuesta = Newtonsoft.Json.JsonConvert.SerializeObject(response);
             return respuesta;
         }

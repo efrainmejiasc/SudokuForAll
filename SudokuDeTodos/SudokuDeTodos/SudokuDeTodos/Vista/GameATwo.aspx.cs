@@ -1,8 +1,6 @@
 ﻿using SudokuDeTodos.Engine;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,11 +8,10 @@ using System.Web.UI.WebControls;
 
 namespace SudokuDeTodos.Vista
 {
-    public partial class GameOne : System.Web.UI.Page
+    public partial class GameATwo : System.Web.UI.Page
     {
         private EngineGameChild Game = new EngineGameChild();
         private EngineDataGame ValorGame = EngineDataGame.Instance();
-        string pathArchivo = string.Empty;
         private TextBox[,] txtSudoku = new TextBox[9, 9]; //ARRAY CONTENTIVO DE LOS TEXTBOX DEL GRAFICO DEL SUDOKU
         private string[,] valorIngresado = new string[9, 9];//ARRAY CONTENTIVO DE LOS VALORES INGRESADOS 
         private string[,] valorCandidato = new string[9, 9];//ARRAY CONTENTIVO DE LOS VALORES CANDIDATOS 
@@ -24,14 +21,13 @@ namespace SudokuDeTodos.Vista
         private string[,] valorSolucion = new string[9, 9];
 
         protected void Page_Load(object sender, EventArgs e)
-        {     
+        {
             if (IsPostBack)
             {
                 txt00.Text = 1.ToString();
             }
             else if (!IsPostBack)
             {
-                pathArchivo = Server.MapPath("~/GameFile/test.jll");
                 txtSudoku = AsociarTxtMatriz(txtSudoku);
                 txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);
                 AbrirJuego();
@@ -83,7 +79,7 @@ namespace SudokuDeTodos.Vista
 
         public void AbrirJuego()
         {
-            bool resultado = Game.AbrirJuego(pathArchivo);
+            bool resultado = Game.AbrirJuego(ValorGame.PathArchivo);
             if (resultado)
             {
 
@@ -106,4 +102,5 @@ namespace SudokuDeTodos.Vista
         }
 
     }
+
 }

@@ -168,12 +168,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringResx\Resources.cs" />
     <Compile Include="StringResx\Utility\ResourceBuilder.cs" />
-    <Compile Include="Vista\GameOne.aspx.cs">
-      <DependentUpon>GameOne.aspx</DependentUpon>
+    <Compile Include="Vista\GameAOne.aspx.cs">
+      <DependentUpon>GameAOne.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Vista\GameOne.aspx.designer.cs">
-      <DependentUpon>GameOne.aspx</DependentUpon>
+    <Compile Include="Vista\GameAOne.aspx.designer.cs">
+      <DependentUpon>GameAOne.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GameATwo.aspx.cs">
+      <DependentUpon>GameATwo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\GameATwo.aspx.designer.cs">
+      <DependentUpon>GameATwo.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -234,7 +241,8 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="StringResx\Resources.xml" />
-    <Content Include="Vista\GameOne.aspx" />
+    <Content Include="Vista\GameAOne.aspx" />
+    <Content Include="Vista\GameATwo.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

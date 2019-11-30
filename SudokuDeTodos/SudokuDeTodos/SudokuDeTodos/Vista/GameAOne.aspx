@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GameOne.aspx.cs" Inherits="SudokuDeTodos.Vista.GameOne"  Debug="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GameAOne.aspx.cs" Inherits="SudokuDeTodos.Vista.GameOne"  Debug="true" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -11,7 +11,7 @@
     <script src="../Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
     <script src="../Content/js/global.js" type="text/javascript"></script>
      <script src="../Content/js/game.js" type="text/javascript"></script>
-  <title></title>
+  <title>Numeros</title>
 </head>
     <body>
        <form id="form1" runat="server">
@@ -25,7 +25,11 @@
              </div>  
     
            <br />
-             <div class="container">
+             <div class="container" align="center">
+                 <div> 
+                     <input type="button" value="A2" onclick="Navegacion('GameATwo.aspx')" />
+                 </div>
+                 <h3>NUMEROS</h3><br />
               <div class="grid">
                   <div class="innerGrid">
                       <!--FILA 1  -->

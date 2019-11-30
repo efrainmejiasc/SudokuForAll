@@ -21,6 +21,7 @@ namespace SudokuDeTodos.Engine
         public const string Right = "Right";
         public const string Left = "Left";
 
+        public string PathArchivo { get; set; }
         public string [,] valorIngresado { get;set; }
         public string[,] valorCandidato { get;set; } 
         public string[,] valorEliminado { get; set; }

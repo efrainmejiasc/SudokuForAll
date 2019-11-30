@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,8 +9,8 @@ using System.Windows.Forms;
 
 namespace SudokuDeTodos.Engine
 {
-    public interface IEngineGame
+    public interface IEngineGameProcess
     {
-        TextBox[,] SetearTextBoxJuegoInicio(TextBox[,] cajaTexto, string[,] vIngresado, string[,] vInicio);
+
     }
 }

@@ -138,12 +138,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
+    <Compile Include="Controllers\ProcessController.cs" />
+    <Compile Include="Engine\EngineDb.cs" />
     <Compile Include="Engine\EngineGameChild.cs" />
     <Compile Include="Engine\EngineData.cs" />
     <Compile Include="Engine\EngineDataGame.cs" />
     <Compile Include="Engine\EngineGame.cs" />
+    <Compile Include="Engine\EngineGameProcess.cs" />
     <Compile Include="Engine\EngineProyect.cs" />
-    <Compile Include="Engine\IEngineGame.cs" />
+    <Compile Include="Engine\IEngineDb.cs" />
+    <Compile Include="Engine\IEngineGameProcess.cs" />
     <Compile Include="Engine\IEngineProyect.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />
     <Compile Include="Models\Sistema\Response.cs" />
@@ -259,6 +263,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\templates\" />
     <Folder Include="Models\DbSistema\" />
+    <Folder Include="Views\Process\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

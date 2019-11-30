@@ -142,23 +142,6 @@
                 return false;
             }
         }
-
-        function GuardarJuego(id, valor) {
-            if (valor === '')
-                valor = 0;
-
-            var i = id.substring(3, 4);
-            var j = id.substring(4, 5);
-            $.ajax({
-                type: "POST",
-                url: "/Vista/GameOne.aspx/GuardarJuego",
-                data: { valor: valor, i: i, j: j },
-                dataType: "json",
-                success: function (data) {
-
-                }
-            });
-        }
     </script>
 
 

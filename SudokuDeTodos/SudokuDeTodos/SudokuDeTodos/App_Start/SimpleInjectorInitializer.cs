@@ -26,6 +26,8 @@ namespace SudokuDeTodos.App_Start
         private static void InitializeContainer(Container container)
         {
           container.Register<IEngineProyect, EngineProyect>(Lifestyle.Transient);
+          container.Register<IEngineGameProcess, EngineGameProcess>(Lifestyle.Transient);
+          container.Register<EngineContext, EngineContext>(Lifestyle.Transient);
         }
     }
 }

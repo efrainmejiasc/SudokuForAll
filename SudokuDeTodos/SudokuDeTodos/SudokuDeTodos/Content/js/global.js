@@ -87,9 +87,7 @@ function SenialTraductor() {
     } else {
         $('#traductor').removeClass('btn-danger btn');
         $('#traductor').addClass('btn-primary btn');
-
     }
- 
     $('#traductor option[value=' + 0 + ']').text(text[i]);
     Stop();
     nueva = setInterval(SenialTraductor, 1500);

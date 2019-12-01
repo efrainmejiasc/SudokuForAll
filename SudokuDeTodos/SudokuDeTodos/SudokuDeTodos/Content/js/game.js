@@ -39,6 +39,50 @@ function Navegacion(page) {
     window.open(page, '_self');
 }
 
+
+function StyleTxtFully() {
+    var id = 'txt';
+    var i = null;
+    var j = null;
+    var obj = '#';
+
+    for (i = 0; i <= 8; i++) {
+        for (j = 0; j <= 8; j++) {
+            obj = obj = '#'.concat(id, i, j);
+                $(obj).css("font-size", "32px");
+        }
+    }
+}
+
+
+function StyleTxt()
+{
+    var id = 'txt_';
+    var id1 = 'txt';
+    var i = null;
+    var j = null;
+    var obj = null;
+    var obj1 = null;
+    var color = null;
+ 
+    for (i = 0; i <= 8; i++) {
+        for (j = 0; j <= 8; j++) {
+
+            obj1 = '#'.concat(id1, i, j);
+            $(obj1).css("font-size", "32px");
+
+            obj = '#'.concat(id, i, j);
+            color = $(obj).css("color");
+            if (color === 'rgb(255, 0, 0)') {
+                $(obj).css("font-size", "11px");
+                console.log($(obj).val().length + ' ' + obj);
+            } else {
+                $(obj).css("font-size", "32px");
+            }  
+        }
+    }
+}
+
 /*function TextLetra(id) {
     if (document.getElementById(id).style.color === 'black' || document.getElementById(id).style.color === 'blue') {
         document.getElementById(id).value;

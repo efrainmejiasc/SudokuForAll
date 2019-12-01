@@ -5,8 +5,9 @@ using System.Web;
 
 namespace SudokuDeTodos.Models.Sistema
 {
-    public class Response
+    public class Respuesta
     {
+        public int Id { get; set; }
         public bool Status { get; set; }
     }
 }

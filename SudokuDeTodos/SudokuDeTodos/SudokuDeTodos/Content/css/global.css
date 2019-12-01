@@ -1,7 +1,8 @@
 ﻿.divBanner {
     background-color: green;
-    font-family:'Times New Roman', Times, serif;
-    font-size:22px;
+    /*font-family:'Times New Roman', Times, serif;*/
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size:10px;
     width:100%;
 }
 
@@ -44,7 +45,9 @@
     width: auto;
 }
 
-.filaJuego {
+.nodal {
+
+    float: right;
 }
 
 .interna {
@@ -65,11 +68,51 @@
 
 .listBanner {
     color: white;
-    font-size: 30px;
+    font-size: 28px;
 }
 
 .listBanner:hover {
     color: lawngreen;
     text-decoration: none;
+}
+
+/*
+    Etiquetas Juego
+*/
+
+.nameGrid {
+    margin-left: 47%;
+    font-size: 24px;
+}
+
+.nameGrid1{
+    margin-left:34%;
+    font-size:24px;
+}
+
+.nameGrid2 {
+    margin-left:15%;
+    margin-right: 10%;
+    font-size: 24px;
+}
+
+/*
+    Img Juego
+*/
+
+.arrowRight {
+    cursor: pointer;
+    border: none;
+    width:auto;
+    height:4px;
+    margin-right:20%;
+}
+
+.arrowLeft {
+    cursor: pointer;
+    border: none;
+    width: auto;
+    height:auto;
+    margin-left: 51%;
 }
 

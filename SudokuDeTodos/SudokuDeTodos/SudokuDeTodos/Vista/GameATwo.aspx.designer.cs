@@ -843,22 +843,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_03;
 
         /// <summary>
-        /// Control TextBox11.
+        /// Control txt_04.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox11;
+        protected global::System.Web.UI.WebControls.TextBox txt_04;
 
         /// <summary>
-        /// Control TextBox12.
+        /// Control txt_05.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox12;
+        protected global::System.Web.UI.WebControls.TextBox txt_05;
 
         /// <summary>
         /// Control txt_13.
@@ -870,22 +870,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_13;
 
         /// <summary>
-        /// Control TextBox14.
+        /// Control txt_14.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox14;
+        protected global::System.Web.UI.WebControls.TextBox txt_14;
 
         /// <summary>
-        /// Control TextBox15.
+        /// Control txt_15.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox15;
+        protected global::System.Web.UI.WebControls.TextBox txt_15;
 
         /// <summary>
         /// Control txt_23.
@@ -897,22 +897,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_23;
 
         /// <summary>
-        /// Control TextBox17.
+        /// Control txt_24.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox17;
+        protected global::System.Web.UI.WebControls.TextBox txt_24;
 
         /// <summary>
-        /// Control TextBox18.
+        /// Control txt_25.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox18;
+        protected global::System.Web.UI.WebControls.TextBox txt_25;
 
         /// <summary>
         /// Control txt_06.
@@ -924,22 +924,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_06;
 
         /// <summary>
-        /// Control TextBox20.
+        /// Control txt_07.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox20;
+        protected global::System.Web.UI.WebControls.TextBox txt_07;
 
         /// <summary>
-        /// Control TextBox21.
+        /// Control txt_08.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox21;
+        protected global::System.Web.UI.WebControls.TextBox txt_08;
 
         /// <summary>
         /// Control txt_16.
@@ -951,22 +951,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_16;
 
         /// <summary>
-        /// Control TextBox23.
+        /// Control txt_17.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox23;
+        protected global::System.Web.UI.WebControls.TextBox txt_17;
 
         /// <summary>
-        /// Control TextBox24.
+        /// Control txt_18.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox24;
+        protected global::System.Web.UI.WebControls.TextBox txt_18;
 
         /// <summary>
         /// Control txt_26.
@@ -978,22 +978,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_26;
 
         /// <summary>
-        /// Control TextBox26.
+        /// Control txt_27.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox26;
+        protected global::System.Web.UI.WebControls.TextBox txt_27;
 
         /// <summary>
-        /// Control TextBox27.
+        /// Control txt_28.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox27;
+        protected global::System.Web.UI.WebControls.TextBox txt_28;
 
         /// <summary>
         /// Control txt_30.
@@ -1005,22 +1005,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_30;
 
         /// <summary>
-        /// Control TextBox29.
+        /// Control txt_31.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox29;
+        protected global::System.Web.UI.WebControls.TextBox txt_31;
 
         /// <summary>
-        /// Control TextBox30.
+        /// Control txt_32.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox30;
+        protected global::System.Web.UI.WebControls.TextBox txt_32;
 
         /// <summary>
         /// Control txt_40.
@@ -1032,22 +1032,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_40;
 
         /// <summary>
-        /// Control TextBox32.
+        /// Control txt_41.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox32;
+        protected global::System.Web.UI.WebControls.TextBox txt_41;
 
         /// <summary>
-        /// Control TextBox33.
+        /// Control txt_42.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox33;
+        protected global::System.Web.UI.WebControls.TextBox txt_42;
 
         /// <summary>
         /// Control txt_50.
@@ -1059,22 +1059,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_50;
 
         /// <summary>
-        /// Control TextBox35.
+        /// Control txt_51.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox35;
+        protected global::System.Web.UI.WebControls.TextBox txt_51;
 
         /// <summary>
-        /// Control TextBox36.
+        /// Control txt_52.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox36;
+        protected global::System.Web.UI.WebControls.TextBox txt_52;
 
         /// <summary>
         /// Control txt_33.
@@ -1086,22 +1086,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_33;
 
         /// <summary>
-        /// Control TextBox38.
+        /// Control txt_34.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox38;
+        protected global::System.Web.UI.WebControls.TextBox txt_34;
 
         /// <summary>
-        /// Control TextBox39.
+        /// Control txt_35.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox39;
+        protected global::System.Web.UI.WebControls.TextBox txt_35;
 
         /// <summary>
         /// Control txt_43.
@@ -1113,22 +1113,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_43;
 
         /// <summary>
-        /// Control TextBox41.
+        /// Control txt_44.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox41;
+        protected global::System.Web.UI.WebControls.TextBox txt_44;
 
         /// <summary>
-        /// Control TextBox42.
+        /// Control txt_45.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox42;
+        protected global::System.Web.UI.WebControls.TextBox txt_45;
 
         /// <summary>
         /// Control txt_53.
@@ -1140,22 +1140,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_53;
 
         /// <summary>
-        /// Control TextBox44.
+        /// Control txt_54.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox44;
+        protected global::System.Web.UI.WebControls.TextBox txt_54;
 
         /// <summary>
-        /// Control TextBox45.
+        /// Control txt_55.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox45;
+        protected global::System.Web.UI.WebControls.TextBox txt_55;
 
         /// <summary>
         /// Control txt_36.
@@ -1167,22 +1167,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_36;
 
         /// <summary>
-        /// Control TextBox47.
+        /// Control txt_37.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox47;
+        protected global::System.Web.UI.WebControls.TextBox txt_37;
 
         /// <summary>
-        /// Control TextBox48.
+        /// Control txt_38.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox48;
+        protected global::System.Web.UI.WebControls.TextBox txt_38;
 
         /// <summary>
         /// Control txt_46.
@@ -1194,22 +1194,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_46;
 
         /// <summary>
-        /// Control TextBox50.
+        /// Control txt_47.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox50;
+        protected global::System.Web.UI.WebControls.TextBox txt_47;
 
         /// <summary>
-        /// Control TextBox51.
+        /// Control txt_48.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox51;
+        protected global::System.Web.UI.WebControls.TextBox txt_48;
 
         /// <summary>
         /// Control txt_56.
@@ -1221,22 +1221,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_56;
 
         /// <summary>
-        /// Control TextBox53.
+        /// Control txt_57.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox53;
+        protected global::System.Web.UI.WebControls.TextBox txt_57;
 
         /// <summary>
-        /// Control TextBox54.
+        /// Control txt_58.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox54;
+        protected global::System.Web.UI.WebControls.TextBox txt_58;
 
         /// <summary>
         /// Control txt_60.
@@ -1248,22 +1248,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_60;
 
         /// <summary>
-        /// Control TextBox56.
+        /// Control txt_61.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox56;
+        protected global::System.Web.UI.WebControls.TextBox txt_61;
 
         /// <summary>
-        /// Control TextBox57.
+        /// Control txt_62.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox57;
+        protected global::System.Web.UI.WebControls.TextBox txt_62;
 
         /// <summary>
         /// Control txt_70.
@@ -1275,22 +1275,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_70;
 
         /// <summary>
-        /// Control TextBox59.
+        /// Control txt_71.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox59;
+        protected global::System.Web.UI.WebControls.TextBox txt_71;
 
         /// <summary>
-        /// Control TextBox60.
+        /// Control txt_72.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox60;
+        protected global::System.Web.UI.WebControls.TextBox txt_72;
 
         /// <summary>
         /// Control txt_80.
@@ -1302,22 +1302,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_80;
 
         /// <summary>
-        /// Control TextBox62.
+        /// Control txt_81.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox62;
+        protected global::System.Web.UI.WebControls.TextBox txt_81;
 
         /// <summary>
-        /// Control TextBox63.
+        /// Control txt_82.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox63;
+        protected global::System.Web.UI.WebControls.TextBox txt_82;
 
         /// <summary>
         /// Control txt_63.
@@ -1329,22 +1329,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_63;
 
         /// <summary>
-        /// Control TextBox65.
+        /// Control txt_64.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox65;
+        protected global::System.Web.UI.WebControls.TextBox txt_64;
 
         /// <summary>
-        /// Control TextBox66.
+        /// Control txt_65.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox66;
+        protected global::System.Web.UI.WebControls.TextBox txt_65;
 
         /// <summary>
         /// Control txt_73.
@@ -1356,22 +1356,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_73;
 
         /// <summary>
-        /// Control TextBox68.
+        /// Control txt_74.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox68;
+        protected global::System.Web.UI.WebControls.TextBox txt_74;
 
         /// <summary>
-        /// Control TextBox69.
+        /// Control txt_75.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox69;
+        protected global::System.Web.UI.WebControls.TextBox txt_75;
 
         /// <summary>
         /// Control txt_83.
@@ -1383,22 +1383,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_83;
 
         /// <summary>
-        /// Control TextBox71.
+        /// Control txt_84.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox71;
+        protected global::System.Web.UI.WebControls.TextBox txt_84;
 
         /// <summary>
-        /// Control TextBox72.
+        /// Control txt_85.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox72;
+        protected global::System.Web.UI.WebControls.TextBox txt_85;
 
         /// <summary>
         /// Control txt_66.
@@ -1410,22 +1410,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_66;
 
         /// <summary>
-        /// Control TextBox74.
+        /// Control txt_67.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox74;
+        protected global::System.Web.UI.WebControls.TextBox txt_67;
 
         /// <summary>
-        /// Control TextBox75.
+        /// Control txt_68.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox75;
+        protected global::System.Web.UI.WebControls.TextBox txt_68;
 
         /// <summary>
         /// Control txt_76.
@@ -1437,22 +1437,22 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_76;
 
         /// <summary>
-        /// Control TextBox77.
+        /// Control txt_77.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox77;
+        protected global::System.Web.UI.WebControls.TextBox txt_77;
 
         /// <summary>
-        /// Control TextBox78.
+        /// Control txt_78.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox78;
+        protected global::System.Web.UI.WebControls.TextBox txt_78;
 
         /// <summary>
         /// Control txt_86.
@@ -1464,21 +1464,21 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox txt_86;
 
         /// <summary>
-        /// Control TextBox80.
+        /// Control txt_87.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox80;
+        protected global::System.Web.UI.WebControls.TextBox txt_87;
 
         /// <summary>
-        /// Control TextBox81.
+        /// Control txt_88.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox81;
+        protected global::System.Web.UI.WebControls.TextBox txt_88;
     }
 }

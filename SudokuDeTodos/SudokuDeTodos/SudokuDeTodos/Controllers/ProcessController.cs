@@ -18,6 +18,14 @@ namespace SudokuDeTodos.Controllers
         }
 
         [HttpPost]
+        public JsonResult ListaLenguaje(int index = 0)
+        {
+            Idiomas idiomas = new Idiomas();
+            idiomas = EngineData.Idiomas(index);
+            return Json(idiomas);
+        }
+
+        [HttpPost]
         public string GuardarJuego(string valor, int i, int j)
         {
             bool resultado = false;
@@ -34,7 +42,7 @@ namespace SudokuDeTodos.Controllers
             }
             catch { }
           
-            Response response = new Response();
+            Respuesta response = new Respuesta();
             response.Status = resultado;
             string respuesta = Newtonsoft.Json.JsonConvert.SerializeObject(response);
             return respuesta;

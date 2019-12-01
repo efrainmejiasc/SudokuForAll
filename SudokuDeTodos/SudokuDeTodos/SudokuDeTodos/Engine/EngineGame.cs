@@ -384,14 +384,21 @@ namespace SudokuDeTodos.Engine
             return valorCandidatoSinEliminados;
         }
 
-          private  System.Windows.Forms.ListBox OrganizarCandidatos( System.Windows.Forms.ListBox lista, string candidatosFC)
+
+        private System.Windows.Forms.ListBox OrganizarCandidatos(System.Windows.Forms.ListBox lista, string candidatosFC)
         {
-             System.Windows.Forms.ListBox listaAux = new  System.Windows.Forms.ListBox();
-            candidatosFC = candidatosFC.Trim();
-            string[] item = candidatosFC.Split(' ');
+            string[] item = new string [18];
+            System.Windows.Forms.ListBox listaAux = new System.Windows.Forms.ListBox();
+            if(candidatosFC != null)
+            {
+                candidatosFC = candidatosFC.Trim();
+                item = candidatosFC.Split(' ');
+            }
+              
             for (int i = 0; i <= item.Length - 1; i++)
             {
-                listaAux.Items.Add(item[i].Trim());
+                if (item[i] != null && item[i] != string.Empty)
+                    listaAux.Items.Add(item[i].Trim());
             }
             foreach (string n in listaAux.Items)
             {
@@ -540,6 +547,42 @@ namespace SudokuDeTodos.Engine
             }
             return cajaTexto;
         }
+
+        public TextBox[,] SetearTextBoxNumeroEliminados(TextBox[,] cajaTexto, string[,] vIngresado, string[,] vEliminado)
+        {
+            for (int f = 0; f <= 8; f++)
+            {
+                for (int c = 0; c <= 8; c++)
+                {
+                    if (vIngresado[f, c] != null && vIngresado[f, c] != string.Empty)
+                    {
+                        cajaTexto[f, c].Text = vIngresado[f, c];
+                        //cajaTexto[f, c].Font = new Font(EngineData.TipoLetra, 20);
+                        cajaTexto[f, c].ForeColor = Color.Lime;
+                        //cajaTexto[f, c].TextAlign = HorizontalAlignment.Center;
+                    }
+                    else
+                    {
+                        if (vEliminado[f, c] != null && vEliminado[f, c] != string.Empty)
+                        {
+                            cajaTexto[f, c].Text = vEliminado[f, c];
+                            //cajaTexto[f, c].Font = new Font(EngineData.TipoLetra, 8);
+                            //cajaTexto[f, c].TextMode = TextBoxMode.MultiLine;
+                            cajaTexto[f, c].ForeColor = Color.Red;
+                            //cajaTexto[f, c].Columns = 3;
+                            //cajaTexto[f, c].TextAlign = HorizontalAlignment.Left;
+                        }
+                        else
+                        {
+                            cajaTexto[f, c].Text = string.Empty;
+                        }
+                    }
+
+                }
+            }
+            return cajaTexto;
+        }
+
 
     }
 }

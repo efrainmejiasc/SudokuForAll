@@ -26,7 +26,6 @@ namespace SudokuDeTodos.Vista
         {     
             if (IsPostBack)
             {
-                txt00.Text = 1.ToString();
             }
             else if (!IsPostBack)
             {
@@ -35,6 +34,30 @@ namespace SudokuDeTodos.Vista
                 txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);
                 AbrirJuego();
             }
+        }
+
+        public void AbrirJuego()
+        {
+            bool resultado = Game.AbrirJuego(ValorGame.PathArchivo);
+            if (resultado)
+            {
+
+                SetearJuego();
+            }
+            else
+            {
+                valorIngresado = Game.IgualarIngresadoInicio(ValorGame.valorIngresado, ValorGame.valorInicio);
+                valorCandidato = Game.ElejiblesInstantaneos(ValorGame.valorIngresado, ValorGame.valorCandidato);
+                valorCandidatoSinEliminados = Game.CandidatosSinEliminados(ValorGame.valorIngresado, ValorGame.valorCandidato, ValorGame.valorEliminado);
+                txtSudoku = Game.SetearTextBoxJuego(txtSudoku, ValorGame.valorIngresado, ValorGame.valorInicio);
+            }
+        }
+
+        private void SetearJuego()
+        {
+            valorCandidato = Game.ElejiblesInstantaneos(ValorGame.valorIngresado, ValorGame.valorCandidato);
+            valorCandidatoSinEliminados = Game.CandidatosSinEliminados(ValorGame.valorIngresado, ValorGame.valorCandidato, ValorGame.valorEliminado);
+            txtSudoku = Game.SetearTextBoxJuego(txtSudoku, ValorGame.valorIngresado, ValorGame.valorInicio);
         }
 
         private TextBox[,] AsociarTxtMatriz(TextBox[,] txtSudoku)
@@ -78,30 +101,6 @@ namespace SudokuDeTodos.Vista
             ////////////////////////////////////////////////////////////////////////////
 
             return txtSudoku;
-        }
-
-        public void AbrirJuego()
-        {
-            bool resultado = Game.AbrirJuego(ValorGame.PathArchivo);
-            if (resultado)
-            {
-
-                SetearJuego();
-            }
-            else
-            {
-                valorIngresado = Game.IgualarIngresadoInicio(ValorGame.valorIngresado, ValorGame.valorInicio);
-                valorCandidato = Game.ElejiblesInstantaneos(ValorGame.valorIngresado, ValorGame.valorCandidato);
-                valorCandidatoSinEliminados = Game.CandidatosSinEliminados(ValorGame.valorIngresado, ValorGame.valorCandidato, ValorGame.valorEliminado);
-                txtSudoku = Game.SetearTextBoxJuego(txtSudoku, ValorGame.valorIngresado, ValorGame.valorInicio);
-            }
-        }
-
-        private void SetearJuego()
-        {
-            valorCandidato = Game.ElejiblesInstantaneos(ValorGame.valorIngresado, ValorGame.valorCandidato);
-            valorCandidatoSinEliminados = Game.CandidatosSinEliminados(ValorGame.valorIngresado, ValorGame.valorCandidato, ValorGame.valorEliminado);
-            txtSudoku = Game.SetearTextBoxJuego(txtSudoku, ValorGame.valorIngresado, ValorGame.valorInicio);
         }
 
     }

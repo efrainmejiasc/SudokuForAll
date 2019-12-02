@@ -87,6 +87,7 @@ function Marcador(obj) {
     var cssClass = $('#marcador').attr('class');
     $('#marcador').removeClass(cssClass);
     $('#marcador').addClass(obj);
+    $('#marcador').style.borderColor = 'black';
 
 }
 

@@ -30,22 +30,26 @@
                      <input id="c" type="button" value="C" class="btn btn-success" onClick="Navegacion('GameATwo.aspx');"/>
                      <input id="image" type="button" class="btn btn-success arrowLeft" onClick="Navegacion('GameATwo.aspx');"/>
                 </div>
+                <div id="area" align="center" class="divArea"> 
+                      <div style="display:inline;"><input type="text" class="txtArea"/> <input type="text" class="txtArea"/> <input type="text" class="txtArea"/> </div> <br />
+                      <div style="display:inline;"><input type="text" class="txtArea"/> <input type="text" class="txtArea"/> <input type="text" class="txtArea"/> </div>
+                </div>
 
-               <div style="float:right;margin-right:20%" class="btn btn-success">
+               <div style="float:right;margin-right:19%" class="btn btn-success">
                 <div class="btn-group btn" role="group" aria-label="Basic example">
-                     <input id="" type="button" value="" class="btn bg-light" onclick="Marcador('btn bg-light');"/>
-                     <input id="" type="button" value="" class="btn azulOscuro" onclick="Marcador('btn azulOscuro');"/>
-                     <input id="" type="button" value="" class="btn azulClaro" onclick="Marcador('btn azulClaro');"/>
-                     <input id="" type="button" value="" class="btn rojoClaro" onclick="Marcador('btn rojoClaro');"/>
-                     <input id="" type="button" value="" class="btn rojoOscuro" onclick="Marcador('btn rojoOscuro');"/>
-                     <input id="" type="button" value="" class="btn verdeClaro" onclick="Marcador('btn verdeClaro');"/>
-                     <input id="" type="button" value="" class="btn verdeOscuro" onclick="Marcador('btn verdeOscuro');"/>
-                     <input id="" type="button" value="" class="btn naranjaClaro" onclick="Marcador('btn naranjaClaro');"/>
-                     <input id="" type="button" value="" class="btn orange" onclick="Marcador('btn orange');"/>
+                     <input id="" type="button" value="" class="btn bg-light white" onclick="Marcador('btn bg-light whiteLar');"/>
+                     <input id="" type="button" value="" class="btn azulOscuro" onclick="Marcador('btn azulOscuroX whiteLar');"/>
+                     <input id="" type="button" value="" class="btn azulClaro" onclick="Marcador('btn azulClaroX whiteLar');"/>
+                     <input id="" type="button" value="" class="btn rojoClaro" onclick="Marcador('btn rojoClaroX whiteLar');"/>
+                     <input id="" type="button" value="" class="btn rojoOscuro" onclick="Marcador('btn rojoOscuroX whiteLar');"/>
+                     <input id="" type="button" value="" class="btn verdeClaro" onclick="Marcador('btn verdeClaroX whiteLar');"/>
+                     <input id="" type="button" value="" class="btn verdeOscuro" onclick="Marcador('btn verdeOscuroX whiteLar');"/>
+                     <input id="" type="button" value="" class="btn naranjaClaro" onclick="Marcador('btn naranjaClaroX whiteLar');"/>
+                     <input id="" type="button" value="" class="btn orange" onclick="Marcador('btn orangeX whiteLar');"/>
                      <input id="marcador" type="button" value="" class="btn bg-light whiteLar"/></div>
                   </div>
                </div>
-
+           <br /><br />
                 <div>
                      <label id="numero" class="nameGrid">Números</label>
                </div>

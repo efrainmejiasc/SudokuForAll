@@ -25,17 +25,19 @@
              </div>  
 
            <div class="container-fluid">
+
                <div class="btn-group btnGroupA1" role="group" aria-label="Basic example">
-                     <input id="b" type="button" value="B" class="btn btn-success" onClick="Navegacion('GameATwo.aspx');"/>
-                     <input id="c" type="button" value="C" class="btn btn-success" onClick="Navegacion('GameATwo.aspx');"/>
-                     <input id="image" type="button" class="btn btn-success arrowLeft" onClick="Navegacion('GameATwo.aspx');"/>
+                     <input id="navb" type="button" value="B" class="btn btn-success" onClick="Navegacion('GameATwo.aspx');"/>
+                     <input id="navc" type="button" value="C" class="btn btn-success" onClick="Navegacion('GameATwo.aspx');"/>
+                     <input id="image" type="button" class="btn btn-success arrowRight" onClick="Navegacion('GameATwo.aspx');"/>
                 </div>
                 <div id="area" align="center" class="divArea"> 
-                      <div style="display:inline;"><input type="text" class="txtArea"/> <input type="text" class="txtArea"/> <input type="text" class="txtArea"/> </div> <br />
-                      <div style="display:inline;"><input type="text" class="txtArea"/> <input type="text" class="txtArea"/> <input type="text" class="txtArea"/> </div>
+                      <div style="display:inline;" ><input type="text" class="txtArea" id="a" readonly /> <input type="text" class="txtArea" id="c" readonly /> <input type="text" class="txtArea" id="b" readonly/> </div> <br />
+                      <div style="display:inline;"><input type="text" class="txtArea" id="f" readonly /> <input type="text" class="txtArea" id="e" readonly /> <input type="text" class="txtArea" id="g" readonly/> </div>
                 </div>
+                  <input type="text" id="txtNota" class="txtNota"/>
 
-               <div style="float:right;margin-right:19%" class="btn btn-success">
+               <div style="float:right;margin-right:19%" class="btn bg-light">
                 <div class="btn-group btn" role="group" aria-label="Basic example">
                      <input id="" type="button" value="" class="btn bg-light white" onclick="Marcador('btn bg-light whiteLar');"/>
                      <input id="" type="button" value="" class="btn azulOscuro" onclick="Marcador('btn azulOscuroX whiteLar');"/>
@@ -49,11 +51,10 @@
                      <input id="marcador" type="button" value="" class="btn bg-light whiteLar"/></div>
                   </div>
                </div>
-           <br /><br />
+
                 <div>
                      <label id="numero" class="nameGrid">Números</label>
-               </div>
-
+                </div>
 
              <div class="container" align="center">
               <div class="grid">

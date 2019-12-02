@@ -81,7 +81,7 @@
 */
 
 .divArea {
-    margin-left:35%;
+    margin-left:27%;
     position:absolute;
     width: auto;
     height: auto;
@@ -93,12 +93,18 @@
 }
 
 .txtArea {
-    width: 50px;
-    height: 40px;
+    width: 37px;
+    height: 32px;
     padding: 2%;
     border-style: solid;
     border-width: 1px;
     border-color: black;
+}
+
+.txtNota {
+    margin-left:10%;
+    width: 140px;
+    height: 25px;
 }
 
 .nameGrid {
@@ -124,19 +130,19 @@
 .arrowRight {
     cursor: pointer;
     border: none;
-    width:49px;
+    width: 47px;
     height: auto;
-    background: url('/Content/imagen/Izq.JPG') no-repeat;
+    background: url('/Content/imagen/Der.JPG') no-repeat;
     padding: 0%
 }
 
 .arrowLeft {
     cursor: pointer;
     border: none;
-    width: 47px;
+    width: 49px;
     height: auto;
-    background: url('/Content/imagen/Der.JPG') no-repeat;
-    padding:0%
+    background: url('/Content/imagen/Izq.JPG') no-repeat;
+    padding: 0%
 }
 
 .btnGroupA1 {

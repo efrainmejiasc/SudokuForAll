@@ -22,18 +22,40 @@
                            <li style="list-style:none;"><a href="/Home/Index" id="inicio" class="listBanner">Inicio</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                            <li style="list-style:none;"><a href="/Home/Contact" id="entrar"  class="listBanner">Entrar</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
                          </ul>
-             </div>  
+             </div> 
+           
+          <div class="container-fluid">
 
-              <div class="btn-group btnGroupA2" role="group" aria-label="Basic example">
-                     <input id="b" type="button" value="B" class="btn btn-success" onClick="Navegacion('GameAOne.aspx');"/>
-                     <input id="c" type="button" value="C" class="btn btn-success" onClick="Navegacion('GameAOne.aspx');"/>
-                     <input id="image" type="button" class="btn btn-success arrowRight" onClick="Navegacion('GameAOne.aspx');"/>
-                     <!--<input type="image" src="../Content/imagen/Der.JPG" class="btn btn-success" onclick="Navegacion('../Vista/GameAOne.aspx');"/>-->
+               <div class="btn-group btnGroupA1" role="group" aria-label="Basic example">
+                     <input id="navb" type="button" value="B" class="btn btn-success" onClick="Navegacion('GameAOne.aspx');"/>
+                     <input id="navc" type="button" value="C" class="btn btn-success" onClick="Navegacion('GameAOne.aspx');"/>
+                     <input id="image" type="button" class="btn btn-success arrowLeft" onClick="Navegacion('GameAOne.aspx');"/>
                 </div>
+                <div id="area" align="center" class="divArea"> 
+                      <div style="display:inline;"><input type="text" class="txtArea"  id="a" readonly/> <input type="text" class="txtArea" id="c" readonly /> <input type="text" class="txtArea" id="b" readonly /> </div> <br />
+                      <div style="display:inline;"><input type="text" class="txtArea"  id="f" readonly/> <input type="text" class="txtArea" id="e" readonly /> <input type="text" class="txtArea" id="g" readonly/> </div>
+                </div>
+                  <input type="text" id="txtNota" class="txtNota"/>
+
+               <div style="float:right;margin-right:19%" class="btn bg-light">
+                <div class="btn-group btn" role="group" aria-label="Basic example">
+                     <input id="" type="button" value="" class="btn bg-light white" onclick="Marcador('btn bg-light whiteLar');"/>
+                     <input id="" type="button" value="" class="btn azulOscuro" onclick="Marcador('btn azulOscuroX whiteLar');"/>
+                     <input id="" type="button" value="" class="btn azulClaro" onclick="Marcador('btn azulClaroX whiteLar');"/>
+                     <input id="" type="button" value="" class="btn rojoClaro" onclick="Marcador('btn rojoClaroX whiteLar');"/>
+                     <input id="" type="button" value="" class="btn rojoOscuro" onclick="Marcador('btn rojoOscuroX whiteLar');"/>
+                     <input id="" type="button" value="" class="btn verdeClaro" onclick="Marcador('btn verdeClaroX whiteLar');"/>
+                     <input id="" type="button" value="" class="btn verdeOscuro" onclick="Marcador('btn verdeOscuroX whiteLar');"/>
+                     <input id="" type="button" value="" class="btn naranjaClaro" onclick="Marcador('btn naranjaClaroX whiteLar');"/>
+                     <input id="" type="button" value="" class="btn orange" onclick="Marcador('btn orangeX whiteLar');"/>
+                     <input id="marcador" type="button" value="" class="btn bg-light whiteLar"/></div>
+                  </div>
+               </div>
+           <br /><br />
 
             <div>           
-               <label id="numero" class="nameGrid1">Números</label>
-               <label id="excluido" class="nameGrid2">Números y Candidatos Excluidos</label>
+                <label id="numero" class="nameGrid1">Números</label>
+                <label id="excluido" class="nameGrid2">Números y Candidatos Excluidos</label>
            </div>
 
        <div class="container-fluid" align="center">

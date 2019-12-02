@@ -36,7 +36,7 @@ function TextZero(id) {
 } 
 
 function Navegacion(page) {
-    window.open(page, '_self');
+    window.open(page, "_self");
 }
 
 
@@ -81,6 +81,13 @@ function StyleTxt()
             }  
         }
     }
+}
+
+function Marcador(obj) {
+    var cssClass = $('#marcador').attr('class');
+    $('#marcador').removeClass(cssClass);
+    $('#marcador').addClass(obj);
+
 }
 
 /*function TextLetra(id) {

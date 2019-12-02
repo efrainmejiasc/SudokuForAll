@@ -24,10 +24,28 @@
                          </ul>
              </div>  
 
-
-                <div> 
-                     <input type="image" src="../Content/imagen/Der.JPG" class="arrowLeft"  onclick="return Navegacion('GameATwo.aspx');" />
+           <div class="container-fluid">
+               <div class="btn-group btnGroupA1" role="group" aria-label="Basic example">
+                     <input id="b" type="button" value="B" class="btn btn-success" onClick="Navegacion('GameATwo.aspx');"/>
+                     <input id="c" type="button" value="C" class="btn btn-success" onClick="Navegacion('GameATwo.aspx');"/>
+                     <input id="image" type="button" class="btn btn-success arrowLeft" onClick="Navegacion('GameATwo.aspx');"/>
                 </div>
+
+               <div style="float:right;margin-right:20%" class="btn btn-success">
+                <div class="btn-group btn" role="group" aria-label="Basic example">
+                     <input id="" type="button" value="" class="btn bg-light" onclick="Marcador('btn bg-light');"/>
+                     <input id="" type="button" value="" class="btn azulOscuro" onclick="Marcador('btn azulOscuro');"/>
+                     <input id="" type="button" value="" class="btn azulClaro" onclick="Marcador('btn azulClaro');"/>
+                     <input id="" type="button" value="" class="btn rojoClaro" onclick="Marcador('btn rojoClaro');"/>
+                     <input id="" type="button" value="" class="btn rojoOscuro" onclick="Marcador('btn rojoOscuro');"/>
+                     <input id="" type="button" value="" class="btn verdeClaro" onclick="Marcador('btn verdeClaro');"/>
+                     <input id="" type="button" value="" class="btn verdeOscuro" onclick="Marcador('btn verdeOscuro');"/>
+                     <input id="" type="button" value="" class="btn naranjaClaro" onclick="Marcador('btn naranjaClaro');"/>
+                     <input id="" type="button" value="" class="btn orange" onclick="Marcador('btn orange');"/>
+                     <input id="marcador" type="button" value="" class="btn bg-light whiteLar"/></div>
+                  </div>
+               </div>
+
                 <div>
                      <label id="numero" class="nameGrid">Números</label>
                </div>
@@ -151,6 +169,7 @@
                 return false;
             }
         }
+
     </script>
 
 

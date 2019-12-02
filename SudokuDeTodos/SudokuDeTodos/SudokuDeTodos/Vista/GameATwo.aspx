@@ -24,9 +24,12 @@
                          </ul>
              </div>  
 
-              <div> 
-                     <input type="image" value="" onclick="Navegacion('GameAOne.aspx')" src="../Content/imagen/Izq.JPG" class="arrowLeft"/>
-             </div>
+              <div class="btn-group btnGroupA2" role="group" aria-label="Basic example">
+                     <input id="b" type="button" value="B" class="btn btn-success" onClick="Navegacion('GameAOne.aspx');"/>
+                     <input id="c" type="button" value="C" class="btn btn-success" onClick="Navegacion('GameAOne.aspx');"/>
+                     <input id="image" type="button" class="btn btn-success arrowRight" onClick="Navegacion('GameAOne.aspx');"/>
+                     <!--<input type="image" src="../Content/imagen/Der.JPG" class="btn btn-success" onclick="Navegacion('../Vista/GameAOne.aspx');"/>-->
+                </div>
 
             <div>           
                <label id="numero" class="nameGrid1">Números</label>

@@ -59,7 +59,7 @@
            </div>
 
        <div class="container-fluid" align="center">
-             <div class="container" style="margin-left:23%;float:left">
+             <div class="container" style="margin-left:16%;float:left">
               <div class="grid">
                   <div class="innerGrid">
        
@@ -130,7 +130,7 @@
                   </div><!-- FIN GRID -->
                  </div><!-- CONTAINER2-->
 
-             <div class="container" style="margin-right:23%; float:right;">
+             <div class="container" style="margin-right:16%; float:right;">
                 <div class="grid">
                   <div class="innerGrid">
 

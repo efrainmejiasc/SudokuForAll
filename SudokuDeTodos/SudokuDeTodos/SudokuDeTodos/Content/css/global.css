@@ -1,9 +1,9 @@
 ﻿.divBanner {
     background-color: green;
     /*font-family:'Times New Roman', Times, serif;*/
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size:10px;
-    width:100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px;
+    width: 100%;
 }
 
 .logoInitial {
@@ -14,7 +14,7 @@
     margin-right: 100%;
     padding-top: 1%;
     //margin-left: 19%;
-    margin-left: 21%;
+    margin-left: 20%;
     margin-top: 0%;
 }
 
@@ -27,9 +27,29 @@
     padding-top: 0%;
     margin-left: 17%;
     color: white;
-    font-size:20px;
+    font-size: 20px;
 }
 
+
+.listBanner {
+    color: white;
+    font-size: 22px;
+}
+
+.listBanner:hover {
+    color: lawngreen;
+    text-decoration: none;
+ }
+
+
+.fontInitial {
+    height: auto;
+    width: 8%;
+    margin-right: 100%;
+    padding-top: 0%;
+    margin-left: 17%;
+    color: white;
+}
 
 .cTxt {
     width: 50px;
@@ -66,15 +86,6 @@
     font-size: 20px;
 }
 
-.listBanner {
-    color: white;
-    font-size: 28px;
-}
-
-.listBanner:hover {
-    color: lawngreen;
-    text-decoration: none;
-}
 
 /*
     Etiquetas Juego

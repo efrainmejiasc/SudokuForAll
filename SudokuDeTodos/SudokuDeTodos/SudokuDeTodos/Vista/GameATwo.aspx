@@ -53,13 +53,13 @@
                </div>
            <br /><br />
 
-            <div>           
-                <label id="numero" class="nameGrid1">Números</label>
-                <label id="excluido" class="nameGrid2">Números y Candidatos Excluidos</label>
-           </div>
+          
 
-       <div class="container-fluid" align="center">
-             <div class="container" style="margin-left:16%;float:left">
+       <div class="container-fluid" >
+             <div class="container" align="center" style="margin-left:16%;float:left;width:500px;">
+                  <div style="align-content:center">           
+                     <label id="numero" class="nameGrid2">Números</label>
+                </div>
               <div class="grid">
                   <div class="innerGrid">
        
@@ -130,7 +130,10 @@
                   </div><!-- FIN GRID -->
                  </div><!-- CONTAINER2-->
 
-             <div class="container" style="margin-right:16%; float:right;">
+             <div class="container" style="margin-right:16%; float:right;;width:500px;">
+                    <div style="align-content:center">           
+                     <label id="excluido" class="nameGrid2">Números y Candidatos Excluidos</label>
+                    </div>
                 <div class="grid">
                   <div class="innerGrid">
 
@@ -202,7 +205,7 @@
                   </div><!-- FIN GRID -->
               </div><!-- CONTAINER2-->
     </div><!-- CONTAINER FULL-->
-
+           <br /><br/>
              <div class="container body-content" style="margin-top:26%;">       
                <hr />
                  <footer>

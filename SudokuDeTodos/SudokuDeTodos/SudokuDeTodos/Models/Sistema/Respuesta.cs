@@ -9,5 +9,6 @@ namespace SudokuDeTodos.Models.Sistema
     {
         public int Id { get; set; }
         public bool Status { get; set; }
+        public string Descripcion { get; set; }
     }
 }

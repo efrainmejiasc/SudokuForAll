@@ -12,6 +12,7 @@ namespace SudokuDeTodos.Controllers
     {
         public ActionResult Index(int index = 0)
         {
+            GetGalleta();
             Respuesta model = new Respuesta();
             if (index > 0)
             {
@@ -19,6 +20,22 @@ namespace SudokuDeTodos.Controllers
                 model.Id = index;
             }
             return View(model);
+        }
+
+        private void GetGalleta()
+        {
+            if (Request.Cookies["GalletaSudokuForAllId"] != null)
+            {
+                HttpCookie MiGalletaId = Request.Cookies["GalletaSudokuForAllId"];
+                HttpCookie MiGalletaExpire = Request.Cookies["GalletaSudokuForAllExpire"];
+                string identificadorGalleta = MiGalletaId.Value;
+                string fechaExpiracion = MiGalletaExpire.Value;
+                System.Web.HttpContext.Current.Session["MiGalleta"] = true;
+            }
+            else
+            {
+                System.Web.HttpContext.Current.Session["MiGalleta"] = false;
+            }
         }
 
         public ActionResult About()

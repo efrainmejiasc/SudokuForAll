@@ -138,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
+    <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\ProcessController.cs" />
     <Compile Include="Engine\EngineDb.cs" />
     <Compile Include="Engine\EngineGameChild.cs" />
@@ -193,6 +194,7 @@
     <Content Include="Content\css\global.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\imagen\Der.JPG" />
+    <Content Include="Content\imagen\initSudoku.mp4" />
     <Content Include="Content\imagen\Izq.JPG" />
     <Content Include="Content\imagen\logo.png" />
     <Content Include="Content\js\game.js" />
@@ -268,6 +270,9 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Manager\Login.cshtml" />
+    <Content Include="Views\Manager\MainManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

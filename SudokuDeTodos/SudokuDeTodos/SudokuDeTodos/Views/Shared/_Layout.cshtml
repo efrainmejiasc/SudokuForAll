@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title  Sudoku de todos</title>
     <link href="~/Content/css/global.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
@@ -27,11 +27,17 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        <br />
         <footer>
-            <p>copyright&copy;@DateTime.Now.Year - Sudoku de Todos </p>
+            <hr />
+            <ul class="row">
+                <li style="list-style:none;">copyright&copy;@DateTime.Now.Year - Sudoku de Todos </li>
+                <li style="list-style:none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li style="list-style:none;"><a class="w3-button w3-light-grey w3-block" id="equipo" name="equipo" href="javascript:VerificarGalleta();">@Resources.Equipo</a></li>
+            </ul>
         </footer>
     </div>
+
     @RenderSection("scripts", required: false)
 
     <script>
@@ -44,7 +50,7 @@
         function VerificarGalleta() {
             $.ajax({
                 type: "POST",
-                url: "/Home/ExisteGalleta",
+                url: "/Process/ExisteGalleta",
                 datatype: "json",
                 success: function (data) {
                     if (data.Descripcion == '')

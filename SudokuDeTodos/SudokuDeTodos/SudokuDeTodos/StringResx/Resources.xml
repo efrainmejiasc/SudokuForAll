@@ -72,4 +72,12 @@
   <resource culture="en-us" name="Equipo" value="Team"></resource>
   <resource culture="pt-pt" name="Equipo" value="Equipa"></resource>
 
+  <resource culture="es-es" name="IniciarSesion" value="Iniciar sesión "></resource>
+  <resource culture="en-us" name="IniciarSesion" value="Log in"></resource>
+  <resource culture="pt-pt" name="IniciarSesion" value="Iniciar sessão"></resource>
+
+  <resource culture="es-es" name="AceptarCondicion" value="Al hacer click en continuar estas aceptando las condiciones de uso y el aviso de privacidad de sudokudetodos.com"></resource>
+  <resource culture="en-us" name="AceptarCondicion" value="By clicking on continue you accept the conditions of use and the privacy notice of sudokudetodos.com"></resource>
+  <resource culture="pt-pt" name="AceptarCondicion" value="Ao clicar em continuar, você aceita as condições de uso e o aviso de privacidade de sudokudetodos.com"></resource>
+
 </resources>

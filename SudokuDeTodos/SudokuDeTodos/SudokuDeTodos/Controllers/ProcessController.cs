@@ -47,5 +47,19 @@ namespace SudokuDeTodos.Controllers
             string respuesta = Newtonsoft.Json.JsonConvert.SerializeObject(response);
             return respuesta;
         }
+
+        [HttpPost]
+        public JsonResult ExisteGalleta()
+        {
+            Respuesta respuesta = new Respuesta();
+            bool existe = (bool)System.Web.HttpContext.Current.Session["MiGalleta"];
+            if (existe)
+                respuesta.Descripcion = string.Empty;
+            else
+                respuesta.Descripcion = "Equipo no registrado, desea continuar y registrarlo ?";
+
+            return Json(respuesta);
+        }
+
     }
 }

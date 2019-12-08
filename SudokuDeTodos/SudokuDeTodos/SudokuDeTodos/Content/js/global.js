@@ -18,8 +18,9 @@ $('#traductor').on('change', function (e) {
         data: { lenguaje: lenguaje, index: index },
         datatype: "json",
         success: function () {
-            if (index > 0)
-                SetObjectsLayount(index);
+                if (index > 0)
+                 SetObjectsLayount(index);
+            //Stop();
         }
     });
 }); 
@@ -54,13 +55,12 @@ function SetObjectsLayount(index) {
         data: { index: index },
         datatype: "json",
         success: function (data) {
-            $('#olvidoPassword').text(data.ResetPassword);
-            $('#normas').text(data.Terminos);
+            //$('#olvidoPassword').text(data.ResetPassword);
+            //$('#normas').text(data.Terminos);
             $('#inicio').text(data.Inicio);
             $('#entrar').text(data.Entrar);
             $('#entrar').show();
             $('#equipo').text(data.Equipo);
-            $('#videoInit').attr('src', '../Content/imagen/expSudoku.mp4');
             $('#triggerModal').removeAttr('disabled');
             $("#traductor").empty();
             $('#traductor').append('<option selected disabled value="0">Seleccione Idioma. . .</option>');
@@ -79,15 +79,7 @@ var n = 0;
 function SenialTraductor() {
     var text = ['Selecione um idioma. . .', 'Select a Language. . .', 'Seleccione Idioma. . .', 'Selecione um idioma. . .', 'Select a Language. . .', 'Seleccione Idioma. . .'];
     var i = Math.floor(Math.random() * (6 - 0));
-    var cssClass = $('#traductor').attr('class');
-    console.log(cssClass);
-    if (cssClass === 'btn-primary btn') {
-        $('#traductor').removeClass('btn-primary btn');
-        $('#traductor').addClass('btn-danger btn');
-    } else {
-        $('#traductor').removeClass('btn-danger btn');
-        $('#traductor').addClass('btn-primary btn');
-    }
+    CambioCss();
     $('#traductor option[value=' + 0 + ']').text(text[i]);
     Stop();
     nueva = setInterval(SenialTraductor, 1500);
@@ -96,6 +88,17 @@ function SenialTraductor() {
 function Stop() {
     clearTimeout(nueva);
 } 
+
+function CambioCss() {
+    var cssClass = $('#traductor').attr('class');
+    if (cssClass === 'btn-primary btn') {
+        $('#traductor').removeClass('btn-primary btn');
+        $('#traductor').addClass('btn-danger btn');
+    } else {
+        $('#traductor').removeClass('btn-danger btn');
+        $('#traductor').addClass('btn-primary btn');
+    }
+}
 
 
 

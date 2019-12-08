@@ -104,5 +104,14 @@ namespace SudokuDeTodos.StringResx
             get { return resourceProvider.GetResource("Equipo", CultureInfo.CurrentUICulture.Name) as String; }
         }
 
+        public static string IniciarSesion
+        {
+            get { return resourceProvider.GetResource("IniciarSesion", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string AceptarCondicion
+        {
+            get { return resourceProvider.GetResource("AceptarCondicion", CultureInfo.CurrentUICulture.Name) as String; }
+        }
     }
 }

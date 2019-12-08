@@ -18,8 +18,6 @@
     margin-top: 0%;
 }
 
-
-
 .fontInitial {
     height: auto;
     width: 8%;
@@ -30,6 +28,31 @@
     font-size: 20px;
 }
 
+.videoSize {
+    width: 60%;
+    height: 500px;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+.videoContainer{
+    float:left;
+}
+
+.divEmail {
+    margin-top: 15%;
+    width: 80%;
+    display: inline-block;
+}
+
+.boxTxt {
+    text-align: center;
+    width: 35%;
+}
+
+.voton {
+    width: 35%;
+}
 
 .listBanner {
     color: white;

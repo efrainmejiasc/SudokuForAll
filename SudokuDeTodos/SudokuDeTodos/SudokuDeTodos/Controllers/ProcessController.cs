@@ -10,11 +10,15 @@ namespace SudokuDeTodos.Controllers
 {
     public class ProcessController : Controller
     {
-        private IEngineGameProcess Proceso;
+        private readonly IEngineGameProcess Proceso;
+        private readonly IEngineDb Metodo;
+        private readonly IEngineProyect Funcion;
 
-        public ProcessController(IEngineGameProcess _Proceso)
+        public ProcessController(IEngineGameProcess _Proceso, IEngineDb _Metodo, IEngineProyect _Funcion)
         {
             this.Proceso = _Proceso;
+            this.Metodo = _Metodo;
+            this.Funcion = _Funcion;
         }
 
         [HttpPost]
@@ -58,6 +62,20 @@ namespace SudokuDeTodos.Controllers
             else
                 respuesta.Descripcion = "Equipo no registrado, desea continuar y registrarlo ?";
 
+            return Json(respuesta);
+        }
+
+        [HttpPost]
+        public JsonResult IdentificacionEmail(string email)
+        {
+            Respuesta respuesta = new Respuesta();
+            respuesta.Status = Funcion.EmailEsValido(email);
+            if (!respuesta.Status)
+            {
+                respuesta.Descripcion = email + EngineData.EmailNoValido();
+                return Json(respuesta);
+            }
+            respuesta.Id = Metodo.ObtenerIdCliente(email);
             return Json(respuesta);
         }
 

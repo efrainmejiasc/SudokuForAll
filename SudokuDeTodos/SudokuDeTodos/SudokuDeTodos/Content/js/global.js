@@ -8,6 +8,7 @@ function MostrarObjeto(name) {
     $(objeto).show();
 }
 
+
 $('#traductor').on('change', function (e) {
     var lenguaje = $('#traductor option:selected').html();
     var index = $('#traductor option:selected').val();

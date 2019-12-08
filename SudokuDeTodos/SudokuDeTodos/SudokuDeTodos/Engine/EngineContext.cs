@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SudokuDeTodos.Models.DbSistema;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace SudokuDeTodos.Engine
         public EngineContext() : base("CnxSudoku")
         {
         }
+
+        public DbSet<Cliente> Cliente { get; set; }
+
+        public DbSet<SucesoLog> SucesoLog { get; set; }
+
         // 1. Instalar Entity Framework
         // 2. Crear clase que herede de DbContext
         // 3. Ejecutar enable-migratios

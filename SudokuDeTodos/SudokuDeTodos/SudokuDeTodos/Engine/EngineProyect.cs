@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SudokuDeTodos.Models.DbSistema;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -107,6 +108,19 @@ namespace SudokuDeTodos.Engine
             if (diferenciaHora <= 3)
                 resultado = true;
             return resultado;
+        }
+
+        public SucesoLog ConstruirSucesoLog(string cadena)
+        {
+            string[] x = cadena.Split('*');
+            SucesoLog modelo = new SucesoLog()
+            {
+                Fecha = DateTime.UtcNow,
+                Excepcion = x[0],
+                Metodo = x[1],
+                Email = x[2]
+            };
+            return modelo;
         }
     }
 }

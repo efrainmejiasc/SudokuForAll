@@ -150,6 +150,8 @@
     <Compile Include="Engine\IEngineDb.cs" />
     <Compile Include="Engine\IEngineGameProcess.cs" />
     <Compile Include="Engine\IEngineProyect.cs" />
+    <Compile Include="Models\DbSistema\Cliente.cs" />
+    <Compile Include="Models\DbSistema\SucesoLog.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />
     <Compile Include="Models\Sistema\Respuesta.cs" />
     <Compile Include="StringResx\Abstract\BaseResourceProvider.cs" />
@@ -277,7 +279,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\templates\" />
-    <Folder Include="Models\DbSistema\" />
     <Folder Include="Views\Process\" />
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,14 @@ namespace SudokuDeTodos.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IEngineDb Metodo;
+        private readonly IEngineProyect Funcion;
+
+        public HomeController(IEngineDb _Metodo, IEngineProyect _Funcion)
+        {
+            this.Metodo = _Metodo;
+            this.Funcion = _Funcion;
+        }
         public ActionResult Index(int index = 0)
         {
             GetGalleta();
@@ -38,6 +46,11 @@ namespace SudokuDeTodos.Controllers
             }
         }
 
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -45,11 +58,6 @@ namespace SudokuDeTodos.Controllers
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+       
     }
 }

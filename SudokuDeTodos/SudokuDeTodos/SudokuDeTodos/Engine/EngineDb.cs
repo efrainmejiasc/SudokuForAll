@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SudokuDeTodos.Models.DbSistema;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -10,10 +11,47 @@ namespace SudokuDeTodos.Engine
     {
         private static string cadenaConexion = ConfigurationManager.ConnectionStrings["CnxSudoku"].ToString();
         private readonly IEngineProyect Funcion;
+        private readonly EngineContext Context;
 
-        public EngineDb(IEngineProyect _Funcion)
+        public EngineDb(IEngineProyect _Funcion,EngineContext _Context)
         {
             this.Funcion = _Funcion;
+            this.Context = _Context;
+        }
+
+        public int ObtenerIdCliente(string email)
+        {
+            Cliente C = new Cliente();
+            try
+            {
+                using (this.Context)
+                {
+                    C = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
+                    if (C.Id > 0)
+                        return C.Id;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/ObtenerIdCliente*" + email));
+            }
+            return 0;
+        }
+
+        public bool InsertarSucesoLog(SucesoLog model)
+        {
+            bool resultado = false;
+            try
+            {
+                using (this.Context)
+                {
+                    Context.SucesoLog.Add(model);
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch { }
+            return resultado;
         }
     }
 }

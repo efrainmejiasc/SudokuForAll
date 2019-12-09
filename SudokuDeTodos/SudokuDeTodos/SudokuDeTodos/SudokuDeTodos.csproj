@@ -151,6 +151,7 @@
     <Compile Include="Engine\IEngineGameProcess.cs" />
     <Compile Include="Engine\IEngineProyect.cs" />
     <Compile Include="Models\DbSistema\Cliente.cs" />
+    <Compile Include="Models\DbSistema\ClientePago.cs" />
     <Compile Include="Models\DbSistema\SucesoLog.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />
     <Compile Include="Models\Sistema\Respuesta.cs" />

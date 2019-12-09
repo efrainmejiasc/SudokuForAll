@@ -11,24 +11,34 @@ namespace SudokuDeTodos.Engine
     {
         private static string cadenaConexion = ConfigurationManager.ConnectionStrings["CnxSudoku"].ToString();
         private readonly IEngineProyect Funcion;
-        private readonly EngineContext Context;
+        private  EngineContext Context;
 
-        public EngineDb(IEngineProyect _Funcion,EngineContext _Context)
+        public EngineDb(IEngineProyect _Funcion)
         {
             this.Funcion = _Funcion;
-            this.Context = _Context;
         }
 
-        public int ObtenerIdCliente(string email)
+        public int VerificarEmail (string email)
         {
             Cliente C = new Cliente();
             try
             {
-                using (this.Context)
+                using (this.Context = new EngineContext())
                 {
                     C = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
-                    if (C.Id > 0)
-                        return C.Id;
+                    if (C == null)
+                    {
+                        return 0;
+                    }
+                    else if (C.Id >=1 )
+                    {
+                        if (C.EstatusEnvioNotificacion == false)
+                            return 1;
+                        else if (C.EstatusEnvioNotificacion == true && C.FechaActivacion.AddDays(3) < DateTime.UtcNow)
+                            return 2;
+                        else if (C.EstatusEnvioNotificacion == true && C.FechaActivacion.AddDays(3) > DateTime.UtcNow)
+                            return 3;
+                    }
                 }
             }
             catch (Exception ex)
@@ -43,7 +53,7 @@ namespace SudokuDeTodos.Engine
             bool resultado = false;
             try
             {
-                using (this.Context)
+                using (this.Context = new EngineContext())
                 {
                     Context.SucesoLog.Add(model);
                     Context.SaveChanges();

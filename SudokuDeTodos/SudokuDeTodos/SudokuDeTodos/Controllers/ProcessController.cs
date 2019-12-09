@@ -75,13 +75,14 @@ namespace SudokuDeTodos.Controllers
                 respuesta.Descripcion = email + EngineData.EmailNoValido();
                 return Json(respuesta);
             }
-            respuesta.Id = Metodo.ObtenerIdCliente(email);
+            respuesta.Id = Metodo.VerificarEmail(email);
             if (respuesta.Id == 0)
-            {
                 respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, StringResx.Resources.MsjPruebaSitio);
-                return Json(respuesta);
-            }
-              
+            else if (respuesta.Id == 1)
+                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, EngineData.CuentaNoActivada());
+            else if(respuesta.Id == 2)
+                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, "JugarPrueba");
+
 
             return Json(respuesta);
         }

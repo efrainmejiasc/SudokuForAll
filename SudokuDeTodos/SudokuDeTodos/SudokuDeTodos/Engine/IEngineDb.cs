@@ -7,6 +7,6 @@ namespace SudokuDeTodos.Engine
 {
     public interface  IEngineDb
     {
-        int ObtenerIdCliente(string email);
+        int VerificarEmail(string email);
     }
 }

@@ -76,6 +76,13 @@ namespace SudokuDeTodos.Controllers
                 return Json(respuesta);
             }
             respuesta.Id = Metodo.ObtenerIdCliente(email);
+            if (respuesta.Id == 0)
+            {
+                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, StringResx.Resources.MsjPruebaSitio);
+                return Json(respuesta);
+            }
+              
+
             return Json(respuesta);
         }
 

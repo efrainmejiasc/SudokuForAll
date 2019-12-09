@@ -118,5 +118,6 @@ namespace SudokuDeTodos.StringResx
         {
             get { return resourceProvider.GetResource("Requerido", CultureInfo.CurrentUICulture.Name) as String; }
         }
+
     }
 }

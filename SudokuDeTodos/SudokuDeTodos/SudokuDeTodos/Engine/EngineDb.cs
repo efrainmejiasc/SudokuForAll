@@ -27,7 +27,7 @@ namespace SudokuDeTodos.Engine
                 using (this.Context)
                 {
                     C = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
-                    if (C != null && C.Id > 0)
+                    if (C.Id > 0)
                         return C.Id;
                 }
             }

@@ -1,4 +1,5 @@
 ﻿using SudokuDeTodos.Models.DbSistema;
+using SudokuDeTodos.Models.Sistema;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,6 @@ namespace SudokuDeTodos.Engine
         SucesoLog ConstruirSucesoLog(string cadena);
         string DecodeBase64(string base64EncodedData);
         bool EstatusLink(DateTime fechaEnvio, DateTime fechaActivacion);
+        Respuesta ConstruirRespuesta(int id, bool status, string descripcion);
     }
 }

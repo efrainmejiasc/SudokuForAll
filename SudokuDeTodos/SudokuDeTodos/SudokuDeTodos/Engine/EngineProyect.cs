@@ -1,4 +1,5 @@
 ﻿using SudokuDeTodos.Models.DbSistema;
+using SudokuDeTodos.Models.Sistema;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -119,6 +120,17 @@ namespace SudokuDeTodos.Engine
                 Excepcion = x[0],
                 Metodo = x[1],
                 Email = x[2]
+            };
+            return modelo;
+        }
+
+        public Respuesta ConstruirRespuesta(int id , bool status, string descripcion)
+        {
+            Respuesta modelo = new Respuesta()
+            {
+               Id = id,
+               Status = status,
+               Descripcion = descripcion
             };
             return modelo;
         }

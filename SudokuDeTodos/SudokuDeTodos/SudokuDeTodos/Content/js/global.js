@@ -102,4 +102,18 @@ function CambioCss() {
 }
 
 
+function VerificarEmail() {
+    var email = $('#email').val();
+    $.ajax({
+        type: "POST",
+        url: "/Process/VerificarEmail",
+        data: { email: email },
+        datatype: "json",
+        success: function (data) {
+            if (data.Status == true) {
+                console.log(data.Descripcion);
+            } 
+        }
+    });
 
+}

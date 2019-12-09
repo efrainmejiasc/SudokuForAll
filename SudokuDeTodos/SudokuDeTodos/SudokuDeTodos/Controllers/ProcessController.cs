@@ -66,7 +66,7 @@ namespace SudokuDeTodos.Controllers
         }
 
         [HttpPost]
-        public JsonResult IdentificacionEmail(string email)
+        public JsonResult VerificarEmail (string email)
         {
             Respuesta respuesta = new Respuesta();
             respuesta.Status = Funcion.EmailEsValido(email);

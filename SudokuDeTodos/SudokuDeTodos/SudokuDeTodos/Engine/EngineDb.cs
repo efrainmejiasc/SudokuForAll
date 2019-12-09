@@ -27,13 +27,13 @@ namespace SudokuDeTodos.Engine
                 using (this.Context)
                 {
                     C = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
-                    if (C.Id > 0)
+                    if (C != null && C.Id > 0)
                         return C.Id;
                 }
             }
             catch (Exception ex)
             {
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/ObtenerIdCliente*" + email));
+              InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/ObtenerIdCliente*" + email));
             }
             return 0;
         }

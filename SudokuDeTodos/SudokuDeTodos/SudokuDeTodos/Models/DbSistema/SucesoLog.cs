@@ -23,7 +23,7 @@ namespace SudokuDeTodos.Models.DbSistema
         public string Metodo { get; set; }
 
         [Column(Order = 4, TypeName = "VARCHAR")]
-        [StringLength(300)]
+        [StringLength(4000)]
         public string Excepcion { get; set; }
 
         [Column(Order = 5, TypeName = "VARCHAR")]

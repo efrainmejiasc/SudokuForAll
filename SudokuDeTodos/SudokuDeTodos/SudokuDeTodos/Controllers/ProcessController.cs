@@ -77,12 +77,38 @@ namespace SudokuDeTodos.Controllers
             }
             respuesta.Id = Metodo.VerificarEmail(email);
             if (respuesta.Id == 0)
-                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, StringResx.Resources.MsjPruebaSitio);
+            {
+                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, StringResx.Resources.MsjPruebaSitio); //Prueba sudokudetodos?
+            }
             else if (respuesta.Id == 1)
-                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, EngineData.CuentaNoActivada());
-            else if(respuesta.Id == 2)
-                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, "JugarPrueba");
-
+            {
+                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, EngineData.CuentaNoActivada()); //Activar cuenta please
+            }
+            else if (respuesta.Id == 2)
+            {
+                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, "JUGAR PRUEBA"); // Ir a jugar prueba
+            }      
+            else if (respuesta.Id == 3)
+            {
+                int resultado = Metodo.VerificarClientePago(email);// Verifico pago del cliente 
+                if(resultado == 1)
+                {
+                    respuesta = Funcion.ConstruirRespuesta(10, true, "PAGO VALIDO"); // Ir Autentificacion
+                }
+                else if (resultado == 0)
+                {
+                    respuesta = Funcion.ConstruirRespuesta(4, true, EngineData.TiempoJuegoExpiro()); // Comprar nuevamente
+                }
+                else if (resultado == -1)
+                {
+                    respuesta = Funcion.ConstruirRespuesta(5, true, EngineData.TiempoPruebaJuegoExpiro()); // Comprar y  fabricar contraseña
+                }
+                else if (resultado == -2)
+                {
+                    respuesta = Funcion.ConstruirRespuesta(6, true, EngineData.ErrorInternoServidor());
+                }
+            }
+                
 
             return Json(respuesta);
         }

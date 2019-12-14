@@ -330,5 +330,19 @@ input:valid {
     border-color: black;
 }
 
+/*modalWindow*/
 
+.wModal{
+    display:none;
+    text-align:justify;
+    background-color:green;
+    opacity:0.8;
+
+}
+
+.validacionField {
+    margin-left: 10%;
+    color: red;
+    font-size:smaller;
+}
 

@@ -34,10 +34,10 @@ namespace SudokuDeTodos.Engine
                     {
                         if (C.EstatusEnvioNotificacion == false)
                             return 1; //Cuenta de prueba no activada
-                        else if (C.EstatusEnvioNotificacion == true && C.FechaActivacion.AddHours(36) < DateTime.UtcNow)
-                            return 2; //Cuenta activada con tiempo de prueba
-                        else if (C.EstatusEnvioNotificacion == true && C.FechaActivacion.AddHours(36) >= DateTime.UtcNow)
-                            return 3; //Cuenta activada sin tiempo de prueba 
+                        else if (C.EstatusEnvioNotificacion == true && C.FechaActivacion.AddHours(60) > DateTime.UtcNow)
+                            return 2; //Cuenta activada con tiempo de prueba 
+                        else if (C.EstatusEnvioNotificacion == true && C.FechaActivacion.AddHours(60) <= DateTime.UtcNow)
+                            return 3; //Cuenta activada sin tiempo de prueba
                     }
                 }
             }
@@ -50,32 +50,22 @@ namespace SudokuDeTodos.Engine
 
         public int VerificarClientePago(string email)
         {
+            int resultado = -2; //Error en la consulta
+            Cliente cliente = new Cliente();
             ClientePago clientePago = new ClientePago();
-            int resultado = -2;
             try
             {
                 using (this.Context = new EngineContext())
                 {
-                   var r = (from cp in Context.ClientePago
-                                   join c in Context.Cliente on cp.IdCliente equals c.Id
-                                   where c.Email == email && cp.IdCliente == (Context.ClientePago.Max(x => x.Id))
-                                   select new
-                                   {
-                                    IdCliente =  cp.IdCliente,
-                                    FechaPago =  cp.FechaPago,
-                                    FechaVencimiento = cp.FechaVencimiento,
-                                    MontoPago = cp.MontoPago,
-                                    Impuesto =  cp.Impuesto,
-                                    MontoTotal = cp.MontoTotal
-                                   }).FirstOrDefault(); 
+                    cliente = this.Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
+                    clientePago = this.Context.ClientePago.Where(x => x.IdCliente == cliente.Id).ToList().Last();
+                    if (clientePago == null)
+                        resultado = -1; //No existe ningun pago realizado
+                    else if (clientePago.FechaVencimiento.AddHours(60) > DateTime.UtcNow)
+                        resultado = 1; //Pago activo
+                    else if (clientePago.FechaVencimiento.AddHours(60) <= DateTime.UtcNow)
+                        resultado = 0; //Pago vencido
                 }
-                if (clientePago == null)
-                    resultado = -1 ;
-                else if (clientePago.FechaVencimiento.AddHours(24) >= DateTime.UtcNow)
-                    resultado = 0;
-                else if (clientePago.FechaVencimiento.AddHours(24) < DateTime.UtcNow)
-                    resultado = 1;
-
             }
             catch (Exception ex)
             {

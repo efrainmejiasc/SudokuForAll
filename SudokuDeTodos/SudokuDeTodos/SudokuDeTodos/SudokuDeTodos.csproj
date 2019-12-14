@@ -202,6 +202,7 @@
     <Content Include="Content\imagen\logo.png" />
     <Content Include="Content\js\game.js" />
     <Content Include="Content\js\global.js" />
+    <Content Include="Content\js\message.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -276,6 +277,7 @@
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Manager\Login.cshtml" />
     <Content Include="Views\Manager\MainManager.cshtml" />
+    <Content Include="Views\Shared\_Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

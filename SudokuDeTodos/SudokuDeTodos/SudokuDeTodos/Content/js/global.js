@@ -102,17 +102,27 @@ function CambioCss() {
 }
 
 
-function VerificarEmail() {
+function VerificarEmail(valor1,valor2) {
     var email = $('#email').val();
+    var box = $('#chxNoSoy').is(':checked');
+    if (email === '') {
+        document.getElementById("validacionChx").innerHTML = valor1;
+        return false;
+    }
+    if (box === false) {
+        document.getElementById("validacionChx").innerHTML = valor2;
+        return false;
+    }
+    document.getElementById("validacionChx").innerHTML = '';
     $.ajax({
         type: "POST",
         url: "/Process/VerificarEmail",
         data: { email: email },
         datatype: "json",
         success: function (data) {
-            if (data.Status == true) {
-                console.log(data.Descripcion);
-            } 
+            message(data.Descripcion);
+        },
+        error: function () {
         }
     });
 

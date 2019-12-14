@@ -82,7 +82,7 @@ namespace SudokuDeTodos.Controllers
             }
             else if (respuesta.Id == 1)
             {
-                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, EngineData.CuentaNoActivada()); //Activar cuenta please
+                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, EngineData.CuentaNoActivada()); //Cuenta NO activada
             }
             else if (respuesta.Id == 2)
             {
@@ -97,7 +97,7 @@ namespace SudokuDeTodos.Controllers
                 }
                 else if (resultado == 0)
                 {
-                    respuesta = Funcion.ConstruirRespuesta(4, true, EngineData.TiempoJuegoExpiro()); // Comprar nuevamente
+                    respuesta = Funcion.ConstruirRespuesta(4, true, EngineData.TiempoJuegoExpiro()); // Pago expirado ,comprar nuevamente
                 }
                 else if (resultado == -1)
                 {

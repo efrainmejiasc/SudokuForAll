@@ -84,4 +84,12 @@
   <resource culture="en-us" name="Requerido" value="This field is required"></resource>
   <resource culture="pt-pt" name="Requerido" value="Encha este capo"></resource>
 
+  <resource culture="es-es" name="EmailRequerido" value="Email requerido"></resource>
+  <resource culture="en-us" name="EmailRequerido" value="Email is required"></resource>
+  <resource culture="pt-pt" name="EmailRequerido" value="Email Obrigatório"></resource>
+
+  <resource culture="es-es" name="ChxRequerido" value="Marque la casilla de verificacion"></resource>
+  <resource culture="en-us" name="ChxRequerido" value="Mark the checkbox"></resource>
+  <resource culture="pt-pt" name="ChxRequerido" value="Marque a caixa de seleção"></resource>
+
 </resources>

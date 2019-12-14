@@ -20,6 +20,8 @@ namespace SudokuDeTodos.Controllers
         }
         public ActionResult Index(int index = 0)
         {
+            int x = Metodo.VerificarClientePago("efrainmejiasc@hotmail.com");
+
             GetGalleta();
             Respuesta model = new Respuesta();
             if (index > 0)

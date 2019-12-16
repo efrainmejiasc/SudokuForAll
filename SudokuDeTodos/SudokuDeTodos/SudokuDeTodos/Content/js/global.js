@@ -101,29 +101,14 @@ function CambioCss() {
     }
 }
 
-
-function VerificarEmail(valor1,valor2) {
-    var email = $('#email').val();
-    var box = $('#chxNoSoy').is(':checked');
-    if (email === '') {
-        document.getElementById("validacionChx").innerHTML = valor1;
-        return false;
+function TraductorHide() {
+    var cssClass = $('#traductor').attr('class');
+    if (cssClass === 'btn-primary btn') {
+        $('#traductor').removeClass('btn-primary btn');
+        $('#traductor').addClass('btn-success btn');
+    } else {
+        $('#traductor').removeClass('btn-danger btn');
+        $('#traductor').addClass('btn-success btn');
     }
-    if (box === false) {
-        document.getElementById("validacionChx").innerHTML = valor2;
-        return false;
-    }
-    document.getElementById("validacionChx").innerHTML = '';
-    $.ajax({
-        type: "POST",
-        url: "/Process/VerificarEmail",
-        data: { email: email },
-        datatype: "json",
-        success: function (data) {
-            message(data.Descripcion);
-        },
-        error: function () {
-        }
-    });
-
 }
+

@@ -1,0 +1,38 @@
+﻿@using SudokuDeTodos.StringResx;
+@model SudokuDeTodos.Models.Sistema.Respuesta
+
+
+<link href="~/Content/css/global.css" rel="stylesheet" />
+<script src="../Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="../Content/js/global.js" type="text/javascript"></script>
+<script src="../Content/js/message.js" type="text/javascript"></script>
+
+
+
+    <div id="pruebaSitio" class="wModal"><br />
+        <label id="mensajePrueba" name="mensajePrueba">@Resources.MsjPruebaSitio</label>
+        <div>
+            <br /><br />
+            <input type="button" id="aceptarPrueba" name="aceptarPrueba" value="Aceptar" onclick="NotificacionPrueba();" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+            <input type="submit" id="cancelarPrueba" name="cancelarPrueba" value="Cancelar" onclick="CerrarModalProbarSitio();" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
+        </div>
+          <br /><br />
+    </div>
+
+
+
+<script>
+    $(document).ready(function () {
+        TraductorHide();
+        OcultarObjeto('entrar');
+        OcultarObjeto('traductor');
+        OcultarObjeto('equipo');
+        OcultarObjeto('inicio');
+        document.documentElement.style.overflowX = 'hidden';
+
+        var obj = '@Model';
+        if (obj != '') {
+            MostrarModalIndicada(@Model.Id);
+        }
+    });
+</script>

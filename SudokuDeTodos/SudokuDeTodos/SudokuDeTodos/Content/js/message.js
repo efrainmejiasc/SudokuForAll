@@ -1,11 +1,19 @@
 ﻿
 $(document).ready(function () {
+
    
 });
 
 
-function message(valor) {
-    const message = document.getElementById('message');
-    message.innerHTML = valor;
-    document.getElementById('test').style.display='block';
+function MostrarModalIndicada(id) {
+    console.log(id);
+    if (id === 0) {
+
+        document.getElementById('pruebaSitio').style.display = 'block';
+    }
 }
+
+function redireccionar(url) {
+    window.location.href = url;
+}
+

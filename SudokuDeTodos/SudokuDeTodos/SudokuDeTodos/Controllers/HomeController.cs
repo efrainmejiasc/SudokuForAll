@@ -18,10 +18,10 @@ namespace SudokuDeTodos.Controllers
             this.Metodo = _Metodo;
             this.Funcion = _Funcion;
         }
+
+        #region ENTRADA_SITIO
         public ActionResult Index(int index = 0)
         {
-            int x = Metodo.VerificarClientePago("efrainmejiasc@hotmail.com");
-
             GetGalleta();
             Respuesta model = new Respuesta();
             if (index > 0)
@@ -31,7 +31,6 @@ namespace SudokuDeTodos.Controllers
             }
             return View(model);
         }
-
         private void GetGalleta()
         {
             if (Request.Cookies["GalletaSudokuForAllId"] != null)
@@ -47,6 +46,7 @@ namespace SudokuDeTodos.Controllers
                 System.Web.HttpContext.Current.Session["MiGalleta"] = false;
             }
         }
+        #endregion ENTRADA_SITIO
 
         public ActionResult Contact()
         {
@@ -55,11 +55,65 @@ namespace SudokuDeTodos.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-       
+        public ActionResult Security()
+        {
+            return View();
+        }
+
+        public ActionResult ResponseMessage(string email = "")
+        {
+            if (email == string.Empty)
+                return View();
+
+            Respuesta respuesta = new Respuesta();
+            respuesta.Status = Funcion.EmailEsValido(email);
+            if (!respuesta.Status)
+            {
+                respuesta.Descripcion = email + EngineData.EmailNoValido();
+                return Json(respuesta);
+            }
+            respuesta.Id = Metodo.VerificarEmail(email);
+            if (respuesta.Id == 0)
+            {
+                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, StringResx.Resources.MsjPruebaSitio); //Prueba sudokudetodos?
+                return View("ResponseMessage", respuesta);
+            }
+            else if (respuesta.Id == 1)
+            {
+                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, EngineData.CuentaNoActivada()); //Cuenta NO activada
+            }
+            else if (respuesta.Id == 2)
+            {
+                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, "JUGAR PRUEBA"); // Ir a jugar prueba
+                return Redirect("/Vista/GameOne.aspx");
+            }
+            else if (respuesta.Id == 3)
+            {
+                int resultado = Metodo.VerificarClientePago(email);// Verifico pago del cliente 
+                if (resultado == 1)
+                {
+                    respuesta = Funcion.ConstruirRespuesta(10, true, "PAGO VALIDO"); // Ir Autentificacion
+                    return View("About");
+                }
+                else if (resultado == 0)
+                {
+                    respuesta = Funcion.ConstruirRespuesta(4, true, EngineData.TiempoJuegoExpiro()); // Pago expirado ,comprar nuevamente
+                }
+                else if (resultado == -1)
+                {
+                    respuesta = Funcion.ConstruirRespuesta(5, true, EngineData.TiempoPruebaJuegoExpiro()); // Comprar y  fabricar contraseña
+                }
+                else if (resultado == -2)
+                {
+                    respuesta = Funcion.ConstruirRespuesta(6, true, EngineData.ErrorInternoServidor());
+                }
+            }
+
+            return Json(respuesta);
+        }
+
     }
 }

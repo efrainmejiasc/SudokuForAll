@@ -14,28 +14,28 @@
 }
 
 
-@Html.Partial("_Message")
 <div class="divEmail">
-
-    <div style="margin-left:10%;">
-        <h4 class="text-success"> @Resources.IniciarSesion </h4>
-        <label class="checkbox-inline"><input type="checkbox" id="chxNoSoy" name="chxNosoy" class="btn btn btn-default active" required /> @Resources.NoSoyUnRobot </label>
-    </div>
-    <input type="email" id="email" name="email" placeholder="@Resources.IngreseEmail" class="boxTxt form-control" required />
-    <label id="validacionChx" class="validacionField"></label><br />
-    <input type="submit" id="sendMail" name="sendMail" value="@Resources.Enviar" class="btn btn-success voton" onclick="VerificarEmail('@Resources.EmailRequerido', '@Resources.ChxRequerido')" /><br /><br />
-
-    <br /><br /><br /><br /><br /><br /><br /><br />
+    @using (Html.BeginForm("ResponseMessage", "Home")) 
+    { 
+        <div style="margin-left:10%;">
+            <h4 class="text-success"> @Resources.IniciarSesion </h4>
+            <label class="checkbox-inline"><input type="checkbox" id="chxNoSoy" name="chxNosoy" class="btn btn btn-default active" required oninvalid="setCustomValidity('@Resources.ChxRequerido')" oninput="setCustomValidity('')" /> @Resources.NoSoyUnRobot </label>
+        </div>
+              <input type="email" id="email" name="email" placeholder="@Resources.IngreseEmail" class="boxTxt form-control" required oninvalid="setCustomValidity('@Resources.EmailRequerido')" oninput="setCustomValidity('')" /><br />
+              <input type="submit" id="sendMail" name="sendMail" value="@Resources.Enviar" class="btn btn-success voton" />
+     }
+                                                                                                                         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     <p style="font-size:smaller;">@Resources.AceptarCondicion</p>
 </div>
 
  
 <script>
     $(document).ready(function () {
-        document.documentElement.style.overflowX = 'hidden';
+        TraductorHide();
         OcultarObjeto('entrar');
         OcultarObjeto('traductor');
         OcultarObjeto('equipo');
+        document.documentElement.style.overflowX = 'hidden';
     });
 </script>
 

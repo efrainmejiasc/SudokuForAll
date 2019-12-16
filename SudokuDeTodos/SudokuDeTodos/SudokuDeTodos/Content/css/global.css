@@ -332,17 +332,26 @@ input:valid {
 
 /*modalWindow*/
 
-.wModal{
-    display:none;
-    text-align:justify;
-    background-color:green;
-    opacity:0.8;
-
+.wModal {
+    display: none;
+    text-align: justify;
+    background-color:black;
+    //opacity:0.8;
+    text-align: center;
+    margin-top: 10%;
+    z-index: 99;
+    border: 1px solid green;
+    padding: 10px;
+    color: white;
+    font-size:20px;
 }
 
 .validacionField {
     margin-left: 10%;
     color: red;
     font-size:smaller;
+    font-family:'Times New Roman';
 }
+
+
 

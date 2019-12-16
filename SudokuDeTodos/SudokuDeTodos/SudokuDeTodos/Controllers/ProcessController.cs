@@ -65,9 +65,11 @@ namespace SudokuDeTodos.Controllers
             return Json(respuesta);
         }
 
-        [HttpPost]
-        public JsonResult VerificarEmail (string email)
+        public ActionResult ResponseMessage (string email = "")
         {
+            if (email == string.Empty)
+                return View();
+
             Respuesta respuesta = new Respuesta();
             respuesta.Status = Funcion.EmailEsValido(email);
             if (!respuesta.Status)
@@ -79,6 +81,7 @@ namespace SudokuDeTodos.Controllers
             if (respuesta.Id == 0)
             {
                 respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, StringResx.Resources.MsjPruebaSitio); //Prueba sudokudetodos?
+                return View("ResponseMessage", "Process", respuesta);
             }
             else if (respuesta.Id == 1)
             {
@@ -87,13 +90,15 @@ namespace SudokuDeTodos.Controllers
             else if (respuesta.Id == 2)
             {
                 respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, "JUGAR PRUEBA"); // Ir a jugar prueba
-            }      
+                return Json(respuesta);
+            }
             else if (respuesta.Id == 3)
             {
                 int resultado = Metodo.VerificarClientePago(email);// Verifico pago del cliente 
-                if(resultado == 1)
+                if (resultado == 1)
                 {
                     respuesta = Funcion.ConstruirRespuesta(10, true, "PAGO VALIDO"); // Ir Autentificacion
+                    return Json(respuesta);
                 }
                 else if (resultado == 0)
                 {
@@ -108,7 +113,6 @@ namespace SudokuDeTodos.Controllers
                     respuesta = Funcion.ConstruirRespuesta(6, true, EngineData.ErrorInternoServidor());
                 }
             }
-                
 
             return Json(respuesta);
         }

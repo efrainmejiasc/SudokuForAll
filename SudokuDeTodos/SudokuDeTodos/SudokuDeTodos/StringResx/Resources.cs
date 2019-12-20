@@ -44,6 +44,11 @@ namespace SudokuDeTodos.StringResx
             get { return resourceProvider.GetResource("Enviar", CultureInfo.CurrentUICulture.Name) as String; }
         }
 
+        public static string Aceptar
+        {
+            get { return resourceProvider.GetResource("Aceptar", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
         public static string Cancelar
         {
             get { return resourceProvider.GetResource("Cancelar", CultureInfo.CurrentUICulture.Name) as String; }
@@ -68,6 +73,12 @@ namespace SudokuDeTodos.StringResx
         {
             get { return resourceProvider.GetResource("MsjPruebaSitio", CultureInfo.CurrentUICulture.Name) as String; }
         }
+
+        public static string CtaNoActivada
+        {
+            get { return resourceProvider.GetResource("CtaNoActivada", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
 
         public static string Entrar
         {
@@ -126,6 +137,18 @@ namespace SudokuDeTodos.StringResx
         public static string ChxRequerido
         {
             get { return resourceProvider.GetResource("ChxRequerido", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+        public static string EnviarOtroEmail
+        {
+            get { return resourceProvider.GetResource("EnviarOtroEmail", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+        public static string Si
+        {
+            get { return resourceProvider.GetResource("Si", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+        public static string No
+        {
+            get { return resourceProvider.GetResource("No", CultureInfo.CurrentUICulture.Name) as String; }
         }
     }
 }

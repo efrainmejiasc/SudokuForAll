@@ -150,5 +150,19 @@ namespace SudokuDeTodos.StringResx
         {
             get { return resourceProvider.GetResource("No", CultureInfo.CurrentUICulture.Name) as String; }
         }
+        public static string TiempoPruebaExpiro
+        {
+            get { return resourceProvider.GetResource("TiempoPruebaExpiro", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string PagoExpiro
+        {
+            get { return resourceProvider.GetResource("PagoExpiro", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string ErrorInterno
+        {
+            get { return resourceProvider.GetResource("ErrorInterno", CultureInfo.CurrentUICulture.Name) as String; }
+        }
     }
 }

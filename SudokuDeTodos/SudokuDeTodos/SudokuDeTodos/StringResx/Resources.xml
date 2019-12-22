@@ -112,4 +112,16 @@
   <resource culture="en-us" name="No" value="No"></resource>
   <resource culture="pt-pt" name="No" value="Não"></resource>
 
+  <resource culture="es-es" name="TiempoPruebaExpiro" value="Tu tiempo de prueba expiro. ¿Deseas comprar nuestro producto?"></resource>
+  <resource culture="en-us" name="TiempoPruebaExpiro" value="Your test time expired. Do you want to buy our product?"></resource>
+  <resource culture="pt-pt" name="TiempoPruebaExpiro" value="Seu tempo de teste expirou. Você quer comprar nosso produto?"></resource>
+
+  <resource culture="es-es" name="PagoExpiro" value="Tu pago expiro, debes comprar nevamente"></resource>
+  <resource culture="en-us" name="PagoExpiro" value="Your payment expires, you must buy snow"></resource>
+  <resource culture="pt-pt" name="PagoExpiro" value="Seu pagamento expira, você deve comprar neve"></resource>
+
+  <resource culture="es-es" name="ErrorInterno" value="Error interno del servidor"></resource>
+  <resource culture="en-us" name="ErrorInterno" value="Internal server error"></resource>
+  <resource culture="pt-pt" name="ErrorInterno" value="Erro interno do servidor (500)"></resource>
+
 </resources>

@@ -139,6 +139,7 @@
   <ItemGroup>
     <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProcessController.cs" />
     <Compile Include="Engine\EngineDb.cs" />
     <Compile Include="Engine\EngineGameChild.cs" />
@@ -280,6 +281,7 @@
     <Content Include="Views\Shared\_Message.cshtml" />
     <Content Include="Views\Home\Security.cshtml" />
     <Content Include="Views\Home\ResponseMessage.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

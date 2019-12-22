@@ -89,7 +89,7 @@ namespace SudokuDeTodos.Controllers
             else if (respuesta.Id == 2)
             {
                 respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, "JUGAR PRUEBA"); // Ir a jugar prueba
-                return Redirect("/Vista/GameOne.aspx");
+                return Redirect("/Vista/GameAOne.aspx");
             }
             else if (respuesta.Id == 3)
             {
@@ -102,18 +102,20 @@ namespace SudokuDeTodos.Controllers
                 else if (resultado == 0)
                 {
                     respuesta = Funcion.ConstruirRespuesta(4, true, EngineData.TiempoJuegoExpiro()); // Pago expirado ,comprar nuevamente
+                    return View("ResponseMessage", respuesta);
                 }
                 else if (resultado == -1)
                 {
                     respuesta = Funcion.ConstruirRespuesta(5, true, EngineData.TiempoPruebaJuegoExpiro()); // Comprar y  fabricar contraseña
+                    return View("ResponseMessage", respuesta);
                 }
                 else if (resultado == -2)
                 {
-                    respuesta = Funcion.ConstruirRespuesta(6, true, EngineData.ErrorInternoServidor());
+                    respuesta = Funcion.ConstruirRespuesta(6, true, EngineData.ErrorInternoServidor());// Error 
+                    return View("ResponseMessage", respuesta);
                 }
             }
-
-            return Json(respuesta);
+            return View();
         }
 
     }

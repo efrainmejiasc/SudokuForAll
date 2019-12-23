@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SudokuDeTodos.Engine;
+using SudokuDeTodos.Models.DbSistema;
 
 namespace SudokuDeTodos.Controllers
 {
@@ -13,12 +14,14 @@ namespace SudokuDeTodos.Controllers
         private readonly IEngineGameProcess Proceso;
         private readonly IEngineDb Metodo;
         private readonly IEngineProyect Funcion;
+        private readonly IEngineNotificacion Notificacion;
 
-        public ProcessController(IEngineGameProcess _Proceso, IEngineDb _Metodo, IEngineProyect _Funcion)
+        public ProcessController(IEngineGameProcess _Proceso, IEngineDb _Metodo, IEngineProyect _Funcion, IEngineNotificacion _Notificacion)
         {
             this.Proceso = _Proceso;
             this.Metodo = _Metodo;
             this.Funcion = _Funcion;
+            this.Notificacion = _Notificacion;
         }
 
         [HttpPost]
@@ -65,6 +68,33 @@ namespace SudokuDeTodos.Controllers
             return Json(respuesta);
         }
 
-      
+        [HttpPost]
+        public JsonResult EnviarNotificacionPrueba(string email)
+        {
+            Respuesta respuesta = new Respuesta();
+            respuesta.Status = Funcion.EmailEsValido(email);
+            if (!respuesta.Status) //email no valido
+            {
+                respuesta = Funcion.ConstruirRespuesta(101, false, EngineData.EmailNoValido(), email);
+                return Json(respuesta);
+            }
+            Cliente cliente = Funcion.ConstruirCliente(email);
+            respuesta.Status = Metodo.InsertarCliente(cliente);
+            if (!respuesta.Status)//error interno del servidor
+            {
+                respuesta = Funcion.ConstruirRespuesta(102, false, EngineData.ErrorInternoServidor(), email);
+                return Json(respuesta);
+            }
+            string enlaze = Funcion.ConstruirEnlazePrueba(email, cliente.Identidad);
+            EstructuraMail estructuraMail = Funcion.SetEstructuraMailTest(enlaze, email);
+            respuesta.Status = Notificacion.EnviarMailNotificacion(estructuraMail);
+            if (!respuesta.Status)//No se pudo enviar notificacion
+            {
+                respuesta = Funcion.ConstruirRespuesta(103, false, EngineData.ErrorEnviandoMail(), email);
+                return Json(respuesta);
+            }
+            respuesta = Funcion.ConstruirRespuesta(100, true, EngineData.RegistroExitoso(), email);
+            return Json(respuesta);
+        }
     }
 }

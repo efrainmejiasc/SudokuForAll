@@ -74,6 +74,25 @@ namespace SudokuDeTodos.Engine
             return resultado;
         }
 
+        public bool InsertarCliente(Cliente model)
+        {
+            bool resultado = false;
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    Context.Cliente.Add(model);
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/InsertarCliente*" + model.Email));
+            }
+            return resultado;
+        }
+
         public bool InsertarSucesoLog(SucesoLog model)
         {
             bool resultado = false;

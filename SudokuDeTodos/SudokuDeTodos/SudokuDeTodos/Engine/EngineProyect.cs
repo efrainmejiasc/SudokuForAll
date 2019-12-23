@@ -124,15 +124,62 @@ namespace SudokuDeTodos.Engine
             return modelo;
         }
 
-        public Respuesta ConstruirRespuesta(int id , bool status, string descripcion)
+        public Respuesta ConstruirRespuesta(int id = 0, bool status = false, string descripcion = "", string email = "")
         {
             Respuesta modelo = new Respuesta()
             {
                Id = id,
                Status = status,
-               Descripcion = descripcion
+               Descripcion = descripcion,
+               Email = email
             };
             return modelo;
+        }
+
+        public Cliente ConstruirCliente (string email)
+        {
+            Cliente R = new Cliente()
+            {
+                Email = email,
+                FechaRegistroPrueba = DateTime.UtcNow,
+                FechaActivacion = Convert.ToDateTime("01/01/1900 00:00:00.000"),
+                FechaActivacionPrueba = DateTime.UtcNow,
+                FechaRegistro = Convert.ToDateTime("01-01-1900 00:00:00.000"),
+                Estatus = false,
+                EstatusEnvioNotificacion = false,
+                Identidad = IdentificadorReg(),
+                Cultura = EngineData.GetCultura()
+            };
+            return R;
+        }
+
+        public string ConstruirEnlazePrueba(string email,Guid identidad)
+        {
+            string link = string.Empty;
+            link = EngineData.EndPointValidation;
+            link = link + "Id=" + "0&";
+            link = link + "email=" + ConvertirBase64(email);
+            link = link + "&identidad=" + EncodeMd5(identidad.ToString());
+            link = link + "&status=" + "1";
+            link = link + "&date=" + DateTime.UtcNow.ToString(EngineData.DateFormat);
+            link = link + "&type=" + EngineData.Test;
+            link = link + "&cultureInfo=" + EngineData.GetCultura();
+            return link;
+        }
+
+        public EstructuraMail SetEstructuraMailTest(string enlaze, string email)
+        {
+            EstructuraMail model = new EstructuraMail();
+            model.Link = enlaze;
+            model.Saludo = EngineData.Saludo();
+            model.EmailDestinatario = email;
+            model.Fecha = DateTime.UtcNow.ToString();
+            model.Descripcion = EngineData.DescripcionTest();
+            model.ClickAqui = EngineData.ClickAqui();
+            model.Asunto = EngineData.AsuntoTest();
+            model.Observacion = EngineData.ObservacionTest();
+            model.PathLecturaArchivo = EngineData.PathLecturaArchivoTest;
+            return model;
         }
     }
 }

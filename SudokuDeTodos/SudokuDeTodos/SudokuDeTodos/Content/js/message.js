@@ -45,7 +45,22 @@ function SendOtherMail(value) {
     document.getElementById('enviarOtroEmail').style.display = 'block';
 }
 
-function SendNotificacionPrueba() {
+function SendNotificacionPrueba(email) {
+    if (email === '')
+        return false;
+
+    $.ajax({
+        type: "POST",
+        url: "/Process/EnviarNotificacionPrueba",
+        data: { email: email },
+        datatype: "json",
+        success: function (data) {
+            console.log('data');
+        },
+        complete: function () {
+            console.log('complete');
+        }
+    });
     setTimeout(SendOtherMail, 5000, 'pruebaSitio');
 }
 

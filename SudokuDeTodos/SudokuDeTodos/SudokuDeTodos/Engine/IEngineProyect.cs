@@ -15,10 +15,13 @@ namespace SudokuDeTodos.Engine
         bool EmailEsValido(string email);
         string ConvertirBase64(string cadena);
         bool CadenaBase64Valida(string cadena);
+        Cliente ConstruirCliente(string email);
         bool CompareString(string a, string b);
         SucesoLog ConstruirSucesoLog(string cadena);
         string DecodeBase64(string base64EncodedData);
+        string ConstruirEnlazePrueba(string email, Guid identidad);
         bool EstatusLink(DateTime fechaEnvio, DateTime fechaActivacion);
-        Respuesta ConstruirRespuesta(int id, bool status, string descripcion);
+        EstructuraMail SetEstructuraMailTest(string enlaze, string email);
+        Respuesta ConstruirRespuesta(int id, bool status, string descripcion,string email);
     }
 }

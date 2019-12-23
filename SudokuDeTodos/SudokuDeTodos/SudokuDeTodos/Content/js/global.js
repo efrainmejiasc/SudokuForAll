@@ -21,7 +21,6 @@ $('#traductor').on('change', function (e) {
         success: function () {
                 if (index > 0)
                  SetObjectsLayount(index);
-            //Stop();
         }
     });
 }); 

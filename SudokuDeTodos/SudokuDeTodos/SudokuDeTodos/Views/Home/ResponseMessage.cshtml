@@ -18,8 +18,8 @@
         <label id="mensajePrueba" name="mensajePrueba">@Resources.MsjPruebaSitio</label>
     <div>
         <br /><br />
-        <input type="button" id="aceptarPrueba" name="aceptarPrueba" value="Aceptar" onclick="SendNotificacionPrueba();" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
-        <input type="submit" id="cancelarPrueba" name="cancelarPrueba" value="Cancelar" onclick="CerrarModalProbarSitio();" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
+        <input type="button" id="aceptarPrueba" name="aceptarPrueba" value="Aceptar" onclick="SendNotificacionPrueba('@Model.Email');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+        <input type="submit" id="cancelarPrueba" name="cancelarPrueba" value="Cancelar" onclick="OcultarModalIndicada('pruebaSitio');" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
     </div>
     <br /><br />
 </div>
@@ -29,7 +29,7 @@
     <label id="otroEmail" name="otroEmail">@Resources.EnviarOtroEmail</label>
     <div>
         <br /><br />
-        <input type="button" id="aceptarOtroEmail" name="aceptarOtroEmail" value="@Resources.Si" onclick="NotificacionPrueba();" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+        <input type="button" id="aceptarOtroEmail" name="aceptarOtroEmail" value="@Resources.Si" onclick="SendOtherMail('@Model.Email');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
         <input type="submit" id="cancelarOtroEmail" name="cancelarOtroEmail" value="@Resources.No" onclick="OcultarModalIndicada('enviarOtroEmail');" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
     </div>
     <br /><br />
@@ -40,7 +40,7 @@
     <label id="tiempoExpiro" name="tiempoExpiro">@Resources.TiempoPruebaExpiro</label>
     <div>
         <br /><br />
-        <input type="button" id="aceptarComprar" name="aceptarComprar" value="@Resources.Si" onclick="AceptarComprar();" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+        <input type="button" id="aceptarComprar" name="aceptarComprar" value="@Resources.Si" onclick="AceptarComprar('@Model.Email');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
         <input type="submit" id="cancelarComprar" name="cancelarComprar" value="@Resources.No" onclick="OcultarModalIndicada('comprar1Eravez');" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
     </div>
     <br /><br />
@@ -61,6 +61,12 @@
 <div id="errorInterno" class="wModal container-fluid">
     <br />
     <label id="mensaje500" name="mensaje500">@Resources.ErrorInterno</label>
+    <br /><br />
+</div>
+
+<div id="errorInterno" class="wModal container-fluid">
+    <br />
+    <label id="mensaje500" name="mensaje500">@Model.Descripcion</label>
     <br /><br />
 </div>
 

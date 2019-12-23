@@ -78,40 +78,38 @@ namespace SudokuDeTodos.Controllers
             respuesta.Id = Metodo.VerificarEmail(email);
             if (respuesta.Id == 0)
             {
-                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, StringResx.Resources.MsjPruebaSitio); //Prueba sudokudetodos?
+                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, StringResx.Resources.MsjPruebaSitio,email); //Prueba sudokudetodos?
                 return View("ResponseMessage", respuesta);
             }
             else if (respuesta.Id == 1)
             {
-                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, StringResx.Resources.CtaNoActivada); //Cuenta NO activada
+                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, StringResx.Resources.CtaNoActivada,email); //Cuenta NO activada
                 return View("ResponseMessage", respuesta);
             }
             else if (respuesta.Id == 2)
             {
-                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, "JUGAR PRUEBA"); // Ir a jugar prueba
-                return Redirect("/Vista/GameAOne.aspx");
+                return Redirect("/Vista/GameAOne.aspx"); // Ir a jugar prueba
             }
             else if (respuesta.Id == 3)
             {
                 int resultado = Metodo.VerificarClientePago(email);// Verifico pago del cliente 
                 if (resultado == 1)
                 {
-                    respuesta = Funcion.ConstruirRespuesta(10, true, "PAGO VALIDO"); // Ir Autentificacion
-                    return View("About");
+                    return View("About");// Ir Autentificacion
                 }
                 else if (resultado == 0)
                 {
-                    respuesta = Funcion.ConstruirRespuesta(4, true, EngineData.TiempoJuegoExpiro()); // Pago expirado ,comprar nuevamente
+                    respuesta = Funcion.ConstruirRespuesta(4, true, EngineData.TiempoJuegoExpiro(), email); // Pago expirado ,comprar nuevamente
                     return View("ResponseMessage", respuesta);
                 }
                 else if (resultado == -1)
                 {
-                    respuesta = Funcion.ConstruirRespuesta(5, true, EngineData.TiempoPruebaJuegoExpiro()); // Comprar y  fabricar contraseña
+                    respuesta = Funcion.ConstruirRespuesta(5, true, EngineData.TiempoPruebaJuegoExpiro(), email); // Comprar y  fabricar contraseña
                     return View("ResponseMessage", respuesta);
                 }
                 else if (resultado == -2)
                 {
-                    respuesta = Funcion.ConstruirRespuesta(6, true, EngineData.ErrorInternoServidor());// Error 
+                    respuesta = Funcion.ConstruirRespuesta(6, true, EngineData.ErrorInternoServidor(), email);// Error 
                     return View("ResponseMessage", respuesta);
                 }
             }

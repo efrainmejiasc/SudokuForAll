@@ -96,5 +96,64 @@ namespace SudokuDeTodos.Controllers
             respuesta = Funcion.ConstruirRespuesta(100, true, EngineData.RegistroExitoso(), email);
             return Json(respuesta);
         }
+
+        [HttpGet]
+        public ActionResult State(int id, string email, string identidad, int status, string date, string type,string cultureInfo)
+        {
+            Respuesta respuesta = new Respuesta();
+            bool resultado = false;
+            Funcion.SetCultureInfo(cultureInfo);
+            DateTime fechaEnvio = Convert.ToDateTime(date);
+            resultado = Funcion.EstatusLink(fechaEnvio);
+            if (!resultado)
+            {
+                respuesta.Descripcion = EngineData.TiempoLinkExpiro();
+                return View(respuesta);
+            }
+            email = Funcion.DecodeBase64(email);
+            resultado = Funcion.EmailEsValido(email);
+            if (!resultado)
+            {
+                respuesta.Descripcion = EngineData.EmailNoValido();
+                return View(respuesta);
+            }
+            resultado = Funcion.ValidacionTypeTransaccion(type);
+            if (!resultado)
+            {
+                respuesta.Descripcion = EngineData.TransaccionNoValida();
+                return View(respuesta);
+            }
+            resultado = Funcion.ValidacionIdentidad(email, identidad, Metodo);
+            if (!resultado)
+            { 
+                respuesta.Descripcion = EngineData.ErrorInternoServidor();
+                return View(respuesta);
+            }
+
+            if (type == EngineData.Test) //Activacion Prueba
+            {
+                resultado = Metodo.UpdateCliente(email, status);
+                if (!resultado)
+                {
+                    respuesta.Descripcion = EngineData.ErrorActualizarCliente();
+                    return View(respuesta);
+                }
+                respuesta.Descripcion = EngineData.ActivacionTestExitosa();
+            }
+            else if (type == EngineData.Register) //Activacion registro
+            {
+
+            }
+            else if (type == EngineData.ResetPassword) //Restablecer Password
+            {
+
+            }
+            else if (type == EngineData.RegisterManager)//registrar gerente
+            {
+
+            }
+
+            return View(respuesta);
+        }
     }
 }

@@ -93,6 +93,56 @@ namespace SudokuDeTodos.Engine
             return resultado;
         }
 
+        public Guid GetIdentidadCliente(string email)
+        {
+            Cliente C = new Cliente();
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    C = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
+                    if (C.Identidad != null)
+                        return C.Identidad;
+                    else
+                        return Guid.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/ObtenerIdentidadCliente*" + email));
+            }
+            return Guid.Empty;
+        }
+
+        public bool UpdateCliente(string email,int status)
+        {
+            bool resultado = false;
+            if (status == 1)
+                resultado = true;
+            else
+                resultado = false;
+            Cliente C = new Cliente();
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    C = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
+                    Context.Cliente.Attach(C);
+                    C.FechaActivacionPrueba = DateTime.UtcNow;
+                    C.EstatusEnvioNotificacion = resultado;
+                    Context.Configuration.ValidateOnSaveEnabled = false;
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado = false;
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/UpdateCliente*" + email));
+            }
+            return resultado;
+        }
+
         public bool InsertarSucesoLog(SucesoLog model)
         {
             bool resultado = false;

@@ -233,6 +233,10 @@
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="GameFile\test.jll" />
+    <Content Include="Content\templates\EmailBodyRegister.cshtml" />
+    <Content Include="Content\templates\EmailBodyResetPassword.cshtml" />
+    <Content Include="Content\templates\EmailBodyTest.cshtml" />
+    <Content Include="Content\templates\TerminosCondiciones.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -285,11 +289,10 @@
     <Content Include="Views\Home\Security.cshtml" />
     <Content Include="Views\Home\ResponseMessage.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Process\State.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\templates\" />
-    <Folder Include="Views\Process\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

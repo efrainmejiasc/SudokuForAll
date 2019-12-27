@@ -148,6 +148,23 @@ namespace SudokuDeTodos.Engine
             return respuesta;
         }
 
+        public static string TransaccionNoValida()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = " Transaccion no valida";
+                    break;
+                case (CulturaIngles):
+                    respuesta = " Invalid Transaction";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = " Transação inválida";
+                    break;
+            }
+            return respuesta;
+        }
         public static string TiempoJuegoExpiro()
         {
             cultura = GetCultura();
@@ -165,7 +182,6 @@ namespace SudokuDeTodos.Engine
             }
             return respuesta;
         }
-
 
         public static string TiempoPruebaJuegoExpiro()
         {
@@ -234,6 +250,24 @@ namespace SudokuDeTodos.Engine
                     break;
                 case (CulturaPortugues):
                     respuesta = " Erro ao registrar o cliente. Confirme seu e-mail";
+                    break;
+            }
+            return respuesta;
+        }
+
+        public static string ErrorActualizarCliente()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = " Error al actualizar cliente.";
+                    break;
+                case (CulturaIngles):
+                    respuesta = " Error updating customer";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = " Erro ao atualizar o cliente";
                     break;
             }
             return respuesta;
@@ -345,6 +379,24 @@ namespace SudokuDeTodos.Engine
                     break;
                 case (CulturaPortugues):
                     respuesta = " Ativação bem sucedida, autenticar no nosso site";
+                    break;
+            }
+            return respuesta;
+        }
+
+        public static string ActivacionTestExitosa()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = " Activacion exitosa";
+                    break;
+                case (CulturaIngles):
+                    respuesta = " Successful activation";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = " Ativação bem sucedida";
                     break;
             }
             return respuesta;
@@ -534,7 +586,7 @@ namespace SudokuDeTodos.Engine
             return respuesta;
         }
 
-        public static string PathLecturaArchivoTest = @"/Content/template/EmailBodyTest.cshtml";
+        public static string PathLecturaArchivoTest = @"/Content/templates/EmailBodyTest.cshtml";
 
         public static string AsuntoTest()
         {

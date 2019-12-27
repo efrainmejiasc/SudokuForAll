@@ -10,6 +10,8 @@ namespace SudokuDeTodos.Engine
     {
         int VerificarEmail(string email);
         bool InsertarCliente(Cliente model);
+        Guid GetIdentidadCliente(string email);
         int VerificarClientePago(string email);
+        bool UpdateCliente(string email, int status);
     }
 }

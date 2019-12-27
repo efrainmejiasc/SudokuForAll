@@ -24,6 +24,9 @@ function MostrarModalIndicada(id) {
     else if (id === 6) {
         document.getElementById('errorInterno').style.display = 'block';
     }
+    else if (id >= 100) {
+        document.getElementById('mensajeRespuesta').style.display = 'block';
+    }
 }
 
 

@@ -2,10 +2,12 @@
 using SudokuDeTodos.Models.Sistema;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Web;
 
 namespace SudokuDeTodos.Engine
@@ -157,11 +159,11 @@ namespace SudokuDeTodos.Engine
         {
             string link = string.Empty;
             link = EngineData.EndPointValidation;
-            link = link + "Id=" + "0&";
+            link = link + "id=" + "0&";
             link = link + "email=" + ConvertirBase64(email);
             link = link + "&identidad=" + EncodeMd5(identidad.ToString());
             link = link + "&status=" + "1";
-            link = link + "&date=" + DateTime.UtcNow.ToString(EngineData.DateFormat);
+            link = link + "&date=" + DateTime.UtcNow.ToString();
             link = link + "&type=" + EngineData.Test;
             link = link + "&cultureInfo=" + EngineData.GetCultura();
             return link;
@@ -180,6 +182,52 @@ namespace SudokuDeTodos.Engine
             model.Observacion = EngineData.ObservacionTest();
             model.PathLecturaArchivo = EngineData.PathLecturaArchivoTest;
             return model;
+        }
+
+        public bool ValidacionIdentidad (string email,string identidad,IEngineDb Metodo)
+        {
+            bool resultado = false;
+            Guid guidClient = Metodo.GetIdentidadCliente(email);
+            if (guidClient == Guid.Empty)
+                return false;
+            string ident = EncodeMd5(guidClient.ToString());
+            resultado = CompareString(identidad, ident);
+            if (!resultado)
+                return resultado;
+            return resultado;
+        }
+
+        public void SetCultureInfo(string cultura)
+        {
+            if (cultura == string.Empty)
+                cultura = "es-ES";
+            CultureInfo ci = new CultureInfo(cultura);
+            Thread.CurrentThread.CurrentUICulture = ci;
+            Thread.CurrentThread.CurrentCulture = ci;
+            System.Web.HttpContext.Current.Session["Cultura"] = cultura;
+        }
+
+        public bool ValidacionTypeTransaccion(string type)
+        {
+            bool resultado = true;
+            if (type != EngineData.Register && type != EngineData.Test && type != EngineData.ResetPassword && type != EngineData.RegisterManager)
+                resultado = false;
+            return resultado;
+        }
+
+        public bool EstatusLink(DateTime fechaEnvio)
+        {
+            bool resultado = false;
+            DateTime fechaActivacion = DateTime.UtcNow;
+            if (fechaEnvio.Date != fechaActivacion.Date)
+                return resultado;
+
+            int horaEnvio = fechaEnvio.Hour;
+            int horaActivacion = fechaActivacion.Hour;
+            int diferenciaHora = horaActivacion - horaEnvio;
+            if (diferenciaHora <= 3)
+                resultado = true;
+            return resultado;
         }
     }
 }

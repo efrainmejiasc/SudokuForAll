@@ -138,6 +138,19 @@ namespace SudokuDeTodos.Engine
             return modelo;
         }
 
+        public Respuesta ConstruirRespuesta(int id = 0, bool status = false, string descripcion = "", string email = "",string type ="")
+        {
+            Respuesta modelo = new Respuesta()
+            {
+                Id = id,
+                Status = status,
+                Descripcion = descripcion,
+                Email = email,
+                Type = type
+            };
+            return modelo;
+        }
+
         public Cliente ConstruirCliente (string email)
         {
             Cliente R = new Cliente()

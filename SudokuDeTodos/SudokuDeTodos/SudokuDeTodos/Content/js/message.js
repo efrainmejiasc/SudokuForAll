@@ -83,7 +83,7 @@ function SendOtherNotificacion(email, v) {
         return false;
 
     var id = parseInt(v, 10);
-    if (id === 0 || id === 1) {
+    if (id === 0 || id === 1) { //prueba sitio 0 y cuenta no activada 1
         console.log(id);
         $.ajax({
             type: "POST",
@@ -94,6 +94,7 @@ function SendOtherNotificacion(email, v) {
             {
                 if (data.Id === 100) {
                     document.getElementById('enviarOtroEmail').style.display = 'none';
+                    document.getElementById('respuesta').style.display = 'none';
                     document.getElementById('otroMail').style.display = 'block';
                 } else {
                     document.getElementById('respuesta').style.display = 'block';
@@ -107,4 +108,28 @@ function SendOtherNotificacion(email, v) {
     }
 }
 
-//State
+//**************************************State
+
+
+function ShowModalIndicada(id) {
+    console.log(id);
+    if (id === 0) {
+        //link expiro
+        document.getElementById('tiempoLink').style.display = 'block';
+    }
+    else if (id >= 1 && id <= 4) {
+        //email no es valido 1 - type no valido 2 - error interno 3 - error al actualizar test 4
+        document.getElementById('respuesta').style.display = 'block';
+        setTimeout(Redireccionar, 5000, '/Home/Contact');
+    }
+    else if (id === 5 || id === 7) {
+        //activacion test o cliente exitosa
+        document.getElementById('respuesta').style.display = 'block';
+        setTimeout(Redireccionar, 5000, '/Vista/GameAOne.aspx');
+    }
+    else if (id === 6) {
+        // error al actualizar cliente 4
+        document.getElementById('respuesta').style.display = 'block';
+        setTimeout(Redireccionar, 5000, '/Home/Contact');
+    }
+}

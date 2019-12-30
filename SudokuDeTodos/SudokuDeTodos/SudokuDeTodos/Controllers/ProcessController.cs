@@ -124,40 +124,42 @@ namespace SudokuDeTodos.Controllers
         [HttpGet]
         public ActionResult State(int id = 0, string email = "", string identidad = "", int status = 0, string date = "", string type = "",string cultureInfo = "")
         {
-            if (email == string.Empty || email == null)
-                return View();
-
             Respuesta respuesta = new Respuesta();
+            if (email == string.Empty || email == null)
+            {
+                respuesta.Id = -1;
+                return View(respuesta);
+            }
+           
+            string mail = Funcion.DecodeBase64(email);
+            string tipo = Funcion.DecodeBase64(type);
+            System.Web.HttpContext.Current.Session["EMAIL"] = mail;
             bool resultado = false;
             Funcion.SetCultureInfo(cultureInfo);
             DateTime fechaEnvio = Convert.ToDateTime(date);
             resultado = Funcion.EstatusLink(fechaEnvio);
             if (!resultado)
             {
-                respuesta.Id = 1;
-                respuesta.Descripcion = EngineData.TiempoLinkExpiro();
+                respuesta = Funcion.ConstruirRespuesta(0, false, EngineData.TiempoLinkExpiro(), mail, tipo);
                 return View(respuesta);
             }
             email = Funcion.DecodeBase64(email);
             resultado = Funcion.EmailEsValido(email);
             if (!resultado)
             {
-                respuesta.Id = 2;
-                respuesta.Descripcion = EngineData.EmailNoValido();
+                respuesta = Funcion.ConstruirRespuesta(1, false, EngineData.EmailNoValido(), mail, tipo);
                 return View(respuesta);
             }
             resultado = Funcion.ValidacionTypeTransaccion(type);
             if (!resultado)
             {
-                respuesta.Id = 3;
-                respuesta.Descripcion = EngineData.TransaccionNoValida();
+                respuesta = Funcion.ConstruirRespuesta(2, false, EngineData.TransaccionNoValida(), mail, tipo);
                 return View(respuesta);
             }
             resultado = Funcion.ValidacionIdentidad(email, identidad, Metodo);
             if (!resultado)
             {
-                respuesta.Id = 4;
-                respuesta.Descripcion = EngineData.ErrorInternoServidor();
+                respuesta = Funcion.ConstruirRespuesta(3, false, EngineData.ErrorInternoServidor(), mail, tipo);
                 return View(respuesta);
             }
 
@@ -166,23 +168,20 @@ namespace SudokuDeTodos.Controllers
                 resultado = Metodo.UpdateClienteTest(email, status);
                 if (!resultado)
                 {
-                    respuesta.Id = 5;
-                    respuesta.Descripcion = EngineData.ErrorActualizarCliente();
+                    respuesta = Funcion.ConstruirRespuesta(4, false, EngineData.ErrorActualizarCliente(), mail, tipo);
                     return View(respuesta);
                 }
-                respuesta.Descripcion = EngineData.ActivacionTestExitosa();
+                respuesta = Funcion.ConstruirRespuesta(5, true, EngineData.ActivacionTestExitosa(), mail, tipo);
             }
             else if (type == EngineData.Register) //Activacion registro
             {
                 resultado = Metodo.UpdateClienteRegister(email, status);
                 if (!resultado)
                 {
-                    respuesta.Id = 6;
-                    respuesta.Descripcion = EngineData.ErrorActualizarCliente();
+                    respuesta = Funcion.ConstruirRespuesta(6, false, EngineData.ErrorActualizarCliente(), mail, tipo);
                     return View(respuesta);
                 }
-                respuesta.Id = 7;
-                respuesta.Descripcion = EngineData.ActivacionExitosa();
+                respuesta = Funcion.ConstruirRespuesta(7, true, EngineData.ActivacionExitosa(), mail, tipo);
             }
             else if (type == EngineData.ResetPassword) //Restablecer Password
             {

@@ -87,7 +87,7 @@ namespace SudokuDeTodos.Controllers
             }
             else if (respuesta.Id == 1)
             {
-                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, StringResx.Resources.CtaNoActivada,email); //Cuenta NO activada
+                respuesta = Funcion.ConstruirRespuesta(respuesta.Id, true, StringResx.Resources.CtaNoActivada,email); //Cuenta NO activada de prueba
                 return View("ResponseMessage", respuesta);
             }
             else if (respuesta.Id == 2)

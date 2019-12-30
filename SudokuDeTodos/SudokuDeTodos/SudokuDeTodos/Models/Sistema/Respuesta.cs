@@ -11,5 +11,6 @@ namespace SudokuDeTodos.Models.Sistema
         public bool Status { get; set; }
         public string Descripcion { get; set; }
         public string Email { get; set; }
+        public string Type { get; set; }
     }
 }

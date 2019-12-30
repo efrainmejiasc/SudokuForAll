@@ -5,6 +5,26 @@
 <link href="~/Content/css/global.css" rel="stylesheet" />
 <script src="../Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
 <script src="../Content/js/global.js" type="text/javascript"></script>
+<script src="../Content/js/message.js" type="text/javascript"></script>
+
+
+<div id="tiempoLink" class="wModal container-fluid">
+    <br />
+    <label id="mensajeTiempoLink" name="mensajeTiempoLink">@Model.Descripcion</label>
+    <div>
+        <br /><br />
+        <input type="button" id="enviarOtroEmail" name="enviarOtroEmail" value="Aceptar" onclick="EnviarOroEmail('@Model.Email','@Model.Id');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+        <input type="submit" id="cancelarOtroEmail" name="cancelarOtroEmail" value="Cancelar" onclick="OcultarModalIndicada('tiempoLink');" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
+    </div>
+    <br /><br />
+</div>
+
+
+<div id="respuesta" class="wModal container-fluid">
+    <br />
+         <label id="mensajeRespuesta" name="mensajeRespuesta">@Model.Descripcion</label>
+    <br /><br />
+</div>
 
 
 <script>
@@ -14,5 +34,9 @@
         OcultarObjeto('traductor');
         OcultarObjeto('equipo');
         document.documentElement.style.overflowX = 'hidden';
-    });
+        if ( @Model.Id === -1 )
+           Redireccionar('/Home/Index'); 
+        else if (@Model.Id > - 1)
+            ShowModalIndicada(@Model.Id)
+ });
 </script>

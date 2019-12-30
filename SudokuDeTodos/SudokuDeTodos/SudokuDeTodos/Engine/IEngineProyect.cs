@@ -34,5 +34,6 @@ namespace SudokuDeTodos.Engine
         Respuesta ConstruirRespuesta(int id, bool status, string descripcion,string email);
         string ConstruirEnlazeRestablecerPassword(string email, string codigo, Guid identidad);
         EstructuraMail SetEstructuraMailResetPassword(string enlaze, string email, string codigo);
+        Respuesta ConstruirRespuesta(int id, bool status, string descripcion, string email, string type);
     }
 }

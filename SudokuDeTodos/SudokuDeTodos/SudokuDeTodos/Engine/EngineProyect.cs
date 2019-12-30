@@ -155,16 +155,77 @@ namespace SudokuDeTodos.Engine
             return R;
         }
 
+        public Cliente ConstruirCliente(string email,Guid identidad)
+        {
+            Cliente R = new Cliente()
+            {
+                Email = email,
+                FechaRegistroPrueba = DateTime.UtcNow,
+                FechaActivacion = Convert.ToDateTime("01/01/1900 00:00:00.000"),
+                FechaActivacionPrueba = DateTime.UtcNow,
+                FechaRegistro = Convert.ToDateTime("01-01-1900 00:00:00.000"),
+                Estatus = false,
+                EstatusEnvioNotificacion = false,
+                Identidad = identidad,
+                Cultura = EngineData.GetCultura()
+            };
+            return R;
+        }
+
         public string ConstruirEnlazePrueba(string email,Guid identidad)
         {
             string link = string.Empty;
             link = EngineData.EndPointValidation;
-            link = link + "id=" + "0&";
-            link = link + "email=" + ConvertirBase64(email);
+            link = link + "id=" + "0";
+            link = link + "&email=" + ConvertirBase64(email);
             link = link + "&identidad=" + EncodeMd5(identidad.ToString());
             link = link + "&status=" + "1";
             link = link + "&date=" + DateTime.UtcNow.ToString();
             link = link + "&type=" + EngineData.Test;
+            link = link + "&cultureInfo=" + EngineData.GetCultura();
+            return link;
+        }
+
+        public string ConstruirEnlazeRegistro(string email, string password,Guid identidad)
+        {
+            string link = string.Empty;
+            link = EngineData.EndPointValidation;
+            link = link + "id=" + "0";
+            link = link + "&email=" + ConvertirBase64(email);
+            link = link + "&ide=" + ConvertirBase64(password);
+            link = link + "&identidad=" + EncodeMd5(identidad.ToString());
+            link = link + "&status=" + "1";
+            link = link + "&date=" + DateTime.UtcNow.ToString();
+            link = link + "&type=" + EngineData.Register;
+            link = link + "&cultureInfo=" + EngineData.GetCultura();
+            return link;
+        }
+
+        public string ConstruirEnlazeRestablecerPassword(string email, string codigo,Guid identidad)
+        {
+            string link = string.Empty;
+            link = EngineData.EndPointValidation;
+            link = link + "id=" + "1";
+            link = link + "&email=" + ConvertirBase64(email);
+            link = link + "&ide=" + ConvertirBase64(codigo);
+            link = link + "&identidad=" + EncodeMd5(identidad.ToString());
+            link = link + "&status=" + "0";
+            link = link + "&date=" + DateTime.UtcNow.ToString();
+            link = link + "&type=" + EngineData.ResetPassword;
+            link = link + "&cultureInfo=" + EngineData.GetCultura();
+            return link;
+        }
+
+        public string ConstruirEnlazeRegistroGerente(string email,Guid identidad)
+        {
+            string link = string.Empty;
+            link = EngineData.EndPointValidation;
+            link = link + "id=" + "0";
+            link = link + "&email=" + ConvertirBase64(email);
+            link = link + "&identidad=" + EncodeMd5(identidad.ToString());
+            link = link + "&status=" + "1";
+            link = link + "&date=" + DateTime.UtcNow.ToString();
+            link = link + "&type=" + EngineData.RegisterManager;
             link = link + "&cultureInfo=" + EngineData.GetCultura();
             return link;
         }
@@ -181,6 +242,52 @@ namespace SudokuDeTodos.Engine
             model.Asunto = EngineData.AsuntoTest();
             model.Observacion = EngineData.ObservacionTest();
             model.PathLecturaArchivo = EngineData.PathLecturaArchivoTest;
+            return model;
+        }
+
+        public EstructuraMail SetEstructuraMailRegister(string enlaze, string email)
+        {
+            EstructuraMail model = new EstructuraMail();
+            model.Link = enlaze;
+            model.Saludo = EngineData.Saludo();
+            model.EmailDestinatario = email;
+            model.Fecha = DateTime.UtcNow.ToString();
+            model.Descripcion = EngineData.DescripcionRegistro();
+            model.ClickAqui = EngineData.ClickAqui2();
+            model.Asunto = EngineData.AsuntoRegistro();
+            model.Observacion = EngineData.ObservacionRegistro();
+            model.PathLecturaArchivo = EngineData.PathLecturaArchivoRegistro;
+            return model;
+        }
+
+        public EstructuraMail SetEstructuraMailResetPassword(string enlaze, string email, string codigo)
+        {
+            EstructuraMail model = new EstructuraMail();
+            model.Link = enlaze;
+            model.Saludo = EngineData.Saludo();
+            model.EmailDestinatario = email;
+            model.Fecha = DateTime.UtcNow.ToString();
+            model.Descripcion = EngineData.DescripcionRestablecerPassword();
+            model.ClickAqui = EngineData.ClickAqui3();
+            model.Asunto = EngineData.AsuntoResetPassword();
+            model.Observacion = EngineData.ObservacionRestablecerPassword();
+            model.PathLecturaArchivo = EngineData.PathLecturaArchivoRestablecerPassword;
+            model.CodigoResetPassword = codigo;
+            return model;
+        }
+
+        public EstructuraMail SetEstructuraMailRegisterManager(string enlaze, string email)
+        {
+            EstructuraMail model = new EstructuraMail();
+            model.Link = enlaze;
+            model.Saludo = EngineData.Saludo();
+            model.EmailDestinatario = email;
+            model.Fecha = DateTime.UtcNow.ToString();
+            model.Descripcion = EngineData.DescripcionRegistroGerente();
+            model.ClickAqui = EngineData.ClickAqui4();
+            model.Asunto = EngineData.AsuntoRegistroGerente();
+            model.Observacion = EngineData.ObservacionRegistroGerente();
+            model.PathLecturaArchivo = EngineData.PathLecturaArchivoRegistro;
             return model;
         }
 

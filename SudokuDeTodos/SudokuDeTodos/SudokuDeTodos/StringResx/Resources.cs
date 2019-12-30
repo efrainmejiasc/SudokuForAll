@@ -164,5 +164,10 @@ namespace SudokuDeTodos.StringResx
         {
             get { return resourceProvider.GetResource("ErrorInterno", CultureInfo.CurrentUICulture.Name) as String; }
         }
+
+        public static string OtroEmailEnviado
+        {
+            get { return resourceProvider.GetResource("OtroEmailEnviado", CultureInfo.CurrentUICulture.Name) as String; }
+        }
     }
 }

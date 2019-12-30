@@ -97,9 +97,36 @@ namespace SudokuDeTodos.Controllers
             return Json(respuesta);
         }
 
-        [HttpGet]
-        public ActionResult State(int id, string email, string identidad, int status, string date, string type,string cultureInfo)
+        [HttpPost]
+        public JsonResult EnviarOtraNotificacionPrueba(string email)
         {
+            Respuesta respuesta = new Respuesta();
+            respuesta.Status = Funcion.EmailEsValido(email);
+            if (!respuesta.Status) 
+            {
+                respuesta = Funcion.ConstruirRespuesta(101, false, EngineData.EmailNoValido(), email);
+                return Json(respuesta);
+            }
+            Guid identidad = Metodo.GetIdentidadCliente(email);
+            Cliente cliente = Funcion.ConstruirCliente(email,identidad);
+            string enlaze = Funcion.ConstruirEnlazePrueba(email, cliente.Identidad);
+            EstructuraMail estructuraMail = Funcion.SetEstructuraMailTest(enlaze, email);
+            respuesta.Status = Notificacion.EnviarMailNotificacion(estructuraMail);
+            if (!respuesta.Status)//No se pudo enviar notificacion
+            {
+                respuesta = Funcion.ConstruirRespuesta(103, false, EngineData.ErrorEnviandoMail(), email);
+                return Json(respuesta);
+            }
+            respuesta = Funcion.ConstruirRespuesta(100, true, EngineData.TransaccionExitosa(), email);
+            return Json(respuesta);
+        }
+
+        [HttpGet]
+        public ActionResult State(int id = 0, string email = "", string identidad = "", int status = 0, string date = "", string type = "",string cultureInfo = "")
+        {
+            if (email == string.Empty || email == null)
+                return View();
+
             Respuesta respuesta = new Respuesta();
             bool resultado = false;
             Funcion.SetCultureInfo(cultureInfo);
@@ -107,6 +134,7 @@ namespace SudokuDeTodos.Controllers
             resultado = Funcion.EstatusLink(fechaEnvio);
             if (!resultado)
             {
+                respuesta.Id = 1;
                 respuesta.Descripcion = EngineData.TiempoLinkExpiro();
                 return View(respuesta);
             }
@@ -114,27 +142,31 @@ namespace SudokuDeTodos.Controllers
             resultado = Funcion.EmailEsValido(email);
             if (!resultado)
             {
+                respuesta.Id = 2;
                 respuesta.Descripcion = EngineData.EmailNoValido();
                 return View(respuesta);
             }
             resultado = Funcion.ValidacionTypeTransaccion(type);
             if (!resultado)
             {
+                respuesta.Id = 3;
                 respuesta.Descripcion = EngineData.TransaccionNoValida();
                 return View(respuesta);
             }
             resultado = Funcion.ValidacionIdentidad(email, identidad, Metodo);
             if (!resultado)
-            { 
+            {
+                respuesta.Id = 4;
                 respuesta.Descripcion = EngineData.ErrorInternoServidor();
                 return View(respuesta);
             }
 
             if (type == EngineData.Test) //Activacion Prueba
             {
-                resultado = Metodo.UpdateCliente(email, status);
+                resultado = Metodo.UpdateClienteTest(email, status);
                 if (!resultado)
                 {
+                    respuesta.Id = 5;
                     respuesta.Descripcion = EngineData.ErrorActualizarCliente();
                     return View(respuesta);
                 }
@@ -142,7 +174,15 @@ namespace SudokuDeTodos.Controllers
             }
             else if (type == EngineData.Register) //Activacion registro
             {
-
+                resultado = Metodo.UpdateClienteRegister(email, status);
+                if (!resultado)
+                {
+                    respuesta.Id = 6;
+                    respuesta.Descripcion = EngineData.ErrorActualizarCliente();
+                    return View(respuesta);
+                }
+                respuesta.Id = 7;
+                respuesta.Descripcion = EngineData.ActivacionExitosa();
             }
             else if (type == EngineData.ResetPassword) //Restablecer Password
             {

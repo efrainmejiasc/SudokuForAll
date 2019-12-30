@@ -20,6 +20,7 @@ namespace SudokuDeTodos.Engine
 
         public int VerificarEmail (string email)
         {
+            DateTime time = DateTime.UtcNow;
             Cliente C = new Cliente();
             try
             {
@@ -30,13 +31,13 @@ namespace SudokuDeTodos.Engine
                     {
                         return 0; //Cuenta no existente
                     }
-                    else if (C.Id >=1 )
+                    else if (C.Id >= 1 )
                     {
                         if (C.EstatusEnvioNotificacion == false)
                             return 1; //Cuenta de prueba no activada
-                        else if (C.EstatusEnvioNotificacion == true && C.FechaActivacion.AddHours(60) > DateTime.UtcNow)
+                        else if (C.EstatusEnvioNotificacion == true && C.FechaActivacionPrueba.AddHours(60) > time)
                             return 2; //Cuenta activada con tiempo de prueba 
-                        else if (C.EstatusEnvioNotificacion == true && C.FechaActivacion.AddHours(60) <= DateTime.UtcNow)
+                        else if (C.EstatusEnvioNotificacion == true && C.FechaActivacionPrueba.AddHours(60) <= time)
                             return 3; //Cuenta activada sin tiempo de prueba
                     }
                 }
@@ -114,7 +115,7 @@ namespace SudokuDeTodos.Engine
             return Guid.Empty;
         }
 
-        public bool UpdateCliente(string email,int status)
+        public bool UpdateClienteTest(string email,int status)
         {
             bool resultado = false;
             if (status == 1)
@@ -138,11 +139,39 @@ namespace SudokuDeTodos.Engine
             catch (Exception ex)
             {
                 resultado = false;
-                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/UpdateCliente*" + email));
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/UpdateClienteTest*" + email));
             }
             return resultado;
         }
 
+        public bool UpdateClienteRegister(string email, int status)
+        {
+            bool resultado = false;
+            if (status == 1)
+                resultado = true;
+            else
+                resultado = false;
+            Cliente C = new Cliente();
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    C = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
+                    Context.Cliente.Attach(C);
+                    C.FechaActivacion = DateTime.UtcNow;
+                    C.Estatus = resultado;
+                    Context.Configuration.ValidateOnSaveEnabled = false;
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado = false;
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/UpdateClienteRegister*" + email));
+            }
+            return resultado;
+        }
         public bool InsertarSucesoLog(SucesoLog model)
         {
             bool resultado = false;

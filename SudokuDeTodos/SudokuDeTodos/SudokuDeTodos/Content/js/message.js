@@ -4,15 +4,17 @@ $(document).ready(function () {
    
 });
 
+//ResponseMessage
 
 function MostrarModalIndicada(id) {
+    id = parseInt(id, 10);
     console.log(id);
     if (id === 0) {
         document.getElementById('pruebaSitio').style.display = 'block';
     }
     else if (id === 1) {
         document.getElementById('ctaNoActivada').style.display = 'block';
-        setTimeout(SendOtherMail, 5000, 'ctaNoActivada');
+        setTimeout(ShowSendOtherMail, 5000, 'ctaNoActivada');
     }
     else if (id === 4) {
         document.getElementById('comprar').style.display = 'block';
@@ -25,10 +27,13 @@ function MostrarModalIndicada(id) {
         document.getElementById('errorInterno').style.display = 'block';
     }
     else if (id >= 100) {
-        document.getElementById('mensajeRespuesta').style.display = 'block';
+
+        if (id === 100) 
+            document.getElementById('mensajeRespuesta').style.display = 'block';
+         else if (id > 100) 
+            document.getElementById('respuesta').style.display = 'block';
     }
 }
-
 
 function OcultarModalIndicada(id) {
     document.getElementById(id).style.display = 'none';
@@ -39,7 +44,7 @@ function Redireccionar(url) {
     window.location.href = url;
 }
 
-function SendOtherMail(value) {
+function ShowSendOtherMail(value) {
     if (value === 'ctaNoActivada')
         document.getElementById('ctaNoActivada').style.display = 'none';
     else if (value === 'pruebaSitio')
@@ -57,13 +62,49 @@ function SendNotificacionPrueba(email) {
         url: "/Process/EnviarNotificacionPrueba",
         data: { email: email },
         datatype: "json",
-        success: function (data) {
-            console.log('data');
+        success: function (data)
+        {
+            if (data.Id === 100)
+                setTimeout(ShowSendOtherMail, 5000, 'pruebaSitio');
+            else
+                MostrarModalIndicada(data.Id);
+
+            console.log(data.Id);
         },
         complete: function () {
-            console.log('complete');
+            console.log('Notificacion_Test');
         }
     });
-    setTimeout(SendOtherMail, 5000, 'pruebaSitio');
 }
 
+function SendOtherNotificacion(email, v) {
+
+    if (email === '')
+        return false;
+
+    var id = parseInt(v, 10);
+    if (id === 0 || id === 1) {
+        console.log(id);
+        $.ajax({
+            type: "POST",
+            url: "/Process/EnviarOtraNotificacionPrueba",
+            data: { email: email },
+            datatype: "json",
+            success: function (data)
+            {
+                if (data.Id === 100) {
+                    document.getElementById('enviarOtroEmail').style.display = 'none';
+                    document.getElementById('otroMail').style.display = 'block';
+                } else {
+                    document.getElementById('respuesta').style.display = 'block';
+                }
+                console.log(data.Id);
+            },
+            complete: function () {
+                console.log('Otro_Email');
+            }
+        });
+    }
+}
+
+//State

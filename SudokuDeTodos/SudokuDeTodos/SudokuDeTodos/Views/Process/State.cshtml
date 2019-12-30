@@ -1,6 +1,18 @@
-﻿
-@{
-    ViewBag.Title = "";
-}
+﻿@using SudokuDeTodos.StringResx;
+@model SudokuDeTodos.Models.Sistema.Respuesta
 
 
+<link href="~/Content/css/global.css" rel="stylesheet" />
+<script src="../Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="../Content/js/global.js" type="text/javascript"></script>
+
+
+<script>
+   $(document).ready(function () {
+        TraductorHide();
+        OcultarObjeto('entrar');
+        OcultarObjeto('traductor');
+        OcultarObjeto('equipo');
+        document.documentElement.style.overflowX = 'hidden';
+    });
+</script>

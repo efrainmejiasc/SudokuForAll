@@ -291,6 +291,24 @@ namespace SudokuDeTodos.Engine
             return respuesta;
         }
 
+        public static string TransaccionExitosa ()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = " Transaccion exitosa";
+                    break;
+                case (CulturaIngles):
+                    respuesta = " Succesful transaction";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = " Transação bem sucedida";
+                    break;
+            }
+            return respuesta;
+        }
+
 
         public static string ErrorEnviandoMail()
         {

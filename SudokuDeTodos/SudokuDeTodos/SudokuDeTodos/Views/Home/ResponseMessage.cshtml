@@ -29,7 +29,7 @@
     <label id="otroEmail" name="otroEmail">@Resources.EnviarOtroEmail</label>
     <div>
         <br /><br />
-        <input type="button" id="aceptarOtroEmail" name="aceptarOtroEmail" value="@Resources.Si" onclick="SendOtherMail('@Model.Email');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+        <input type="button" id="aceptarOtroEmail" name="aceptarOtroEmail" value="@Resources.Si" onclick="SendOtherNotificacion('@Model.Email', '@Model.Id');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
         <input type="submit" id="cancelarOtroEmail" name="cancelarOtroEmail" value="@Resources.No" onclick="OcultarModalIndicada('enviarOtroEmail');" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
     </div>
     <br /><br />
@@ -64,9 +64,15 @@
     <br /><br />
 </div>
 
+<div id="otroMail" class="wModal container-fluid">
+    <br />
+    <label id="otroEmailEnviado" name="otroEmailEnviado">@Resources.OtroEmailEnviado</label>
+    <br /><br />
+</div>
+
 <div id="respuesta" class="wModal container-fluid">
     <br />
-    <label id="mensajeRespuesta" name="mensajeRespuesta">@Model.Descripcion</label>
+    <label id="mensajeRespuesta" name="mensajeRespuesta"></label>
     <br /><br />
 </div>
 
@@ -83,6 +89,7 @@
         var obj = '@Model';
         if (obj != '') {
             MostrarModalIndicada(@Model.Id);
-        }
+            document.getElementById('respuesta').innerHTML = '@Model.Descripcion';
+        }   
     });
 </script>

@@ -100,9 +100,9 @@
   <resource culture="en-us" name="ChxRequerido" value="Mark the checkbox"></resource>
   <resource culture="pt-pt" name="ChxRequerido" value="Marque a caixa de seleção"></resource>
 
-  <resource culture="es-es" name="EnviarOtroEmail" value="¿Recibio nuestro correo?... Enviar otro email"></resource>
-  <resource culture="en-us" name="EnviarOtroEmail" value="Did you receive our email?... Send another email"></resource>
-  <resource culture="pt-pt" name="EnviarOtroEmail" value="Você recebeu nosso email?... Enviar outro email"></resource>
+  <resource culture="es-es" name="EnviarOtroEmail" value="Revise su bandeja de entrada... ¿Enviar otro email?"></resource>
+  <resource culture="en-us" name="EnviarOtroEmail" value="Check your inbox... Send another email?"></resource>
+  <resource culture="pt-pt" name="EnviarOtroEmail" value="Verifique sua caixa de entrada... Enviar outro email?"></resource>
 
   <resource culture="es-es" name="Si" value="Si"></resource>
   <resource culture="en-us" name="Si" value="Yes"></resource>
@@ -123,5 +123,9 @@
   <resource culture="es-es" name="ErrorInterno" value="Error interno del servidor"></resource>
   <resource culture="en-us" name="ErrorInterno" value="Internal server error"></resource>
   <resource culture="pt-pt" name="ErrorInterno" value="Erro interno do servidor (500)"></resource>
+  
+  <resource culture="es-es" name="OtroEmailEnviado" value="Otro email fue enviado ,revice su bandeja de entrada"></resource>
+  <resource culture="en-us" name="OtroEmailEnviado" value="Another email was sent, check your inbox"></resource>
+  <resource culture="pt-pt" name="OtroEmailEnviado" value="Outro email foi enviado, verifique sua caixa de entrada"></resource>
 
 </resources>

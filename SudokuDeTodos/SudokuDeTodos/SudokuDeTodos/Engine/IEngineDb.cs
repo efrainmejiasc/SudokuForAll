@@ -12,6 +12,7 @@ namespace SudokuDeTodos.Engine
         bool InsertarCliente(Cliente model);
         Guid GetIdentidadCliente(string email);
         int VerificarClientePago(string email);
-        bool UpdateCliente(string email, int status);
+        bool UpdateClienteTest(string email, int status);
+        bool UpdateClienteRegister(string email, int status);
     }
 }

@@ -65,10 +65,14 @@ namespace SudokuDeTodos.Controllers
 
         public ActionResult ResponseMessage(string email = "")
         {
-            if (email == string.Empty)
-                return View();
-
             Respuesta respuesta = new Respuesta();
+            if (email == string.Empty)
+            {
+                respuesta.Id = -1;
+                return View("ResponseMessage", respuesta);
+            }
+ 
+            System.Web.HttpContext.Current.Session["EMAIL"] = email;
             respuesta.Status = Funcion.EmailEsValido(email);
             if (!respuesta.Status)
             {

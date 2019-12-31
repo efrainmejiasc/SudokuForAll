@@ -33,6 +33,7 @@ namespace SudokuDeTodos.Engine
         string ConstruirEnlazeRegistro(string email, string password, Guid identidad);
         Respuesta ConstruirRespuesta(int id, bool status, string descripcion,string email);
         string ConstruirEnlazeRestablecerPassword(string email, string codigo, Guid identidad);
+        bool EnviarNuevaNotificacion(Guid identidad, string email, string type, string password);
         EstructuraMail SetEstructuraMailResetPassword(string enlaze, string email, string codigo);
         Respuesta ConstruirRespuesta(int id, bool status, string descripcion, string email, string type);
     }

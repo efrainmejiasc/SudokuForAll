@@ -122,7 +122,7 @@ namespace SudokuDeTodos.Controllers
         }
 
         [HttpGet]
-        public ActionResult State(int id = 0, string email = "", string identidad = "", int status = 0, string date = "", string type = "",string cultureInfo = "")
+        public ActionResult State(int id = 0, string email = "", string identidad = "", int status = 0, string date = "", string type = "",string cultureInfo = "",string password = "")
         {
             Respuesta respuesta = new Respuesta();
             if (email == string.Empty || email == null)
@@ -130,7 +130,10 @@ namespace SudokuDeTodos.Controllers
                 respuesta.Id = -1;
                 return View(respuesta);
             }
-           
+
+            string contraseña = string.Empty;
+            if (password != string.Empty && password != null)
+                contraseña = Funcion.DecodeBase64(password);
             string mail = Funcion.DecodeBase64(email);
             string tipo = Funcion.DecodeBase64(type);
             System.Web.HttpContext.Current.Session["EMAIL"] = mail;
@@ -140,6 +143,8 @@ namespace SudokuDeTodos.Controllers
             resultado = Funcion.EstatusLink(fechaEnvio);
             if (!resultado)
             {
+                Guid identificadorGuid = Metodo.GetIdentidadCliente(mail);
+                Funcion.EnviarNuevaNotificacion(identificadorGuid, email, type, contraseña);
                 respuesta = Funcion.ConstruirRespuesta(0, false, EngineData.TiempoLinkExpiro(), mail, tipo);
                 return View(respuesta);
             }

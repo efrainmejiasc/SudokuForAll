@@ -14,6 +14,12 @@ namespace SudokuDeTodos.Engine
 {
     public class EngineProyect : IEngineProyect
     {
+        private IEngineNotificacion Notificacion;
+
+        public EngineProyect (IEngineNotificacion _Notificacion)
+        {
+            Notificacion = _Notificacion;
+        }
         public string ConvertirBase64(string cadena)
         {
             var comprobanteXmlPlainTextBytes = Encoding.UTF8.GetBytes(cadena);
@@ -347,6 +353,34 @@ namespace SudokuDeTodos.Engine
             int diferenciaHora = horaActivacion - horaEnvio;
             if (diferenciaHora <= 3)
                 resultado = true;
+            return resultado;
+        }
+
+        public bool EnviarNuevaNotificacion(Guid identidad , string email = "", string type = "", string password = "")
+        {
+            bool resultado = false;
+            EstructuraMail model = new EstructuraMail();
+            resultado = CadenaBase64Valida(email);
+            if (resultado)
+                email = DecodeBase64(email);
+
+            if (type == EngineData.Test)
+            {
+                string enlaze = ConstruirEnlazePrueba(email,identidad);
+                model = SetEstructuraMailTest(enlaze, email);
+            }
+            else if (type == EngineData.Register)
+            {
+                password = DecodeBase64(password);
+                string enlaze = ConstruirEnlazeRegistro(email, password,identidad);
+                model = SetEstructuraMailRegister(enlaze, email);
+            }
+            else if (type == EngineData.RegisterManager)
+            {
+                string enlaze = ConstruirEnlazeRegistroGerente(email,identidad);
+                model = SetEstructuraMailRegisterManager(enlaze, email);
+            }
+            resultado = Notificacion.EnviarMailNotificacion(model);
             return resultado;
         }
     }

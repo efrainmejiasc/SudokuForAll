@@ -683,7 +683,7 @@ namespace SudokuDeTodos.Engine
 
 
         // Parametros notificacion para registro de clientes
-        public static string PathLecturaArchivoRegistro = @"/Content/template/EmailBodyRegister.cshtml";
+        public static string PathLecturaArchivoRegistro = @"/Content/templates/EmailBodyRegister.cshtml";
 
         public static string AsuntoRegistro()
         {
@@ -764,7 +764,7 @@ namespace SudokuDeTodos.Engine
 
 
         // Parametros notificacion para restablecer password
-        public static string PathLecturaArchivoRestablecerPassword = @"/Content/template/EmailBodyResetPassword.cshtml";
+        public static string PathLecturaArchivoRestablecerPassword = @"/Content/templates/EmailBodyResetPassword.cshtml";
 
         public static string AsuntoResetPassword()
         {

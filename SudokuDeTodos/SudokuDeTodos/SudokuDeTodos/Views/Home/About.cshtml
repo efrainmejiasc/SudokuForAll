@@ -55,12 +55,6 @@
         var a = $('#password').val();
         var b = $('#password2').val();
 
-        if (a != b) {
-            document.getElementById('validacion').innerHTML = contraseñaIdentica
-            document.getElementById('validacion').style.display = 'block';
-            e.preventDefault();
-               return false;
-        }
         if (a.length < 10) {
             document.getElementById('validacion').innerHTML = 'minimo 10 caracteres'
             document.getElementById('validacion').style.display = 'block';
@@ -86,6 +80,12 @@
             document.getElementById('validacion').style.display = 'block';
             e.preventDefault();
               return false;
+        }
+        if (a != b) {
+            document.getElementById('validacion').innerHTML = contraseñaIdentica
+            document.getElementById('validacion').style.display = 'block';
+            e.preventDefault();
+               return false;
         }
     });
 </script>

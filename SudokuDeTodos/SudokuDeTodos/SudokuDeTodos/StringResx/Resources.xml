@@ -127,5 +127,17 @@
   <resource culture="es-es" name="OtroEmailEnviado" value="Otro email fue enviado ,revice su bandeja de entrada"></resource>
   <resource culture="en-us" name="OtroEmailEnviado" value="Another email was sent, check your inbox"></resource>
   <resource culture="pt-pt" name="OtroEmailEnviado" value="Outro email foi enviado, verifique sua caixa de entrada"></resource>
+  
+  <resource culture="es-es" name="ContraseñaRequerida" value="Contraseña requerida"></resource>
+  <resource culture="en-us" name="ContraseñaRequerida" value="Password required"></resource>
+  <resource culture="pt-pt" name="ContraseñaRequerida" value="Senha requerida"></resource>
+  
+  <resource culture="es-es" name="ContraseñaDebeIdentica" value="Las contraseñas deben ser identicas"></resource>
+  <resource culture="en-us" name="ContraseñaDebeIdentica" value="Passwords must be identical"></resource>
+  <resource culture="pt-pt" name="ContraseñaDebeIdentica" value="As senhas devem ser idênticas"></resource>
+  
+  <resource culture="es-es" name="FormatContraseña" value="Minimo 10 caracteres debe incluir numeros y letras"></resource>
+  <resource culture="en-us" name="FormatContraseña" value="Minimum 10 characters must include numbers and letters"></resource>
+  <resource culture="pt-pt" name="FormatContraseña" value="No mínimo 10 caracteres devem incluir números e letras"></resource>
 
 </resources>

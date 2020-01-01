@@ -111,3 +111,18 @@ function TraductorHide() {
     }
 }
 
+function GetEmailSession(nameVar) {
+    if (nameVar === '')
+        return false;
+    $.ajax({
+        type: "POST",
+        url: "/Process/ReturnVarSession",
+        data: { nameVar: nameVar },
+        datatype: "json",
+        success: function (data) {
+            console.log(data.Descripcion);
+            $('#mail').val(data.Descripcion);
+        }
+    });
+}
+

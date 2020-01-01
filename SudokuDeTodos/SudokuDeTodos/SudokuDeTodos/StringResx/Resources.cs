@@ -169,5 +169,20 @@ namespace SudokuDeTodos.StringResx
         {
             get { return resourceProvider.GetResource("OtroEmailEnviado", CultureInfo.CurrentUICulture.Name) as String; }
         }
+
+        public static string ContraseñaRequerida
+        {
+            get { return resourceProvider.GetResource("ContraseñaRequerida", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string ContraseñaDebeIdentica
+        {
+            get { return resourceProvider.GetResource("ContraseñaDebeIdentica", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string FormatContraseña
+        {
+            get { return resourceProvider.GetResource("FormatContraseña", CultureInfo.CurrentUICulture.Name) as String; }
+        }
     }
 }

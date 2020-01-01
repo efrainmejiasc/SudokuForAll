@@ -54,6 +54,10 @@
     width: 35%;
 }
 
+.brdRed {
+    border: 1px solid red;
+}
+
 input:invalid {
     border: 1px solid red;
 }
@@ -348,10 +352,18 @@ input:valid {
 }
 
 .validacionField {
-    margin-left: 10%;
+    margin-left: 8%;
     color: red;
     font-size:smaller;
     font-family:'Times New Roman';
+    display:none;
+}
+
+.lblMsj{
+    margin-left: 2%;
+    color: silver;
+    font-size: smaller;
+    font-family: 'Times New Roman';
 }
 
 

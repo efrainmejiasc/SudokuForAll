@@ -11,3 +11,81 @@
     ViewBag.Title = "";
 }
 
+<input type="hidden" id="mail" name="mail" >
+
+<div class="divEmail">
+    @using (Html.BeginForm("About", "Home", FormMethod.Post, new { name = "frmAbout", id = "frmAbout" }))
+    {
+        <div style="margin-left:10%;">
+            <h4 class="text-success"> @Resources.Registrate</h4>
+            <label class="checkbox-inline"><input type="checkbox" id="chxNoSoy" name="chxNosoy" class="btn btn btn-default active" required oninvalid="setCustomValidity('@Resources.ChxRequerido')" oninput="setCustomValidity('')" /> @Resources.NoSoyUnRobot </label>
+        </div>
+        <input type="email" id="email" name="email" placeholder="@Resources.IngreseEmail" class="boxTxt form-control" required oninvalid="setCustomValidity('@Resources.EmailRequerido')" oninput="setCustomValidity('')" /><br />
+        <input type="password" id="password" name="password" placeholder="@Resources.IngreseContraseña" class="boxTxt form-control" required oninvalid="setCustomValidity('@Resources.ContraseñaRequerida')" oninput="setCustomValidity('')" />
+        <label id="msjPassword" class="lblMsj">@Resources.FormatContraseña</label><br />
+        <input type="password" id="password2" name="password2" placeholder="@Resources.ConfirmeContraseña" class="boxTxt form-control" required oninvalid="setCustomValidity('@Resources.ContraseñaRequerida')" oninput="setCustomValidity('')" />
+        <label id="validacion" class="validacionField"></label><br />
+        <input type="submit" id="sendMail" name="sendMail" value="@Resources.Enviar" class="btn btn-success voton"  /><br />
+        <input type="submit" id="cancelar" name="cancelar" value="@Resources.Cancelar" class="btn btn-danger voton brdRed" />
+    }
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <p style="font-size:smaller;">@Resources.AceptarCondicion</p>
+</div>
+
+
+
+<script>
+        let contraseñaIdentica = '@Resources.ContraseñaDebeIdentica';
+        $(document).ready(function () {
+        TraductorHide();
+        OcultarObjeto('entrar');
+        OcultarObjeto('traductor');
+        OcultarObjeto('equipo');
+        OcultarObjeto('inicio');
+        document.documentElement.style.overflowX = 'hidden'; 
+        GetEmailSession('EMAIL');
+
+        });
+ 
+
+    $("#frmAbout").submit(function (e) {
+        var mayuscula = false;
+        var minuscula = false;
+        var numero = false;
+        var a = $('#password').val();
+        var b = $('#password2').val();
+
+        if (a != b) {
+            document.getElementById('validacion').innerHTML = contraseñaIdentica
+            document.getElementById('validacion').style.display = 'block';
+            e.preventDefault();
+               return false;
+        }
+        if (a.length < 10) {
+            document.getElementById('validacion').innerHTML = 'minimo 10 caracteres'
+            document.getElementById('validacion').style.display = 'block';
+            e.preventDefault();
+              return false;
+        }
+
+        if(contrasenna.charCodeAt(i) >= 65 && contrasenna.charCodeAt(i) <= 90)
+		    mayuscula = true;
+        if(a.charCodeAt(i) >= 97 && a.charCodeAt(i) <= 122)
+            minuscula = true;
+        if(a.charCodeAt(i) >= 48 && a.charCodeAt(i) <= 57)
+            numero = true;
+
+        if (minuscula === false && mayuscula === false) {
+            document.getElementById('validacion').innerHTML = 'la contraseña debe contener letras'
+            document.getElementById('validacion').style.display = 'block';
+            e.preventDefault();
+              return false;
+        }
+        if (numero=== false) {
+            document.getElementById('validacion').innerHTML = 'la contraseña debe contener numseros'
+            document.getElementById('validacion').style.display = 'block';
+            e.preventDefault();
+              return false;
+        }
+    });
+</script>

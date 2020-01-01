@@ -69,6 +69,18 @@ namespace SudokuDeTodos.Controllers
         }
 
         [HttpPost]
+        public JsonResult ReturnVarSession(string nameVar)
+        {
+            Respuesta respuesta = new Respuesta();
+            if (System.Web.HttpContext.Current.Session[nameVar] != null)
+                respuesta.Descripcion = System.Web.HttpContext.Current.Session[nameVar].ToString();
+            else
+                respuesta.Descripcion = null;
+
+            return Json(respuesta);
+        }
+
+        [HttpPost]
         public JsonResult EnviarNotificacionPrueba(string email)
         {
             Respuesta respuesta = new Respuesta();
@@ -136,20 +148,20 @@ namespace SudokuDeTodos.Controllers
                 contraseña = Funcion.DecodeBase64(password);
             string mail = Funcion.DecodeBase64(email);
             string tipo = Funcion.DecodeBase64(type);
+            Guid identificadorGuid = Metodo.GetIdentidadCliente(mail);
             System.Web.HttpContext.Current.Session["EMAIL"] = mail;
+
             bool resultado = false;
             Funcion.SetCultureInfo(cultureInfo);
             DateTime fechaEnvio = Convert.ToDateTime(date);
             resultado = Funcion.EstatusLink(fechaEnvio);
             if (!resultado)
             {
-                Guid identificadorGuid = Metodo.GetIdentidadCliente(mail);
                 Funcion.EnviarNuevaNotificacion(identificadorGuid, email, type, contraseña);
                 respuesta = Funcion.ConstruirRespuesta(0, false, EngineData.TiempoLinkExpiro(), mail, tipo);
                 return View(respuesta);
             }
-            email = Funcion.DecodeBase64(email);
-            resultado = Funcion.EmailEsValido(email);
+            resultado = Funcion.EmailEsValido(mail);
             if (!resultado)
             {
                 respuesta = Funcion.ConstruirRespuesta(1, false, EngineData.EmailNoValido(), mail, tipo);

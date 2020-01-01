@@ -35,7 +35,7 @@
     <label id="tiempoExpiro" name="tiempoExpiro">@Resources.TiempoPruebaExpiro</label>
     <div>
         <br /><br />
-        <input type="button" id="aceptarComprar" name="aceptarComprar" value="@Resources.Si" onclick="AceptarComprar('@Model.Email');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+        <input type="button" id="aceptarComprar" name="aceptarComprar" value="@Resources.Si" onclick="Redireccionar('/Home/About');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
         <input type="submit" id="cancelarComprar" name="cancelarComprar" value="@Resources.No" onclick="OcultarModalIndicada('comprar1Eravez');" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
     </div>
     <br /><br />

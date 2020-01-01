@@ -59,8 +59,8 @@ namespace SudokuDeTodos.Engine
                 using (this.Context = new EngineContext())
                 {
                     cliente = this.Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
-                    clientePago = this.Context.ClientePago.Where(x => x.IdCliente == cliente.Id).ToList().Last();
-                    if (clientePago == null)
+                    clientePago = this.Context.ClientePago.Where(x => x.IdCliente == cliente.Id).ToList().LastOrDefault();
+                    if (clientePago == null || clientePago.Id == 0)
                         resultado = -1; //No existe ningun pago realizado
                     else if (clientePago.FechaVencimiento.AddHours(60) > DateTime.UtcNow)
                         resultado = 1; //Pago activo

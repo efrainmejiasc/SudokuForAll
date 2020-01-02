@@ -53,8 +53,14 @@ namespace SudokuDeTodos.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult About(string email = "", string password = "")
         {
+            if (email == string.Empty || password == string.Empty)
+            return View();
+
+            string key = Funcion.ConvertirBase64(email + password);
+            Respuesta respuesta = new Respuesta();
+            respuesta.Status = Funcion.Actualizar
             return View();
         }
 

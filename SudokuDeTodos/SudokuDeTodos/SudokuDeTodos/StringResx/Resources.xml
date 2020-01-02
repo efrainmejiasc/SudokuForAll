@@ -139,5 +139,13 @@
   <resource culture="es-es" name="FormatContraseña" value="Minimo 10 caracteres debe incluir numeros y letras"></resource>
   <resource culture="en-us" name="FormatContraseña" value="Minimum 10 characters must include numbers and letters"></resource>
   <resource culture="pt-pt" name="FormatContraseña" value="No mínimo 10 caracteres devem incluir números e letras"></resource>
+  
+  <resource culture="es-es" name="ContraseñaDebeLetra" value="La contraseña debe contener letras"></resource>
+  <resource culture="en-us" name="ContraseñaDebeLetra" value="Password must contain letters"></resource>
+  <resource culture="pt-pt" name="ContraseñaDebeLetra" value="A senha deve conter letras"></resource>
+  
+  <resource culture="es-es" name="ContraseñaDebeNumero" value="La contraseña debe contener numeros"></resource>
+  <resource culture="en-us" name="ContraseñaDebeNumero" value="Password must contain numbers"></resource>
+  <resource culture="pt-pt" name="ContraseñaDebeNumero" value="A senha deve conter números"></resource>
 
 </resources>

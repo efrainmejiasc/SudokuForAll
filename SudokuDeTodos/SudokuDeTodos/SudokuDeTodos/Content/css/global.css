@@ -352,7 +352,7 @@ input:valid {
 }
 
 .validacionField {
-    margin-left: 8%;
+    margin-left: 2%;
     color: red;
     font-size:smaller;
     font-family:'Times New Roman';

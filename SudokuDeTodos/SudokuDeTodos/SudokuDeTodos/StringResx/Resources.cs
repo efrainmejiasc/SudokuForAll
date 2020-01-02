@@ -184,5 +184,15 @@ namespace SudokuDeTodos.StringResx
         {
             get { return resourceProvider.GetResource("FormatContraseña", CultureInfo.CurrentUICulture.Name) as String; }
         }
+
+        public static string ContraseñaDebeLetra
+        {
+            get { return resourceProvider.GetResource("ContraseñaDebeLetra", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string ContraseñaDebeNumero
+        {
+            get { return resourceProvider.GetResource("ContraseñaDebeNumero", CultureInfo.CurrentUICulture.Name) as String; }
+        }
     }
 }

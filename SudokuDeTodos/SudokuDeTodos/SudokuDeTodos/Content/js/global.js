@@ -8,6 +8,13 @@ function MostrarObjeto(name) {
     $(objeto).show();
 }
 
+function Redireccionamiento(url) {
+    window.location.href = url;
+}
+
+function OcultarValidacion() {
+    document.getElementById('validacion').style.display = 'none';
+}
 
 $('#traductor').on('change', function (e) {
     var lenguaje = $('#traductor option:selected').html();

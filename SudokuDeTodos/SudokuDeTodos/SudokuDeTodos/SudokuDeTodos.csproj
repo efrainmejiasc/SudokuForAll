@@ -290,6 +290,7 @@
     <Content Include="Views\Home\ResponseMessage.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Process\State.cshtml" />
+    <Content Include="Views\Home\PasswordModification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

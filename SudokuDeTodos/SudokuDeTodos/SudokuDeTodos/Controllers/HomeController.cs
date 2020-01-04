@@ -91,9 +91,21 @@ namespace SudokuDeTodos.Controllers
                 return View(respuesta);
         }
 
-        public ActionResult ResponseMessage(string email = "")
+        public ActionResult PasswordModification()
+        {
+            return View();
+        }
+
+        public ActionResult ResponseMessage(string email = "" , int id = -2)
         {
             Respuesta respuesta = new Respuesta();
+
+            if (id == 8)
+            {
+                respuesta = Funcion.ConstruirRespuesta(id, true, StringResx.Resources.ModificarContraseña, email); //ModificarContraseña?
+                return View("ResponseMessage", respuesta);
+            }
+
             if (email == string.Empty)
             {
                 respuesta.Id = -1;

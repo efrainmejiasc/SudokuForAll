@@ -10,7 +10,7 @@
 
 <div id="pruebaSitio" class="wModal container-fluid">
     <br />
-        <label id="mensajePrueba" name="mensajePrueba">@Resources.MsjPruebaSitio</label>
+    <label id="mensajePrueba" name="mensajePrueba">@Resources.MsjPruebaSitio</label>
     <div>
         <br /><br />
         <input type="button" id="aceptarPrueba" name="aceptarPrueba" value="Aceptar" onclick="SendNotificacionPrueba('@Model.Email');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
@@ -72,6 +72,18 @@
 </div>
 
 
+<div id="modificarPassword" class="wModal container-fluid">
+    <br />
+    <label id="mensajeModificarPassword" name="mensajeModificarPassword">@Resources.OlvidoSuContraseña</label>
+    <div>
+        <br /><br />
+        <input type="button" id="aceptarModificar" name="aceptarModificar" value="@Resources.Si" onclick="Redireccionar('/Home/PasswordModification');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+        <input type="submit" id="cancelarModificar" name="cancelarModificar" value="@Resources.No" onclick="OcultarModalIndicada('modificarPasswordº');" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
+    </div>
+    <br /><br />
+</div>
+
+
 <script>
     $(document).ready(function () {
         TraductorHide();
@@ -85,6 +97,6 @@
         if (obj != '') {
             MostrarModalIndicada(@Model.Id);
             document.getElementById('mensajeRespuesta').innerHTML = '@Model.Descripcion';
-        }   
+        }
     });
 </script>

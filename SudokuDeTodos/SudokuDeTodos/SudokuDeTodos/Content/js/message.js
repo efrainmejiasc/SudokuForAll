@@ -34,9 +34,14 @@ function MostrarModalIndicada(id) {
         document.getElementById('respuesta').style.display = 'block';
         setTimeout(Redireccionar, 5000, '/Payment/Index');
     }
+    else if (id === 8) {
+        document.getElementById('modificarPassword').style.display = 'block';
+        console.log('hola');
+        return true;
+    }
     else if (id >= 100) {
 
-        if (id === 100) 
+         if (id === 100) 
             document.getElementById('mensajeRespuesta').style.display = 'block';
          else if (id > 100) 
             document.getElementById('respuesta').style.display = 'block';

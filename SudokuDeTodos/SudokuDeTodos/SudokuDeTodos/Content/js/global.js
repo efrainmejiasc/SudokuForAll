@@ -35,8 +35,8 @@ $('#traductor').on('change', function (e) {
         data: { lenguaje: lenguaje, index: index },
         datatype: "json",
         success: function () {
-                if (index > 0)
-                 SetObjectsLayount(index);
+           if (index > 0)
+             SetObjectsLayount(index);
         }
     });
 }); 
@@ -71,7 +71,7 @@ function SetObjectsLayount(index) {
         data: { index: index },
         datatype: "json",
         success: function (data) {
-            //$('#olvidoPassword').text(data.ResetPassword);
+            $('#olvidoPassword').text(data.ResetPassword);
             //$('#normas').text(data.Terminos);
             $('#inicio').text(data.Inicio);
             $('#entrar').text(data.Entrar);

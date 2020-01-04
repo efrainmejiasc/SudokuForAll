@@ -11,10 +11,12 @@ function MostrarModalIndicada(id) {
     console.log(id);
     if (id === 0) {
         document.getElementById('pruebaSitio').style.display = 'block';
+        return true;
     }
     else if (id === 1) {
         document.getElementById('ctaNoActivada').style.display = 'block';
         setTimeout(ShowSendOtherMail, 5000, 'ctaNoActivada');
+        return true;
     }
     else if (id === 4) {
         document.getElementById('comprar').style.display = 'block';
@@ -22,9 +24,15 @@ function MostrarModalIndicada(id) {
     }
     else if (id === 5) {
         document.getElementById('comprar1Eravez').style.display = 'block';
+        return true;
     }
     else if (id === 6) {
         document.getElementById('errorInterno').style.display = 'block';
+        return true;
+    }
+    else if (id === 7) {
+        document.getElementById('respuesta').style.display = 'block';
+        setTimeout(Redireccionar, 5000, '/Payment/Index');
     }
     else if (id >= 100) {
 
@@ -32,6 +40,8 @@ function MostrarModalIndicada(id) {
             document.getElementById('mensajeRespuesta').style.display = 'block';
          else if (id > 100) 
             document.getElementById('respuesta').style.display = 'block';
+
+        return true;
     }
 }
 

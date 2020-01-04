@@ -1,0 +1,51 @@
+﻿@using SudokuDeTodos.StringResx;
+@model SudokuDeTodos.Models.Sistema.Respuesta
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/css/global.css" rel="stylesheet" />
+<script src="../Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="../Content/js/global.js" type="text/javascript"></script>
+<script src="../Content/js/message.js" type="text/javascript"></script>
+
+
+@{
+    ViewBag.Title = "";
+}
+
+
+<div class="divEmail">
+    @using (Html.BeginForm("Login", "Home"))
+    {
+        <div style="margin-left:10%;">
+            <h4 class="text-success"> @Resources.Auth</h4>
+            <label class="checkbox-inline"><input type="checkbox" id="chxNoSoy" name="chxNosoy" class="btn btn btn-default active" required oninvalid="setCustomValidity('@Resources.ChxRequerido')" oninput="setCustomValidity('')" /> @Resources.NoSoyUnRobot </label>
+        </div>
+        <input type="password" id="password" name="password" placeholder="@Resources.IngreseContraseña" class="boxTxt form-control" required oninvalid="setCustomValidity('@Resources.PasswordRequerido')" oninput="setCustomValidity('')" />
+        <label id="validacion" class="validacionField2"></label><br />
+        <input type="submit" id="sendPassword" name="sendPassword" value="@Resources.Enviar" class="btn btn-success voton" />
+    }
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <p style="font-size:smaller;">@Resources.AceptarCondicion</p>
+</div>
+
+<script>
+    $(document).ready(function () {
+        TraductorHide();
+        OcultarObjeto('entrar');
+        OcultarObjeto('traductor');
+        OcultarObjeto('equipo');
+        document.documentElement.style.overflowX = 'hidden';
+
+        var obj = '@Model';
+        if (obj != null) {
+            if (@Model.Id === -1)
+            {
+              document.getElementById('validacion').innerHTML = '@Resources.PasswordInvalido';
+              document.getElementById('validacion').style.display = 'block';
+              setTimeout(OcultarValidacion, 4000);
+            }
+        } 
+    });
+</script>
+

@@ -359,6 +359,14 @@ input:valid {
     display:none;
 }
 
+.validacionField2 {
+    margin-left: 12%;
+    color: red;
+    font-size: smaller;
+    font-family: 'Times New Roman';
+    display: none;
+}
+
 .lblMsj{
     margin-left: 2%;
     color: silver;

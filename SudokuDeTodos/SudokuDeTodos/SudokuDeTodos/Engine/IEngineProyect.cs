@@ -22,6 +22,7 @@ namespace SudokuDeTodos.Engine
         SucesoLog ConstruirSucesoLog(string cadena);
         bool ValidacionTypeTransaccion(string type);
         string DecodeBase64(string base64EncodedData);
+        ClientePago ConstruirClientePago(int idCliente);
         Cliente ConstruirCliente(string email, Guid identidad);
         string ConstruirEnlazePrueba(string email, Guid identidad);
         bool EstatusLink(DateTime fechaEnvio, DateTime fechaActivacion);

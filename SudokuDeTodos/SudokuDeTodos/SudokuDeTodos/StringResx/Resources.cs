@@ -134,6 +134,11 @@ namespace SudokuDeTodos.StringResx
         {
             get { return resourceProvider.GetResource("EmailRequerido", CultureInfo.CurrentUICulture.Name) as String; }
         }
+
+        public static string PasswordRequerido
+        {
+            get { return resourceProvider.GetResource("PasswordRequerido", CultureInfo.CurrentUICulture.Name) as String; }
+        }
         public static string ChxRequerido
         {
             get { return resourceProvider.GetResource("ChxRequerido", CultureInfo.CurrentUICulture.Name) as String; }
@@ -193,6 +198,30 @@ namespace SudokuDeTodos.StringResx
         public static string ContraseñaDebeNumero
         {
             get { return resourceProvider.GetResource("ContraseñaDebeNumero", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string ContraseñaDebeEspacioBlanco
+        {
+            get { return resourceProvider.GetResource("ContraseñaDebeEspacioBlanco", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string UsarMismoEmail
+        {
+            get { return resourceProvider.GetResource("UsarMismoEmail", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string RegistroPago
+        {
+            get { return resourceProvider.GetResource("RegistroPago", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string Auth
+        {
+            get { return resourceProvider.GetResource("Auth", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+        public static string PasswordInvalido
+        {
+            get { return resourceProvider.GetResource("PasswordInvalido", CultureInfo.CurrentUICulture.Name) as String; }
         }
     }
 }

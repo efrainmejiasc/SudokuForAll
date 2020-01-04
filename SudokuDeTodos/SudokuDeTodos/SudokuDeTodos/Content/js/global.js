@@ -14,6 +14,15 @@ function Redireccionamiento(url) {
 
 function OcultarValidacion() {
     document.getElementById('validacion').style.display = 'none';
+    $('#password').val('');
+    $('#password2').val('');
+}
+
+function OcultarUsarMismoEmail() {
+    document.getElementById('msjEmail').style.display = 'none';
+    $('#email').val('');
+    $('#password').val('');
+    $('#password2').val('');
 }
 
 $('#traductor').on('change', function (e) {

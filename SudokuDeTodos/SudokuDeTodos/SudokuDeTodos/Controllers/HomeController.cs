@@ -1,4 +1,5 @@
 ﻿using SudokuDeTodos.Engine;
+using SudokuDeTodos.Models.DbSistema;
 using SudokuDeTodos.Models.Sistema;
 using System;
 using System.Collections.Generic;
@@ -60,13 +61,34 @@ namespace SudokuDeTodos.Controllers
 
             string key = Funcion.ConvertirBase64(email + password);
             Respuesta respuesta = new Respuesta();
-            respuesta.Status = Funcion.Actualizar
-            return View();
+            respuesta.Id = Metodo.UpdatePasswordCliente(email, key);
+            if (respuesta.Id > 0)
+            {
+                ClientePago clientePago = Funcion.ConstruirClientePago(respuesta.Id);
+                respuesta.Status = Metodo.InsertarClientePago(clientePago);
+                respuesta.Id = 7;
+                respuesta.Descripcion = StringResx.Resources.RegistroPago;
+            }
+            return View("ResponseMessage", respuesta);
         }
 
-        public ActionResult Security()
+        public ActionResult Login(string password = "")
         {
-            return View();
+            if (System.Web.HttpContext.Current.Session["EMAIL"] == null)
+                return Redirect("Contact");
+
+            Respuesta respuesta = new Respuesta();
+            if (password == string.Empty)
+                return View(respuesta);
+
+            string email = System.Web.HttpContext.Current.Session["EMAIL"].ToString();
+            password = Funcion.ConvertirBase64(email + password);
+            respuesta.Status = Metodo.Autentificacion(password);
+            respuesta.Id = -1;
+            if (respuesta.Status)
+                return Redirect("/Vista/GameAOne.aspx");
+            else
+                return View(respuesta);
         }
 
         public ActionResult ResponseMessage(string email = "")
@@ -105,7 +127,7 @@ namespace SudokuDeTodos.Controllers
                 int resultado = Metodo.VerificarClientePago(email);// Verifico pago del cliente 
                 if (resultado == 1)
                 {
-                    return View("About");// Ir Autentificacion
+                    return Redirect("Login");// Ir Autentificacion
                 }
                 else if (resultado == 0)
                 {

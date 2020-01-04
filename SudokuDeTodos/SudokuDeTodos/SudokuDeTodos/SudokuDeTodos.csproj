@@ -286,7 +286,7 @@
     <Content Include="Views\Manager\Login.cshtml" />
     <Content Include="Views\Manager\MainManager.cshtml" />
     <Content Include="Views\Shared\_Message.cshtml" />
-    <Content Include="Views\Home\Security.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\ResponseMessage.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Process\State.cshtml" />

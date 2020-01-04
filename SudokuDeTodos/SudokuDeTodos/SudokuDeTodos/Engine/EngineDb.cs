@@ -75,6 +75,29 @@ namespace SudokuDeTodos.Engine
             return resultado;
         }
 
+
+        public bool Autentificacion(string password)
+        {
+            bool resultado = false; //Error en la consulta
+            Cliente cliente = new Cliente();
+            ClientePago clientePago = new ClientePago();
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    cliente = this.Context.Cliente.Where(s => s.Password == password).FirstOrDefault();
+                    clientePago = this.Context.ClientePago.Where(x => x.IdCliente == cliente.Id).ToList().LastOrDefault();
+                    if (clientePago.Id > 0)
+                        resultado = true; //Autenticado
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/Autentificacion*" + Funcion.DecodeBase64(password)));
+            }
+            return resultado;
+        }
+
         public bool InsertarCliente(Cliente model)
         {
             bool resultado = false;
@@ -172,6 +195,35 @@ namespace SudokuDeTodos.Engine
             }
             return resultado;
         }
+
+        public int  UpdatePasswordCliente (string email,string password)
+        {
+            Cliente cliente = new Cliente();
+            ClientePago clientePago = new ClientePago();
+            int idClient = 0;
+            using (this.Context = new EngineContext())
+            {
+                cliente = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
+                idClient = cliente.Id;
+                Context.Cliente.Attach(cliente);
+                cliente.Password = password;
+                Context.SaveChanges();
+            }
+            return idClient;
+        }
+
+        public bool InsertarClientePago(ClientePago model)
+        {
+            bool resultado = false;
+            using (this.Context = new EngineContext())
+            {
+                Context.ClientePago.Add(model);
+                Context.SaveChanges();
+                resultado = true;
+            }
+            return resultado;
+        }
+
         public bool InsertarSucesoLog(SucesoLog model)
         {
             bool resultado = false;

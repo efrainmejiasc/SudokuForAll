@@ -191,6 +191,20 @@ namespace SudokuDeTodos.Engine
             return R;
         }
 
+        public ClientePago ConstruirClientePago(int idCliente)
+        {
+            ClientePago R = new ClientePago()
+            {
+                IdCliente = idCliente,
+                FechaPago = DateTime.UtcNow,
+                FechaVencimiento = DateTime.UtcNow.AddDays(30),
+                MontoPago = 0,
+                Impuesto = 0,
+                MontoTotal = 0
+            };
+            return R;
+        }
+
         public string ConstruirEnlazePrueba(string email,Guid identidad)
         {
             string link = string.Empty;

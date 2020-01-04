@@ -96,6 +96,10 @@
   <resource culture="en-us" name="EmailRequerido" value="Email is required"></resource>
   <resource culture="pt-pt" name="EmailRequerido" value="Email Obrigatório"></resource>
 
+  <resource culture="es-es" name="PasswordRequerido" value="Contraseña requerida"></resource>
+  <resource culture="en-us" name="PasswordRequerido" value="Password is required"></resource>
+  <resource culture="pt-pt" name="PasswordRequerido" value="Senha Obrigatório"></resource>
+
   <resource culture="es-es" name="ChxRequerido" value="Marque la casilla de verificacion"></resource>
   <resource culture="en-us" name="ChxRequerido" value="Mark the checkbox"></resource>
   <resource culture="pt-pt" name="ChxRequerido" value="Marque a caixa de seleção"></resource>
@@ -147,5 +151,25 @@
   <resource culture="es-es" name="ContraseñaDebeNumero" value="La contraseña debe contener numeros"></resource>
   <resource culture="en-us" name="ContraseñaDebeNumero" value="Password must contain numbers"></resource>
   <resource culture="pt-pt" name="ContraseñaDebeNumero" value="A senha deve conter números"></resource>
+  
+  <resource culture="es-es" name="ContraseñaDebeEspacioBlanco" value="La contraseña no puede contener espacios en blanco"></resource>
+  <resource culture="en-us" name="ContraseñaDebeEspacioBlanco" value="Password cannot contain blank spaces"></resource>
+  <resource culture="pt-pt" name="ContraseñaDebeEspacioBlanco" value="A senha não pode conter espaços em branco"></resource>
+  
+  <resource culture="es-es" name="UsarMismoEmail" value="Debe utilizar la cuenta de correo registrada"></resource>
+  <resource culture="en-us" name="UsarMismoEmail" value="You must use the registered email account"></resource>
+  <resource culture="pt-pt" name="UsarMismoEmail" value="Você deve usar a conta de e-mail registrada"></resource>
+  
+  <resource culture="es-es" name="RegistroPago" value="Registro exitoso, ahora complete su pago mediante paypal"></resource>
+  <resource culture="en-us" name="RegistroPago" value="Successful registration, now complete your payment by paypal"></resource>
+  <resource culture="pt-pt" name="RegistroPago" value="Registro bem-sucedido, agora complete seu pagamento por paypa"></resource>
+
+  <resource culture="es-es" name="Auth" value="Autentificate"></resource>
+  <resource culture="en-us" name="Auth" value="Authentication"></resource>
+  <resource culture="pt-pt" name="Auth" value="Autenticação"></resource>
+  
+  <resource culture="es-es" name="PasswordInvalido" value="Contraseña invalida"></resource>
+  <resource culture="en-us" name="PasswordInvalido" value="Password is invalid"></resource>
+  <resource culture="pt-pt" name="PasswordInvalido" value="Senha inválida"></resource>
 
 </resources>

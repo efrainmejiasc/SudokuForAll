@@ -21,80 +21,87 @@
             <label class="checkbox-inline"><input type="checkbox" id="chxNoSoy" name="chxNosoy" class="btn btn btn-default active" required oninvalid="setCustomValidity('@Resources.ChxRequerido')" oninput="setCustomValidity('')" /> @Resources.NoSoyUnRobot </label>
         </div>
         <input type="email" id="email" name="email" placeholder="@Resources.IngreseEmail" class="boxTxt form-control" required oninvalid="setCustomValidity('@Resources.EmailRequerido')" oninput="setCustomValidity('')" /><br />
+        <label id="msjEmail" class="validacionField"></label>
         <input type="password" id="password" name="password" placeholder="@Resources.IngreseContraseña" class="boxTxt form-control" required oninvalid="setCustomValidity('@Resources.ContraseñaRequerida')" oninput="setCustomValidity('')" />
         <label id="msjPassword" class="lblMsj">@Resources.FormatContraseña</label><br />
         <input type="password" id="password2" name="password2" placeholder="@Resources.ConfirmeContraseña" class="boxTxt form-control" required oninvalid="setCustomValidity('@Resources.ContraseñaRequerida')" oninput="setCustomValidity('')" />
         <label id="validacion" class="validacionField"></label><br />
         <input type="submit" id="sendMail" name="sendMail" value="@Resources.Enviar" class="btn btn-success voton" /><br />
     }
-    <input type="submit" id="cancelar" name="cancelar" value="@Resources.Cancelar" class="btn btn-danger voton brdRed" onclick="Redireccionamiento('/Home/Index');" />
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <!-- <input type="submit" id="cancelar" name="cancelar" value="@Resources.Cancelar" class="btn btn-danger voton brdRed" onclick="Redireccionamiento('/Home/Index');" />-->
+    <br /><br /><br /><br /><br /><br /><br />
     <p style="font-size:smaller;">@Resources.AceptarCondicion</p>
 </div>
 
 
 
-<script>
+    <script>
 
-        $(document).ready(function () {
-        TraductorHide();
-        OcultarObjeto('entrar');
-        OcultarObjeto('traductor');
-        OcultarObjeto('equipo');
-        OcultarObjeto('inicio');
-        document.documentElement.style.overflowX = 'hidden'; 
-        GetEmailSession('EMAIL');
+            $(document).ready(function () {
+            TraductorHide();
+            OcultarObjeto('entrar');
+            OcultarObjeto('traductor');
+            OcultarObjeto('equipo');
+            //OcultarObjeto('inicio');
+            document.documentElement.style.overflowX = 'hidden';
+            GetEmailSession('EMAIL');
+            });
 
+
+        $("#frmAbout").submit(function (e) {
+
+            var email = $('#mail').val();
+            var email2 = $('#email').val();
+            if (email != email2) {
+                document.getElementById('msjEmail').innerHTML = '@Resources.UsarMismoEmail';
+                document.getElementById('msjEmail').style.display = 'block';
+                e.preventDefault();
+                setTimeout(OcultarUsarMismoEmail, 4000);
+                return false;
+            }
+
+            var a = $('#password').val();
+            var b = $('#password2').val();
+            if (a.indexOf(' ') !== -1) {
+                CancelarSubmit(e, '@Resources.ContraseñaDebeEspacioBlanco')
+                return false;
+            }
+            if (a.length < 10) {
+                CancelarSubmit(e,'@Resources.FormatContraseña')
+                return false;
+            }
+            if (a != b) {
+               CancelarSubmit(e,'@Resources.ContraseñaDebeIdentica')
+               return false;
+            }
+
+            var mayuscula = false;
+            var minuscula = false;
+            var numero = false;
+            for(var i = 0; i < a.length; i++)
+            {
+               if(a.charCodeAt(i) >= 65 && a.charCodeAt(i) <= 90)
+                   mayuscula = true;
+               else if(a.charCodeAt(i) >= 97 && a.charCodeAt(i) <= 122)
+                   minuscula = true;
+               else if(a.charCodeAt(i) >= 48 && a.charCodeAt(i) <= 57)
+                   numero = true;
+            }
+
+            if (minuscula === false && mayuscula === false) {
+                CancelarSubmit(e,'@Resources.ContraseñaDebeLetra')
+                return false;
+            }
+            if (numero === false) {
+                CancelarSubmit(e,'@Resources.ContraseñaDebeNumero')
+                return false;
+            }
         });
- 
 
-    $("#frmAbout").submit(function (e) {
-      
-        var a = $('#password').val();
-        var b = $('#password2').val();
-
-        if (a.length < 10) {
-            document.getElementById('validacion').innerHTML = '@Resources.FormatContraseña';
-            document.getElementById('validacion').style.display = 'block';
-            e.preventDefault();
-            setTimeout(OcultarValidacion, 3000);
-            return false;
+        function CancelarSubmit(e, msj) {
+          document.getElementById('validacion').innerHTML = msj;
+          document.getElementById('validacion').style.display = 'block';
+          e.preventDefault();
+          setTimeout(OcultarValidacion, 4000);
         }
-
-        if (a != b) {
-            document.getElementById('validacion').innerHTML =  '@Resources.ContraseñaDebeIdentica'
-            document.getElementById('validacion').style.display = 'block';
-            e.preventDefault();
-            setTimeout(OcultarValidacion, 3000);
-           return false;
-        }
-
-        var mayuscula = false;
-	    var minuscula = false;
-	    var numero = false;
-        for(var i = 0; i < a.length; i++)
-		{
-		   if(a.charCodeAt(i) >= 65 && a.charCodeAt(i) <= 90)
-		       mayuscula = true;
-		   else if(a.charCodeAt(i) >= 97 && a.charCodeAt(i) <= 122)
-		       minuscula = true;
-		   else if(a.charCodeAt(i) >= 48 && a.charCodeAt(i) <= 57)
-			   numero = true;			
-        }
-
-        if (minuscula === false && mayuscula === false) {
-            document.getElementById('validacion').innerHTML = '@Resources.ContraseñaDebeLetra';
-            document.getElementById('validacion').style.display = 'block';
-            e.preventDefault();
-            setTimeout(OcultarValidacion, 3000);
-            return false;
-        }
-        if (numero === false) {
-            document.getElementById('validacion').innerHTML = '@Resources.ContraseñaDebeNumero';
-            document.getElementById('validacion').style.display = 'block';
-            e.preventDefault();
-            setTimeout(OcultarValidacion, 3000);
-            return false;
-        }
-    });
-</script>
+    </script>

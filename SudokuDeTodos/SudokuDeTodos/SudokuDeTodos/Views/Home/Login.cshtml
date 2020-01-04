@@ -15,7 +15,7 @@
 
 
 <div class="divEmail">
-    @using (Html.BeginForm("Login", "Home"))
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { name = "frmLogin", id = "frmLogin" }))
     {
         <div style="margin-left:10%;">
             <h4 class="text-success"> @Resources.Auth</h4>
@@ -25,7 +25,7 @@
         <label id="validacion" class="validacionField2"></label><br />
         <input type="submit" id="sendPassword" name="sendPassword" value="@Resources.Enviar" class="btn btn-success voton" />
     }
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                                                                                                                                                          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     <p style="font-size:smaller;">@Resources.AceptarCondicion</p>
 </div>
 
@@ -39,13 +39,25 @@
 
         var obj = '@Model';
         if (obj != null) {
-            if (@Model.Id === -1)
-            {
-              document.getElementById('validacion').innerHTML = '@Resources.PasswordInvalido';
-              document.getElementById('validacion').style.display = 'block';
-              setTimeout(OcultarValidacion, 4000);
+            if (@Model.Id === -1) {
+                document.getElementById('validacion').innerHTML = '@Resources.PasswordInvalido';
+                document.getElementById('validacion').style.display = 'block';
+                setTimeout(OcultarValidacion, 4000);
             }
         } 
     });
+
+   $("#frmLogin").submit(function (e) {
+      var a = $('#password').val();
+       if (a.length < 10) 
+          CancelarSubmit(e,'@Resources.PasswordInvalido');
+   });
+
+   function CancelarSubmit(e, msj) {
+     document.getElementById('validacion').innerHTML = msj;
+     document.getElementById('validacion').style.display = 'block';
+     e.preventDefault();
+     setTimeout(OcultarValidacion, 4000);
+    }
 </script>
 

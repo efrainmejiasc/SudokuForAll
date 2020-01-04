@@ -89,7 +89,6 @@ function SetObjectsLayount(index) {
     });
 }
 
-
 var nueva = null;
 var n = 0;
 function SenialTraductor() {

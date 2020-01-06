@@ -74,12 +74,21 @@
 
 <div id="modificarPassword" class="wModal container-fluid">
     <br />
-    <label id="mensajeModificarPassword" name="mensajeModificarPassword">@Resources.OlvidoSuContraseña</label>
+    <label id="mensajeModificarPassword" name="mensajeModificarPassword">@Resources.MsjModificarPassword</label>
     <div>
         <br /><br />
-        <input type="button" id="aceptarModificar" name="aceptarModificar" value="@Resources.Si" onclick="Redireccionar('/Home/PasswordModification');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+        <input type="button" id="aceptarModificar" name="aceptarModificar" value="@Resources.Si" onclick="HideModalIndicada('modificarPassword','ingreseEmail');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
         <input type="submit" id="cancelarModificar" name="cancelarModificar" value="@Resources.No" onclick="OcultarModalIndicada('modificarPasswordº');" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
     </div>
+    <br /><br />
+</div>
+
+<div id="ingreseEmail" class="wModal container-fluid" aling ="center">
+    <br />
+        <input type="email" id="email" name="email" placeholder="@Resources.IngreseEmail" class="form-control" required oninvalid="setCustomValidity('@Resources.EmailRequerido')" oninput="setCustomValidity('')" style="text-align:center"/><br />
+        <input type="button" id="enviarMail" name="enviarMail" value="@Resources.Aceptar" onclick="EnviarCodigo();" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+        <input type="submit" id="cancelarEnviarmail" name="cancelarEnviarmail" value="@Resources.Cancelar" onclick="Redireccionar('Contact')" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
+   
     <br /><br />
 </div>
 

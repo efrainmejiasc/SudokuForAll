@@ -223,5 +223,10 @@ namespace SudokuDeTodos.StringResx
         {
             get { return resourceProvider.GetResource("PasswordInvalido", CultureInfo.CurrentUICulture.Name) as String; }
         }
+
+        public static string MsjModificarPassword
+        {
+            get { return resourceProvider.GetResource("MsjModificarPassword", CultureInfo.CurrentUICulture.Name) as String; }
+        }
     }
 }

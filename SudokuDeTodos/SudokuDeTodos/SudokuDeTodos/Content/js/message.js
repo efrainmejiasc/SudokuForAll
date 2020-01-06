@@ -55,6 +55,12 @@ function OcultarModalIndicada(id) {
     Redireccionar('/Home/Index');
 }
 
+function HideModalIndicada(id,openName) {
+    document.getElementById(id).style.display = 'none';
+    if (openName !== '')
+        document.getElementById(openName).style.display = 'block';
+}
+
 function Redireccionar(url) {
     window.location.href = url;
 }
@@ -121,6 +127,27 @@ function SendOtherNotificacion(email, v) {
             }
         });
     }
+}
+
+
+function EnviarCodigo() {
+
+    var email = $('#email').val();
+    if (email === '')
+        return false;
+
+    $.ajax({
+        type: "POST",
+        url: "/Process/EnviarCodigo",
+        data: { email: email },
+        datatype: "json",
+        success: function (data) {
+            console.log(data.Id);
+        },
+        complete: function () {
+            console.log('Notificacion_Codigo');
+        }
+    });
 }
 
 //**************************************State

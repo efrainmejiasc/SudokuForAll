@@ -17,6 +17,8 @@ namespace SudokuDeTodos.Engine
 
         public DbSet<ClientePago> ClientePago { get; set; }
 
+        public DbSet<ResetPassword> ResetPassword { get; set; }
+
         public DbSet<SucesoLog> SucesoLog { get; set; }
 
         // 1. Instalar Entity Framework

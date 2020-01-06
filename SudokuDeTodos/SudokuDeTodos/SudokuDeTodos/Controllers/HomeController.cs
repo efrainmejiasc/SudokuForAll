@@ -102,7 +102,7 @@ namespace SudokuDeTodos.Controllers
 
             if (id == 8)
             {
-                respuesta = Funcion.ConstruirRespuesta(id, true, StringResx.Resources.ModificarContraseña, email); //ModificarContraseña?
+                respuesta = Funcion.ConstruirRespuesta(id, true, StringResx.Resources.MsjModificarPassword, email); //ModificarContraseña?
                 return View("ResponseMessage", respuesta);
             }
 

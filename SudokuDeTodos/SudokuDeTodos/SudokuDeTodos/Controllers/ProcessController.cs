@@ -133,6 +133,32 @@ namespace SudokuDeTodos.Controllers
             return Json(respuesta);
         }
 
+        [HttpPost]
+        public JsonResult EnviarCodigo(string email)
+        {
+            Respuesta respuesta = new Respuesta();
+            string type = Funcion.DecodeBase64(EngineData.ResetPassword);
+            bool resultado = Funcion.EmailEsValido(email);
+            if (!resultado)
+            {
+                respuesta = Funcion.ConstruirRespuesta(1, false, EngineData.EmailNoValido(), email, type);
+                return Json(respuesta);
+            }
+            Guid identidad = Metodo.GetIdentidadCliente(email);
+            if (identidad == Guid.Empty)
+            {
+                respuesta = Funcion.ConstruirRespuesta(2, false, EngineData.ErrorInternoServidor(), email, type);
+                return Json(respuesta);
+            }
+            resultado = Funcion.EnviarNuevaNotificacion(identidad, email, EngineData.ResetPassword, null);
+            if (!resultado)
+            {
+                respuesta = Funcion.ConstruirRespuesta(3, false, EngineData.ErrorEnviandoMail(), email, type);
+                return Json(respuesta);
+            }
+            respuesta = Funcion.ConstruirRespuesta(100, true, EngineData.TransaccionExitosa(), email);
+            return Json(respuesta);
+        }
         [HttpGet]
         public ActionResult State(int id = 0, string email = "", string identidad = "", int status = 0, string date = "", string type = "",string cultureInfo = "",string password = "")
         {

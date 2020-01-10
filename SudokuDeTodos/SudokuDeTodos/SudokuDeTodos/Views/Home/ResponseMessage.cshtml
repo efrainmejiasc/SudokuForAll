@@ -7,6 +7,8 @@
 <script src="../Content/js/global.js" type="text/javascript"></script>
 <script src="../Content/js/message.js" type="text/javascript"></script>
 
+<input type="hidden" id="metodo" name="metodo" />
+<input type="hidden" id="inbox" name="inbox" />
 
 <div id="pruebaSitio" class="wModal container-fluid">
     <br />
@@ -83,12 +85,12 @@
     <br /><br />
 </div>
 
-<div id="ingreseEmail" class="wModal container-fluid" aling ="center">
+<div id="ingreseEmail" class="wModal container-fluid" aling="center">
     <br />
-        <input type="email" id="email" name="email" placeholder="@Resources.IngreseEmail" class="form-control" required oninvalid="setCustomValidity('@Resources.EmailRequerido')" oninput="setCustomValidity('')" style="text-align:center"/><br />
-        <input type="button" id="enviarMail" name="enviarMail" value="@Resources.Aceptar" onclick="EnviarCodigo();" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
-        <input type="submit" id="cancelarEnviarmail" name="cancelarEnviarmail" value="@Resources.Cancelar" onclick="Redireccionar('Contact')" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
-   
+    <input type="email" id="email" name="email" placeholder="@Resources.IngreseEmail" class="form-control" required oninvalid="setCustomValidity('@Resources.EmailRequerido')" oninput="setCustomValidity('')" style="text-align:center" /><br />
+    <input type="button" id="enviarMail" name="enviarMail" value="@Resources.Aceptar" onclick="EnviarCodigo();" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+    <input type="submit" id="cancelarEnviarmail" name="cancelarEnviarmail" value="@Resources.Cancelar" onclick="Redireccionar('Contact')" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
+
     <br /><br />
 </div>
 
@@ -106,6 +108,8 @@
         if (obj != '') {
             MostrarModalIndicada(@Model.Id);
             document.getElementById('mensajeRespuesta').innerHTML = '@Model.Descripcion';
+            console.log(@Model.Metodo);
+            $('#metodo').val('@Model.Metodo');
         }
     });
 </script>

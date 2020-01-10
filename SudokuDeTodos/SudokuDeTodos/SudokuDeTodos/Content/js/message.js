@@ -36,16 +36,18 @@ function MostrarModalIndicada(id) {
     }
     else if (id === 8) {
         document.getElementById('modificarPassword').style.display = 'block';
-        console.log('hola');
         return true;
     }
     else if (id >= 100) {
 
-         if (id === 100) 
+        if (id === 100) {
             document.getElementById('mensajeRespuesta').style.display = 'block';
-         else if (id > 100) 
+        }
+        else if (id === 101 || id === 102 || id === 103) {
+            document.getElementById('enviarOtroEmail').style.display = 'none';
+            document.getElementById('mensajeRespuesta').style.display = 'none';
             document.getElementById('respuesta').style.display = 'block';
-
+        }
         return true;
     }
 }
@@ -94,33 +96,45 @@ function SendNotificacionPrueba(email) {
         },
         complete: function () {
             console.log('Notificacion_Test');
+            $('#metodo').val('EnviarOtraNotificacionPrueba');
         }
     });
 }
 
 function SendOtherNotificacion(email, v) {
+    var metodo = $('#metodo').val();
+    if (metodo === 'EnviarCodigo')
+        email = $('#inbox').val();
+
+    console.log('Email: ' + email);
+    console.log('Metodo: ' + metodo);
 
     if (email === '')
+        return false;  
+    if (metodo === '')
         return false;
-
+   
     var id = parseInt(v, 10);
-    if (id === 0 || id === 1) { //prueba sitio 0 y cuenta no activada 1
+    if (id === 0 || id === 1 || id === 8) { //prueba sitio 0 y cuenta no activada 1 enviar otro codigo 8
         console.log(id);
         $.ajax({
             type: "POST",
-            url: "/Process/EnviarOtraNotificacionPrueba",
+            url: "/Process/" + metodo,
             data: { email: email },
             datatype: "json",
             success: function (data)
             {
-                if (data.Id === 100) {
-                    document.getElementById('enviarOtroEmail').style.display = 'none';
-                    document.getElementById('respuesta').style.display = 'none';
-                    document.getElementById('otroMail').style.display = 'block';
-                } else {
-                    document.getElementById('respuesta').style.display = 'block';
-                }
-                console.log(data.Id);
+              if (data.Id === 100) {
+
+                      document.getElementById('enviarOtroEmail').style.display = 'none';
+                      document.getElementById('respuesta').style.display = 'none';
+                      document.getElementById('otroMail').style.display = 'block';
+
+              }
+              else {
+                  document.getElementById('respuesta').style.display = 'block';
+              }
+
             },
             complete: function () {
                 console.log('Otro_Email');
@@ -143,9 +157,16 @@ function EnviarCodigo() {
         datatype: "json",
         success: function (data) {
             console.log(data.Id);
+            if (data.Id === 100) {
+                document.getElementById('modificarPassword').style.display = 'none';
+                document.getElementById('ingreseEmail').style.display = 'none';
+                document.getElementById('enviarOtroEmail').style.display = 'block';
+            }
         },
         complete: function () {
             console.log('Notificacion_Codigo');
+            $('#metodo').val('EnviarCodigo');
+            $('#inbox').val(email);
         }
     });
 }
@@ -173,5 +194,8 @@ function ShowModalIndicada(id) {
         // error al actualizar cliente 4
         document.getElementById('respuesta').style.display = 'block';
         setTimeout(Redireccionar, 5000, '/Home/Contact');
+    }
+    else if (id === 8) {
+        Redireccionar('/Home/PasswordModification');
     }
 }

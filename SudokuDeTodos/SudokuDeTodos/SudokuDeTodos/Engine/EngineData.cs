@@ -371,13 +371,13 @@ namespace SudokuDeTodos.Engine
             switch (cultura)
             {
                 case (CulturaEspañol):
-                    respuesta = " El tiempo valido de el link expiro, enviamos una nueva notificacion a tu correo";
+                    respuesta = " El tiempo valido de el link expiro, enviamos una nueva notificacion a tu correo, ¿enviar otro email?";
                     break;
                 case (CulturaIngles):
-                    respuesta = " The valid time of the link expires, we send a new notification to your e-mail";
+                    respuesta = " The valid time of the link expires, we send a new notification to your e-mail, send another email?";
                     break;
                 case (CulturaPortugues):
-                    respuesta = " O tempo válido do link expira, nós enviamos uma nova notificação para o seu e-mail";
+                    respuesta = " O tempo válido do link expira, nós enviamos uma nova notificação para o seu e-mail, enviar outro email?";
                     break;
             }
             return respuesta;

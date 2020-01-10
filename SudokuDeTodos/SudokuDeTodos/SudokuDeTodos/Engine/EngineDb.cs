@@ -125,7 +125,9 @@ namespace SudokuDeTodos.Engine
                 using (this.Context = new EngineContext())
                 {
                     C = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
-                    if (C.Identidad != null)
+                    if (C == null)
+                        return Guid.Empty;
+                    else if (C.Identidad != null)
                         return C.Identidad;
                     else
                         return Guid.Empty;
@@ -201,13 +203,20 @@ namespace SudokuDeTodos.Engine
             Cliente cliente = new Cliente();
             ClientePago clientePago = new ClientePago();
             int idClient = 0;
-            using (this.Context = new EngineContext())
+            try
             {
-                cliente = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
-                idClient = cliente.Id;
-                Context.Cliente.Attach(cliente);
-                cliente.Password = password;
-                Context.SaveChanges();
+                using (this.Context = new EngineContext())
+                {
+                    cliente = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
+                    idClient = cliente.Id;
+                    Context.Cliente.Attach(cliente);
+                    cliente.Password = password;
+                    Context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/UpdatePasswordCliente*" + email));
             }
             return idClient;
         }
@@ -215,15 +224,82 @@ namespace SudokuDeTodos.Engine
         public bool InsertarClientePago(ClientePago model)
         {
             bool resultado = false;
-            using (this.Context = new EngineContext())
+            try 
             {
-                Context.ClientePago.Add(model);
-                Context.SaveChanges();
-                resultado = true;
+                using (this.Context = new EngineContext())
+                {
+                    Context.ClientePago.Add(model);
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/InsertarClientePago*" + model.IdCliente.ToString()));
             }
             return resultado;
         }
 
+        public bool InsertarCodigoResetPassword(ResetPassword model)
+        {
+            bool resultado = false;
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    Context.ResetPassword.Add(model);
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/InsertarClientePago*" + model.Email));
+            }
+            return resultado;
+        }
+
+        public bool ValidarCodigoResetPassword (string email , string codigo)
+        {
+            ResetPassword C = new ResetPassword();
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    C = Context.ResetPassword.Where(s => s.Email == email && s.Codigo == codigo).FirstOrDefault();
+                    if (C == null)
+                        return false;
+                    else if (C.Estatus == false)
+                        return true;
+                    else if (C.Estatus == true)
+                        return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/ValidarCodigoResetPassword*" + email));
+            }
+            return false;
+        }
+
+        public bool DeleteCodigoResetPassword(string email)
+        {
+            List<ResetPassword> C = new List<ResetPassword>();
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                   Context.ResetPassword.RemoveRange(Context.ResetPassword.Where(s => s.Email == email && s.Estatus == false));
+                   Context.SaveChanges();
+                   return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/DeleteCodigoResetPassword*" + email));
+            }
+            return false;
+        }
         public bool InsertarSucesoLog(SucesoLog model)
         {
             bool resultado = false;

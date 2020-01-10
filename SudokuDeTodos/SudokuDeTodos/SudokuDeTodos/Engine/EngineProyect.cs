@@ -75,7 +75,6 @@ namespace SudokuDeTodos.Engine
             return resultado;
         }
 
-
         public Guid IdentificadorReg()
         {
             Guid g = CrearGuid();
@@ -324,6 +323,16 @@ namespace SudokuDeTodos.Engine
             return model;
         }
 
+        public ResetPassword SetResetPassword(string email , string codigo)
+        {
+            ResetPassword model = new ResetPassword();
+            model.Email = email;
+            model.Codigo = codigo;
+            model.Estatus = false;
+            model.Fecha = DateTime.UtcNow;
+            return model;
+        }
+
         public bool ValidacionIdentidad (string email,string identidad,IEngineDb Metodo)
         {
             bool resultado = false;
@@ -355,6 +364,22 @@ namespace SudokuDeTodos.Engine
             return resultado;
         }
 
+        public string MetodoTransactionType (string type)
+        {
+            string nameMetodo = string.Empty;
+            string tipoTransaction = DecodeBase642(type);
+            switch (tipoTransaction)
+            {
+                case ("prueba"):
+                    nameMetodo= "EnviarOtraNotificacionPrueba(";
+                        break;
+                case ("resetPassword"):
+                    nameMetodo = "EnviarCodigo";
+                    break;
+            }
+            return nameMetodo;
+        }
+
         public bool EstatusLink(DateTime fechaEnvio)
         {
             bool resultado = false;
@@ -370,7 +395,7 @@ namespace SudokuDeTodos.Engine
             return resultado;
         }
 
-        public bool EnviarNuevaNotificacion(Guid identidad , string email = "", string type = "", string password = "")
+        public bool EnviarNuevaNotificacion(Guid identidad , string email = "", string type = "", string password = "",string codigo = "")
         {
             bool resultado = false;
             EstructuraMail model = new EstructuraMail();
@@ -396,7 +421,6 @@ namespace SudokuDeTodos.Engine
             }
             else if (type == EngineData.ResetPassword)
             {
-                string codigo = ConstruirCodigo();
                 string enlaze = ConstruirEnlazeRestablecerPassword(email, codigo, identidad);
                 model = SetEstructuraMailResetPassword(enlaze, email,codigo);
             }

@@ -141,26 +141,35 @@ namespace SudokuDeTodos.Controllers
             bool resultado = Funcion.EmailEsValido(email);
             if (!resultado)
             {
-                respuesta = Funcion.ConstruirRespuesta(1, false, EngineData.EmailNoValido(), email, type);
+                respuesta = Funcion.ConstruirRespuesta(101, false, EngineData.EmailNoValido(), email, type);
                 return Json(respuesta);
             }
             Guid identidad = Metodo.GetIdentidadCliente(email);
             if (identidad == Guid.Empty)
             {
-                respuesta = Funcion.ConstruirRespuesta(2, false, EngineData.ErrorInternoServidor(), email, type);
+                respuesta = Funcion.ConstruirRespuesta(102, false, EngineData.ErrorInternoServidor(), email, type);
                 return Json(respuesta);
             }
-            resultado = Funcion.EnviarNuevaNotificacion(identidad, email, EngineData.ResetPassword, null);
+            string codigo = Funcion.ConstruirCodigo();
+            ResetPassword resetPassword = Funcion.SetResetPassword(email, codigo);
+            resultado = Metodo.InsertarCodigoResetPassword(resetPassword);
             if (!resultado)
             {
-                respuesta = Funcion.ConstruirRespuesta(3, false, EngineData.ErrorEnviandoMail(), email, type);
+                respuesta = Funcion.ConstruirRespuesta(102, false, EngineData.ErrorInternoServidor(), email, type);
+                return Json(respuesta);
+            }
+            resultado = Funcion.EnviarNuevaNotificacion(identidad, email, EngineData.ResetPassword, null, codigo);
+            if (!resultado)
+            {
+                respuesta = Funcion.ConstruirRespuesta(103, false, EngineData.ErrorEnviandoMail(), email, type);
                 return Json(respuesta);
             }
             respuesta = Funcion.ConstruirRespuesta(100, true, EngineData.TransaccionExitosa(), email);
             return Json(respuesta);
         }
+
         [HttpGet]
-        public ActionResult State(int id = 0, string email = "", string identidad = "", int status = 0, string date = "", string type = "",string cultureInfo = "",string password = "")
+        public ActionResult State(int id = 0, string email = "", string identidad = "", int status = 0, string date = "", string type = "",string cultureInfo = "",string ide = "")
         {
             Respuesta respuesta = new Respuesta();
             if (email == string.Empty || email == null)
@@ -169,66 +178,95 @@ namespace SudokuDeTodos.Controllers
                 return View(respuesta);
             }
 
-            string contraseña = string.Empty;
-            if (password != string.Empty && password != null)
-                contraseña = Funcion.DecodeBase64(password);
+            string codeOrPassword = string.Empty;
+            if (ide!= string.Empty && ide!= null)
+                codeOrPassword = Funcion.DecodeBase64(ide);
             string mail = Funcion.DecodeBase64(email);
             string tipo = Funcion.DecodeBase64(type);
-            Guid identificadorGuid = Metodo.GetIdentidadCliente(mail);
-            System.Web.HttpContext.Current.Session["EMAIL"] = mail;
-
             bool resultado = false;
-            Funcion.SetCultureInfo(cultureInfo);
-            DateTime fechaEnvio = Convert.ToDateTime(date);
-            resultado = Funcion.EstatusLink(fechaEnvio);
-            if (!resultado)
+            Guid identificadorGuid = Metodo.GetIdentidadCliente(mail);
+            if (identificadorGuid == Guid.Empty)
             {
-                Funcion.EnviarNuevaNotificacion(identificadorGuid, email, type, contraseña);
-                respuesta = Funcion.ConstruirRespuesta(0, false, EngineData.TiempoLinkExpiro(), mail, tipo);
+                respuesta = Funcion.ConstruirRespuesta(3, false, EngineData.ErrorInternoServidor(), mail, tipo); //valido existencia de guid cliente
                 return View(respuesta);
             }
-            resultado = Funcion.EmailEsValido(mail);
+            resultado = Funcion.EmailEsValido(mail); //valido formato email
             if (!resultado)
             {
                 respuesta = Funcion.ConstruirRespuesta(1, false, EngineData.EmailNoValido(), mail, tipo);
                 return View(respuesta);
             }
-            resultado = Funcion.ValidacionTypeTransaccion(type);
+            System.Web.HttpContext.Current.Session["EMAIL"] = mail;
+            resultado = Funcion.ValidacionTypeTransaccion(type);//valido tipo de transaccion
             if (!resultado)
             {
                 respuesta = Funcion.ConstruirRespuesta(2, false, EngineData.TransaccionNoValida(), mail, tipo);
                 return View(respuesta);
             }
-            resultado = Funcion.ValidacionIdentidad(email, identidad, Metodo);
+            resultado = Funcion.ValidacionIdentidad(mail, identidad, Metodo);//valido guid cliente
             if (!resultado)
             {
                 respuesta = Funcion.ConstruirRespuesta(3, false, EngineData.ErrorInternoServidor(), mail, tipo);
                 return View(respuesta);
             }
+            Funcion.SetCultureInfo(cultureInfo);
+            DateTime fechaEnvio = Convert.ToDateTime(date);
+            resultado = Funcion.EstatusLink(fechaEnvio); //valido estatus del link
+            if (!resultado)
+            {
+                if (type == EngineData.ResetPassword)
+                {
+                    string codigo = Funcion.ConstruirCodigo();
+                    ResetPassword resetPassword = Funcion.SetResetPassword(mail, codigo);
+                    resultado = Metodo.DeleteCodigoResetPassword(mail);
+                    resultado = Metodo.InsertarCodigoResetPassword(resetPassword);
+                    resultado = Funcion.EnviarNuevaNotificacion(identificadorGuid, email, type, codeOrPassword, codigo);
+                }
+                else
+                {
+                    resultado = Funcion.EnviarNuevaNotificacion(identificadorGuid, email, type, codeOrPassword, codeOrPassword);
+                }
+                if (!resultado)
+                {
+                    respuesta = Funcion.ConstruirRespuesta(3, false, EngineData.ErrorInternoServidor(), mail, tipo); //valido Enviar Nueva Notificacion 
+                    return View(respuesta);
+                }
+                respuesta = Funcion.ConstruirRespuesta(0, false, EngineData.TiempoLinkExpiro(), mail, Funcion.MetodoTransactionType(type));
+                return View(respuesta);
+            }
+
+            //*******************************************************************************************************************
+            //*******************************************************************************************************************
 
             if (type == EngineData.Test) //Activacion Prueba
             {
-                resultado = Metodo.UpdateClienteTest(email, status);
+                resultado = Metodo.UpdateClienteTest(mail, status);//actualizar el registro del cliete
                 if (!resultado)
                 {
                     respuesta = Funcion.ConstruirRespuesta(4, false, EngineData.ErrorActualizarCliente(), mail, tipo);
                     return View(respuesta);
                 }
-                respuesta = Funcion.ConstruirRespuesta(5, true, EngineData.ActivacionTestExitosa(), mail, tipo);
+                respuesta = Funcion.ConstruirRespuesta(5, true, EngineData.ActivacionTestExitosa(), mail, tipo); //activacion exitosa 5
             }
             else if (type == EngineData.Register) //Activacion registro
             {
-                resultado = Metodo.UpdateClienteRegister(email, status);
+                resultado = Metodo.UpdateClienteRegister(mail, status);//actualizar registro del cliente 
                 if (!resultado)
                 {
                     respuesta = Funcion.ConstruirRespuesta(6, false, EngineData.ErrorActualizarCliente(), mail, tipo);
                     return View(respuesta);
                 }
-                respuesta = Funcion.ConstruirRespuesta(7, true, EngineData.ActivacionExitosa(), mail, tipo);
+                respuesta = Funcion.ConstruirRespuesta(7, true, EngineData.ActivacionExitosa(), mail, tipo); //activacion exitosa 7
             }
             else if (type == EngineData.ResetPassword) //Restablecer Password
             {
-
+                resultado = Metodo.ValidarCodigoResetPassword(mail, codeOrPassword);
+                if (!resultado)
+                {
+                    respuesta = Funcion.ConstruirRespuesta(3, false, EngineData.ErrorInternoServidor(), mail, tipo);
+                    return View(respuesta);
+                }
+                respuesta = Funcion.ConstruirRespuesta(8, true, EngineData.ActivacionExitosa(), mail, Funcion.MetodoTransactionType(type)); // link valido 9
             }
             else if (type == EngineData.RegisterManager)//registrar gerente
             {

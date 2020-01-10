@@ -91,7 +91,7 @@ namespace SudokuDeTodos.Controllers
                 return View(respuesta);
         }
 
-        public ActionResult PasswordModification()
+        public ActionResult PasswordModification(string codigo,string email,string password,string password2)
         {
             return View();
         }

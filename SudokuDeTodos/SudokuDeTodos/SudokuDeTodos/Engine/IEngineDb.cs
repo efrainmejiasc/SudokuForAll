@@ -16,9 +16,11 @@ namespace SudokuDeTodos.Engine
         bool InsertarClientePago(ClientePago model);
         bool DeleteCodigoResetPassword(string email);
         bool UpdateClienteTest(string email, int status);
+        bool UpdatePassword(string email, string password);
         bool UpdateClienteRegister(string email, int status);
         bool InsertarCodigoResetPassword(ResetPassword model);
         int UpdatePasswordCliente(string email, string password);
+        bool UpdateCodigoResetPassword(string email, string codigo);
         bool ValidarCodigoResetPassword(string email, string codigo);
     }
 }

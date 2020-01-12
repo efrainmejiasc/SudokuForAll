@@ -201,7 +201,6 @@ namespace SudokuDeTodos.Engine
         public int  UpdatePasswordCliente (string email,string password)
         {
             Cliente cliente = new Cliente();
-            ClientePago clientePago = new ClientePago();
             int idClient = 0;
             try
             {
@@ -219,6 +218,28 @@ namespace SudokuDeTodos.Engine
                 InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/UpdatePasswordCliente*" + email));
             }
             return idClient;
+        }
+
+        public bool UpdatePassword(string email, string password)
+        {
+            Cliente cliente = new Cliente();
+            bool resultado = false;
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    cliente = Context.Cliente.Where(s => s.Email == email).FirstOrDefault();
+                    Context.Cliente.Attach(cliente);
+                    cliente.Password = password;
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/UpdatePassword*" + email));
+            }
+            return resultado;
         }
 
         public bool InsertarClientePago(ClientePago model)
@@ -300,6 +321,29 @@ namespace SudokuDeTodos.Engine
             }
             return false;
         }
+
+        public bool UpdateCodigoResetPassword(string email, string codigo)
+        {
+            ResetPassword model = new ResetPassword();
+            bool resultado = false;
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    model = Context.ResetPassword.Where(s => s.Email == email && s.Codigo == codigo && s.Estatus == false).FirstOrDefault();
+                    model.Estatus = true;
+                    Context.ResetPassword.Attach(model);
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/UpdateCodigoResetPassword*" + email));
+            }
+            return resultado;
+        }
+
         public bool InsertarSucesoLog(SucesoLog model)
         {
             bool resultado = false;

@@ -125,11 +125,8 @@ function SendOtherNotificacion(email, v) {
             success: function (data)
             {
               if (data.Id === 100) {
-
-                      document.getElementById('enviarOtroEmail').style.display = 'none';
-                      document.getElementById('respuesta').style.display = 'none';
-                      document.getElementById('otroMail').style.display = 'block';
-
+                   document.getElementById('enviarOtroEmail').style.display = 'none';
+                   document.getElementById('respuesta').style.display = 'none';
               }
               else {
                   document.getElementById('respuesta').style.display = 'block';
@@ -145,7 +142,6 @@ function SendOtherNotificacion(email, v) {
 
 
 function EnviarCodigo() {
-
     var email = $('#email').val();
     if (email === '')
         return false;
@@ -160,7 +156,8 @@ function EnviarCodigo() {
             if (data.Id === 100) {
                 document.getElementById('modificarPassword').style.display = 'none';
                 document.getElementById('ingreseEmail').style.display = 'none';
-                document.getElementById('enviarOtroEmail').style.display = 'block';
+                document.getElementById('enviarOtroEmail').style.display = 'none';
+                document.getElementById('otroMail').style.display = 'bloock';
             }
         },
         complete: function () {
@@ -197,5 +194,56 @@ function ShowModalIndicada(id) {
     }
     else if (id === 8) {
         Redireccionar('/Home/PasswordModification');
+    }
+}
+
+
+//**************************************PasswordModification
+
+function SendEnviarotroCodigo (email, v) {
+    var metodo = $('#metodo').val();
+    console.log('Email: ' + email);
+    console.log('Metodo: ' + metodo);
+
+    if (email === '')
+        return false;
+    if (metodo === '')
+        return false;
+
+    var id = parseInt(v, 10);
+    if (id === 8) { //enviar otro codigo 8
+        console.log(id);
+        $.ajax({
+            type: "POST",
+            url: "/Process/" + metodo,
+            data: { email: email },
+            datatype: "json",
+            success: function (data) {
+                if (data.Id === 100) {
+                    document.getElementById('tiempoLink').style.display = 'none';
+                    document.getElementById('respuesta').style.display = 'block';
+                }
+                else {
+                    document.getElementById('respuesta').style.display = 'block';
+                }
+
+            },
+            complete: function () {
+                console.log('Otro_EmailCodigo');
+            }
+        });
+    }
+}
+
+function OPenModalIndicada(id) {
+    console.log(id);
+    if (id >= 0 && id <=2) {
+        //link expiro
+        document.getElementById('tiempoLink').style.display = 'block';
+    }
+    else if (id === 3) {
+        //email no es valido 1 - type no valido 2 - error interno 3 - error al actualizar test 4
+        document.getElementById('respuesta').style.display = 'block';
+        setTimeout(Redireccionar, 5000, '/Home/Contact');
     }
 }

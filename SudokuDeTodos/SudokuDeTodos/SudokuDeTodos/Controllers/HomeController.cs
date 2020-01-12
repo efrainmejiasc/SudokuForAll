@@ -93,7 +93,34 @@ namespace SudokuDeTodos.Controllers
 
         public ActionResult PasswordModification(string codigo,string email,string password,string password2)
         {
-            return View();
+            Respuesta respuesta = new Respuesta();
+            bool resultado = Funcion.EmailEsValido(email); //valido formato email
+            if (!resultado)
+            {
+                respuesta = Funcion.ConstruirRespuesta(0, false, EngineData.EmailNoValido(), email);
+                return View(respuesta);
+            }
+            resultado = Metodo.ValidarCodigoResetPassword(email, codigo);
+            if (!resultado)
+            {
+                respuesta = Funcion.ConstruirRespuesta(1, false, EngineData.CodigoNoCoincide(), email);
+                return View(respuesta);
+            }
+            resultado = Metodo.UpdateCodigoResetPassword(email,codigo);
+            if (!resultado)
+            {
+                respuesta = Funcion.ConstruirRespuesta(2, false, EngineData.ErrorInternoServidor(), email);
+                return View(respuesta);
+            }
+            password = Funcion.ConvertirBase64(email + password);
+            resultado = Metodo.UpdatePassword(email, password);
+            if (!resultado)
+            {
+                respuesta = Funcion.ConstruirRespuesta(2, false, EngineData.ErrorInternoServidor(), email);
+                return View(respuesta);
+            }
+            respuesta = Funcion.ConstruirRespuesta(3, true, EngineData.RestablecerContraseñaExito(), email);
+            return View(respuesta);
         }
 
         public ActionResult ResponseMessage(string email = "" , int id = -2)

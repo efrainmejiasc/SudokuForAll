@@ -129,7 +129,7 @@ namespace SudokuDeTodos.Controllers
                 respuesta = Funcion.ConstruirRespuesta(103, false, EngineData.ErrorEnviandoMail(), email);
                 return Json(respuesta);
             }
-            respuesta = Funcion.ConstruirRespuesta(100, true, EngineData.TransaccionExitosa(), email);
+            respuesta = Funcion.ConstruirRespuesta(100, true, EngineData.EnvioNuevoEmail(), email);
             return Json(respuesta);
         }
 
@@ -164,7 +164,7 @@ namespace SudokuDeTodos.Controllers
                 respuesta = Funcion.ConstruirRespuesta(103, false, EngineData.ErrorEnviandoMail(), email, type);
                 return Json(respuesta);
             }
-            respuesta = Funcion.ConstruirRespuesta(100, true, EngineData.TransaccionExitosa(), email);
+            respuesta = Funcion.ConstruirRespuesta(100, true, EngineData.EnvioCodigoRestablecerPassword(), email);
             return Json(respuesta);
         }
 
@@ -231,7 +231,7 @@ namespace SudokuDeTodos.Controllers
                     respuesta = Funcion.ConstruirRespuesta(3, false, EngineData.ErrorInternoServidor(), mail, tipo); //valido Enviar Nueva Notificacion 
                     return View(respuesta);
                 }
-                respuesta = Funcion.ConstruirRespuesta(0, false, EngineData.TiempoLinkExpiro(), mail, Funcion.MetodoTransactionType(type));
+                respuesta = Funcion.ConstruirRespuesta(100, false, EngineData.TiempoLinkExpiro(), mail, Funcion.MetodoTransactionType(type));
                 return View(respuesta);
             }
 

@@ -18,7 +18,7 @@ namespace SudokuDeTodos.Engine
             {
                 MailMessage mensaje = new MailMessage();
                 SmtpClient servidor = new SmtpClient();
-                mensaje.From = new MailAddress("SudokuParaTodos <" + EngineData.UserMail + ">");
+                mensaje.From = new MailAddress("www.sudokudetodos.com <" + EngineData.UserMail + ">");
                 mensaje.Subject = model.Asunto;
                 mensaje.SubjectEncoding = System.Text.Encoding.UTF8;
                 mensaje.Body = model.Cuerpo;

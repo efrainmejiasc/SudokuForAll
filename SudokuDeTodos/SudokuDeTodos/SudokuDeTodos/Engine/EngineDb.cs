@@ -331,8 +331,8 @@ namespace SudokuDeTodos.Engine
                 using (this.Context = new EngineContext())
                 {
                     model = Context.ResetPassword.Where(s => s.Email == email && s.Codigo == codigo && s.Estatus == false).FirstOrDefault();
-                    model.Estatus = true;
                     Context.ResetPassword.Attach(model);
+                    model.Estatus = true;
                     Context.SaveChanges();
                     resultado = true;
                 }

@@ -492,6 +492,24 @@ namespace SudokuDeTodos.Engine
             return respuesta;
         }
 
+        public static string EnvioNuevoEmail()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = " Enviamos un nuevo correo electrónico a su dirección de correo electrónico, revise su bandeja de entrada";
+                    break;
+                case (CulturaIngles):
+                    respuesta = " We send a new email to your email address, check your inbox";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = " Enviamos um novo email para o seu endereço de email, verifique sua caixa de entrada";
+                    break;
+            }
+            return respuesta;
+        }
+
         public static string RestablecerContraseñaExito()
         {
             cultura = GetCultura();

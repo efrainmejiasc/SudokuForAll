@@ -94,6 +94,10 @@ namespace SudokuDeTodos.Controllers
         public ActionResult PasswordModification(string codigo,string email,string password,string password2)
         {
             Respuesta respuesta = new Respuesta();
+            respuesta.Id = -1;
+            if (email == string.Empty || email == null)
+                return View(respuesta);
+
             bool resultado = Funcion.EmailEsValido(email); //valido formato email
             if (!resultado)
             {
@@ -119,6 +123,7 @@ namespace SudokuDeTodos.Controllers
                 respuesta = Funcion.ConstruirRespuesta(2, false, EngineData.ErrorInternoServidor(), email);
                 return View(respuesta);
             }
+            Metodo.DeleteCodigoResetPassword(email);
             respuesta = Funcion.ConstruirRespuesta(3, true, EngineData.RestablecerContraseñaExito(), email);
             return View(respuesta);
         }

@@ -15,7 +15,7 @@
     <label id="mensajeTiempoLink" name="mensajeTiempoLink">@Model.Descripcion</label>
     <div>
         <br /><br />
-        <input type="button" id="enviarOtroEmail" name="enviarOtroEmail" value="Aceptar" onclick="SendEnviarotroCodigo('@Model.Email', '@Model.Id');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+        <input type="button" id="enviarOtroEmail" name="enviarOtroEmail" value="Aceptar" onclick="SendEnviarOtroCodigo('@Model.Email', '@Model.Id');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
         <input type="submit" id="cancelarOtroEmail" name="cancelarOtroEmail" value="Cancelar" onclick="OcultarModalIndicada('tiempoLink');" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
     </div>
     <br /><br />

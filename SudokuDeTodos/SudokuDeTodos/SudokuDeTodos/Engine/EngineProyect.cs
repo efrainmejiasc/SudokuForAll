@@ -1,15 +1,25 @@
-﻿using System;
+﻿using SudokuDeTodos.Models.DbSistema;
+using SudokuDeTodos.Models.Sistema;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Web;
 
 namespace SudokuDeTodos.Engine
 {
     public class EngineProyect : IEngineProyect
     {
+        private IEngineNotificacion Notificacion;
+
+        public EngineProyect (IEngineNotificacion _Notificacion)
+        {
+            Notificacion = _Notificacion;
+        }
         public string ConvertirBase64(string cadena)
         {
             var comprobanteXmlPlainTextBytes = Encoding.UTF8.GetBytes(cadena);
@@ -65,7 +75,6 @@ namespace SudokuDeTodos.Engine
             return resultado;
         }
 
-
         public Guid IdentificadorReg()
         {
             Guid g = CrearGuid();
@@ -108,5 +117,357 @@ namespace SudokuDeTodos.Engine
                 resultado = true;
             return resultado;
         }
+
+        public SucesoLog ConstruirSucesoLog(string cadena)
+        {
+            string[] x = cadena.Split('*');
+            SucesoLog modelo = new SucesoLog()
+            {
+                Fecha = DateTime.UtcNow,
+                Excepcion = x[0],
+                Metodo = x[1],
+                Email = x[2]
+            };
+            return modelo;
+        }
+
+        public Respuesta ConstruirRespuesta(int id = 0, bool status = false, string descripcion = "", string email = "")
+        {
+            Respuesta modelo = new Respuesta()
+            {
+               Id = id,
+               Status = status,
+               Descripcion = descripcion,
+               Email = email
+            };
+            return modelo;
+        }
+
+        public Respuesta ConstruirRespuesta(int id = 0, bool status = false, string descripcion = "", string email = "",string type ="")
+        {
+            Respuesta modelo = new Respuesta()
+            {
+                Id = id,
+                Status = status,
+                Descripcion = descripcion,
+                Email = email,
+                Type = type
+            };
+            return modelo;
+        }
+
+        public Cliente ConstruirCliente (string email)
+        {
+            Cliente R = new Cliente()
+            {
+                Email = email,
+                FechaRegistroPrueba = DateTime.UtcNow,
+                FechaActivacion = Convert.ToDateTime("01/01/1900 00:00:00.000"),
+                FechaActivacionPrueba = DateTime.UtcNow,
+                FechaRegistro = Convert.ToDateTime("01-01-1900 00:00:00.000"),
+                Estatus = false,
+                EstatusEnvioNotificacion = false,
+                Identidad = IdentificadorReg(),
+                Cultura = EngineData.GetCultura()
+            };
+            return R;
+        }
+
+        public Cliente ConstruirCliente(string email,Guid identidad)
+        {
+            Cliente R = new Cliente()
+            {
+                Email = email,
+                FechaRegistroPrueba = DateTime.UtcNow,
+                FechaActivacion = Convert.ToDateTime("01/01/1900 00:00:00.000"),
+                FechaActivacionPrueba = DateTime.UtcNow,
+                FechaRegistro = Convert.ToDateTime("01-01-1900 00:00:00.000"),
+                Estatus = false,
+                EstatusEnvioNotificacion = false,
+                Identidad = identidad,
+                Cultura = EngineData.GetCultura()
+            };
+            return R;
+        }
+
+        public ClientePago ConstruirClientePago(int idCliente)
+        {
+            ClientePago R = new ClientePago()
+            {
+                IdCliente = idCliente,
+                FechaPago = DateTime.UtcNow,
+                FechaVencimiento = DateTime.UtcNow.AddDays(30),
+                MontoPago = 0,
+                Impuesto = 0,
+                MontoTotal = 0
+            };
+            return R;
+        }
+
+        public string ConstruirEnlazePrueba(string email,Guid identidad)
+        {
+            string link = string.Empty;
+            link = EngineData.EndPointValidation;
+            link = link + "id=" + "0";
+            link = link + "&email=" + ConvertirBase64(email);
+            link = link + "&identidad=" + EncodeMd5(identidad.ToString());
+            link = link + "&status=" + "1";
+            link = link + "&date=" + DateTime.UtcNow.ToString();
+            link = link + "&type=" + EngineData.Test;
+            link = link + "&cultureInfo=" + EngineData.GetCultura();
+            return link;
+        }
+
+        public string ConstruirEnlazeRegistro(string email, string password,Guid identidad)
+        {
+            string link = string.Empty;
+            link = EngineData.EndPointValidation;
+            link = link + "id=" + "0";
+            link = link + "&email=" + ConvertirBase64(email);
+            link = link + "&ide=" + ConvertirBase64(password);
+            link = link + "&identidad=" + EncodeMd5(identidad.ToString());
+            link = link + "&status=" + "1";
+            link = link + "&date=" + DateTime.UtcNow.ToString();
+            link = link + "&type=" + EngineData.Register;
+            link = link + "&cultureInfo=" + EngineData.GetCultura();
+            return link;
+        }
+
+        public string ConstruirEnlazeRestablecerPassword(string email, string codigo,Guid identidad)
+        {
+            string link = string.Empty;
+            link = EngineData.EndPointValidation;
+            link = link + "id=" + "1";
+            link = link + "&email=" + ConvertirBase64(email);
+            link = link + "&ide=" + ConvertirBase64(codigo);
+            link = link + "&identidad=" + EncodeMd5(identidad.ToString());
+            link = link + "&status=" + "0";
+            link = link + "&date=" + DateTime.UtcNow.ToString();
+            link = link + "&type=" + EngineData.ResetPassword;
+            link = link + "&cultureInfo=" + EngineData.GetCultura();
+            return link;
+        }
+
+        public string ConstruirEnlazeRegistroGerente(string email,Guid identidad)
+        {
+            string link = string.Empty;
+            link = EngineData.EndPointValidation;
+            link = link + "id=" + "0";
+            link = link + "&email=" + ConvertirBase64(email);
+            link = link + "&identidad=" + EncodeMd5(identidad.ToString());
+            link = link + "&status=" + "1";
+            link = link + "&date=" + DateTime.UtcNow.ToString();
+            link = link + "&type=" + EngineData.RegisterManager;
+            link = link + "&cultureInfo=" + EngineData.GetCultura();
+            return link;
+        }
+
+        public EstructuraMail SetEstructuraMailTest(string enlaze, string email)
+        {
+            EstructuraMail model = new EstructuraMail();
+            model.Link = enlaze;
+            model.Saludo = EngineData.Saludo();
+            model.EmailDestinatario = email;
+            model.Fecha = DateTime.UtcNow.ToString();
+            model.Descripcion = EngineData.DescripcionTest();
+            model.ClickAqui = EngineData.ClickAqui();
+            model.Asunto = EngineData.AsuntoTest();
+            model.Observacion = EngineData.ObservacionTest();
+            model.PathLecturaArchivo = EngineData.PathLecturaArchivoTest;
+            return model;
+        }
+
+        public EstructuraMail SetEstructuraMailRegister(string enlaze, string email)
+        {
+            EstructuraMail model = new EstructuraMail();
+            model.Link = enlaze;
+            model.Saludo = EngineData.Saludo();
+            model.EmailDestinatario = email;
+            model.Fecha = DateTime.UtcNow.ToString();
+            model.Descripcion = EngineData.DescripcionRegistro();
+            model.ClickAqui = EngineData.ClickAqui2();
+            model.Asunto = EngineData.AsuntoRegistro();
+            model.Observacion = EngineData.ObservacionRegistro();
+            model.PathLecturaArchivo = EngineData.PathLecturaArchivoRegistro;
+            return model;
+        }
+
+        public EstructuraMail SetEstructuraMailResetPassword(string enlaze, string email, string codigo)
+        {
+            EstructuraMail model = new EstructuraMail();
+            model.Link = enlaze;
+            model.Saludo = EngineData.Saludo();
+            model.EmailDestinatario = email;
+            model.Fecha = DateTime.UtcNow.ToString();
+            model.Descripcion = EngineData.DescripcionRestablecerPassword();
+            model.ClickAqui = EngineData.ClickAqui3();
+            model.Asunto = EngineData.AsuntoResetPassword();
+            model.Observacion = EngineData.ObservacionRestablecerPassword();
+            model.PathLecturaArchivo = EngineData.PathLecturaArchivoRestablecerPassword;
+            model.CodigoResetPassword = codigo;
+            return model;
+        }
+
+        public EstructuraMail SetEstructuraMailRegisterManager(string enlaze, string email)
+        {
+            EstructuraMail model = new EstructuraMail();
+            model.Link = enlaze;
+            model.Saludo = EngineData.Saludo();
+            model.EmailDestinatario = email;
+            model.Fecha = DateTime.UtcNow.ToString();
+            model.Descripcion = EngineData.DescripcionRegistroGerente();
+            model.ClickAqui = EngineData.ClickAqui4();
+            model.Asunto = EngineData.AsuntoRegistroGerente();
+            model.Observacion = EngineData.ObservacionRegistroGerente();
+            model.PathLecturaArchivo = EngineData.PathLecturaArchivoRegistro;
+            return model;
+        }
+
+        public ResetPassword SetResetPassword(string email , string codigo)
+        {
+            ResetPassword model = new ResetPassword();
+            model.Email = email;
+            model.Codigo = codigo;
+            model.Estatus = false;
+            model.Fecha = DateTime.UtcNow;
+            return model;
+        }
+
+        public bool ValidacionIdentidad (string email,string identidad,IEngineDb Metodo)
+        {
+            bool resultado = false;
+            Guid guidClient = Metodo.GetIdentidadCliente(email);
+            if (guidClient == Guid.Empty)
+                return false;
+            string ident = EncodeMd5(guidClient.ToString());
+            resultado = CompareString(identidad, ident);
+            if (!resultado)
+                return resultado;
+            return resultado;
+        }
+
+        public void SetCultureInfo(string cultura)
+        {
+            if (cultura == string.Empty)
+                cultura = "es-ES";
+            CultureInfo ci = new CultureInfo(cultura);
+            Thread.CurrentThread.CurrentUICulture = ci;
+            Thread.CurrentThread.CurrentCulture = ci;
+            System.Web.HttpContext.Current.Session["Cultura"] = cultura;
+        }
+
+        public bool ValidacionTypeTransaccion(string type)
+        {
+            bool resultado = true;
+            if (type != EngineData.Register && type != EngineData.Test && type != EngineData.ResetPassword && type != EngineData.RegisterManager)
+                resultado = false;
+            return resultado;
+        }
+
+        public string MetodoTransactionType (string type)
+        {
+            string nameMetodo = string.Empty;
+            string tipoTransaction = DecodeBase642(type);
+            switch (tipoTransaction)
+            {
+                case ("prueba"):
+                    nameMetodo= "EnviarOtraNotificacionPrueba(";
+                        break;
+                case ("resetPassword"):
+                    nameMetodo = "EnviarCodigo";
+                    break;
+            }
+            return nameMetodo;
+        }
+
+        public bool EstatusLink(DateTime fechaEnvio)
+        {
+            bool resultado = false;
+            DateTime fechaActivacion = DateTime.UtcNow;
+            if (fechaEnvio.Date != fechaActivacion.Date)
+                return resultado;
+
+            int horaEnvio = fechaEnvio.Hour;
+            int horaActivacion = fechaActivacion.Hour;
+            int diferenciaHora = horaActivacion - horaEnvio;
+            if (diferenciaHora <= 3)
+                resultado = true;
+            return resultado;
+        }
+
+        public bool EnviarNuevaNotificacion(Guid identidad , string email = "", string type = "", string password = "",string codigo = "")
+        {
+            bool resultado = false;
+            EstructuraMail model = new EstructuraMail();
+            resultado = CadenaBase64Valida(email);
+            if (resultado)
+                email = DecodeBase64(email);
+
+            if (type == EngineData.Test)
+            {
+                string enlaze = ConstruirEnlazePrueba(email,identidad);
+                model = SetEstructuraMailTest(enlaze, email);
+            }
+            else if (type == EngineData.Register)
+            {
+                password = DecodeBase64(password);
+                string enlaze = ConstruirEnlazeRegistro(email, password,identidad);
+                model = SetEstructuraMailRegister(enlaze, email);
+            }
+            else if (type == EngineData.RegisterManager)
+            {
+                string enlaze = ConstruirEnlazeRegistroGerente(email,identidad);
+                model = SetEstructuraMailRegisterManager(enlaze, email);
+            }
+            else if (type == EngineData.ResetPassword)
+            {
+                string enlaze = ConstruirEnlazeRestablecerPassword(email, codigo, identidad);
+                model = SetEstructuraMailResetPassword(enlaze, email,codigo);
+            }
+            resultado = Notificacion.EnviarMailNotificacion(model);
+            return resultado;
+        }
+
+        public string ConstruirCodigo()
+        {
+            string codigo = string.Empty;
+            for (int i = 0; i <= 5; i++)
+            {
+                if (i % 2 == 0)
+                    codigo = codigo + AleatorioLetra(i + DateTime.Now.Millisecond);
+                else
+                    codigo = codigo + AleatorioNumero(i + DateTime.Now.Millisecond);
+            }
+            return codigo.Trim();
+        }
+
+        private string AleatorioLetra(int semilla)
+        {
+            string letra = string.Empty;
+            Random rnd = new Random(semilla);
+            int n = rnd.Next(0, 26);
+            double d = AleatorioDoble(semilla);
+            if (d >= 0.5)
+                letra = EngineData.AlfabetoG[n];
+            else
+                letra = EngineData.AlfabetoP[n];
+
+            return letra;
+        }
+
+        private string AleatorioNumero(int semilla)
+        {
+            Random rnd = new Random(semilla);
+            int n = rnd.Next(0, 9);
+            return n.ToString();
+        }
+
+        private double AleatorioDoble(int semilla)
+        {
+            Random rnd = new Random(semilla);
+            double n = rnd.NextDouble();
+            return n;
+        }
+
     }
 }

@@ -5,14 +5,14 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<SudokuDeTodos.Models.EngineContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<SudokuDeTodos.Engine.EngineContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(SudokuDeTodos.Models.EngineContext context)
+        protected override void Seed(SudokuDeTodos.Engine.EngineContext context)
         {
             //  This method will be called after migrating to the latest version.
 

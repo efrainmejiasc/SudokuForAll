@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <resource culture="es-es" name="IngreseEmail" value="Ingrese email"></resource>
+  <resource culture="en-us" name="IngreseEmail" value="Enter email"></resource>
+  <resource culture="pt-pt" name="IngreseEmail" value="Digite o email"></resource>
+
+  <resource culture="es-es" name="ModificarContraseña" value="Modificar contraseña"></resource>
+  <resource culture="en-us" name="ModificarContraseña" value="Modify password"></resource>
+  <resource culture="pt-pt" name="ModificarContraseña" value="Editar senha"></resource>
+
+  <resource culture="es-es" name="IngreseContraseña" value="Ingrese contraseña"></resource>
+  <resource culture="en-us" name="IngreseContraseña" value="Enter password"></resource>
+  <resource culture="pt-pt" name="IngreseContraseña" value="Digite o senha"></resource>
+
+  <resource culture="es-es" name="ConfirmeContraseña" value="Confirme contraseña"></resource>
+  <resource culture="en-us" name="ConfirmeContraseña" value="Confirm password"></resource>
+  <resource culture="pt-pt" name="ConfirmeContraseña" value="Confirme a senha"></resource>
+
+  <resource culture="es-es" name="NoSoyUnRobot" value="No soy un robot"></resource>
+  <resource culture="en-us" name="NoSoyUnRobot" value="I'm not a robot"></resource>
+  <resource culture="pt-pt" name="NoSoyUnRobot" value="Eu não sou um robô"></resource>
+
+  <resource culture="es-es" name="Enviar" value="Enviar"></resource>
+  <resource culture="en-us" name="Enviar" value="Send"></resource>
+  <resource culture="pt-pt" name="Enviar" value="Enviar"></resource>
+
+  <resource culture="es-es" name="Aceptar" value="Aceptarr"></resource>
+  <resource culture="en-us" name="Aceptar" value="Accept"></resource>
+  <resource culture="pt-pt" name="Aceptar" value="Aceitar"></resource>
+
+  <resource culture="es-es" name="Cancelar" value="Cancelar"></resource>
+  <resource culture="en-us" name="Cancelar" value="Cancel"></resource>
+  <resource culture="pt-pt" name="Cancelar" value="Cancelar"></resource>
+
+  <resource culture="es-es" name="IngreseCodigoDeVerificacion" value="Ingrese codigo de verificacion"></resource>
+  <resource culture="en-us" name="IngreseCodigoDeVerificacion" value="Enter verification code"></resource>
+  <resource culture="pt-pt" name="IngreseCodigoDeVerificacion" value="Insira o código de verificação"></resource>
+
+  <resource culture="es-es" name="IngreseNombre" value="Ingrese nombre"></resource>
+  <resource culture="en-us" name="IngreseNombre" value="Enter name"></resource>
+  <resource culture="pt-pt" name="IngreseNombre" value="Digite o nome"></resource>
+
+  <resource culture="es-es" name="IngreseApellido" value="Ingrese apellido"></resource>
+  <resource culture="en-us" name="IngreseApellido" value="Enter last name"></resource>
+  <resource culture="pt-pt" name="IngreseApellido" value="Digite o sobrenome"></resource>
+  
+  <resource culture="es-es" name="MsjPruebaSitio" value="¿Desea probar nuestro sitio?, enviaremos una notificacion a su cuenta de correo para que disfrute 2 dias de prueba,revise su bandeja de email"></resource>
+  <resource culture="en-us" name="MsjPruebaSitio" value="Want to try our site?, we will send a notification to your email account so you can enjoy 2 days of trial,check your email"></resource>
+  <resource culture="pt-pt" name="MsjPruebaSitio" value="Quer experimentar o nosso site?, vamos enviar uma notificação para sua conta de e-mail para que você possa desfrutar de 2 dias de teste,verifique sua bandeja de email"></resource>
+
+  <resource culture="es-es" name="CtaNoActivada" value="Su cuenta no ha sido activada, enviamos una notificacion a tu correo para que actives tu cuenta,revise su bandeja de email"></resource>
+  <resource culture="en-us" name="CtaNoActivada" value="Your account has not been activated, we send a notification to your e-mail to activate your account,check your email"></resource>
+  <resource culture="pt-pt" name="CtaNoActivada" value="Sua conta não foi ativada, enviamos uma notificação para o seu e-mail para ativar sua conta,verifique sua bandeja de email"></resource>
+ 
+  <resource culture="es-es" name="Entrar" value="Entrar"></resource>
+  <resource culture="en-us" name="Entrar" value="Get in"></resource>
+  <resource culture="pt-pt" name="Entrar" value="Para entrar"></resource>
+
+  <resource culture="es-es" name="Inicio" value="Inicio"></resource>
+  <resource culture="en-us" name="Inicio" value="Home"></resource>
+  <resource culture="pt-pt" name="Inicio" value="Home"></resource>
+
+  <resource culture="es-es" name="OlvidoSuContraseña" value="Olvido su contraseña"></resource>
+  <resource culture="en-us" name="OlvidoSuContraseña" value="Forgot your password"></resource>
+  <resource culture="pt-pt" name="OlvidoSuContraseña" value="Esqueceu sua senha"></resource>
+
+  <resource culture="es-es" name="Terminos" value="Terminos y condiciones de uso"></resource>
+  <resource culture="en-us" name="Terminos" value="Terms and conditions of use"></resource>
+  <resource culture="pt-pt" name="Terminos" value="Termos e condições de uso"></resource>
+
+  <resource culture="es-es" name="Autentificate" value="Autentificate"></resource>
+  <resource culture="en-us" name="Autentificate" value="Authentication"></resource>
+  <resource culture="pt-pt" name="Autentificate" value="Autenticação"></resource>
+
+  <resource culture="es-es" name="Registrate" value="Registrate"></resource>
+  <resource culture="en-us" name="Registrate" value="Sign up"></resource>
+  <resource culture="pt-pt" name="Registrate" value="Inscreva-se"></resource>
+
+  <resource culture="es-es" name="Equipo" value="Equipo"></resource>
+  <resource culture="en-us" name="Equipo" value="Team"></resource>
+  <resource culture="pt-pt" name="Equipo" value="Equipa"></resource>
+
+  <resource culture="es-es" name="IniciarSesion" value="Iniciar sesión"></resource>
+  <resource culture="en-us" name="IniciarSesion" value="Log in"></resource>
+  <resource culture="pt-pt" name="IniciarSesion" value="Iniciar sessão"></resource>
+
+  <resource culture="es-es" name="AceptarCondicion" value="Al hacer click en continuar estas aceptando las condiciones de uso y el aviso de privacidad de sudokudetodos.com"></resource>
+  <resource culture="en-us" name="AceptarCondicion" value="By clicking on continue you accept the conditions of use and the privacy notice of sudokudetodos.com"></resource>
+  <resource culture="pt-pt" name="AceptarCondicion" value="Ao clicar em continuar, você aceita as condições de uso e o aviso de privacidade de sudokudetodos.com"></resource>
+
+  <resource culture="es-es" name="Requerido" value="Este campo es requerido"></resource>
+  <resource culture="en-us" name="Requerido" value="This field is required"></resource>
+  <resource culture="pt-pt" name="Requerido" value="Encha este capo"></resource>
+
+  <resource culture="es-es" name="EmailRequerido" value="Email requerido"></resource>
+  <resource culture="en-us" name="EmailRequerido" value="Email is required"></resource>
+  <resource culture="pt-pt" name="EmailRequerido" value="Email Obrigatório"></resource>
+
+  <resource culture="es-es" name="PasswordRequerido" value="Contraseña requerida"></resource>
+  <resource culture="en-us" name="PasswordRequerido" value="Password is required"></resource>
+  <resource culture="pt-pt" name="PasswordRequerido" value="Senha Obrigatório"></resource>
+
+  <resource culture="es-es" name="ChxRequerido" value="Marque la casilla de verificacion"></resource>
+  <resource culture="en-us" name="ChxRequerido" value="Mark the checkbox"></resource>
+  <resource culture="pt-pt" name="ChxRequerido" value="Marque a caixa de seleção"></resource>
+
+  <resource culture="es-es" name="EnviarOtroEmail" value="Revise su bandeja de entrada... ¿Enviar otro email?"></resource>
+  <resource culture="en-us" name="EnviarOtroEmail" value="Check your inbox... Send another email?"></resource>
+  <resource culture="pt-pt" name="EnviarOtroEmail" value="Verifique sua caixa de entrada... Enviar outro email?"></resource>
+
+  <resource culture="es-es" name="Si" value="Si"></resource>
+  <resource culture="en-us" name="Si" value="Yes"></resource>
+  <resource culture="pt-pt" name="Si" value="Sim"></resource>
+
+  <resource culture="es-es" name="No" value="No"></resource>
+  <resource culture="en-us" name="No" value="No"></resource>
+  <resource culture="pt-pt" name="No" value="Não"></resource>
+
+  <resource culture="es-es" name="TiempoPruebaExpiro" value="Tu tiempo de prueba expiro. ¿Deseas comprar nuestro producto?"></resource>
+  <resource culture="en-us" name="TiempoPruebaExpiro" value="Your test time expired. Do you want to buy our product?"></resource>
+  <resource culture="pt-pt" name="TiempoPruebaExpiro" value="Seu tempo de teste expirou. Você quer comprar nosso produto?"></resource>
+
+  <resource culture="es-es" name="PagoExpiro" value="Tu pago expiro, debes comprar nevamente"></resource>
+  <resource culture="en-us" name="PagoExpiro" value="Your payment expires, you must buy snow"></resource>
+  <resource culture="pt-pt" name="PagoExpiro" value="Seu pagamento expira, você deve comprar neve"></resource>
+
+  <resource culture="es-es" name="ErrorInterno" value="Error interno del servidor"></resource>
+  <resource culture="en-us" name="ErrorInterno" value="Internal server error"></resource>
+  <resource culture="pt-pt" name="ErrorInterno" value="Erro interno do servidor (500)"></resource>
+  
+  <resource culture="es-es" name="OtroEmailEnviado" value="Otro email fue enviado ,revice su bandeja de entrada"></resource>
+  <resource culture="en-us" name="OtroEmailEnviado" value="Another email was sent, check your inbox"></resource>
+  <resource culture="pt-pt" name="OtroEmailEnviado" value="Outro email foi enviado, verifique sua caixa de entrada"></resource>
+  
+  <resource culture="es-es" name="ContraseñaRequerida" value="Contraseña requerida"></resource>
+  <resource culture="en-us" name="ContraseñaRequerida" value="Password required"></resource>
+  <resource culture="pt-pt" name="ContraseñaRequerida" value="Senha requerida"></resource>
+  
+  <resource culture="es-es" name="ContraseñaDebeIdentica" value="Las contraseñas deben ser identicas"></resource>
+  <resource culture="en-us" name="ContraseñaDebeIdentica" value="Passwords must be identical"></resource>
+  <resource culture="pt-pt" name="ContraseñaDebeIdentica" value="As senhas devem ser idênticas"></resource>
+  
+  <resource culture="es-es" name="FormatContraseña" value="Minimo 10 caracteres debe incluir numeros y letras"></resource>
+  <resource culture="en-us" name="FormatContraseña" value="Minimum 10 characters must include numbers and letters"></resource>
+  <resource culture="pt-pt" name="FormatContraseña" value="No mínimo 10 caracteres devem incluir números e letras"></resource>
+  
+  <resource culture="es-es" name="ContraseñaDebeLetra" value="La contraseña debe contener letras"></resource>
+  <resource culture="en-us" name="ContraseñaDebeLetra" value="Password must contain letters"></resource>
+  <resource culture="pt-pt" name="ContraseñaDebeLetra" value="A senha deve conter letras"></resource>
+  
+  <resource culture="es-es" name="ContraseñaDebeNumero" value="La contraseña debe contener numeros"></resource>
+  <resource culture="en-us" name="ContraseñaDebeNumero" value="Password must contain numbers"></resource>
+  <resource culture="pt-pt" name="ContraseñaDebeNumero" value="A senha deve conter números"></resource>
+  
+  <resource culture="es-es" name="ContraseñaDebeEspacioBlanco" value="La contraseña no puede contener espacios en blanco"></resource>
+  <resource culture="en-us" name="ContraseñaDebeEspacioBlanco" value="Password cannot contain blank spaces"></resource>
+  <resource culture="pt-pt" name="ContraseñaDebeEspacioBlanco" value="A senha não pode conter espaços em branco"></resource>
+  
+  <resource culture="es-es" name="UsarMismoEmail" value="Debe utilizar la cuenta de correo registrada"></resource>
+  <resource culture="en-us" name="UsarMismoEmail" value="You must use the registered email account"></resource>
+  <resource culture="pt-pt" name="UsarMismoEmail" value="Você deve usar a conta de e-mail registrada"></resource>
+  
+  <resource culture="es-es" name="RegistroPago" value="Registro exitoso, ahora complete su pago mediante paypal"></resource>
+  <resource culture="en-us" name="RegistroPago" value="Successful registration, now complete your payment by paypal"></resource>
+  <resource culture="pt-pt" name="RegistroPago" value="Registro bem-sucedido, agora complete seu pagamento por paypa"></resource>
+
+  <resource culture="es-es" name="Auth" value="Autentificate"></resource>
+  <resource culture="en-us" name="Auth" value="Authentication"></resource>
+  <resource culture="pt-pt" name="Auth" value="Autenticação"></resource>
+  
+  <resource culture="es-es" name="PasswordInvalido" value="Contraseña invalida"></resource>
+  <resource culture="en-us" name="PasswordInvalido" value="Password is invalid"></resource>
+  <resource culture="pt-pt" name="PasswordInvalido" value="Senha inválida"></resource>
+  
+  <resource culture="es-es" name="MsjModificarPassword" value="¿Desea modificar su contraseña?"></resource>
+  <resource culture="en-us" name="MsjModificarPassword" value="Do you want to change your password?"></resource>
+  <resource culture="pt-pt" name="MsjModificarPassword" value="Deseja alterar sua senha?"></resource>
+
+</resources>

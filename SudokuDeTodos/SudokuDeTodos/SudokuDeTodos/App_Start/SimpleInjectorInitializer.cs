@@ -8,7 +8,8 @@ namespace SudokuDeTodos.App_Start
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
-    
+    using SudokuDeTodos.Engine;
+
     public static class SimpleInjectorInitializer
     {
         /// <summary>Initialize the container and register it as MVC3 Dependency Resolver.</summary>
@@ -16,19 +17,19 @@ namespace SudokuDeTodos.App_Start
         {
             var container = new Container();
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
-            
             InitializeContainer(container);
-
-            container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
-            
-            container.Verify();
-            
+            container.RegisterMvcControllers(Assembly.GetExecutingAssembly()); 
+            container.Verify(); 
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
         }
      
         private static void InitializeContainer(Container container)
         {
-
+          container.Register<IEngineDb, EngineDb>(Lifestyle.Transient);
+          container.Register<IEngineProyect, EngineProyect>(Lifestyle.Transient);
+          container.Register<IEngineGameProcess, EngineGameProcess>(Lifestyle.Transient);
+          container.Register<IEngineNotificacion, EngineNotificacion>(Lifestyle.Transient);
+          container.Register<EngineContext, EngineContext>(Lifestyle.Scoped);
         }
     }
 }

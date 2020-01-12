@@ -1,0 +1,115 @@
+﻿@using SudokuDeTodos.StringResx;
+@model SudokuDeTodos.Models.Sistema.Respuesta
+
+
+<link href="~/Content/css/global.css" rel="stylesheet" />
+<script src="../Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="../Content/js/global.js" type="text/javascript"></script>
+<script src="../Content/js/message.js" type="text/javascript"></script>
+
+<input type="hidden" id="metodo" name="metodo" />
+<input type="hidden" id="inbox" name="inbox" />
+
+<div id="pruebaSitio" class="wModal container-fluid">
+    <br />
+    <label id="mensajePrueba" name="mensajePrueba">@Resources.MsjPruebaSitio</label>
+    <div>
+        <br /><br />
+        <input type="button" id="aceptarPrueba" name="aceptarPrueba" value="Aceptar" onclick="SendNotificacionPrueba('@Model.Email');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+        <input type="submit" id="cancelarPrueba" name="cancelarPrueba" value="Cancelar" onclick="OcultarModalIndicada('pruebaSitio');" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
+    </div>
+    <br /><br />
+</div>
+
+<div id="enviarOtroEmail" class="wModal container-fluid">
+    <br />
+    <label id="otroEmail" name="otroEmail">@Resources.EnviarOtroEmail</label>
+    <div>
+        <br /><br />
+        <input type="button" id="aceptarOtroEmail" name="aceptarOtroEmail" value="@Resources.Si" onclick="SendOtherNotificacion('@Model.Email', '@Model.Id');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+        <input type="submit" id="cancelarOtroEmail" name="cancelarOtroEmail" value="@Resources.No" onclick="OcultarModalIndicada('enviarOtroEmail');" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
+    </div>
+    <br /><br />
+</div>
+
+<div id="comprar1Eravez" class="wModal container-fluid">
+    <br />
+    <label id="tiempoExpiro" name="tiempoExpiro">@Resources.TiempoPruebaExpiro</label>
+    <div>
+        <br /><br />
+        <input type="button" id="aceptarComprar" name="aceptarComprar" value="@Resources.Si" onclick="Redireccionar('/Home/About');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+        <input type="submit" id="cancelarComprar" name="cancelarComprar" value="@Resources.No" onclick="OcultarModalIndicada('comprar1Eravez');" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
+    </div>
+    <br /><br />
+</div>
+
+<div id="comprar" class="wModal container-fluid">
+    <br />
+    <label id="mensajeComprar" name="mensajeComprar">@Resources.PagoExpiro</label>
+    <br /><br />
+</div>
+
+<div id="ctaNoActivada" class="wModal container-fluid">
+    <br />
+    <label id="mensajeCtaNoActivada" name="mensajeCtaNoActivada">@Resources.CtaNoActivada</label>
+    <br /><br />
+</div>
+
+<div id="errorInterno" class="wModal container-fluid">
+    <br />
+    <label id="mensaje500" name="mensaje500">@Resources.ErrorInterno</label>
+    <br /><br />
+</div>
+
+<div id="otroMail" class="wModal container-fluid">
+    <br />
+    <label id="otroEmailEnviado" name="otroEmailEnviado">@Resources.OtroEmailEnviado</label>
+    <br /><br />
+</div>
+
+<div id="respuesta" class="wModal container-fluid">
+    <br />
+    <label id="mensajeRespuesta" name="mensajeRespuesta"></label>
+    <br /><br />
+</div>
+
+
+<div id="modificarPassword" class="wModal container-fluid">
+    <br />
+    <label id="mensajeModificarPassword" name="mensajeModificarPassword">@Resources.MsjModificarPassword</label>
+    <div>
+        <br /><br />
+        <input type="button" id="aceptarModificar" name="aceptarModificar" value="@Resources.Si" onclick="HideModalIndicada('modificarPassword','ingreseEmail');" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+        <input type="submit" id="cancelarModificar" name="cancelarModificar" value="@Resources.No" onclick="OcultarModalIndicada('modificarPasswordº');" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
+    </div>
+    <br /><br />
+</div>
+
+<div id="ingreseEmail" class="wModal container-fluid" aling="center">
+    <br />
+    <input type="email" id="email" name="email" placeholder="@Resources.IngreseEmail" class="form-control" required oninvalid="setCustomValidity('@Resources.EmailRequerido')" oninput="setCustomValidity('')" style="text-align:center" /><br />
+    <input type="button" id="enviarMail" name="enviarMail" value="@Resources.Aceptar" onclick="EnviarCodigo();" class="btn btn-success" style="width:20vh;float:left;display:block; margin-left:20%;border:1px solid green;" />
+    <input type="submit" id="cancelarEnviarmail" name="cancelarEnviarmail" value="@Resources.Cancelar" onclick="Redireccionar('Contact')" class="btn btn-danger" style="width:20vh;float:right;display:block;margin-right:20%;border:1px solid red;" />
+
+    <br /><br />
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        TraductorHide();
+        OcultarObjeto('entrar');
+        OcultarObjeto('traductor');
+        OcultarObjeto('equipo');
+        OcultarObjeto('inicio');
+        document.documentElement.style.overflowX = 'hidden';
+
+        var obj = '@Model';
+        if (obj != '') {
+            MostrarModalIndicada(@Model.Id);
+            document.getElementById('mensajeRespuesta').innerHTML = '@Model.Descripcion';
+            console.log(@Model.Metodo);
+            $('#metodo').val('@Model.Metodo');
+        }
+    });
+</script>

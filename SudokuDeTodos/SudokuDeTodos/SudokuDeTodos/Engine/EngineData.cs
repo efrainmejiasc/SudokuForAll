@@ -19,7 +19,7 @@ namespace SudokuDeTodos.Engine
             return valor;
         }
 
-        private static string DateFormat = "yyyy-MM-ddTHH:mm:ss.000Z";
+        public static string DateFormat = "yyyy-MM-ddTHH:mm:ss.000Z";
 
         public static string IdSite = EngineProyect.DecodeBase642(WebConfigurationManager.AppSettings["IdSite"]);
         public static int IdActivacion = Convert.ToInt32(WebConfigurationManager.AppSettings["IdActivacion"]);
@@ -148,6 +148,23 @@ namespace SudokuDeTodos.Engine
             return respuesta;
         }
 
+        public static string TransaccionNoValida()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = " Transaccion no valida";
+                    break;
+                case (CulturaIngles):
+                    respuesta = " Invalid Transaction";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = " Transação inválida";
+                    break;
+            }
+            return respuesta;
+        }
         public static string TiempoJuegoExpiro()
         {
             cultura = GetCultura();
@@ -165,7 +182,6 @@ namespace SudokuDeTodos.Engine
             }
             return respuesta;
         }
-
 
         public static string TiempoPruebaJuegoExpiro()
         {
@@ -239,6 +255,24 @@ namespace SudokuDeTodos.Engine
             return respuesta;
         }
 
+        public static string ErrorActualizarCliente()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = " Error al actualizar cliente.";
+                    break;
+                case (CulturaIngles):
+                    respuesta = " Error updating customer";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = " Erro ao atualizar o cliente";
+                    break;
+            }
+            return respuesta;
+        }
+
         public static string RegistroExitoso()
         {
             cultura = GetCultura();
@@ -256,6 +290,25 @@ namespace SudokuDeTodos.Engine
             }
             return respuesta;
         }
+
+        public static string TransaccionExitosa ()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = " Transaccion exitosa";
+                    break;
+                case (CulturaIngles):
+                    respuesta = " Succesful transaction";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = " Transação bem sucedida";
+                    break;
+            }
+            return respuesta;
+        }
+
 
         public static string ErrorEnviandoMail()
         {
@@ -318,13 +371,13 @@ namespace SudokuDeTodos.Engine
             switch (cultura)
             {
                 case (CulturaEspañol):
-                    respuesta = " El tiempo valido de el link expiro, enviamos una nueva notificacion a tu correo";
+                    respuesta = " El tiempo valido de el link expiro, enviamos una nueva notificacion a tu correo, ¿enviar otro email?";
                     break;
                 case (CulturaIngles):
-                    respuesta = " The valid time of the link expires, we send a new notification to your e-mail";
+                    respuesta = " The valid time of the link expires, we send a new notification to your e-mail, send another email?";
                     break;
                 case (CulturaPortugues):
-                    respuesta = " O tempo válido do link expira, nós enviamos uma nova notificação para o seu e-mail";
+                    respuesta = " O tempo válido do link expira, nós enviamos uma nova notificação para o seu e-mail, enviar outro email?";
                     break;
             }
             return respuesta;
@@ -344,6 +397,24 @@ namespace SudokuDeTodos.Engine
                     break;
                 case (CulturaPortugues):
                     respuesta = " Ativação bem sucedida, autenticar no nosso site";
+                    break;
+            }
+            return respuesta;
+        }
+
+        public static string ActivacionTestExitosa()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = " Activacion exitosa";
+                    break;
+                case (CulturaIngles):
+                    respuesta = " Successful activation";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = " Ativação bem sucedida";
                     break;
             }
             return respuesta;
@@ -416,6 +487,24 @@ namespace SudokuDeTodos.Engine
                     break;
                 case (CulturaPortugues):
                     respuesta = " Enviamos uma notificação via e-mail, com um código de verificação para que você redefina sua senha";
+                    break;
+            }
+            return respuesta;
+        }
+
+        public static string EnvioNuevoEmail()
+        {
+            cultura = GetCultura();
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    respuesta = " Enviamos un nuevo correo electrónico a su dirección de correo electrónico, revise su bandeja de entrada";
+                    break;
+                case (CulturaIngles):
+                    respuesta = " We send a new email to your email address, check your inbox";
+                    break;
+                case (CulturaPortugues):
+                    respuesta = " Enviamos um novo email para o seu endereço de email, verifique sua caixa de entrada";
                     break;
             }
             return respuesta;
@@ -533,7 +622,7 @@ namespace SudokuDeTodos.Engine
             return respuesta;
         }
 
-        public static string PathLecturaArchivoTest = @"/Content/template/EmailBodyTest.cshtml";
+        public static string PathLecturaArchivoTest = @"/Content/templates/EmailBodyTest.cshtml";
 
         public static string AsuntoTest()
         {
@@ -612,7 +701,7 @@ namespace SudokuDeTodos.Engine
 
 
         // Parametros notificacion para registro de clientes
-        public static string PathLecturaArchivoRegistro = @"/Content/template/EmailBodyRegister.cshtml";
+        public static string PathLecturaArchivoRegistro = @"/Content/templates/EmailBodyRegister.cshtml";
 
         public static string AsuntoRegistro()
         {
@@ -693,7 +782,7 @@ namespace SudokuDeTodos.Engine
 
 
         // Parametros notificacion para restablecer password
-        public static string PathLecturaArchivoRestablecerPassword = @"/Content/template/EmailBodyResetPassword.cshtml";
+        public static string PathLecturaArchivoRestablecerPassword = @"/Content/templates/EmailBodyResetPassword.cshtml";
 
         public static string AsuntoResetPassword()
         {

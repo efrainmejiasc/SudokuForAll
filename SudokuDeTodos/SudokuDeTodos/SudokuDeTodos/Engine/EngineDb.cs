@@ -210,6 +210,7 @@ namespace SudokuDeTodos.Engine
                     idClient = cliente.Id;
                     Context.Cliente.Attach(cliente);
                     cliente.Password = password;
+                    cliente.FechaRegistro = DateTime.UtcNow;
                     Context.SaveChanges();
                 }
             }

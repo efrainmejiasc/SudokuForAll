@@ -238,6 +238,7 @@
     <Content Include="Content\templates\EmailBodyResetPassword.cshtml" />
     <Content Include="Content\templates\EmailBodyTest.cshtml" />
     <Content Include="Content\templates\TerminosCondiciones.pdf" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

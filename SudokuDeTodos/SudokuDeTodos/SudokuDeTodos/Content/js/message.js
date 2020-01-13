@@ -115,7 +115,7 @@ function SendOtherNotificacion(email, v) {
         return false;
    
     var id = parseInt(v, 10);
-    if (id === 0 || id === 1 || id === 8) { //prueba sitio 0 y cuenta no activada 1 enviar otro codigo 8
+    if (id === 0 || id === 1 ) { //prueba sitio 0 y cuenta no activada 
         console.log(id);
         $.ajax({
             type: "POST",
@@ -124,6 +124,7 @@ function SendOtherNotificacion(email, v) {
             datatype: "json",
             success: function (data)
             {
+                console.log(data.Id);
                 if (data.Id === 100) {
                     $('#respuesta').html(data.Descripcion);
                    document.getElementById('enviarOtroEmail').style.display = 'none';

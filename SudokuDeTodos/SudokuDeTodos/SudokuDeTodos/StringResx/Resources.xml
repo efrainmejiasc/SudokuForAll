@@ -24,7 +24,7 @@
   <resource culture="en-us" name="Enviar" value="Send"></resource>
   <resource culture="pt-pt" name="Enviar" value="Enviar"></resource>
 
-  <resource culture="es-es" name="Aceptar" value="Aceptarr"></resource>
+  <resource culture="es-es" name="Aceptar" value="Aceptar"></resource>
   <resource culture="en-us" name="Aceptar" value="Accept"></resource>
   <resource culture="pt-pt" name="Aceptar" value="Aceitar"></resource>
 

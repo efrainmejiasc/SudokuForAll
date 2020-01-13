@@ -115,7 +115,7 @@ function SendOtherNotificacion(email, v) {
         return false;
    
     var id = parseInt(v, 10);
-    if (id === 0 || id === 1 ) { //prueba sitio 0 y cuenta no activada 
+    if (id === 0 || id === 1 || id === 8) { //prueba sitio 0 y cuenta no activada 1 enviar otro codigo 8
         console.log(id);
         $.ajax({
             type: "POST",
@@ -128,7 +128,7 @@ function SendOtherNotificacion(email, v) {
                 if (data.Id === 100) {
                     $('#respuesta').html(data.Descripcion);
                    document.getElementById('enviarOtroEmail').style.display = 'none';
-                   document.getElementById('respuesta').style.display = 'block';
+                   document.getElementById('otroMail').style.display = 'block';
               }
               else {
                   document.getElementById('respuesta').style.display = 'block';
@@ -158,8 +158,8 @@ function EnviarCodigo() {
             if (data.Id === 100) {
                 document.getElementById('modificarPassword').style.display = 'none';
                 document.getElementById('ingreseEmail').style.display = 'none';
-                document.getElementById('enviarOtroEmail').style.display = 'none';
-                document.getElementById('otroMail').style.display = 'block';
+                document.getElementById('enviarOtroEmail').style.display = 'block';
+                document.getElementById('respuesta').style.display = 'none';
             }
         },
         complete: function () {

@@ -480,13 +480,13 @@ namespace SudokuDeTodos.Engine
             switch (cultura)
             {
                 case (CulturaEspañol):
-                    respuesta = " Hemos enviado una notificacion via e-mail, con un codigo de verificacion pera que restablescas tu contraseña";
+                    respuesta = " Hemos enviado una notificacion via e-mail, con un codigo de verificacion pera que restablescas tu contraseña, ¿enviar otro email?";
                     break;
                 case (CulturaIngles):
-                    respuesta = " We have sent a notification via e-mail, with a verification code so that you reset your password";
+                    respuesta = " We have sent a notification via e-mail, with a verification code so that you reset your password, send another email?";
                     break;
                 case (CulturaPortugues):
-                    respuesta = " Enviamos uma notificação via e-mail, com um código de verificação para que você redefina sua senha";
+                    respuesta = " Enviamos uma notificação via e-mail, com um código de verificação para que você redefina sua senha, enviar outro email?";
                     break;
             }
             return respuesta;

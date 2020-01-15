@@ -1,4 +1,6 @@
-﻿function GuardarJuego(id, valor) {
+﻿
+
+function GuardarJuego(id, valor) {
     if (valor === '')
         valor = 0;
 
@@ -83,12 +85,32 @@ function StyleTxt()
     }
 }
 
-function Marcador(obj) {
+  var colorActivo = '';
+function Marcador(obj,color) { // setea el color activo y borde del marcador
     var cssClass = $('#marcador').attr('class');
     $('#marcador').removeClass(cssClass);
     $('#marcador').addClass(obj);
-    $('#marcador').style.borderColor = 'black';
+    $('#marcador').css('border-color', 'black');
+    colorActivo = color;
+    if (color === 'white') {
+        ColorWhiteTxt();
+    }
+}
 
+function DrawingMarket(txt) {  // pinta el textbox
+    var obj = '#'.concat(txt.id);
+    $(obj).css({ "background-color": colorActivo });
+}
+
+function ColorWhiteTxt() { // blanque los textBox
+    var obj = '#txt';
+    for (i = 0; i <= 8; i++) {
+        for (j = 0; j <= 8; j++) {
+            obj = obj + i + j;
+            $(obj).css({ "background-color": colorActivo });
+            obj = '#txt';
+        }
+    }
 }
 
 /*function TextLetra(id) {

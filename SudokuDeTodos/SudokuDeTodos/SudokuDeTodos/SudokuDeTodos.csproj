@@ -157,6 +157,8 @@
     <Compile Include="Models\DbSistema\ClientePago.cs" />
     <Compile Include="Models\DbSistema\ResetPassword.cs" />
     <Compile Include="Models\DbSistema\SucesoLog.cs" />
+    <Compile Include="Models\Game\LetrasJuegoACB.cs" />
+    <Compile Include="Models\Game\LetrasJuegoFEG.cs" />
     <Compile Include="Models\Sistema\EstructuraMail.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />
     <Compile Include="Models\Sistema\Respuesta.cs" />

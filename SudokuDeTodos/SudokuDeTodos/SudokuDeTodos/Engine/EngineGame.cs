@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
-
+using SudokuDeTodos.Models.Game;
 
 namespace SudokuDeTodos.Engine
 {
@@ -581,6 +581,51 @@ namespace SudokuDeTodos.Engine
                 }
             }
             return cajaTexto;
+        }
+
+
+
+        public LetrasJuegoFEG SetLetrasJuegoFEG(int num, string[,] valorIngresado, string[,] valorCandidatoSinEliminados)
+        {
+            LetrasJuegoFEG letrasFEG = new LetrasJuegoFEG
+            {
+                F = num,
+                E = 81 - num,
+                G = ContadorCandidatos(valorIngresado, valorCandidatoSinEliminados)
+            };
+            return letrasFEG;
+        }
+
+        public int ContadorIngresado(string[,] valorIngresado)
+        {
+            int contadorIngresado = 0;
+            for (int f = 0; f <= 8; f++)
+            {
+                for (int c = 0; c <= 8; c++)
+                {
+                    if (valorIngresado[f, c] != null && valorIngresado[f, c] != string.Empty) { contadorIngresado++; }
+                }
+            }
+            return contadorIngresado;
+        }
+        public int ContadorCandidatos(string[,] valorIngresado, string[,] valorCandidatoSinEliminados)
+        {
+            int contadorCandidatos = 0;
+            for (int f = 0; f <= 8; f++)
+            {
+                for (int c = 0; c <= 8; c++)
+                {
+                    if (valorIngresado[f, c] == null || valorIngresado[f, c] == string.Empty)
+                    {
+                       if (valorCandidatoSinEliminados[f, c] != null)
+                        {
+                            valorCandidatoSinEliminados[f, c] = valorCandidatoSinEliminados[f, c].Replace(" ", "");
+                            contadorCandidatos = contadorCandidatos + valorCandidatoSinEliminados[f, c].Length;
+                        }
+                    }
+                }
+            }
+            return contadorCandidatos;
         }
 
 

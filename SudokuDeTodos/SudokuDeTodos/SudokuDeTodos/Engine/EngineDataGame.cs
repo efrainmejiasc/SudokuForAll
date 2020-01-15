@@ -28,5 +28,10 @@ namespace SudokuDeTodos.Engine
         public string[,] valorCandidatoSinEliminados { get; set; }
         public string[,] valorInicio { get; set; }
         public string[,] valorSolucion { get; set; }
+
+        //**************************************************************
+
+        public int contadorIngresado  { get; set; }
+        public int contadorCandidatos { get; set; }
     }
 }

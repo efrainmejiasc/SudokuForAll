@@ -24,6 +24,7 @@ namespace SudokuDeTodos.Engine
             ValorGame.valorEliminado = SetValorEliminado(arrText, valorEliminado);
             ValorGame.valorInicio = SetValorInicio(arrText, valorInicio);
             ValorGame.valorSolucion = SetValorSolucion(arrText, valorSolucion);
+            ValorGame.valorCandidatoSinEliminados = CandidatosSinEliminados(ValorGame.valorIngresado, valorCandidato, ValorGame.valorEliminado);
             resultado =  ExisteValorIngresado(valorIngresado);
             return resultado;
         }

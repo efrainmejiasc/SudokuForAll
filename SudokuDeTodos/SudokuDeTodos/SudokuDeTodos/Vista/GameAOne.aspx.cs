@@ -22,6 +22,8 @@ namespace SudokuDeTodos.Vista
         private string[,] valorInicio = new string[9, 9];
         private string[,] valorSolucion = new string[9, 9];
 
+
+
         protected void Page_Load(object sender, EventArgs e)
         {     
             if (IsPostBack)
@@ -41,8 +43,7 @@ namespace SudokuDeTodos.Vista
             bool resultado = Game.AbrirJuego(ValorGame.PathArchivo);
             if (resultado)
             {
-
-                SetearJuego();
+                SetearJuego(); //existe valor ingresado
             }
             else
             {
@@ -51,6 +52,8 @@ namespace SudokuDeTodos.Vista
                 valorCandidatoSinEliminados = Game.CandidatosSinEliminados(ValorGame.valorIngresado, ValorGame.valorCandidato, ValorGame.valorEliminado);
                 txtSudoku = Game.SetearTextBoxJuego(txtSudoku, ValorGame.valorIngresado, ValorGame.valorInicio);
             }
+            ValorGame.contadorIngresado = Game.ContadorIngresado(ValorGame.valorIngresado);
+            ValorGame.contadorCandidatos = Game.ContadorCandidatos(ValorGame.valorIngresado, ValorGame.valorCandidatoSinEliminados);
         }
 
         private void SetearJuego()

@@ -41,7 +41,6 @@ function Navegacion(page) {
     window.open(page, "_self");
 }
 
-
 function StyleTxtFully() {
     var id = 'txt';
     var i = null;
@@ -55,7 +54,6 @@ function StyleTxtFully() {
         }
     }
 }
-
 
 function StyleTxt()
 {

@@ -53,6 +53,7 @@ namespace SudokuDeTodos.Vista
                 txtSudoku = Game.SetearTextBoxJuego(txtSudoku, ValorGame.valorIngresado, ValorGame.valorInicio);
             }
             ValorGame.contadorIngresado = Game.ContadorIngresado(ValorGame.valorIngresado);
+
             ValorGame.contadorCandidatos = Game.ContadorCandidatos(ValorGame.valorIngresado, ValorGame.valorCandidatoSinEliminados);
         }
 

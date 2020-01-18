@@ -129,6 +129,63 @@ namespace SudokuDeTodos.Engine
             return cultura = System.Web.HttpContext.Current.Session["Cultura"].ToString();
         }
 
+        public string Fila(string lenguaje)
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    titulo = "Fila";
+                    break;
+                case (CulturaIngles):
+                    titulo = "Row";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Linha";
+                    break;
+            }
+            return titulo;
+        }
+
+        public string Columna(string lenguaje)
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (lenguaje)
+            {
+                case (CulturaEspañol):
+                    titulo = "Columna";
+                    break;
+                case (CulturaIngles):
+                    titulo = "Column";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Coluna";
+                    break;
+            }
+            return titulo;
+        }
+
+        public string Recuadro(string lenguaje)
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (lenguaje)
+            {
+                case (CulturaEspañol):
+                    titulo = "Recuadro";
+                    break;
+                case (CulturaIngles):
+                    titulo = "Box";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Quadrante";
+                    break;
+            }
+            return titulo;
+        }
+
         //Mensajes Index 
         public static string EmailNoValido()
         {

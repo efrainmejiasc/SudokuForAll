@@ -1,4 +1,5 @@
 ﻿using SudokuDeTodos.Engine;
+using SudokuDeTodos.Models.Game;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,13 +15,12 @@ namespace SudokuDeTodos.Vista
     {
         private EngineGameChild Game = new EngineGameChild();
         private EngineDataGame ValorGame = EngineDataGame.Instance();
+        private LetrasJuegoFEG LetrasJuegoFEG = new LetrasJuegoFEG();
+        private LetrasJuegoACB LetrasJuegoACB = new LetrasJuegoACB();
         private TextBox[,] txtSudoku = new TextBox[9, 9]; //ARRAY CONTENTIVO DE LOS TEXTBOX DEL GRAFICO DEL SUDOKU
-        private string[,] valorIngresado = new string[9, 9];//ARRAY CONTENTIVO DE LOS VALORES INGRESADOS 
-        private string[,] valorCandidato = new string[9, 9];//ARRAY CONTENTIVO DE LOS VALORES CANDIDATOS 
-        private string[,] valorEliminado = new string[9, 9];//ARRAY CONTENTIVO DE LOS VALORES ELIMINADOS
-        private string[,] valorCandidatoSinEliminados = new string[9, 9];
-        private string[,] valorInicio = new string[9, 9];
-        private string[,] valorSolucion = new string[9, 9];
+        private bool contadorActivado = false;
+        private string[] solo = new string[27];
+        private string[] oculto = new string[27];
 
 
 
@@ -47,21 +47,103 @@ namespace SudokuDeTodos.Vista
             }
             else
             {
-                valorIngresado = Game.IgualarIngresadoInicio(ValorGame.valorIngresado, ValorGame.valorInicio);
-                valorCandidato = Game.ElejiblesInstantaneos(ValorGame.valorIngresado, ValorGame.valorCandidato);
-                valorCandidatoSinEliminados = Game.CandidatosSinEliminados(ValorGame.valorIngresado, ValorGame.valorCandidato, ValorGame.valorEliminado);
+                Game.IgualarIngresadoInicio(ValorGame.valorIngresado, ValorGame.valorInicio);
+                Game.ElejiblesInstantaneos(ValorGame.valorIngresado, ValorGame.valorCandidato);
+                Game.CandidatosSinEliminados(ValorGame.valorIngresado, ValorGame.valorCandidato, ValorGame.valorEliminado);
                 txtSudoku = Game.SetearTextBoxJuego(txtSudoku, ValorGame.valorIngresado, ValorGame.valorInicio);
             }
-            ValorGame.contadorIngresado = Game.ContadorIngresado(ValorGame.valorIngresado);
-
-            ValorGame.contadorCandidatos = Game.ContadorCandidatos(ValorGame.valorIngresado, ValorGame.valorCandidatoSinEliminados);
+            ContadorIngresado();
         }
 
         private void SetearJuego()
         {
-            valorCandidato = Game.ElejiblesInstantaneos(ValorGame.valorIngresado, ValorGame.valorCandidato);
-            valorCandidatoSinEliminados = Game.CandidatosSinEliminados(ValorGame.valorIngresado, ValorGame.valorCandidato, ValorGame.valorEliminado);
+            Game.ElejiblesInstantaneos(ValorGame.valorIngresado, ValorGame.valorCandidato);
+            Game.CandidatosSinEliminados(ValorGame.valorIngresado, ValorGame.valorCandidato, ValorGame.valorEliminado);
             txtSudoku = Game.SetearTextBoxJuego(txtSudoku, ValorGame.valorIngresado, ValorGame.valorInicio);
+        }
+
+        private void ContadorIngresado()
+        {
+            ValorGame.contadorIngresado = Game.ContadorIngresado(ValorGame.valorIngresado);
+            SetSoloOculto();
+            SetLetrasJuegoACB();
+            SetLetrasJuegoFEG();
+            if (!contadorActivado)
+            {
+                btnA.Visible = false;
+                btnB.Visible = false;
+            }
+            else
+            {
+                btnA.Visible = true;
+                btnB.Visible = true;
+            }
+        }
+
+        private void SetSoloOculto()
+        {
+            solo = Game.CandidatoSolo(ValorGame.valorIngresado, ValorGame.valorCandidatoSinEliminados);
+            oculto = new string[27];
+            System.Windows.Forms.ListBox valor = new System.Windows.Forms.ListBox ();
+            for (int f = 0; f <= 8; f++)
+            {
+                valor = Game.MapeoFilaCandidatoOcultoFila(ValorGame.valorIngresado, ValorGame.valorCandidatoSinEliminados, f);
+                oculto = Game.SetearOcultoFila(oculto, valor, f, ValorGame.valorCandidatoSinEliminados);
+                valor.Items.Clear();
+                valor = Game.MapeoFilaCandidatoOcultoColumna(ValorGame.valorIngresado, ValorGame.valorCandidatoSinEliminados, f);
+                oculto = Game.SetearOcultoColumna(oculto, valor, f, ValorGame.valorCandidatoSinEliminados);
+                valor.Items.Clear();
+                valor = Game.MapeoFilaCandidatoOcultoRecuadro(ValorGame.valorIngresado, ValorGame.valorCandidatoSinEliminados, f);
+                oculto = Game.SetearOcultoRecuadro(oculto, valor, f, ValorGame.valorCandidatoSinEliminados);
+                valor.Items.Clear();
+            }
+        }
+
+        private void SetLetrasJuegoACB()
+        {
+            LetrasJuegoACB = Game.SetLetrasJuegoACB(solo, oculto);
+            btnA.Text = LetrasJuegoACB.A.ToString();
+            btnB.Text = LetrasJuegoACB.B.ToString();
+            if (LetrasJuegoACB.A + LetrasJuegoACB.B > 0)
+            {
+                //btnBB.Visible = EngineData.Falso;
+                //btnBB.Visible = true;
+            }
+            else
+            {
+               // btnBB.Visible = EngineData.Verdadero;
+            }
+            if (!LetrasJuegoACB.C)
+            {
+                //btnC.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.Look));
+                //btnBB.Visible = EngineData.Verdadero;
+            }
+            else
+            {
+                //btnC.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.UnLook));
+                //btnBB.Visible = EngineData.Falso;
+                //btnBB.Visible = EngineData.Verdadero;
+            }
+        }
+
+
+        private void SetLetrasJuegoFEG()
+        {
+            LetrasJuegoFEG = Game.SetLetrasJuegoFEG(ValorGame.contadorIngresado, ValorGame.valorIngresado, ValorGame.valorCandidatoSinEliminados);
+            if (LetrasJuegoACB.A + LetrasJuegoACB.B == 0 && Game.Visibilidad70(LetrasJuegoFEG.F))
+            {
+                btnB.Visible = true;
+            }
+            else
+            {
+                btnB.Visible = false;
+                btnB.Visible = true;
+
+            }
+            btnC.Visible = Game.Visibilidad70(LetrasJuegoFEG.F);
+            btnF.Text = LetrasJuegoFEG.F.ToString();
+            btnE.Text = LetrasJuegoFEG.E.ToString();
+            btnG.Text = LetrasJuegoFEG.G.ToString();
         }
 
         private TextBox[,] AsociarTxtMatriz(TextBox[,] txtSudoku)

@@ -32,9 +32,9 @@
                      <input id="image" type="button" class="btn btn-success arrowLeft" onClick="Navegacion('GameAOne.aspx');"/>
                 </div>
                 <div id="area" align="center" class="divArea"> 
-                      <div style="display:inline;"><input type="text" class="txtArea"  id="a" readonly/> <input type="text" class="txtArea" id="c" readonly /> <input type="text" class="txtArea" id="b" readonly /> </div> <br />
-                      <div style="display:inline;"><input type="text" class="txtArea"  id="f" readonly/> <input type="text" class="txtArea" id="e" readonly /> <input type="text" class="txtArea" id="g" readonly/> </div>
-                </div>
+                   <div style="display:inline;" ><asp:TextBox ID="btnA" class="txtArea"  runat="server"  readonly ="true" style="text-align: center"></asp:TextBox> <asp:TextBox ID="btnC" class="txtArea" runat="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnB" class="txtArea" runat="server"  readonly="true" style="text-align: center"></asp:TextBox> </div><br />
+                    <div style="display:inline;"> <asp:TextBox  ID="btnF" class="txtArea"  runat ="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnE" class="txtArea" runat="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnG" class="txtArea" runat="server"  readonly="true" style="text-align: center"></asp:TextBox> </div>
+             </div>
                   <input type="text" id="txtNota" class="txtNota"/>
 
                <div style="float:right;margin-right:19%" class="btn bg-light">

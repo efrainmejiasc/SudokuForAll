@@ -33,7 +33,7 @@
                 </div>
                 <div id="area" align="center" class="divArea"> 
                    <div style="display:inline;" ><asp:TextBox ID="btnA" class="txtArea"  runat="server"  readonly ="true" style="text-align: center"></asp:TextBox> <asp:TextBox ID="btnC" class="txtArea" runat="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnB" class="txtArea" runat="server"  readonly="true" style="text-align: center"></asp:TextBox> </div><br />
-                    <div style="display:inline;"> <asp:TextBox  ID="btnF" class="txtArea"  runat ="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnE" class="txtArea" runat="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnG" class="txtArea" runat="server"  readonly="true" style="text-align: center"></asp:TextBox> </div>
+                   <div style="display:inline;"> <asp:TextBox  ID="btnF" class="txtArea"  runat ="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnE" class="txtArea" runat="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnG" class="txtArea" runat="server"  readonly="true" style="text-align: center"></asp:TextBox> </div>
              </div>
                   <input type="text" id="txtNota" class="txtNota"/>
 

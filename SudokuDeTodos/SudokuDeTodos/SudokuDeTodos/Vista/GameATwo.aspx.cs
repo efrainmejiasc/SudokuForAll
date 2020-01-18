@@ -37,10 +37,10 @@ namespace SudokuDeTodos.Vista
 
         private void SetearJuego()
         {
-            valorCandidato = Game.ElejiblesInstantaneos(ValorGame.valorIngresado, ValorGame.valorCandidato);
-            valorCandidatoSinEliminados = Game.CandidatosSinEliminados(ValorGame.valorIngresado, ValorGame.valorCandidato, ValorGame.valorEliminado);
-            txtSudoku = Game.SetearTextBoxJuego(txtSudoku, ValorGame.valorIngresado, ValorGame.valorInicio);
-            txtSudoku2 = Game.SetearTextBoxNumeroEliminados(txtSudoku2, ValorGame.valorIngresado, ValorGame.valorEliminado);
+            valorCandidato = Game.ElejiblesInstantaneos(valorIngresado, valorCandidato);
+            valorCandidatoSinEliminados = Game.CandidatosSinEliminados(valorIngresado, valorCandidato, valorEliminado);
+            txtSudoku = Game.SetearTextBoxJuego(txtSudoku, valorIngresado, valorInicio);
+            txtSudoku2 = Game.SetearTextBoxNumeroEliminados(txtSudoku2, valorIngresado, valorEliminado);
         }
 
 

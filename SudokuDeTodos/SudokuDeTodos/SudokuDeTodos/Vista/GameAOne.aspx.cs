@@ -18,6 +18,12 @@ namespace SudokuDeTodos.Vista
         private LetrasJuegoFEG LetrasJuegoFEG = new LetrasJuegoFEG();
         private LetrasJuegoACB LetrasJuegoACB = new LetrasJuegoACB();
         private TextBox[,] txtSudoku = new TextBox[9, 9]; //ARRAY CONTENTIVO DE LOS TEXTBOX DEL GRAFICO DEL SUDOKU
+        private string[,] valorIngresado = new string[9, 9];//ARRAY CONTENTIVO DE LOS VALORES INGRESADOS 
+        private string[,] valorCandidato = new string[9, 9];//ARRAY CONTENTIVO DE LOS VALORES CANDIDATOS 
+        private string[,] valorEliminado = new string[9, 9];//ARRAY CONTENTIVO DE LOS VALORES ELIMINADOS
+        private string[,] valorCandidatoSinEliminados = new string[9, 9];
+        private string[,] valorInicio = new string[9, 9];
+        private string[,] valorSolucion = new string[9, 9];
         private bool contadorActivado = false;
         private string[] solo = new string[27];
         private string[] oculto = new string[27];
@@ -40,31 +46,40 @@ namespace SudokuDeTodos.Vista
 
         public void AbrirJuego()
         {
-            bool resultado = Game.AbrirJuego(ValorGame.PathArchivo);
+            ArrayList arrText = Game.AbrirValoresArchivo(ValorGame.PathArchivo);
+            valorIngresado = Game.SetValorIngresado(arrText, valorIngresado);
+            valorEliminado = Game.SetValorEliminado(arrText, valorEliminado);
+            valorInicio = Game.SetValorInicio(arrText, valorInicio);
+            valorSolucion = Game.SetValorSolucion(arrText, valorSolucion);
+            bool resultado = Game.ExisteValorIngresado(valorIngresado);
             if (resultado)
             {
+                ValorGame.valorInicio = valorInicio;
+                ValorGame.valorIngresado = valorIngresado;
+                ValorGame.valorEliminado = valorEliminado;
+                ValorGame.valorSolucion = valorSolucion;
                 SetearJuego(); //existe valor ingresado
             }
             else
             {
-                Game.IgualarIngresadoInicio(ValorGame.valorIngresado, ValorGame.valorInicio);
-                Game.ElejiblesInstantaneos(ValorGame.valorIngresado, ValorGame.valorCandidato);
-                Game.CandidatosSinEliminados(ValorGame.valorIngresado, ValorGame.valorCandidato, ValorGame.valorEliminado);
-                txtSudoku = Game.SetearTextBoxJuego(txtSudoku, ValorGame.valorIngresado, ValorGame.valorInicio);
+                valorIngresado = Game.IgualarIngresadoInicio(valorIngresado, valorInicio);
+                valorCandidato = Game.ElejiblesInstantaneos(valorIngresado, valorCandidato);
+                valorCandidatoSinEliminados = Game.CandidatosSinEliminados(valorIngresado, valorCandidato, valorEliminado);
+                txtSudoku = Game.SetearTextBoxJuego(txtSudoku, valorIngresado, valorInicio);
             }
             ContadorIngresado();
         }
 
         private void SetearJuego()
         {
-            Game.ElejiblesInstantaneos(ValorGame.valorIngresado, ValorGame.valorCandidato);
-            Game.CandidatosSinEliminados(ValorGame.valorIngresado, ValorGame.valorCandidato, ValorGame.valorEliminado);
-            txtSudoku = Game.SetearTextBoxJuego(txtSudoku, ValorGame.valorIngresado, ValorGame.valorInicio);
+            valorCandidato = Game.ElejiblesInstantaneos(valorIngresado, valorCandidato);
+            valorCandidatoSinEliminados = Game.CandidatosSinEliminados(valorIngresado, valorCandidato, valorEliminado);
+            txtSudoku = Game.SetearTextBoxJuego(txtSudoku, valorIngresado,valorInicio);
         }
 
         private void ContadorIngresado()
         {
-            ValorGame.contadorIngresado = Game.ContadorIngresado(ValorGame.valorIngresado);
+            ValorGame.contadorIngresado = Game.ContadorIngresado(valorIngresado);
             SetSoloOculto();
             SetLetrasJuegoACB();
             SetLetrasJuegoFEG();
@@ -82,19 +97,19 @@ namespace SudokuDeTodos.Vista
 
         private void SetSoloOculto()
         {
-            solo = Game.CandidatoSolo(ValorGame.valorIngresado, ValorGame.valorCandidatoSinEliminados);
+            solo = Game.CandidatoSolo(valorIngresado, valorCandidatoSinEliminados);
             oculto = new string[27];
             System.Windows.Forms.ListBox valor = new System.Windows.Forms.ListBox ();
             for (int f = 0; f <= 8; f++)
             {
-                valor = Game.MapeoFilaCandidatoOcultoFila(ValorGame.valorIngresado, ValorGame.valorCandidatoSinEliminados, f);
-                oculto = Game.SetearOcultoFila(oculto, valor, f, ValorGame.valorCandidatoSinEliminados);
+                valor = Game.MapeoFilaCandidatoOcultoFila(valorIngresado, valorCandidatoSinEliminados, f);
+                oculto = Game.SetearOcultoFila(oculto, valor, f, valorCandidatoSinEliminados);
                 valor.Items.Clear();
-                valor = Game.MapeoFilaCandidatoOcultoColumna(ValorGame.valorIngresado, ValorGame.valorCandidatoSinEliminados, f);
-                oculto = Game.SetearOcultoColumna(oculto, valor, f, ValorGame.valorCandidatoSinEliminados);
+                valor = Game.MapeoFilaCandidatoOcultoColumna(valorIngresado, valorCandidatoSinEliminados, f);
+                oculto = Game.SetearOcultoColumna(oculto, valor, f, valorCandidatoSinEliminados);
                 valor.Items.Clear();
-                valor = Game.MapeoFilaCandidatoOcultoRecuadro(ValorGame.valorIngresado, ValorGame.valorCandidatoSinEliminados, f);
-                oculto = Game.SetearOcultoRecuadro(oculto, valor, f, ValorGame.valorCandidatoSinEliminados);
+                valor = Game.MapeoFilaCandidatoOcultoRecuadro(valorIngresado, valorCandidatoSinEliminados, f);
+                oculto = Game.SetearOcultoRecuadro(oculto, valor, f, valorCandidatoSinEliminados);
                 valor.Items.Clear();
             }
         }
@@ -129,7 +144,7 @@ namespace SudokuDeTodos.Vista
 
         private void SetLetrasJuegoFEG()
         {
-            LetrasJuegoFEG = Game.SetLetrasJuegoFEG(ValorGame.contadorIngresado, ValorGame.valorIngresado, ValorGame.valorCandidatoSinEliminados);
+            LetrasJuegoFEG = Game.SetLetrasJuegoFEG(ValorGame.contadorIngresado, valorIngresado, valorCandidatoSinEliminados);
             if (LetrasJuegoACB.A + LetrasJuegoACB.B == 0 && Game.Visibilidad70(LetrasJuegoFEG.F))
             {
                 btnB.Visible = true;

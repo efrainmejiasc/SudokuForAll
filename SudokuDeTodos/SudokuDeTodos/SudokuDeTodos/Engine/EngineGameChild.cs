@@ -15,21 +15,7 @@ namespace SudokuDeTodos.Engine
         private string[,] valorInicio = new string[9, 9];
         private string[,] valorSolucion = new string[9, 9];
 
-        public bool AbrirJuego(string pathArchivo)
-        {
-            EngineDataGame ValorGame = EngineDataGame.Instance();
-            bool resultado = false;
-            ArrayList arrText = AbrirValoresArchivo(pathArchivo);
-            ValorGame.valorIngresado = SetValorIngresado(arrText, valorIngresado);
-            ValorGame.valorEliminado = SetValorEliminado(arrText, valorEliminado);
-            ValorGame.valorInicio = SetValorInicio(arrText, valorInicio);
-            ValorGame.valorSolucion = SetValorSolucion(arrText, valorSolucion);
-            ValorGame.valorCandidato = ElejiblesInstantaneos(valorSolucion, valorCandidato);
-            ValorGame.valorCandidatoSinEliminados = CandidatosSinEliminados(ValorGame.valorSolucion, ValorGame.valorCandidato, ValorGame.valorEliminado);
-            resultado =  ExisteValorIngresado(valorIngresado);
-            return resultado;
-        }
-
+ 
     
     }
 }

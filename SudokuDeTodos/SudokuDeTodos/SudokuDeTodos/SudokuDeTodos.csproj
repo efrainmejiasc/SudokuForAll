@@ -157,6 +157,7 @@
     <Compile Include="Models\DbSistema\ClientePago.cs" />
     <Compile Include="Models\DbSistema\ResetPassword.cs" />
     <Compile Include="Models\DbSistema\SucesoLog.cs" />
+    <Compile Include="Models\Game\LetrasJuego.cs" />
     <Compile Include="Models\Game\LetrasJuegoACB.cs" />
     <Compile Include="Models\Game\LetrasJuegoFEG.cs" />
     <Compile Include="Models\Sistema\EstructuraMail.cs" />
@@ -207,6 +208,8 @@
     <Content Include="Content\imagen\initSudoku.mp4" />
     <Content Include="Content\imagen\Izq.JPG" />
     <Content Include="Content\imagen\logo.png" />
+    <Content Include="Content\imagen\Look.JPG" />
+    <Content Include="Content\imagen\UnLook.JPG" />
     <Content Include="Content\js\game.js" />
     <Content Include="Content\js\global.js" />
     <Content Include="Content\js\message.js" />

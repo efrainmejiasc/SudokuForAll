@@ -27,12 +27,12 @@
            <div class="container-fluid">
 
                <div class="btn-group btnGroupA1" role="group" aria-label="Basic example">
-                     <input id="navb" type="button" value="B" class="btn btn-success" onClick="Navegacion('GameATwo.aspx');"/>
-                     <input id="navc" type="button" value="C" class="btn btn-success" onClick="Navegacion('GameATwo.aspx');"/>
+                     <asp:Button ID="btnBB" runat="server" Text="B" cssClass="btn btn-success" click="Navegacion('GameATwo.aspx');"/>
+                     <asp:Button ID="btnCC" runat="server" Text="C" cssClass="btn btn-success" click="Navegacion('GameATwo.aspx');"/>
                      <input id="image" type="button" class="btn btn-success arrowRight" onClick="Navegacion('GameATwo.aspx');"/>
                 </div>
                 <div id="area" align="center" class="divArea"> 
-                    <div style="display:inline;" ><asp:TextBox ID="btnA" class="txtArea"  runat="server"  readonly ="true" style="text-align: center"></asp:TextBox> <asp:TextBox ID="btnC" class="txtArea" runat="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnB" class="txtArea" runat="server"  readonly="true" style="text-align: center"></asp:TextBox> </div><br />
+                    <div style="display:inline;" ><asp:TextBox ID="btnA" class="txtArea"  runat="server"  readonly ="true" style="text-align: center"> </asp:TextBox> <asp:ImageButton ID="btnC" runat="server"   class="txtArea"/> <asp:TextBox ID="btnB" class="txtArea" runat="server"  readonly="true" style="text-align: center"></asp:TextBox> </div><br />
                     <div style="display:inline;"> <asp:TextBox  ID="btnF" class="txtArea"  runat ="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnE" class="txtArea" runat="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnG" class="txtArea" runat="server"  readonly="true" style="text-align: center"></asp:TextBox> </div>
                 </div>
                   <input type="text" id="txtNota" class="txtNota"/>
@@ -170,11 +170,26 @@
                     TextNumero(id, value);
 
                 GuardarJuego(id, document.getElementById(id).value);
+                GetLetrasJuego();
             }
             else
             {
                 return false;
             }
+        }
+
+
+
+        function GetLetrasJuego() {
+            $.ajax({
+                type: "POST",
+                url: "/GameAOne.aspx/GetLetrasJuego",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+
+                }
+            });
         }
     </script>
 

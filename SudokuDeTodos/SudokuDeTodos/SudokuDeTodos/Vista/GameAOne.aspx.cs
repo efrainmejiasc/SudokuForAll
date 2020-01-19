@@ -1,4 +1,5 @@
-﻿using SudokuDeTodos.Engine;
+﻿using Newtonsoft.Json;
+using SudokuDeTodos.Engine;
 using SudokuDeTodos.Models.Game;
 using System;
 using System.Collections;
@@ -6,6 +7,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -114,35 +117,36 @@ namespace SudokuDeTodos.Vista
             }
         }
 
-        private void SetLetrasJuegoACB()
+        private LetrasJuegoACB SetLetrasJuegoACB()
         {
             LetrasJuegoACB = Game.SetLetrasJuegoACB(solo, oculto);
             btnA.Text = LetrasJuegoACB.A.ToString();
             btnB.Text = LetrasJuegoACB.B.ToString();
             if (LetrasJuegoACB.A + LetrasJuegoACB.B > 0)
             {
-                //btnBB.Visible = EngineData.Falso;
-                //btnBB.Visible = true;
+                btnBB.Visible = EngineDataGame.Falso;
+                btnBB.Visible = true;
             }
             else
             {
-               // btnBB.Visible = EngineData.Verdadero;
+                btnBB.Visible = EngineDataGame.Verdadero;
             }
             if (!LetrasJuegoACB.C)
             {
-                //btnC.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.Look));
-                //btnBB.Visible = EngineData.Verdadero;
+                btnC.ImageUrl = "~/Content/imagen/Look.JPG";
+                btnBB.Visible = EngineDataGame.Verdadero;
             }
             else
             {
-                //btnC.BackgroundImage = ((System.Drawing.Image)(Properties.Resources.UnLook));
-                //btnBB.Visible = EngineData.Falso;
-                //btnBB.Visible = EngineData.Verdadero;
+                btnC.ImageUrl = "~/Content/imagen/UnLook.JPG";
+                btnBB.Visible = EngineDataGame.Falso;
+                btnBB.Visible = EngineDataGame.Verdadero;
             }
+            return LetrasJuegoACB;
         }
 
 
-        private void SetLetrasJuegoFEG()
+        private LetrasJuegoFEG SetLetrasJuegoFEG()
         {
             LetrasJuegoFEG = Game.SetLetrasJuegoFEG(ValorGame.contadorIngresado, valorIngresado, valorCandidatoSinEliminados);
             if (LetrasJuegoACB.A + LetrasJuegoACB.B == 0 && Game.Visibilidad70(LetrasJuegoFEG.F))
@@ -155,10 +159,22 @@ namespace SudokuDeTodos.Vista
                 btnB.Visible = true;
 
             }
-            btnC.Visible = Game.Visibilidad70(LetrasJuegoFEG.F);
+            //btnC.Visible = Game.Visibilidad70(LetrasJuegoFEG.F);
             btnF.Text = LetrasJuegoFEG.F.ToString();
             btnE.Text = LetrasJuegoFEG.E.ToString();
             btnG.Text = LetrasJuegoFEG.G.ToString();
+            return LetrasJuegoFEG;
+        }
+
+        [WebMethod]
+        [HttpPost]
+        public string GetLetrasJuego()
+        {
+            LetrasJuegoFEG model = new LetrasJuegoFEG();
+
+            string resultado = JsonConvert.SerializeObject(model);
+
+            return resultado;
         }
 
         private TextBox[,] AsociarTxtMatriz(TextBox[,] txtSudoku)

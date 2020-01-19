@@ -24,6 +24,24 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// Control btnBB.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBB;
+
+        /// <summary>
+        /// Control btnCC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCC;
+
+        /// <summary>
         /// Control btnA.
         /// </summary>
         /// <remarks>
@@ -39,7 +57,7 @@ namespace SudokuDeTodos.Vista
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox btnC;
+        protected global::System.Web.UI.WebControls.ImageButton btnC;
 
         /// <summary>
         /// Control btnB.

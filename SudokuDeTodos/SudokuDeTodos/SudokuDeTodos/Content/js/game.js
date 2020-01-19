@@ -120,15 +120,3 @@ function ColorWhiteTxt() { // blanque los textBox
     }
 }*/
 
-
-function GetLetrasJuego() {
-    $.ajax({
-        type: "GET",
-        url: "/GameAOne.aspx/GetLetrasJuego",
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (data) {
-
-        }
-    });
-}

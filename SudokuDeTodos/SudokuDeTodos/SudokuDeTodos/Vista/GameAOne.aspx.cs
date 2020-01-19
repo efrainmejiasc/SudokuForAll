@@ -69,6 +69,11 @@ namespace SudokuDeTodos.Vista
                 valorCandidato = Game.ElejiblesInstantaneos(valorIngresado, valorCandidato);
                 valorCandidatoSinEliminados = Game.CandidatosSinEliminados(valorIngresado, valorCandidato, valorEliminado);
                 txtSudoku = Game.SetearTextBoxJuego(txtSudoku, valorIngresado, valorInicio);
+
+                ValorGame.valorInicio = valorInicio;
+                ValorGame.valorIngresado = valorIngresado;
+                ValorGame.valorEliminado = valorEliminado;
+                ValorGame.valorSolucion = valorSolucion;
             }
             ContadorIngresado();
         }
@@ -106,12 +111,12 @@ namespace SudokuDeTodos.Vista
             for (int f = 0; f <= 8; f++)
             {
                 valor = Game.MapeoFilaCandidatoOcultoFila(valorIngresado, valorCandidatoSinEliminados, f);
-                oculto = Game.SetearOcultoFila(oculto, valor, f, valorCandidatoSinEliminados);
+                oculto = Game.SetearOcultoFila(oculto, valor, f, ValorGame.valorCandidatoSinEliminados);
                 valor.Items.Clear();
                 valor = Game.MapeoFilaCandidatoOcultoColumna(valorIngresado, valorCandidatoSinEliminados, f);
-                oculto = Game.SetearOcultoColumna(oculto, valor, f, valorCandidatoSinEliminados);
+                oculto = Game.SetearOcultoColumna(oculto, valor, f, ValorGame.valorCandidatoSinEliminados);
                 valor.Items.Clear();
-                valor = Game.MapeoFilaCandidatoOcultoRecuadro(valorIngresado, valorCandidatoSinEliminados, f);
+                valor = Game.MapeoFilaCandidatoOcultoRecuadro(valorIngresado,valorCandidatoSinEliminados, f);
                 oculto = Game.SetearOcultoRecuadro(oculto, valor, f, valorCandidatoSinEliminados);
                 valor.Items.Clear();
             }
@@ -166,16 +171,6 @@ namespace SudokuDeTodos.Vista
             return LetrasJuegoFEG;
         }
 
-        [WebMethod]
-        [HttpPost]
-        public string GetLetrasJuego()
-        {
-            LetrasJuegoFEG model = new LetrasJuegoFEG();
-
-            string resultado = JsonConvert.SerializeObject(model);
-
-            return resultado;
-        }
 
         private TextBox[,] AsociarTxtMatriz(TextBox[,] txtSudoku)
         {

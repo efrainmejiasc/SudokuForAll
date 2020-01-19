@@ -11,6 +11,7 @@
     <script src="../Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
     <script src="../Content/js/global.js" type="text/javascript"></script>
      <script src="../Content/js/game.js" type="text/javascript"></script>
+
   <title>Numeros</title>
 </head>
     <body>
@@ -183,11 +184,11 @@
         function GetLetrasJuego() {
             $.ajax({
                 type: "POST",
-                url: "/GameAOne.aspx/GetLetrasJuego",
+                url: "GameAOne.aspx/GetLetrasJuego",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (data) {
-
+                success: function () {
+                    alert('Hola')
                 }
             });
         }

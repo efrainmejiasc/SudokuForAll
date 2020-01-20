@@ -179,19 +179,6 @@
             }
         }
 
-
-
-        function GetLetrasJuego() {
-            $.ajax({
-                type: "POST",
-                url: "GameAOne.aspx/GetLetrasJuego",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function () {
-                    alert('Hola')
-                }
-            });
-        }
     </script>
 
 

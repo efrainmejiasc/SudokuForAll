@@ -111,12 +111,16 @@ function ColorWhiteTxt() { // blanque los textBox
     }
 }
 
-/*function TextLetra(id) {
-    if (document.getElementById(id).style.color === 'black' || document.getElementById(id).style.color === 'blue') {
-        document.getElementById(id).value;
-    }
-    else {
-        document.getElementById(id).value = '';
-    }
-}*/
+
+function GetLetrasJuego() {
+    $.ajax({
+        type: "POST",
+        url: "GameAOne.aspx/GetLetrasJuego",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function () {
+            alert('Hola')
+        }
+    });
+}
 

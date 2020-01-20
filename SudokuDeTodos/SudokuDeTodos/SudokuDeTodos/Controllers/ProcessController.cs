@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using SudokuDeTodos.Engine;
 using SudokuDeTodos.Models.DbSistema;
+using SudokuDeTodos.Models.Game;
 
 namespace SudokuDeTodos.Controllers
 {
@@ -15,13 +16,15 @@ namespace SudokuDeTodos.Controllers
         private readonly IEngineDb Metodo;
         private readonly IEngineProyect Funcion;
         private readonly IEngineNotificacion Notificacion;
+        private readonly IEngineGameChild FuncionGame;
 
-        public ProcessController(IEngineGameProcess _Proceso, IEngineDb _Metodo, IEngineProyect _Funcion, IEngineNotificacion _Notificacion)
+        public ProcessController(IEngineGameProcess _Proceso, IEngineDb _Metodo, IEngineProyect _Funcion, IEngineNotificacion _Notificacion, IEngineGameChild _FuncionGame)
         {
             this.Proceso = _Proceso;
             this.Metodo = _Metodo;
             this.Funcion = _Funcion;
             this.Notificacion = _Notificacion;
+            this.FuncionGame = _FuncionGame;
         }
 
         [HttpPost]
@@ -67,6 +70,15 @@ namespace SudokuDeTodos.Controllers
 
             return Json(respuesta);
         }
+
+        [HttpPost]
+        public JsonResult GetGetLetrasJuego(string nameVar)
+        {
+            LetrasJuego I = new LetrasJuego();
+
+            return Json(I);
+        }
+
 
         [HttpPost]
         public JsonResult ReturnVarSession(string nameVar)

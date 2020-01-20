@@ -7,7 +7,7 @@ using System.Web;
 
 namespace SudokuDeTodos.Engine
 {
-    public class EngineGameChild : EngineGame
+    public class EngineGameChild : EngineGame, IEngineGameChild
     {
         private string[,] valorIngresado = new string[9, 9];//ARRAY CONTENTIVO DE LOS VALORES INGRESADOS 
         private string[,] valorCandidato = new string[9, 9];//ARRAY CONTENTIVO DE LOS VALORES CANDIDATOS 

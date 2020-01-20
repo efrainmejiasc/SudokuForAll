@@ -150,6 +150,7 @@
     <Compile Include="Engine\EngineNotificacion.cs" />
     <Compile Include="Engine\EngineProyect.cs" />
     <Compile Include="Engine\IEngineDb.cs" />
+    <Compile Include="Engine\IEngineGameChild.cs" />
     <Compile Include="Engine\IEngineGameProcess.cs" />
     <Compile Include="Engine\IEngineNotificacion.cs" />
     <Compile Include="Engine\IEngineProyect.cs" />

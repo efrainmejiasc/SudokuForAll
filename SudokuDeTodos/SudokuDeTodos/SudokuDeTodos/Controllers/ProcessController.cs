@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using SudokuDeTodos.Engine;
 using SudokuDeTodos.Models.DbSistema;
 using SudokuDeTodos.Models.Game;
+using System.Collections;
 
 namespace SudokuDeTodos.Controllers
 {
@@ -50,7 +51,10 @@ namespace SudokuDeTodos.Controllers
                 this.Proceso.GuardarValoresSolucion(pathArchivo, ValorGame.valorSolucion);
                 resultado = true;
             }
-            catch { }
+            catch (Exception ex)
+            {
+                string n = ex.ToString();
+            }
           
             Respuesta response = new Respuesta();
             response.Status = resultado;
@@ -72,10 +76,16 @@ namespace SudokuDeTodos.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetGetLetrasJuego(string nameVar)
+        public JsonResult GetLetrasJuego()
         {
             LetrasJuego I = new LetrasJuego();
+            string pathArchivo = string.Empty;
+            if (System.Web.HttpContext.Current.Session["PathArchivo"] == null)
+                return Json(I);
+            else
+                pathArchivo = System.Web.HttpContext.Current.Session["PathArchivo"].ToString();
 
+            ArrayList arrText = FuncionGame.ReadFile();
             return Json(I);
         }
 

@@ -12,7 +12,7 @@ function GuardarJuego(id, valor) {
         dataType: "json",
         data: { valor: valor, i: i, j: j },
         success: function (data) {
-
+            console.log('Guardado');
         }
     });
 }
@@ -115,7 +115,7 @@ function ColorWhiteTxt() { // blanque los textBox
 function GetLetrasJuego() {
     $.ajax({
         type: "POST",
-        url: "GameAOne.aspx/GetLetrasJuego",
+        url: "/Process/GetLetrasJuego",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function () {

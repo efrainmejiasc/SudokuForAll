@@ -991,6 +991,7 @@ namespace SudokuDeTodos.Engine
                     if (sLine != null) arrText.Add(sLine);
                 }
                 objReader.Close();
+                objReader.Dispose();
             }
             catch  { }
 

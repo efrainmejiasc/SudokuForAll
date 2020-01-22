@@ -41,6 +41,7 @@ namespace SudokuDeTodos.Vista
             else if (!IsPostBack)
             {
                 ValorGame.PathArchivo = Server.MapPath("~/GameFile/test.jll");
+                System.Web.HttpContext.Current.Session["PathArchivo"] = ValorGame.PathArchivo;
                 txtSudoku = AsociarTxtMatriz(txtSudoku);
                 txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);
                 AbrirJuego();
@@ -111,10 +112,10 @@ namespace SudokuDeTodos.Vista
             for (int f = 0; f <= 8; f++)
             {
                 valor = Game.MapeoFilaCandidatoOcultoFila(valorIngresado, valorCandidatoSinEliminados, f);
-                oculto = Game.SetearOcultoFila(oculto, valor, f, ValorGame.valorCandidatoSinEliminados);
+                oculto = Game.SetearOcultoFila(oculto, valor, f, valorCandidatoSinEliminados);
                 valor.Items.Clear();
                 valor = Game.MapeoFilaCandidatoOcultoColumna(valorIngresado, valorCandidatoSinEliminados, f);
-                oculto = Game.SetearOcultoColumna(oculto, valor, f, ValorGame.valorCandidatoSinEliminados);
+                oculto = Game.SetearOcultoColumna(oculto, valor, f,valorCandidatoSinEliminados);
                 valor.Items.Clear();
                 valor = Game.MapeoFilaCandidatoOcultoRecuadro(valorIngresado,valorCandidatoSinEliminados, f);
                 oculto = Game.SetearOcultoRecuadro(oculto, valor, f, valorCandidatoSinEliminados);

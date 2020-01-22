@@ -15,7 +15,7 @@ namespace SudokuDeTodos.Engine
                 string[] partes = pathArchivo.Split('\\');
                 string nombreArchivo = partes[partes.Length - 1];
                 string vLinea = string.Empty;
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(pathArchivo))
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(pathArchivo,true))
                 {
                     string vIngresado = string.Empty;
                     for (int f = 0; f <= 8; f++)

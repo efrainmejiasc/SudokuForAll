@@ -171,7 +171,7 @@
                     TextNumero(id, value);
 
                 GuardarJuego(id, document.getElementById(id).value);
-                GetLetrasJuego();
+               // GetLetrasJuego();
             }
             else
             {

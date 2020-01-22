@@ -66,6 +66,7 @@ namespace SudokuDeTodos.Vista
             }
             else
             {
+                ValorGame.valorInicio = valorInicio;
                 valorIngresado = Game.IgualarIngresadoInicio(valorIngresado, valorInicio);
                 valorCandidato = Game.ElejiblesInstantaneos(valorIngresado, valorCandidato);
                 valorCandidatoSinEliminados = Game.CandidatosSinEliminados(valorIngresado, valorCandidato, valorEliminado);

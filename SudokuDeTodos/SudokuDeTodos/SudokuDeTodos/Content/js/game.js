@@ -1,22 +1,4 @@
 ﻿
-
-function GuardarJuego(id, valor) {
-    if (valor === '')
-        valor = 0;
-
-    var i = id.substring(3, 4);
-    var j = id.substring(4, 5);
-    $.ajax({
-        type: "POST",
-        url: "/Process/GuardarJuego",
-        dataType: "json",
-        data: { valor: valor, i: i, j: j },
-        success: function (data) {
-            console.log('Guardado');
-        }
-    });
-}
-
 function TextNumero(id,value) {
     if (document.getElementById(id).style.color === 'black') {
         document.getElementById(id).value;
@@ -112,14 +94,35 @@ function ColorWhiteTxt() { // blanque los textBox
 }
 
 
-function GetLetrasJuego() {
+function GuardarJuego(id, valor,contadorActivado) {
+    if (valor === '')
+        valor = 0;
+
+    var i = id.substring(3, 4);
+    var j = id.substring(4, 5);
+    $.ajax({
+        type: "POST",
+        url: "/Process/GuardarJuego",
+        dataType: "json",
+        data: { valor: valor, i: i, j: j },
+        success: function (data) {
+            console.log('Guardado');
+        },      
+        complete: function () {
+            console.log(contadorActivado);
+            GetLetrasJuego(contadorActivado);
+        }
+    });
+}
+
+function GetLetrasJuego(contadorActivado) {
     $.ajax({
         type: "POST",
         url: "/Process/GetLetrasJuego",
-        contentType: "application/json; charset=utf-8",
+        data: { contadorActivado: contadorActivado},
         dataType: "json",
-        success: function () {
-            alert('Hola')
+        success: function (data) {
+            console.log('Hola');
         }
     });
 }

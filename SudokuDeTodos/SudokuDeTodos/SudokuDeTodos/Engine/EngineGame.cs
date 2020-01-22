@@ -57,6 +57,7 @@ namespace SudokuDeTodos.Engine
                 {
                     cajaTexto[f, c].ForeColor = Color.Blue;
                     cajaTexto[f, c].ReadOnly = false;
+                    cajaTexto[f, c].Attributes.Add("autocomplete", "off");
                     if (vIngresado[f, c] != null && vIngresado[f, c] != string.Empty)
                     {
                         cajaTexto[f, c].ForeColor = Color.Blue;
@@ -991,7 +992,6 @@ namespace SudokuDeTodos.Engine
                     if (sLine != null) arrText.Add(sLine);
                 }
                 objReader.Close();
-                objReader.Dispose();
             }
             catch  { }
 

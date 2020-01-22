@@ -170,8 +170,7 @@
                 else
                     TextNumero(id, value);
 
-                GuardarJuego(id, document.getElementById(id).value);
-               // GetLetrasJuego();
+                GuardarJuego(id, document.getElementById(id).value,false);
             }
             else
             {

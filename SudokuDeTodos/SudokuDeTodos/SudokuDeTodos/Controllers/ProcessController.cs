@@ -40,26 +40,32 @@ namespace SudokuDeTodos.Controllers
         public string GuardarJuego(string valor, int i, int j)
         {
             bool resultado = false;
-            try
-            {
-                EngineDataGame ValorGame = EngineDataGame.Instance();
-                string pathArchivo = ValorGame.PathArchivo;
-                ValorGame.valorIngresado[i, j] = valor;
-                this.Proceso.GuardarValoresIngresados(pathArchivo, ValorGame.valorIngresado);
-                this.Proceso.GuardarValoresEliminados(pathArchivo, ValorGame.valorEliminado);
-                this.Proceso.GuardarValoresInicio(pathArchivo, ValorGame.valorInicio);
-                this.Proceso.GuardarValoresSolucion(pathArchivo, ValorGame.valorSolucion);
-                resultado = true;
-            }
-            catch (Exception ex)
-            {
-                string n = ex.ToString();
-            }
-          
+            EngineDataGame ValorGame = EngineDataGame.Instance();
+            string pathArchivo = ValorGame.PathArchivo;
+            ValorGame.valorIngresado[i, j] = valor;
+            this.Proceso.GuardarValoresIngresados(pathArchivo, ValorGame.valorIngresado);
+            this.Proceso.GuardarValoresEliminados(pathArchivo, ValorGame.valorEliminado);
+            this.Proceso.GuardarValoresInicio(pathArchivo, ValorGame.valorInicio);
+            this.Proceso.GuardarValoresSolucion(pathArchivo, ValorGame.valorSolucion);
+            resultado = true;
             Respuesta response = new Respuesta();
             response.Status = resultado;
             string respuesta = Newtonsoft.Json.JsonConvert.SerializeObject(response);
             return respuesta;
+        }
+
+        [HttpPost]
+        public JsonResult GetLetrasJuego(bool contadorActivado)
+        {
+            LetrasJuego I = new LetrasJuego();
+            string pathArchivo = string.Empty;
+            if (System.Web.HttpContext.Current.Session["PathArchivo"] == null)
+                return Json(I);
+            else
+                pathArchivo = System.Web.HttpContext.Current.Session["PathArchivo"].ToString();
+
+            I = FuncionGame._ContadorIngresado(contadorActivado);
+            return Json(I);
         }
 
         [HttpPost]
@@ -74,21 +80,6 @@ namespace SudokuDeTodos.Controllers
 
             return Json(respuesta);
         }
-
-        [HttpPost]
-        public JsonResult GetLetrasJuego()
-        {
-            LetrasJuego I = new LetrasJuego();
-            string pathArchivo = string.Empty;
-            if (System.Web.HttpContext.Current.Session["PathArchivo"] == null)
-                return Json(I);
-            else
-                pathArchivo = System.Web.HttpContext.Current.Session["PathArchivo"].ToString();
-
-            ArrayList arrText = FuncionGame.ReadFile();
-            return Json(I);
-        }
-
 
         [HttpPost]
         public JsonResult ReturnVarSession(string nameVar)

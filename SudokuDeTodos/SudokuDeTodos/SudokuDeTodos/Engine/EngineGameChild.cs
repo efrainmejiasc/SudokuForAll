@@ -26,15 +26,19 @@ namespace SudokuDeTodos.Engine
         public ArrayList ReadFile()
         {
             ArrayList arrText = AbrirValoresArchivo(ValorGame.PathArchivo);
-            valorIngresado = SetValorIngresado(arrText, valorIngresado);
-            valorEliminado = SetValorEliminado(arrText, valorEliminado);
-            valorInicio = SetValorInicio(arrText, valorInicio);
-            valorSolucion = SetValorSolucion(arrText, valorSolucion);
             return arrText;
         }
 
         public LetrasJuego _ContadorIngresado(bool contadorActivado)
         {
+            ArrayList arrText = AbrirValoresArchivo(ValorGame.PathArchivo);
+            valorIngresado = SetValorIngresado(arrText, valorIngresado);
+            valorCandidato = ElejiblesInstantaneos(valorIngresado, valorCandidato);
+            valorEliminado = SetValorEliminado(arrText, valorEliminado);
+            valorInicio = SetValorInicio(arrText, valorInicio);
+            valorSolucion = SetValorSolucion(arrText, valorSolucion);
+            valorCandidatoSinEliminados = CandidatosSinEliminados(valorIngresado, valorCandidato, valorEliminado);
+
             this.LetrasJuego = new LetrasJuego();
             LetrasJuego.ContadorIngresado = ContadorIngresado(valorIngresado);
             _SetSoloOculto();

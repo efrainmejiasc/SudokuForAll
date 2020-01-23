@@ -122,7 +122,35 @@ function GetLetrasJuego(contadorActivado) {
         data: { contadorActivado: contadorActivado},
         dataType: "json",
         success: function (data) {
-            console.log('Hola');
+            if (!data.ContadorActivado) {
+               $('#btnA').hide();
+               $('#btnB').hide();
+            }
+            $('#btnA').val(data.LetrasJuegoACB.A);
+            $('#btnB').val(data.LetrasJuegoACB.B);
+            if (data.LetrasJuegoACB.A + data.LetrasJuegoACB.B > 0) {
+                $('#btnBB').hide();
+                $('#btnBB').show();
+            }
+            else
+            {
+                $('#BtnBB').show();
+            }
+            if (!data.LetrasJuegoACB.C) {
+                $('#btnC').attr("src", '../Content/imagen/Look.JPG');
+                $('#btnBB').show();
+            }
+            else {
+                $('#BtnC').attr("src",'../Content/imagen/UnLook.JPG');
+                $('#BtnBB').hide();
+                $('#BtnBB').show();
+            }
+            console.log(data.LetrasJuegoFEG.F);
+            console.log(data.LetrasJuegoFEG.E);
+            console.log(data.LetrasJuegoFEG.G);
+            $('#btnF').val(data.LetrasJuegoFEG.F);
+            $('#btnE').val(data.LetrasJuegoFEG.E);
+            $('#btnG').val(data.LetrasJuegoFEG.G);
         }
     });
 }

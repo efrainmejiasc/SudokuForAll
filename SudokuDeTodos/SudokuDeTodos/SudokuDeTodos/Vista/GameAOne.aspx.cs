@@ -132,7 +132,7 @@ namespace SudokuDeTodos.Vista
             if (LetrasJuegoACB.A + LetrasJuegoACB.B > 0)
             {
                 btnBB.Visible = EngineDataGame.Falso;
-                btnBB.Visible = true;
+                btnBB.Visible = EngineDataGame.Verdadero;
             }
             else
             {

@@ -104,7 +104,7 @@ namespace SudokuDeTodos.Engine
 
         private LetrasJuego _SetLetrasJuegoFEG(LetrasJuego LetrasJuego)
         {
-            LetrasJuego.LetrasJuegoFEG = SetLetrasJuegoFEG(ValorGame.contadorIngresado, valorIngresado, valorCandidatoSinEliminados);
+            LetrasJuego.LetrasJuegoFEG = SetLetrasJuegoFEG(LetrasJuego.ContadorIngresado, valorIngresado, valorCandidatoSinEliminados);
             if (LetrasJuegoACB.A + LetrasJuegoACB.B == 0 && Visibilidad70(LetrasJuegoFEG.F))
             {
                 LetrasJuego.BtnB = true;

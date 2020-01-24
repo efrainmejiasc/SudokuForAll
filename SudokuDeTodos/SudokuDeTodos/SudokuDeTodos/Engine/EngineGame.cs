@@ -18,6 +18,17 @@ namespace SudokuDeTodos.Engine
         private int recuadro = -1;
         private int[] pos = new int[2];
 
+        public bool CreateFile (string pathSource,string pathArchivo)
+        {
+            bool resultado = false;
+            if (File.Exists(pathArchivo))
+                resultado = true;
+            else
+                System.IO.File.Copy(pathSource, pathArchivo, true);
+
+            return resultado;
+        }
+
         // METODOS DEL JUEGO////////////////////////////////////////////////////////////////////
         public Button[] ColoresPincel(Button[] v)
         {
@@ -26,7 +37,6 @@ namespace SudokuDeTodos.Engine
             v[2].BackColor = Color.CornflowerBlue;
             v[3].BackColor = Color.LightCoral;
             v[4].BackColor = Color.Crimson;
-
             v[5].BackColor = Color.PaleGreen;
             v[6].BackColor = Color.YellowGreen;
             v[7].BackColor = Color.LightSalmon;

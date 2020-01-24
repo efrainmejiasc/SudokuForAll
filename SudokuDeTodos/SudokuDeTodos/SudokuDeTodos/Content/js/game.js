@@ -49,10 +49,8 @@ function StyleTxt()
  
     for (i = 0; i <= 8; i++) {
         for (j = 0; j <= 8; j++) {
-
             obj1 = '#'.concat(id1, i, j);
             $(obj1).css("font-size", "32px");
-
             obj = '#'.concat(id, i, j);
             color = $(obj).css("color");
             if (color === 'rgb(255, 0, 0)') {
@@ -65,7 +63,7 @@ function StyleTxt()
     }
 }
 
-  var colorActivo = '';
+var colorActivo = '';
 function Marcador(obj,color) { // setea el color activo y borde del marcador
     var cssClass = $('#marcador').attr('class');
     $('#marcador').removeClass(cssClass);
@@ -140,10 +138,15 @@ function GetLetrasJuego(contadorActivado) {
                 $('#btnC').attr("src", '../Content/imagen/Look.JPG');
                 $('#btnBB').show();
             }
-            else {
+            else if (data.LetrasJuegoACB.C)
+            {
                 $('#BtnC').attr("src",'../Content/imagen/UnLook.JPG');
                 $('#BtnBB').hide();
                 $('#BtnBB').show();
+            }
+            else
+            {
+                $('#BtnC').attr("src", '../Content/imagen/Black.JPG');
             }
             console.log(data.LetrasJuegoFEG.F);
             console.log(data.LetrasJuegoFEG.E);

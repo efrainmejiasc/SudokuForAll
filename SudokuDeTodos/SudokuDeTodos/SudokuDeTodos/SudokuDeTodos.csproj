@@ -205,6 +205,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\global.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\imagen\Blanck.JPG" />
     <Content Include="Content\imagen\Der.JPG" />
     <Content Include="Content\imagen\initSudoku.mp4" />
     <Content Include="Content\imagen\Izq.JPG" />
@@ -239,7 +240,6 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="GameFile\test.jll" />
     <Content Include="Content\templates\EmailBodyRegister.cshtml" />
     <Content Include="Content\templates\EmailBodyResetPassword.cshtml" />
     <Content Include="Content\templates\EmailBodyTest.cshtml" />
@@ -309,6 +309,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="GameFile\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

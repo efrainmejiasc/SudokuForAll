@@ -36,6 +36,7 @@ namespace SudokuDeTodos.Engine
         public const bool Verdadero = true;
 
         public string PathArchivo { get; set; }
+        public string PathSource { get; set; }
         public string [,] valorIngresado { get;set; }
         public string[,] valorCandidato { get;set; } 
         public string[,] valorEliminado { get; set; }

@@ -55,7 +55,7 @@ namespace SudokuDeTodos.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetLetrasJuego(bool contadorActivado)
+        public JsonResult GetLetrasJuego(bool contadorActivado,int numGrilla)
         {
             LetrasJuego I = new LetrasJuego();
             string pathArchivo = string.Empty;
@@ -64,7 +64,7 @@ namespace SudokuDeTodos.Controllers
             else
                 pathArchivo = System.Web.HttpContext.Current.Session["PathArchivo"].ToString();
 
-            I = FuncionGame._ContadorIngresado(contadorActivado);
+            I = FuncionGame._ContadorIngresado(contadorActivado,numGrilla);
             return Json(I);
         }
 

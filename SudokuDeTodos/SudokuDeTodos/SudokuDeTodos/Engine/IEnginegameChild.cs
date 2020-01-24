@@ -10,7 +10,7 @@ namespace SudokuDeTodos.Engine
 {
     public interface IEngineGameChild
     {
-        ArrayList ReadFile();
-        LetrasJuego _ContadorIngresado(bool contadorActivado);
+        LetrasJuego _ContadorIngresado(bool contadorActivado, int numGrilla);
+        string[,] SetearTextBoxNumeroEliminados(string[,] cajaTexto, string[,] vIngresado, string[,] vEliminado);
     }
 }

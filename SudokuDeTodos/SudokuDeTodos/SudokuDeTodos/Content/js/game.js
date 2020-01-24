@@ -92,7 +92,7 @@ function ColorWhiteTxt() { // blanque los textBox
 }
 
 
-function GuardarJuego(id, valor,contadorActivado) {
+function GuardarJuego(id, valor,contadorActivado,numGrilla) {
     if (valor === '')
         valor = 0;
 
@@ -108,18 +108,21 @@ function GuardarJuego(id, valor,contadorActivado) {
         },      
         complete: function () {
             console.log(contadorActivado);
-            GetLetrasJuego(contadorActivado);
+            GetLetrasJuego(contadorActivado,numGrilla);
         }
     });
 }
 
-function GetLetrasJuego(contadorActivado) {
+function GetLetrasJuego(contadorActivado,numGrilla) {
     $.ajax({
         type: "POST",
         url: "/Process/GetLetrasJuego",
-        data: { contadorActivado: contadorActivado},
+        data: { contadorActivado: contadorActivado , numGrilla: numGrilla},
         dataType: "json",
         success: function (data) {
+            if (numGrilla === 2) {
+                SetTxtSudoku2(data.ValorTxtSudoku2);
+            }
             if (!data.ContadorActivado) {
                $('#btnA').hide();
                $('#btnB').hide();
@@ -154,7 +157,25 @@ function GetLetrasJuego(contadorActivado) {
             $('#btnF').val(data.LetrasJuegoFEG.F);
             $('#btnE').val(data.LetrasJuegoFEG.E);
             $('#btnG').val(data.LetrasJuegoFEG.G);
+
         }
     });
 }
+
+function SetTxtSudoku2(data) {
+    var id = 'txt_';
+    var i = null;
+    var j = null;
+    var obj = null;
+    for (i = 0; i <= 8; i++) {
+        for (j = 0; j <= 8; j++) {
+            obj = '#'.concat(id, i, j);
+            $(obj).val(data.[j,i]);
+            obj = '#txt_';
+        }
+    }
+
+}
+
+
 

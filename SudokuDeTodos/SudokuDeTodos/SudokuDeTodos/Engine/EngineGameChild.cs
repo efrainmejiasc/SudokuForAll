@@ -23,13 +23,8 @@ namespace SudokuDeTodos.Engine
         private string[] oculto = new string[27];
 
 
-        public ArrayList ReadFile()
-        {
-            ArrayList arrText = AbrirValoresArchivo(ValorGame.PathArchivo);
-            return arrText;
-        }
 
-        public LetrasJuego _ContadorIngresado(bool contadorActivado)
+        public LetrasJuego _ContadorIngresado(bool contadorActivado , int numGrilla)
         {
             ArrayList arrText = AbrirValoresArchivo(ValorGame.PathArchivo);
             valorIngresado = SetValorIngresado(arrText, valorIngresado);
@@ -53,6 +48,12 @@ namespace SudokuDeTodos.Engine
             {
                 LetrasJuego.BtnA = EngineDataGame.Verdadero;
                 LetrasJuego.BtnB = EngineDataGame.Verdadero;
+            }
+            if (numGrilla == 2) // Set 2 grilla
+            {
+                string[,] valorNumeroEliminados = new string[9, 9];
+                valorNumeroEliminados = SetearTextBoxNumeroEliminados(valorNumeroEliminados, valorIngresado, valorEliminado);
+                LetrasJuego.ValorTxtSudoku2 = valorNumeroEliminados;
             }
             return LetrasJuego;
         }

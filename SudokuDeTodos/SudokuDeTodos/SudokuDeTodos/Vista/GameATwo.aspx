@@ -248,7 +248,7 @@
                 else
                     TextNumero(id, value);
 
-                GuardarJuego(id, document.getElementById(id).value, false);
+                GuardarJuego(id, document.getElementById(id).value, false,2);
             }
             else
             {

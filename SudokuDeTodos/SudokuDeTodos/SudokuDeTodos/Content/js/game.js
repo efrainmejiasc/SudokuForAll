@@ -87,11 +87,15 @@ function DrawingMarket2(obj) {  // pinta el textbox
 
 function ColorWhiteTxt() { // blanque los textBox
     var obj = '#txt';
+    var obj2 = '#txt_';
     for (i = 0; i <= 8; i++) {
         for (j = 0; j <= 8; j++) {
             obj = obj + i + j;
+            obj2 = obj2 + i + j;
             $(obj).css({ "background-color": colorActivo });
+            $(obj2).css({ "background-color": colorActivo });
             obj = '#txt';
+            obj2 = '#txt_';
         }
     }
 }

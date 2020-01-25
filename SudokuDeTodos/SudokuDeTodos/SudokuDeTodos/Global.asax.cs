@@ -25,12 +25,22 @@ namespace SudokuDeTodos
 
         protected void Application_AcquireRequestState(object sender, EventArgs e)
         {
-            if (System.Web.HttpContext.Current.Session["Cultura"] == null)
-                System.Web.HttpContext.Current.Session["Cultura"] = EngineData.Cultura(1);
+            try
+            {
+                if (System.Web.HttpContext.Current.Session["Cultura"] == null)
+                    System.Web.HttpContext.Current.Session["Cultura"] = EngineData.Cultura(1);
 
-            CultureInfo ci = new CultureInfo(EngineData.GetCultura());
-            Thread.CurrentThread.CurrentUICulture = ci;
-            Thread.CurrentThread.CurrentCulture = ci;
+                CultureInfo ci = new CultureInfo(EngineData.GetCultura());
+                Thread.CurrentThread.CurrentUICulture = ci;
+                Thread.CurrentThread.CurrentCulture = ci;
+            }
+            catch
+            {
+                CultureInfo ci = new CultureInfo("es-ES");
+                Thread.CurrentThread.CurrentUICulture = ci;
+                Thread.CurrentThread.CurrentCulture = ci;
+
+            }
         }
     }
 }

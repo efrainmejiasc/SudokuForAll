@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using SudokuDeTodos.Engine;
 using SudokuDeTodos.Models.DbSistema;
+using SudokuDeTodos.Models.Game;
+using System.Collections;
 
 namespace SudokuDeTodos.Controllers
 {
@@ -15,13 +17,15 @@ namespace SudokuDeTodos.Controllers
         private readonly IEngineDb Metodo;
         private readonly IEngineProyect Funcion;
         private readonly IEngineNotificacion Notificacion;
+        private readonly IEngineGameChild FuncionGame;
 
-        public ProcessController(IEngineGameProcess _Proceso, IEngineDb _Metodo, IEngineProyect _Funcion, IEngineNotificacion _Notificacion)
+        public ProcessController(IEngineGameProcess _Proceso, IEngineDb _Metodo, IEngineProyect _Funcion, IEngineNotificacion _Notificacion, IEngineGameChild _FuncionGame)
         {
             this.Proceso = _Proceso;
             this.Metodo = _Metodo;
             this.Funcion = _Funcion;
             this.Notificacion = _Notificacion;
+            this.FuncionGame = _FuncionGame;
         }
 
         [HttpPost]
@@ -36,23 +40,32 @@ namespace SudokuDeTodos.Controllers
         public string GuardarJuego(string valor, int i, int j)
         {
             bool resultado = false;
-            try
-            {
-                EngineDataGame ValorGame = EngineDataGame.Instance();
-                string pathArchivo = ValorGame.PathArchivo;
-                ValorGame.valorIngresado[i, j] = valor;
-                this.Proceso.GuardarValoresIngresados(pathArchivo, ValorGame.valorIngresado);
-                this.Proceso.GuardarValoresEliminados(pathArchivo, ValorGame.valorEliminado);
-                this.Proceso.GuardarValoresInicio(pathArchivo, ValorGame.valorInicio);
-                this.Proceso.GuardarValoresSolucion(pathArchivo, ValorGame.valorSolucion);
-                resultado = true;
-            }
-            catch { }
-          
+            EngineDataGame ValorGame = EngineDataGame.Instance();
+            string pathArchivo = ValorGame.PathArchivo;
+            ValorGame.valorIngresado[i, j] = valor;
+            this.Proceso.GuardarValoresIngresados(pathArchivo, ValorGame.valorIngresado);
+            this.Proceso.GuardarValoresEliminados(pathArchivo, ValorGame.valorEliminado);
+            this.Proceso.GuardarValoresInicio(pathArchivo, ValorGame.valorInicio);
+            this.Proceso.GuardarValoresSolucion(pathArchivo, ValorGame.valorSolucion);
+            resultado = true;
             Respuesta response = new Respuesta();
             response.Status = resultado;
             string respuesta = Newtonsoft.Json.JsonConvert.SerializeObject(response);
             return respuesta;
+        }
+
+        [HttpPost]
+        public JsonResult GetLetrasJuego(bool contadorActivado,int numGrilla)
+        {
+            LetrasJuego I = new LetrasJuego();
+            string pathArchivo = string.Empty;
+            if (System.Web.HttpContext.Current.Session["PathArchivo"] == null)
+                return Json(I);
+            else
+                pathArchivo = System.Web.HttpContext.Current.Session["PathArchivo"].ToString();
+
+            I = FuncionGame._ContadorIngresado(contadorActivado,numGrilla);
+            return Json(I);
         }
 
         [HttpPost]

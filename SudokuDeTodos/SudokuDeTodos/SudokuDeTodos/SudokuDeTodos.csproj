@@ -150,6 +150,7 @@
     <Compile Include="Engine\EngineNotificacion.cs" />
     <Compile Include="Engine\EngineProyect.cs" />
     <Compile Include="Engine\IEngineDb.cs" />
+    <Compile Include="Engine\IEngineGameChild.cs" />
     <Compile Include="Engine\IEngineGameProcess.cs" />
     <Compile Include="Engine\IEngineNotificacion.cs" />
     <Compile Include="Engine\IEngineProyect.cs" />
@@ -157,6 +158,9 @@
     <Compile Include="Models\DbSistema\ClientePago.cs" />
     <Compile Include="Models\DbSistema\ResetPassword.cs" />
     <Compile Include="Models\DbSistema\SucesoLog.cs" />
+    <Compile Include="Models\Game\LetrasJuego.cs" />
+    <Compile Include="Models\Game\LetrasJuegoACB.cs" />
+    <Compile Include="Models\Game\LetrasJuegoFEG.cs" />
     <Compile Include="Models\Sistema\EstructuraMail.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />
     <Compile Include="Models\Sistema\Respuesta.cs" />
@@ -201,10 +205,13 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\global.css" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\imagen\Blanck.JPG" />
     <Content Include="Content\imagen\Der.JPG" />
     <Content Include="Content\imagen\initSudoku.mp4" />
     <Content Include="Content\imagen\Izq.JPG" />
     <Content Include="Content\imagen\logo.png" />
+    <Content Include="Content\imagen\Look.JPG" />
+    <Content Include="Content\imagen\UnLook.JPG" />
     <Content Include="Content\js\game.js" />
     <Content Include="Content\js\global.js" />
     <Content Include="Content\js\message.js" />
@@ -233,7 +240,6 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="GameFile\test.jll" />
     <Content Include="Content\templates\EmailBodyRegister.cshtml" />
     <Content Include="Content\templates\EmailBodyResetPassword.cshtml" />
     <Content Include="Content\templates\EmailBodyTest.cshtml" />
@@ -261,13 +267,6 @@
     <Content Include="StringResx\Resources.xml" />
     <Content Include="Vista\GameAOne.aspx" />
     <Content Include="Vista\GameATwo.aspx" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -296,6 +295,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="GameFile\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

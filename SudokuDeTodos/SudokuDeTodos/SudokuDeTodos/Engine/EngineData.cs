@@ -129,6 +129,63 @@ namespace SudokuDeTodos.Engine
             return cultura = System.Web.HttpContext.Current.Session["Cultura"].ToString();
         }
 
+        public string Fila(string lenguaje)
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    titulo = "Fila";
+                    break;
+                case (CulturaIngles):
+                    titulo = "Row";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Linha";
+                    break;
+            }
+            return titulo;
+        }
+
+        public string Columna(string lenguaje)
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (lenguaje)
+            {
+                case (CulturaEspañol):
+                    titulo = "Columna";
+                    break;
+                case (CulturaIngles):
+                    titulo = "Column";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Coluna";
+                    break;
+            }
+            return titulo;
+        }
+
+        public string Recuadro(string lenguaje)
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (lenguaje)
+            {
+                case (CulturaEspañol):
+                    titulo = "Recuadro";
+                    break;
+                case (CulturaIngles):
+                    titulo = "Box";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Quadrante";
+                    break;
+            }
+            return titulo;
+        }
+
         //Mensajes Index 
         public static string EmailNoValido()
         {
@@ -480,13 +537,13 @@ namespace SudokuDeTodos.Engine
             switch (cultura)
             {
                 case (CulturaEspañol):
-                    respuesta = " Hemos enviado una notificacion via e-mail, con un codigo de verificacion pera que restablescas tu contraseña";
+                    respuesta = " Hemos enviado una notificacion via e-mail, con un codigo de verificacion pera que restablescas tu contraseña, ¿enviar otro email?";
                     break;
                 case (CulturaIngles):
-                    respuesta = " We have sent a notification via e-mail, with a verification code so that you reset your password";
+                    respuesta = " We have sent a notification via e-mail, with a verification code so that you reset your password, send another email?";
                     break;
                 case (CulturaPortugues):
-                    respuesta = " Enviamos uma notificação via e-mail, com um código de verificação para que você redefina sua senha";
+                    respuesta = " Enviamos uma notificação via e-mail, com um código de verificação para que você redefina sua senha, enviar outro email?";
                     break;
             }
             return respuesta;

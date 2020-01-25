@@ -30,6 +30,7 @@ namespace SudokuDeTodos.App_Start
           container.Register<IEngineGameProcess, EngineGameProcess>(Lifestyle.Transient);
           container.Register<IEngineNotificacion, EngineNotificacion>(Lifestyle.Transient);
           container.Register<EngineContext, EngineContext>(Lifestyle.Scoped);
+          container.Register<IEngineGameChild,EngineGameChild>(Lifestyle.Transient);
         }
     }
 }

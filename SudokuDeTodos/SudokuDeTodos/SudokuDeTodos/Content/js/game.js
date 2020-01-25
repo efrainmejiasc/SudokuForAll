@@ -1,20 +1,4 @@
-﻿function GuardarJuego(id, valor) {
-    if (valor === '')
-        valor = 0;
-
-    var i = id.substring(3, 4);
-    var j = id.substring(4, 5);
-    $.ajax({
-        type: "POST",
-        url: "/Process/GuardarJuego",
-        dataType: "json",
-        data: { valor: valor, i: i, j: j },
-        success: function (data) {
-
-        }
-    });
-}
-
+﻿
 function TextNumero(id,value) {
     if (document.getElementById(id).style.color === 'black') {
         document.getElementById(id).value;
@@ -39,7 +23,6 @@ function Navegacion(page) {
     window.open(page, "_self");
 }
 
-
 function StyleTxtFully() {
     var id = 'txt';
     var i = null;
@@ -54,7 +37,6 @@ function StyleTxtFully() {
     }
 }
 
-
 function StyleTxt()
 {
     var id = 'txt_';
@@ -67,15 +49,13 @@ function StyleTxt()
  
     for (i = 0; i <= 8; i++) {
         for (j = 0; j <= 8; j++) {
-
             obj1 = '#'.concat(id1, i, j);
             $(obj1).css("font-size", "32px");
-
             obj = '#'.concat(id, i, j);
             color = $(obj).css("color");
             if (color === 'rgb(255, 0, 0)') {
                 $(obj).css("font-size", "11px");
-                console.log($(obj).val().length + ' ' + obj);
+               // console.log($(obj).val().length + ' ' + obj);
             } else {
                 $(obj).css("font-size", "32px");
             }  
@@ -83,23 +63,235 @@ function StyleTxt()
     }
 }
 
-function Marcador(obj) {
+var colorActivo = '';
+function Marcador(obj,color) { // setea el color activo y borde del marcador
     var cssClass = $('#marcador').attr('class');
     $('#marcador').removeClass(cssClass);
     $('#marcador').addClass(obj);
-    $('#marcador').style.borderColor = 'black';
-
+    $('#marcador').css('border-color', 'black');
+    colorActivo = color;
+    if (color === 'white') {
+        ColorWhiteTxt();
+    }
 }
 
-/*function TextLetra(id) {
-    if (document.getElementById(id).style.color === 'black' || document.getElementById(id).style.color === 'blue') {
-        document.getElementById(id).value;
+function DrawingMarket(txt) {  // pinta el textbox
+    var obj = '#'.concat(txt.id);
+    $(obj).css({ "background-color": colorActivo });
+}
+
+function DrawingMarket2(obj) {  // pinta el textbox
+
+    $(obj).css({ "background-color": colorActivo });
+}
+
+function ColorWhiteTxt() { // blanque los textBox
+    var obj = '#txt';
+    var obj2 = '#txt_';
+    for (i = 0; i <= 8; i++) {
+        for (j = 0; j <= 8; j++) {
+            obj = obj + i + j;
+            obj2 = obj2 + i + j;
+            $(obj).css({ "background-color": colorActivo });
+            $(obj2).css({ "background-color": colorActivo });
+            obj = '#txt';
+            obj2 = '#txt_';
+        }
+    }
+}
+
+
+function GuardarJuego(id, valor,contadorActivado,numGrilla) {
+    if (valor === '')
+        valor = 0;
+
+    var i = id.substring(3, 4);
+    var j = id.substring(4, 5);
+    $.ajax({
+        type: "POST",
+        url: "/Process/GuardarJuego",
+        dataType: "json",
+        data: { valor: valor, i: i, j: j },
+        success: function (data) {
+            console.log('Guardado');
+        },      
+        complete: function () {
+            GetLetrasJuego(contadorActivado,numGrilla);
+        }
+    });
+}
+
+
+function GetLetrasJuego(contadorActivado,numGrilla) {
+    $.ajax({
+        type: "POST",
+        url: "/Process/GetLetrasJuego",
+        data: { contadorActivado: contadorActivado , numGrilla: numGrilla},
+        dataType: "json",
+        success: function (data) {
+            if (numGrilla === 2) {
+
+                var obj = '#txt_';
+                var j = 0;
+                var ingresado = null;
+                var eliminado = null;
+                for (i = 0; i <= 80; i++) {
+                    ingresado = data.ValorTxtSudoku2[i];
+                    eliminado = data.ValorTxtSudoku2Eliminado[i];
+                    if (i >= 0 && i <= 8) {
+                        obj = obj.concat("0", i);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 9 && i <= 17) {
+                        j = i - 9;
+                        obj = obj.concat("1", j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 18 && i <= 26) {
+                        j = i - 18;
+                        obj = obj.concat("2", j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 27 && i <= 35) {
+                        j = i - 27;
+                        obj = obj.concat("3", j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 36 && i <= 44) {
+                        j = i - 36;
+                        obj = obj.concat("4",j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 45 && i <= 53) {
+                        j = i - 45;
+                        obj = obj.concat("5", j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 54 && i <= 62) {
+                        j = i - 54;
+                        obj = obj.concat("6", j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 63 && i <= 71) {
+                        j = i - 63;
+                        obj = obj.concat("7", j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 72 && i <= 80) {
+                        j = i - 72;
+                        obj = obj.concat("8", j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                }
+            }
+            if (!data.ContadorActivado) {
+               $('#btnA').hide();
+               $('#btnB').hide();
+            }
+            $('#btnA').val(data.LetrasJuegoACB.A);
+            $('#btnB').val(data.LetrasJuegoACB.B);
+            if (data.LetrasJuegoACB.A + data.LetrasJuegoACB.B > 0) {
+                $('#btnBB').hide();
+                $('#btnBB').show();
+            }
+            else
+            {
+                $('#BtnBB').show();
+            }
+            if (!data.LetrasJuegoACB.C) {
+                $('#btnC').attr("src", '../Content/imagen/Look.JPG');
+                $('#btnBB').show();
+            }
+            else if (data.LetrasJuegoACB.C)
+            {
+                $('#BtnC').attr("src",'../Content/imagen/UnLook.JPG');
+                $('#BtnBB').hide();
+                $('#BtnBB').show();
+            }
+            else
+            {
+                $('#BtnC').attr("src", '../Content/imagen/Black.JPG');
+            }
+            $('#btnF').val(data.LetrasJuegoFEG.F);
+            $('#btnE').val(data.LetrasJuegoFEG.E);
+            $('#btnG').val(data.LetrasJuegoFEG.G);
+
+        }
+    });
+}
+
+function SetTxtSudoku2(ingresado, eliminado, obj) {
+    if (ingresado !== '') {
+        $(obj).css("font-size", "32px");
+        $(obj).css('color', 'green');
+        $(obj).val(ingresado);
     }
     else {
-        document.getElementById(id).value = '';
+        $(obj).css("font-size", "11px");
+        $(obj).css('color', 'red');
+        $(obj).val(eliminado);
     }
-}*/
+}
 
+function Position(sentido, f, c)
+{
+    f = parseInt(f, 10);
+    c = parseInt(c, 10);
+    var i = null;
+    var j = null;
+    switch (sentido) {
+        case "ArrowUp":
+            i = f - 1; j = c;
+            break;
+        case "ArrowDown":
+            i = f + 1; j = c;
+            break;
+        case "ArrowRight":
+            i = f; j = c + 1;
+            break;
+        case "ArrowLeft":
+            i = f; j = c - 1;
+            break;
+    }
+    var obj = '#txt';
+    obj = obj.concat(i, j);
+    $(obj).focus();
+    $('#idTxt').val(obj);
+}
+
+function Position2(sentido, f, c) {
+    f = parseInt(f, 10);
+    c = parseInt(c, 10);
+    var i = null;
+    var j = null;
+    switch (sentido) {
+        case "ArrowUp":
+            i = f - 1; j = c;
+            break;
+        case "ArrowDown":
+            i = f + 1; j = c;
+            break;
+        case "ArrowRight":
+            i = f; j = c + 1;
+            break;
+        case "ArrowLeft":
+            i = f; j = c - 1;
+            break;
+    }
+    var obj = '#txt_';
+    obj = obj.concat(i, j);
+    $(obj).focus();
+   $('#idTxt').val(obj);
+}
 
 
 

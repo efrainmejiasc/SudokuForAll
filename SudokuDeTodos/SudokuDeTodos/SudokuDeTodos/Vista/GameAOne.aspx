@@ -15,6 +15,8 @@
   <title>Numeros</title>
 </head>
     <body>
+        <input type="hidden" id ="idTxt" />
+
        <form id="form1" runat="server">
             <div id="banner" class="divBanner container-fluid">
                         <img id="logSudoku"  class="logoInitial"/>
@@ -161,16 +163,23 @@
         }
 
         function KeyUp(e, id) {
-            //console.log(id);
+            //console.log(id );
             var value = e.key
-            if ((value >= 0 && value <= 9) || value == 'Delete' || value == 'Backspace')
-            {
+            if ((value >= 0 && value <= 9) || value == 'Delete' || value == 'Backspace') {
                 if (value == 0)
                     TextZero(id || value == 'Delete' || value == 'Backspace');
                 else
                     TextNumero(id, value);
 
-                GuardarJuego(id, document.getElementById(id).value,false,1);
+                GuardarJuego(id, document.getElementById(id).value, false, 1);
+            }
+            else if (value === 'ArrowUp' || value === 'ArrowDown' || value === 'ArrowLeft' || value === 'ArrowRight')
+            {
+                var f = id.substring(3, 4);
+                var c = id.substring(4, 5);
+                Position(value, f, c); 
+                var valueIdTxt = $('#idTxt').val();
+                DrawingMarket2(valueIdTxt);
             }
             else
             {

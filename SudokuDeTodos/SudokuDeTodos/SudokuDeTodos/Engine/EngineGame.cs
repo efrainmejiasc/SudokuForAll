@@ -237,28 +237,31 @@ namespace SudokuDeTodos.Engine
             return cajaTexto;
         }
 
-        public string[,] SetearTextBoxNumeroEliminados(string[,] cajaTexto, string[,] vIngresado, string[,] vEliminado)
+        public string[,] SetearTextBoxNumero(string[,] cajaTexto, string[,] vIngresado)
         {
             for (int f = 0; f <= 8; f++)
             {
                 for (int c = 0; c <= 8; c++)
                 {
                     if (vIngresado[f, c] != null && vIngresado[f, c] != string.Empty)
-                    {
                         cajaTexto[f, c] = vIngresado[f, c];
-                    }
                     else
-                    {
-                        if (vEliminado[f, c] != null && vEliminado[f, c] != string.Empty)
-                        {
-                            cajaTexto[f, c] = vEliminado[f, c];
-                        }
-                        else
-                        {
-                            cajaTexto[f, c] = string.Empty;
-                        }
-                    }
+                        cajaTexto[f, c] = string.Empty;
+                }
+            }
+            return cajaTexto;
+        }
 
+        public string[,] SetearTextBoxEliminado(string[,] cajaTexto, string[,] vEliminado)
+        {
+            for (int f = 0; f <= 8; f++)
+            {
+                for (int c = 0; c <= 8; c++)
+                {
+                    if (vEliminado[f, c] != null && vEliminado[f, c] != string.Empty)
+                        cajaTexto[f, c] = vEliminado[f, c];
+                    else
+                        cajaTexto[f, c] = string.Empty;
                 }
             }
             return cajaTexto;

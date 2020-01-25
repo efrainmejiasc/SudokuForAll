@@ -55,7 +55,7 @@ function StyleTxt()
             color = $(obj).css("color");
             if (color === 'rgb(255, 0, 0)') {
                 $(obj).css("font-size", "11px");
-                console.log($(obj).val().length + ' ' + obj);
+               // console.log($(obj).val().length + ' ' + obj);
             } else {
                 $(obj).css("font-size", "32px");
             }  
@@ -77,6 +77,11 @@ function Marcador(obj,color) { // setea el color activo y borde del marcador
 
 function DrawingMarket(txt) {  // pinta el textbox
     var obj = '#'.concat(txt.id);
+    $(obj).css({ "background-color": colorActivo });
+}
+
+function DrawingMarket2(obj) {  // pinta el textbox
+
     $(obj).css({ "background-color": colorActivo });
 }
 
@@ -107,11 +112,11 @@ function GuardarJuego(id, valor,contadorActivado,numGrilla) {
             console.log('Guardado');
         },      
         complete: function () {
-            console.log(contadorActivado);
             GetLetrasJuego(contadorActivado,numGrilla);
         }
     });
 }
+
 
 function GetLetrasJuego(contadorActivado,numGrilla) {
     $.ajax({
@@ -121,7 +126,68 @@ function GetLetrasJuego(contadorActivado,numGrilla) {
         dataType: "json",
         success: function (data) {
             if (numGrilla === 2) {
-                SetTxtSudoku2(data.ValorTxtSudoku2);
+
+                var obj = '#txt_';
+                var j = 0;
+                var ingresado = null;
+                var eliminado = null;
+                for (i = 0; i <= 80; i++) {
+                    ingresado = data.ValorTxtSudoku2[i];
+                    eliminado = data.ValorTxtSudoku2Eliminado[i];
+                    if (i >= 0 && i <= 8) {
+                        obj = obj.concat("0", i);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 9 && i <= 17) {
+                        j = i - 9;
+                        obj = obj.concat("1", j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 18 && i <= 26) {
+                        j = i - 18;
+                        obj = obj.concat("2", j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 27 && i <= 35) {
+                        j = i - 27;
+                        obj = obj.concat("3", j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 36 && i <= 44) {
+                        j = i - 36;
+                        obj = obj.concat("4",j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 45 && i <= 53) {
+                        j = i - 45;
+                        obj = obj.concat("5", j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 54 && i <= 62) {
+                        j = i - 54;
+                        obj = obj.concat("6", j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 63 && i <= 71) {
+                        j = i - 63;
+                        obj = obj.concat("7", j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                    else if (i >= 72 && i <= 80) {
+                        j = i - 72;
+                        obj = obj.concat("8", j);
+                        SetTxtSudoku2(ingresado, eliminado, obj);
+                        obj = '#txt_';
+                    }
+                }
             }
             if (!data.ContadorActivado) {
                $('#btnA').hide();
@@ -151,9 +217,6 @@ function GetLetrasJuego(contadorActivado,numGrilla) {
             {
                 $('#BtnC').attr("src", '../Content/imagen/Black.JPG');
             }
-            console.log(data.LetrasJuegoFEG.F);
-            console.log(data.LetrasJuegoFEG.E);
-            console.log(data.LetrasJuegoFEG.G);
             $('#btnF').val(data.LetrasJuegoFEG.F);
             $('#btnE').val(data.LetrasJuegoFEG.E);
             $('#btnG').val(data.LetrasJuegoFEG.G);
@@ -162,19 +225,68 @@ function GetLetrasJuego(contadorActivado,numGrilla) {
     });
 }
 
-function SetTxtSudoku2(data) {
-    var id = 'txt_';
+function SetTxtSudoku2(ingresado, eliminado, obj) {
+    if (ingresado !== '') {
+        $(obj).css("font-size", "32px");
+        $(obj).css('color', 'green');
+        $(obj).val(ingresado);
+    }
+    else {
+        $(obj).css("font-size", "11px");
+        $(obj).css('color', 'red');
+        $(obj).val(eliminado);
+    }
+}
+
+function Position(sentido, f, c)
+{
+    f = parseInt(f, 10);
+    c = parseInt(c, 10);
     var i = null;
     var j = null;
-    var obj = null;
-    for (i = 0; i <= 8; i++) {
-        for (j = 0; j <= 8; j++) {
-            obj = '#'.concat(id, i, j);
-            $(obj).val(data.[j,i]);
-            obj = '#txt_';
-        }
+    switch (sentido) {
+        case "ArrowUp":
+            i = f - 1; j = c;
+            break;
+        case "ArrowDown":
+            i = f + 1; j = c;
+            break;
+        case "ArrowRight":
+            i = f; j = c + 1;
+            break;
+        case "ArrowLeft":
+            i = f; j = c - 1;
+            break;
     }
+    var obj = '#txt';
+    obj = obj.concat(i, j);
+    $(obj).focus();
+    $('#idTxt').val(obj);
+}
 
+function Position2(sentido, f, c) {
+    f = parseInt(f, 10);
+    c = parseInt(c, 10);
+    var i = null;
+    var j = null;
+    switch (sentido) {
+        case "ArrowUp":
+            i = f - 1; j = c;
+            break;
+        case "ArrowDown":
+            i = f + 1; j = c;
+            break;
+        case "ArrowRight":
+            i = f; j = c + 1;
+            break;
+        case "ArrowLeft":
+            i = f; j = c - 1;
+            break;
+    }
+    var obj = '#txt_';
+    obj = obj.concat(i, j);
+    $(obj).focus();
+   $('#idTxt').val(obj);
 }
 
 

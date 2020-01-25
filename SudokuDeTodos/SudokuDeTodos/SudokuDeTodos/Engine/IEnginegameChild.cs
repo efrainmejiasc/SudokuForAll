@@ -11,6 +11,7 @@ namespace SudokuDeTodos.Engine
     public interface IEngineGameChild
     {
         LetrasJuego _ContadorIngresado(bool contadorActivado, int numGrilla);
-        string[,] SetearTextBoxNumeroEliminados(string[,] cajaTexto, string[,] vIngresado, string[,] vEliminado);
+        string[,] SetearTextBoxNumero(string[,] cajaTexto, string[,] vIngresado);
+        string[,] SetearTextBoxEliminado(string[,] cajaTexto, string[,] vEliminado);
     }
 }

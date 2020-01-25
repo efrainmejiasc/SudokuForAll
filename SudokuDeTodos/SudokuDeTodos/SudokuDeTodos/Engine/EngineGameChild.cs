@@ -51,9 +51,12 @@ namespace SudokuDeTodos.Engine
             }
             if (numGrilla == 2) // Set 2 grilla
             {
-                string[,] valorNumeroEliminados = new string[9, 9];
-                valorNumeroEliminados = SetearTextBoxNumeroEliminados(valorNumeroEliminados, valorIngresado, valorEliminado);
-                LetrasJuego.ValorTxtSudoku2 = valorNumeroEliminados;
+                string[,] valorNumeroIngresado = new string[9, 9];
+                valorNumeroIngresado = SetearTextBoxNumero(valorNumeroIngresado, valorIngresado);
+                LetrasJuego.ValorTxtSudoku2 = valorNumeroIngresado;
+                string[,] valorNumeroEliminado = new string[9, 9];
+                valorNumeroEliminado = SetearTextBoxEliminado(valorNumeroEliminado, valorEliminado);
+                LetrasJuego.ValorTxtSudoku2Eliminado = valorNumeroEliminado;
             }
             return LetrasJuego;
         }

@@ -14,6 +14,8 @@
   <title>Numeros</title>
 </head>
     <body>
+         <input type="hidden" id ="idTxt" />
+
        <form id="form1" runat="server">
             <div id="banner" class="divBanner container-fluid">
                         <img id="logSudoku"  class="logoInitial"/>
@@ -52,8 +54,6 @@
                   </div>
                </div>
            <br /><br />
-
-          
 
        <div class="container-fluid" >
              <div class="container" align="center" style="margin-left:16%;float:left;width:500px;">
@@ -250,18 +250,33 @@
 
                 GuardarJuego(id, document.getElementById(id).value, false,2);
             }
-            else
-            {
+            else if (value === 'ArrowUp' || value === 'ArrowDown' || value === 'ArrowLeft' || value === 'ArrowRight') {
+                var f = id.substring(3, 4);
+                var c = id.substring(4, 5);
+                Position(value, f, c);
+            }
+            else {
                 return false;
             }
         }
 
         function KeyPress2(e, id) {
-         console.log(id);
+         //console.log(id);
         }
 
         function KeyUp2(e, id) {
-         console.log(id);  
+         //console.log(id);  
+            var value = e.key
+            if (value === 'ArrowUp' || value === 'ArrowDown' || value === 'ArrowLeft' || value === 'ArrowRight') {
+                var f = id.substring(4, 5);
+                var c = id.substring(5, 6);
+                Position2(value, f, c);
+                var valueIdTxt = $('#idTxt').val();
+                DrawingMarket2(valueIdTxt);;
+            }
+            else {
+                return false;
+            }
         }
     </script>
 

@@ -420,7 +420,7 @@ namespace SudokuDeTodos.Engine
                         {
                             //cajaTexto[f, c].Font = new Font(EngineDataGame.TipoLetra, 20);
                             cajaTexto[f, c].ForeColor = Color.Blue;
-                            cajaTexto[f, c].BackColor = Color.WhiteSmoke;
+                            cajaTexto[f, c].BackColor = Color.White;
                             cajaTexto[f, c].Text = n;
                             numFiltro[f, c] = n;
                         }
@@ -428,12 +428,12 @@ namespace SudokuDeTodos.Engine
                         {
                             cajaTexto[f, c].Text = string.Empty;
                             numFiltro[f, c] = string.Empty;
-                            cajaTexto[f, c].BackColor = Color.WhiteSmoke;
+                            cajaTexto[f, c].BackColor = Color.White;
                         }
                     }
                     else
                     {
-                        cajaTexto[f, c].BackColor = Color.WhiteSmoke;
+                        cajaTexto[f, c].BackColor = Color.White;
                     }
 
                     //cajaTexto[f, c].TextAlign = HorizontalAlignment.Center;
@@ -2508,6 +2508,23 @@ namespace SudokuDeTodos.Engine
             return resultado;
         }
 
+        public bool GuardarJuego(string pathArchivo ,string [,] valorIngresado, string[,]  valorEliminado, string[,] valorInicio, string[,] valorSolucion)
+        {
+            bool resultado = false;
+            if (pathArchivo == string.Empty || pathArchivo == null) return resultado;
+            try
+            {
+                GuardarValoresIngresados(pathArchivo, valorIngresado);
+                GuardarValoresEliminados(pathArchivo, valorEliminado);
+                GuardarValoresInicio(pathArchivo, valorInicio);
+                GuardarValoresSolucion(pathArchivo, valorSolucion);
+                resultado = true;
+            }
+            catch
+            {}
+   
+            return resultado ;
+        }
 
     }
 }

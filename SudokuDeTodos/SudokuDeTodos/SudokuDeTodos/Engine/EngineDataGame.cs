@@ -32,6 +32,27 @@ namespace SudokuDeTodos.Engine
         public const string ocho = "8";
         public const string nueve = "9";
 
+        public const string Btn1 = "btn1";
+        public const string Btn2 = "btn2";
+        public const string Btn3 = "btn3";
+        public const string Btn4 = "btn4";
+        public const string Btn5 = "btn5";
+        public const string Btn6 = "btn6";
+        public const string Btn7 = "btn7";
+        public const string Btn8 = "btn8";
+        public const string Btn9 = "btn9";
+
+        public const string eliminar = "btnEE";
+        public const string restablecer = "btnRR";
+
+        public const string btnIzquierda = "btnIzquierda";
+        public const string btnDerecha = "btnDerecha";
+
+        public const string BtnRes23 = "btnRes23";
+        public const string BtnDos = "btnDos";
+        public const string BtnTres = "btnTres";
+        public const string BtnN = "btnN";
+
         public const bool Falso = false;
         public const bool Verdadero = true;
 
@@ -71,5 +92,7 @@ namespace SudokuDeTodos.Engine
         {
             return nombreIdioma;
         }
+
+
     }
 }

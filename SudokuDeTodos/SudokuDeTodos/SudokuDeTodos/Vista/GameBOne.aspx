@@ -1,22 +1,25 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GameATwo.aspx.cs" Inherits="SudokuDeTodos.Vista.GameATwo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GameBOne.aspx.cs" Inherits="SudokuDeTodos.Vista.GameBOne" %>
 
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/css/global.css" rel="stylesheet" />
     <link href="~/Content/css/style.css" rel="stylesheet" />
     <script src="../Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
     <script src="../Content/js/global.js" type="text/javascript"></script>
     <script src="../Content/js/game.js" type="text/javascript"></script>
-  <title>Numeros</title>
+    <title>Candidatos Individuales</title>
 </head>
-    <body>
-         <input type="hidden" id ="idTxt" />
+   <body>
 
        <form id="form1" runat="server">
+
+                <asp:HiddenField ID="idTxt" runat="server" />
+
             <div id="banner" class="divBanner container-fluid">
                         <img id="logSudoku"  class="logoInitial"/>
                           <ul class="row" style="margin-left:16%">   
@@ -29,16 +32,19 @@
           <div class="container-fluid">
 
                <div class="btn-group btnGroupA1" role="group" aria-label="Basic example">
-                     <asp:Button ID="btnBB" runat="server" Text="B" cssClass="btn btn-success" click="Navegacion('GameBOne.aspx');"/>
-                     <asp:Button ID="btnCC" runat="server" Text="C" cssClass="btn btn-success" click="Navegacion('GameATwo.aspx');"/>
-                     <input id="image" type="button" class="btn btn-success arrowLeft" onClick="Navegacion('GameAOne.aspx');"/>
+                     <asp:Button ID="btnAA" runat="server" Text="A" cssClass="btn btn-success" click="Navegacion('GameBTwo.aspx');"/>
+                    <asp:Button ID="btnEE" runat="server" Text="E" cssClass="btn btn-danger" OnClick="btnEE_Click" />
+                    <asp:Button ID="btnRR" runat="server" Text="R" cssClass="btn btn-warning" OnClick="btnEE_Click" />
+                     <input id="image" type="button" class="btn btn-success arrowRight" onClick="Navegacion('GameBTwo.aspx');"/>
                 </div>
                 <div id="area" align="center" class="divArea"> 
                    <div style="display:inline;" ><asp:TextBox ID="btnA" class="txtArea"  runat="server"  readonly ="true" style="text-align: center"></asp:TextBox>  <asp:ImageButton ID="btnC" runat="server"   class="txtArea"/> <asp:TextBox ID="btnB" class="txtArea" runat="server"  readonly="true" style="text-align: center"></asp:TextBox> </div><br />
                    <div style="display:inline;"> <asp:TextBox  ID="btnF" class="txtArea"  runat ="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnE" class="txtArea" runat="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnG" class="txtArea" runat="server"  readonly="true" style="text-align: center"></asp:TextBox> </div>
              </div>
                   <input type="text" id="txtNota" class="txtNota"/>
+          
 
+              
                <div style="float:right;margin-right:19%" class="btn bg-light">
                 <div class="btn-group btn" role="group" aria-label="Basic example">
                 <input id="" type="button" value="" class="btn bg-light white" onclick="Marcador('btn bg-light whiteLar', 'white');"/>
@@ -53,9 +59,39 @@
                      <input id="marcador" type="button" value="" class="btn bg-light whiteLar"/></div>
                   </div>
                </div>
-           <br /><br />
+                <br /><br /> <br />
+              <div class="container" style="margin-left:20%;">
 
-       <div class="container-fluid" >
+               <div class="btn-group btnGroupMarket" role="group" aria-label="Basic example">
+                     <asp:Button ID="lbl1" runat="server" Text="0" cssClass="btn btn lblCount" />
+                     <asp:Button ID="lbl2" runat="server" Text="0" cssClass="btn btn lblCount" />
+                     <asp:Button ID="lbl3" runat="server" Text="0" cssClass="btn btn lblCount"/>
+                     <asp:Button ID="lbl4" runat="server" Text="0" cssClass="btn btn lblCount"/>
+                     <asp:Button ID="lbl5" runat="server" Text="0" cssClass="btn btn lblCount" />
+                     <asp:Button ID="lbl6" runat="server" Text="0" cssClass="btn btn lblCount"/>
+                     <asp:Button ID="lbl7" runat="server" Text="0" cssClass="btn btn lblCount"/>
+                     <asp:Button ID="lbl8" runat="server" Text="0" cssClass="btn btn lblCount"/>
+                     <asp:Button ID="lbl9" runat="server" Text="0" cssClass="btn btn lblCount" />
+               </div>
+
+                    <div class="btn-group btnGroupMarket" role="group" aria-label="Basic example">
+                     <asp:Button ID="btn1" runat="server" Text="1" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn2" runat="server" Text="2" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn3" runat="server" Text="3" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn4" runat="server" Text="4" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn5" runat="server" Text="5" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn6" runat="server" Text="6" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn7" runat="server" Text="7" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn8" runat="server" Text="8" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn9" runat="server" Text="9" cssClass="btn btn" OnClick="btn1_Click" />
+                   
+                 </div>
+
+              </div>
+
+
+       <div class="container-fluid" style=" margin-top:5%;" >
+     
              <div class="container" align="center" style="margin-left:16%;float:left;width:500px;">
                   <div style="align-content:center">           
                      <label id="numero" class="nameGrid2">Números</label>
@@ -280,6 +316,12 @@
                 return false;
             }
         }
+
+        $('.cTxt').focus(function () {
+            var id = $('.cTxt').attr('ID');
+            console.log(id);
+            $('idTxt').val(id);
+        });
     </script>
 
 

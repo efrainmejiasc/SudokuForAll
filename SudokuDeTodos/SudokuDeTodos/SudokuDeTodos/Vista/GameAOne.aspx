@@ -15,9 +15,13 @@
   <title>Numeros</title>
 </head>
     <body>
-        <input type="hidden" id ="idTxt" />
+
 
        <form id="form1" runat="server">
+
+                   <input type="hidden" id ="idTxt" />
+
+
             <div id="banner" class="divBanner container-fluid">
                         <img id="logSudoku"  class="logoInitial"/>
                           <ul class="row" style="margin-left:16%">   
@@ -30,7 +34,7 @@
            <div class="container-fluid">
 
                <div class="btn-group btnGroupA1" role="group" aria-label="Basic example">
-                     <asp:Button ID="btnBB" runat="server" Text="B" cssClass="btn btn-success" click="Navegacion('GameATwo.aspx');"/>
+                     <asp:Button ID="btnBB" runat="server" Text="B" cssClass="btn btn-success" click="Navegacion('GameBOne.aspx');"/>
                      <asp:Button ID="btnCC" runat="server" Text="C" cssClass="btn btn-success" click="Navegacion('GameATwo.aspx');"/>
                      <input id="image" type="button" class="btn btn-success arrowRight" onClick="Navegacion('GameATwo.aspx');"/>
                 </div>

@@ -238,7 +238,7 @@ namespace SudokuDeTodos.Vista
 
             int lnt = txt.Length;
             int row = Convert.ToInt32(txt.Substring(lnt-2,1));
-            int col = Convert.ToInt32(txt.Substring(lnt-1,1)); ;
+            int col = Convert.ToInt32(txt.Substring(lnt-1,1)); 
             if (idTxt.Value == string.Empty || idTxt.Value == null) return;
            // AbrirJuego();
             Button btn = (Button)sender;
@@ -275,7 +275,7 @@ namespace SudokuDeTodos.Vista
                     break;
                 case (EngineDataGame.restablecer):
                     if (lado != EngineDataGame.btnDerecha) return;
-                    string candidatoRestablecer = txtSudoku2[row, col].Text.Trim();
+                    string candidatoRestablecer = number.Value.Trim();
                     if (candidatoRestablecer == string.Empty) return;
                     if (candidatoRestablecer.Length == 1)
                     {
@@ -284,7 +284,8 @@ namespace SudokuDeTodos.Vista
                     }
                     else if (candidatoRestablecer.Length > 1)
                     {
-                        return;
+                        if (valorEliminado[row, col] != null)
+                            valorEliminado[row, col] = valorEliminado[row, col].Replace(candidatoRestablecer, "");
                     }
 
                     txtSudoku2[row, col].Text = valorEliminado[row, col];

@@ -298,11 +298,9 @@
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
         function KeyPress2(e, id) {
-            console.log(id);
-            $('#' + id).val('');
-            //GetNumero('vEliminado', id);
+            //console.log(id);
+
         }
 
 
@@ -312,9 +310,11 @@
             if ((value >= 0 && value <= 9) || value == 'Delete' || value == 'Backspace') {
                 if (value == 0)
                     TextZero(id || value == 'Delete' || value == 'Backspace');
-
+                else
+                    var number = $(id).val();
+                    $('#number').val(number);
             }
-            if (value === 'ArrowUp' || value === 'ArrowDown' || value === 'ArrowLeft' || value === 'ArrowRight') {
+            else if (value === 'ArrowUp' || value === 'ArrowDown' || value === 'ArrowLeft' || value === 'ArrowRight') {
                 var f = id.substring(4, 5);
                 var c = id.substring(5, 6);
                 Position2(value, f, c);

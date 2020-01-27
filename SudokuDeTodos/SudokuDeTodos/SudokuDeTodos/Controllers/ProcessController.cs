@@ -94,15 +94,21 @@ namespace SudokuDeTodos.Controllers
         }
 
         [HttpPost]
-        public JsonResult ReturnValorPlantilla (string id , string valor)
+        public JsonResult ReturnValorPlantilla (string tipo , string id , string valor)
         {
-            Respuesta respuesta = new Respuesta();
-            if (System.Web.HttpContext.Current.Session[nameVar] != null)
-                respuesta.Descripcion = System.Web.HttpContext.Current.Session[nameVar].ToString();
-            else
-                respuesta.Descripcion = null;
-
-            return Json(respuesta);
+            int lnt = id.Length;
+            int row = Convert.ToInt32(id.Substring(lnt - 2, 1));
+            int col = Convert.ToInt32(id.Substring(lnt - 1, 1));
+            ValorPosicion V = new ValorPosicion();
+            FuncionGame.ReadValuesFile();
+            if (tipo == "vEliminado")
+            {
+                V.Id = "#" + id;
+                V.Valor = FuncionGame.GetValorPosicion(tipo, row, col);
+                if (V.Valor.Contains(valor))
+                    V.Valor = valor;
+            }
+            return Json(V);
         }
 
         [HttpPost]

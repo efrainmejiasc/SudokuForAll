@@ -94,6 +94,18 @@ namespace SudokuDeTodos.Controllers
         }
 
         [HttpPost]
+        public JsonResult ReturnValorPlantilla (string id , string valor)
+        {
+            Respuesta respuesta = new Respuesta();
+            if (System.Web.HttpContext.Current.Session[nameVar] != null)
+                respuesta.Descripcion = System.Web.HttpContext.Current.Session[nameVar].ToString();
+            else
+                respuesta.Descripcion = null;
+
+            return Json(respuesta);
+        }
+
+        [HttpPost]
         public JsonResult EnviarNotificacionPrueba(string email)
         {
             Respuesta respuesta = new Respuesta();

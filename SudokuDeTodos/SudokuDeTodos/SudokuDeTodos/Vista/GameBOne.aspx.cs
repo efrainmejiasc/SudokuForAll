@@ -30,28 +30,15 @@ namespace SudokuDeTodos.Vista
         private string[] oculto = new string[27];
         private string[,] valorFiltrado = new string[9, 9];
         private int numeroFiltrado = 0;
-        private bool isPostBack = false;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                isPostBack = true;
-                txtSudoku = AsociarTxtMatriz(txtSudoku);
-                txtSudoku2 = AsociarTxtMatriz2(txtSudoku2);
-                txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);
-                txtSudoku2 = Game.SetearTextBoxLimpio(txtSudoku2);
-                AbrirJuego();
-            }
-            else
-            {
-                txtSudoku = AsociarTxtMatriz(txtSudoku);
-                txtSudoku2 = AsociarTxtMatriz2(txtSudoku2);
-                txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);
-                AbrirJuego();
-            }
-        
-
+            txtSudoku = AsociarTxtMatriz(txtSudoku);
+            txtSudoku2 = AsociarTxtMatriz2(txtSudoku2);
+            txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);
+            txtSudoku2 = Game.SetearTextBoxLimpio(txtSudoku2);
+            AbrirJuego();
         }
         public void AbrirJuego()
         {
@@ -183,8 +170,7 @@ namespace SudokuDeTodos.Vista
             lbl9.Enabled = false;
         }
 
-   
-
+  
         protected void btn1_Click(object sender, EventArgs e)
         {
             AbrirJuego();
@@ -242,19 +228,25 @@ namespace SudokuDeTodos.Vista
 
         protected void btnEE_Click(object sender, EventArgs e)
         {
-            int row = 0;
-            int col = 0;
             string lado = string.Empty;
-            string selectedKey1 = idTxt.Value;
+            string txt = idTxt.Value.Replace("#","");
+
+            if (txt.Contains('_'))
+                lado = EngineDataGame.btnDerecha;
+            else
+                lado = EngineDataGame.btnIzquierda;
+
+            int lnt = txt.Length;
+            int row = Convert.ToInt32(txt.Substring(lnt-2,1));
+            int col = Convert.ToInt32(txt.Substring(lnt-1,1)); ;
             if (idTxt.Value == string.Empty || idTxt.Value == null) return;
-            AbrirJuego();
-       
+           // AbrirJuego();
             Button btn = (Button)sender;
             switch (btn.ID)
             {
                 case (EngineDataGame.eliminar):
                     if (lado != EngineDataGame.btnIzquierda) return;
-                    string candidatoEliminar = txtSudoku[row, col].Text;
+                    string candidatoEliminar = number.Value;
                     if (candidatoEliminar == string.Empty) return;
                     if (valorEliminado[row, col] != null && valorEliminado[row, col] != string.Empty)
                     {
@@ -350,7 +342,10 @@ namespace SudokuDeTodos.Vista
             }
         }
 
-
+        protected void btnAA_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("GameATwo.aspx");
+        }
 
         private TextBox[,] AsociarTxtMatriz(TextBox[,] txtSudoku)
         {
@@ -438,7 +433,7 @@ namespace SudokuDeTodos.Vista
             return txtSudoku2;
         }
 
-        
+    
     }
 
 }

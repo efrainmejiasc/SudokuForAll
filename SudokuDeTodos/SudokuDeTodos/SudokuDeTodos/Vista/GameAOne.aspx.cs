@@ -155,7 +155,6 @@ namespace SudokuDeTodos.Vista
             return LetrasJuegoACB;
         }
 
-
         private LetrasJuegoFEG SetLetrasJuegoFEG()
         {
             LetrasJuegoFEG = Game.SetLetrasJuegoFEG(ValorGame.contadorIngresado, valorIngresado, valorCandidatoSinEliminados);
@@ -176,6 +175,15 @@ namespace SudokuDeTodos.Vista
             return LetrasJuegoFEG;
         }
 
+        protected void btnBB_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("GameBOne.aspx");
+        }
+
+        protected void btnCC_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private TextBox[,] AsociarTxtMatriz(TextBox[,] txtSudoku)
         {
@@ -219,6 +227,5 @@ namespace SudokuDeTodos.Vista
 
             return txtSudoku;
         }
-
     }
 }

@@ -29,8 +29,8 @@
           <div class="container-fluid">
 
                <div class="btn-group btnGroupA1" role="group" aria-label="Basic example">
-                     <asp:Button ID="btnBB" runat="server" Text="B" cssClass="btn btn-success" click="Navegacion('GameBOne.aspx');"/>
-                     <asp:Button ID="btnCC" runat="server" Text="C" cssClass="btn btn-success" click="Navegacion('GameATwo.aspx');"/>
+                     <asp:Button ID="btnBB" runat="server" Text="B" cssClass="btn btn-success" OnClick="btnBB_Click" />
+                     <asp:Button ID="btnCC" runat="server" Text="C" cssClass="btn btn-success" OnClick="btnCC_Click" />
                      <input id="image" type="button" class="btn btn-success arrowLeft" onClick="Navegacion('GameAOne.aspx');"/>
                 </div>
                 <div id="area" align="center" class="divArea"> 

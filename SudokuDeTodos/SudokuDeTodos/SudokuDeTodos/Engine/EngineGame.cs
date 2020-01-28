@@ -415,6 +415,7 @@ namespace SudokuDeTodos.Engine
             {
                 for (int c = 0; c <= 8; c++)
                 {
+                    cajaTexto[f, c].ReadOnly = true;
                     if (vIngresado[f, c] == null || vIngresado[f, c] == string.Empty)
                     {
                         if (vCandidatoSinEliminados[f, c].Contains(n))
@@ -424,6 +425,7 @@ namespace SudokuDeTodos.Engine
                             cajaTexto[f, c].BackColor = Color.White;
                             cajaTexto[f, c].Text = n;
                             numFiltro[f, c] = n;
+                            cajaTexto[f, c].ReadOnly = true;
                         }
                         else
                         {

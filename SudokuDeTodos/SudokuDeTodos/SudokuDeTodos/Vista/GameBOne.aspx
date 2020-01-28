@@ -282,8 +282,6 @@
             //console.log(id);
             var value = e.key;
 
-            if ($(id.val()) == '')
-                return false;
 
             if ((value >= 0 && value <= 9) || value == 'Delete' || value == 'Backspace') {
                 if (value == 0)
@@ -301,7 +299,7 @@
                 DrawingMarket2(valueIdTxt);
             }
             else {
-                return false;
+               
             }
         }
         //*********************************************************************************************************************
@@ -338,6 +336,8 @@
         $('.cTxt').focus(function (evt) {
             var id = '#' + evt.target.id;
             $('#idTxt').val(id);
+            var number = $(id).val();
+            $('#number').val(number);
         })
     </script>
 

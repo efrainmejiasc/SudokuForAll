@@ -23,6 +23,25 @@ namespace SudokuDeTodos.Engine
         private string[] oculto = new string[27];
 
 
+        public void ReadValuesFile()
+        {
+            ArrayList arrText = AbrirValoresArchivo(ValorGame.PathArchivo);
+            ValorGame.valorIngresado = SetValorIngresado(arrText, valorIngresado);
+            ValorGame.valorCandidato = ElejiblesInstantaneos(valorIngresado, valorCandidato);
+            ValorGame.valorEliminado = SetValorEliminado(arrText, valorEliminado);
+            ValorGame.valorInicio = SetValorInicio(arrText, valorInicio);
+            ValorGame.valorSolucion = SetValorSolucion(arrText, valorSolucion);
+            ValorGame.valorCandidatoSinEliminados = CandidatosSinEliminados(valorIngresado, valorCandidato, valorEliminado);
+        }
+
+        public string GetValorPosicion(string tipo , int f, int c)
+        {
+            if (tipo == "vEliminado")
+            {
+                return ValorGame.valorEliminado[f, c];
+            }
+            return string.Empty;
+        }
 
         public LetrasJuego _ContadorIngresado(bool contadorActivado , int numGrilla)
         {

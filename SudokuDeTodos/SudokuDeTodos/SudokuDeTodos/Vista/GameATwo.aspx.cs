@@ -32,7 +32,6 @@ namespace SudokuDeTodos.Vista
         {
             if (!IsPostBack)
             {
-                txt_00.Text = "1" + "</br>" + "2";
                 txtSudoku = AsociarTxtMatriz(txtSudoku);
                 txtSudoku2 = AsociarTxtMatriz2(txtSudoku2);
                 txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);
@@ -166,6 +165,15 @@ namespace SudokuDeTodos.Vista
             return LetrasJuegoFEG;
         }
 
+        protected void btnBB_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("GameBOne.aspx");
+        }
+
+        protected void btnCC_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private TextBox[,] AsociarTxtMatriz(TextBox[,] txtSudoku)
         {
@@ -253,5 +261,6 @@ namespace SudokuDeTodos.Vista
             return txtSudoku2;
         }
 
+ 
     }
 }

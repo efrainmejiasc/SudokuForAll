@@ -10,6 +10,8 @@ namespace SudokuDeTodos.Engine
 {
     public interface IEngineGameChild
     {
+        void ReadValuesFile();
+        string GetValorPosicion(string tipo, int f, int c);
         LetrasJuego _ContadorIngresado(bool contadorActivado, int numGrilla);
         string[,] SetearTextBoxNumero(string[,] cajaTexto, string[,] vIngresado);
         string[,] SetearTextBoxEliminado(string[,] cajaTexto, string[,] vEliminado);

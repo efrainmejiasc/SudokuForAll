@@ -15,9 +15,13 @@
   <title>Numeros</title>
 </head>
     <body>
-        <input type="hidden" id ="idTxt" />
+
 
        <form id="form1" runat="server">
+
+                   <input type="hidden" id ="idTxt" />
+
+
             <div id="banner" class="divBanner container-fluid">
                         <img id="logSudoku"  class="logoInitial"/>
                           <ul class="row" style="margin-left:16%">   
@@ -29,9 +33,9 @@
 
            <div class="container-fluid">
 
-               <div class="btn-group btnGroupA1" role="group" aria-label="Basic example">
-                     <asp:Button ID="btnBB" runat="server" Text="B" cssClass="btn btn-success" click="Navegacion('GameATwo.aspx');"/>
-                     <asp:Button ID="btnCC" runat="server" Text="C" cssClass="btn btn-success" click="Navegacion('GameATwo.aspx');"/>
+               <div class="btn-group btnGroupA1" >
+                     <asp:Button ID="btnBB" runat="server" Text="B" cssClass="btn btn-success" OnClick="btnBB_Click"/>
+                     <asp:Button ID="btnCC" runat="server" Text="C" cssClass="btn btn-success" OnClick="btnCC_Click"/>
                      <input id="image" type="button" class="btn btn-success arrowRight" onClick="Navegacion('GameATwo.aspx');"/>
                 </div>
                 <div id="area" align="center" class="divArea"> 
@@ -173,11 +177,10 @@
 
                 GuardarJuego(id, document.getElementById(id).value, false, 1);
             }
-            else if (value === 'ArrowUp' || value === 'ArrowDown' || value === 'ArrowLeft' || value === 'ArrowRight')
-            {
+            else if (value === 'ArrowUp' || value === 'ArrowDown' || value === 'ArrowLeft' || value === 'ArrowRight') {
                 var f = id.substring(3, 4);
                 var c = id.substring(4, 5);
-                Position(value, f, c); 
+                Position(value, f, c);
                 var valueIdTxt = $('#idTxt').val();
                 DrawingMarket2(valueIdTxt);
             }
@@ -186,7 +189,6 @@
                 return false;
             }
         }
-
     </script>
 
 

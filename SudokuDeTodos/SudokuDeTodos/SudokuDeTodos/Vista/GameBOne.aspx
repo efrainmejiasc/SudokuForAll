@@ -1,22 +1,27 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GameATwo.aspx.cs" Inherits="SudokuDeTodos.Vista.GameATwo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GameBOne.aspx.cs" Inherits="SudokuDeTodos.Vista.GameBOne" %>
 
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/css/global.css" rel="stylesheet" />
     <link href="~/Content/css/style.css" rel="stylesheet" />
     <script src="../Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
     <script src="../Content/js/global.js" type="text/javascript"></script>
     <script src="../Content/js/game.js" type="text/javascript"></script>
-  <title>Numeros</title>
+    <title>Candidatos Individuales</title>
 </head>
-    <body>
-         <input type="hidden" id ="idTxt" />
+   <body>
 
        <form id="form1" runat="server">
+
+             <asp:HiddenField ID="idTxt" runat="server" />
+             <asp:HiddenField ID="number" runat="server" />
+            <asp:HiddenField ID="number2" runat="server" />
+
             <div id="banner" class="divBanner container-fluid">
                         <img id="logSudoku"  class="logoInitial"/>
                           <ul class="row" style="margin-left:16%">   
@@ -29,16 +34,19 @@
           <div class="container-fluid">
 
                <div class="btn-group btnGroupA1" role="group" aria-label="Basic example">
-                     <asp:Button ID="btnBB" runat="server" Text="B" cssClass="btn btn-success" OnClick="btnBB_Click" />
-                     <asp:Button ID="btnCC" runat="server" Text="C" cssClass="btn btn-success" OnClick="btnCC_Click" />
-                     <input id="image" type="button" class="btn btn-success arrowLeft" onClick="Navegacion('GameAOne.aspx');"/>
+                     <asp:Button ID="btnAA" runat="server" Text="A" cssClass="btn btn-success" OnClick="btnAA_Click"/>
+                     <asp:Button ID="btnEE" runat="server" Text="E" cssClass="btn btn-danger" OnClick="btnEE_Click" />
+                     <asp:Button ID="btnRR" runat="server" Text="R" cssClass="btn btn-warning" OnClick="btnEE_Click" />
+                     <input id="image" type="button" class="btn btn-success arrowRight" onClick="Navegacion('GameBTwo.aspx');"/>
                 </div>
                 <div id="area" align="center" class="divArea"> 
                    <div style="display:inline;" ><asp:TextBox ID="btnA" class="txtArea"  runat="server"  readonly ="true" style="text-align: center"></asp:TextBox>  <asp:ImageButton ID="btnC" runat="server"   class="txtArea"/> <asp:TextBox ID="btnB" class="txtArea" runat="server"  readonly="true" style="text-align: center"></asp:TextBox> </div><br />
                    <div style="display:inline;"> <asp:TextBox  ID="btnF" class="txtArea"  runat ="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnE" class="txtArea" runat="server" readonly="true" style="text-align: center"></asp:TextBox>  <asp:TextBox ID="btnG" class="txtArea" runat="server"  readonly="true" style="text-align: center"></asp:TextBox> </div>
              </div>
                   <input type="text" id="txtNota" class="txtNota"/>
+          
 
+              
                <div style="float:right;margin-right:19%" class="btn bg-light">
                 <div class="btn-group btn" role="group" aria-label="Basic example">
                 <input id="" type="button" value="" class="btn bg-light white" onclick="Marcador('btn bg-light whiteLar', 'white');"/>
@@ -53,9 +61,39 @@
                      <input id="marcador" type="button" value="" class="btn bg-light whiteLar"/></div>
                   </div>
                </div>
-           <br /><br />
+                <br /><br /> <br />
+              <div class="container" style="margin-left:20%;">
 
-       <div class="container-fluid" >
+               <div class="btn-group btnGroupMarket" role="group" aria-label="Basic example">
+                     <asp:Button ID="lbl1" runat="server" Text="0" cssClass="btn btn lblCount" />
+                     <asp:Button ID="lbl2" runat="server" Text="0" cssClass="btn btn lblCount" />
+                     <asp:Button ID="lbl3" runat="server" Text="0" cssClass="btn btn lblCount"/>
+                     <asp:Button ID="lbl4" runat="server" Text="0" cssClass="btn btn lblCount"/>
+                     <asp:Button ID="lbl5" runat="server" Text="0" cssClass="btn btn lblCount" />
+                     <asp:Button ID="lbl6" runat="server" Text="0" cssClass="btn btn lblCount"/>
+                     <asp:Button ID="lbl7" runat="server" Text="0" cssClass="btn btn lblCount"/>
+                     <asp:Button ID="lbl8" runat="server" Text="0" cssClass="btn btn lblCount"/>
+                     <asp:Button ID="lbl9" runat="server" Text="0" cssClass="btn btn lblCount" />
+               </div>
+
+                    <div class="btn-group btnGroupMarket" role="group" aria-label="Basic example">
+                     <asp:Button ID="btn1" runat="server" Text="1" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn2" runat="server" Text="2" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn3" runat="server" Text="3" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn4" runat="server" Text="4" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn5" runat="server" Text="5" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn6" runat="server" Text="6" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn7" runat="server" Text="7" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn8" runat="server" Text="8" cssClass="btn btn" OnClick="btn1_Click"/>
+                     <asp:Button ID="btn9" runat="server" Text="9" cssClass="btn btn" OnClick="btn1_Click" />
+                   
+                 </div>
+
+              </div>
+
+
+       <div class="container-fluid" style=" margin-top:5%;" >
+     
              <div class="container" align="center" style="margin-left:16%;float:left;width:500px;">
                   <div style="align-content:center">           
                      <label id="numero" class="nameGrid2">Números</label>
@@ -139,65 +177,65 @@
 
                       <!--FILA 1  -->
                       <div id="recuadro_0" class="box">
-                          <asp:TextBox ID="txt_00" class="cTxt" runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_00')"  onkeyup="javascript:return KeyUp2(event,'txt_00')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_01" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_01')"  onkeyup="javascript:return KeyUp2(event,'txt_01')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_02" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_02')"  onkeyup="javascript:return KeyUp2(event,'txt_02')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_10" class="cTxt" runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_10')"  onkeyup="javascript:return KeyUp2(event,'txt_10')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_11" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_11')"  onkeyup="javascript:return KeyUp2(event,'txt_11')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_12" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_12')"  onkeyup="javascript:return KeyUp2(event,'txt_12')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_20" class="cTxt" runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_20')"  onkeyup="javascript:return KeyUp2(event,'txt_20')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_21" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_21')"  onkeyup="javascript:return KeyUp2(event,'txt_21')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_22" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_22')"  onkeyup="javascript:return KeyUp2(event,'txt_22')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
+                          <asp:TextBox ID="txt_00" class="cTxt" runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_00')"  onkeyup="javascript:return KeyUp2(event,'txt_00')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_01" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_01')"  onkeyup="javascript:return KeyUp2(event,'txt_01')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_02" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_02')"  onkeyup="javascript:return KeyUp2(event,'txt_02')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_10" class="cTxt" runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_10')"  onkeyup="javascript:return KeyUp2(event,'txt_10')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_11" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_11')"  onkeyup="javascript:return KeyUp2(event,'txt_11')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_12" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_12')"  onkeyup="javascript:return KeyUp2(event,'txt_12')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_20" class="cTxt" runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_20')"  onkeyup="javascript:return KeyUp2(event,'txt_20')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_21" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_21')"  onkeyup="javascript:return KeyUp2(event,'txt_21')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_22" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_22')"  onkeyup="javascript:return KeyUp2(event,'txt_22')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
                       </div>
 
                       <!--  -->
                       <div id="recuadro_1" class="box">
-                          <asp:TextBox ID="txt_03" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_03')"  onkeyup="javascript:return KeyUp2(event,'txt_03')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_04" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_04')"  onkeyup="javascript:return KeyUp2(event,'txt_04')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_05" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_05')"  onkeyup="javascript:return KeyUp2(event,'txt_05')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_13" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_13')"  onkeyup="javascript:return KeyUp2(event,'txt_13')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_14" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_14')"  onkeyup="javascript:return KeyUp2(event,'txt_14')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_15" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_15')"  onkeyup="javascript:return KeyUp2(event,'txt_15')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_23" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_23')"  onkeyup="javascript:return KeyUp2(event,'txt_23')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_24" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_24')"  onkeyup="javascript:return KeyUp2(event,'txt_24')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_25" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_25')"  onkeyup="javascript:return KeyUp2(event,'txt_25')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
+                          <asp:TextBox ID="txt_03" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_03')"  onkeyup="javascript:return KeyUp2(event,'txt_03')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_04" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_04')"  onkeyup="javascript:return KeyUp2(event,'txt_04')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_05" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_05')"  onkeyup="javascript:return KeyUp2(event,'txt_05')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_13" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_13')"  onkeyup="javascript:return KeyUp2(event,'txt_13')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_14" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_14')"  onkeyup="javascript:return KeyUp2(event,'txt_14')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_15" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_15')"  onkeyup="javascript:return KeyUp2(event,'txt_15')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_23" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_23')"  onkeyup="javascript:return KeyUp2(event,'txt_23')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_24" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_24')"  onkeyup="javascript:return KeyUp2(event,'txt_24')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_25" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_25')"  onkeyup="javascript:return KeyUp2(event,'txt_25')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
                       </div>
 
                       <!--  -->
                       <div id="recuadro_2" class="box">
-                          <asp:TextBox ID="txt_06" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_06')"  onkeyup="javascript:return KeyUp2(event,'txt_06')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_07" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_07')"  onkeyup="javascript:return KeyUp2(event,'txt_07')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_08" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_08')"  onkeyup="javascript:return KeyUp2(event,'txt_08')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_16" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_16')"  onkeyup="javascript:return KeyUp2(event,'txt_16')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_17" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_17')"  onkeyup="javascript:return KeyUp2(event,'txt_17')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_18" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_18')"  onkeyup="javascript:return KeyUp2(event,'txt_18')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_26" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_26')"  onkeyup="javascript:return KeyUp2(event,'txt_26')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_27" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_27')"  onkeyup="javascript:return KeyUp2(event,'txt_27')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_28" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_28')"  onkeyup="javascript:return KeyUp2(event,'txt_28')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
+                          <asp:TextBox ID="txt_06" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_06')"  onkeyup="javascript:return KeyUp2(event,'txt_06')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_07" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_07')"  onkeyup="javascript:return KeyUp2(event,'txt_07')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_08" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_08')"  onkeyup="javascript:return KeyUp2(event,'txt_08')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_16" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_16')"  onkeyup="javascript:return KeyUp2(event,'txt_16')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_17" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_17')"  onkeyup="javascript:return KeyUp2(event,'txt_17')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_18" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_18')"  onkeyup="javascript:return KeyUp2(event,'txt_18')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_26" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_26')"  onkeyup="javascript:return KeyUp2(event,'txt_26')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_27" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_27')"  onkeyup="javascript:return KeyUp2(event,'txt_27')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_28" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_28')"  onkeyup="javascript:return KeyUp2(event,'txt_28')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
                       </div>
 
                       <!-- FILA 2 -->
                       <div id="recuadro_3" class="box">
-                          <asp:TextBox ID="txt_30" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_30')"  onkeyup="javascript:return KeyUp2(event,'txt_30')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_31" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_31')"  onkeyup="javascript:return KeyUp2(event,'txt_31')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_32" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_32')"  onkeyup="javascript:return KeyUp2(event,'txt_32')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_40" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_40')"  onkeyup="javascript:return KeyUp2(event,'txt_40')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_41" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_41')"  onkeyup="javascript:return KeyUp2(event,'txt_41')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_42" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_42')"  onkeyup="javascript:return KeyUp2(event,'txt_42')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_50" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_50')"  onkeyup="javascript:return KeyUp2(event,'txt_50')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_51" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_51')"  onkeyup="javascript:return KeyUp2(event,'txt_51')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_52" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_52')"  onkeyup="javascript:return KeyUp2(event,'txt_52')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
+                          <asp:TextBox ID="txt_30" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_30')"  onkeyup="javascript:return KeyUp2(event,'txt_30')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_31" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_31')"  onkeyup="javascript:return KeyUp2(event,'txt_31')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_32" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_32')"  onkeyup="javascript:return KeyUp2(event,'txt_32')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_40" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_40')"  onkeyup="javascript:return KeyUp2(event,'txt_40')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_41" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_41')"  onkeyup="javascript:return KeyUp2(event,'txt_41')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_42" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_42')"  onkeyup="javascript:return KeyUp2(event,'txt_42')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_50" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_50')"  onkeyup="javascript:return KeyUp2(event,'txt_50')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_51" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_51')"  onkeyup="javascript:return KeyUp2(event,'txt_51')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_52" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_52')"  onkeyup="javascript:return KeyUp2(event,'txt_52')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
                       </div>
 
                       <!--  -->
                       <div id="recuadro_4" class="box">
-                          <asp:TextBox ID="txt_33" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_33')"  onkeyup="javascript:return KeyUp2(event,'txt_33')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_34" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_34')"  onkeyup="javascript:return KeyUp2(event,'txt_34')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_35" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_35')"  onkeyup="javascript:return KeyUp2(event,'txt_35')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_43" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_43')"  onkeyup="javascript:return KeyUp2(event,'txt_43')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_44" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_44')"  onkeyup="javascript:return KeyUp2(event,'txt_44')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_45" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_45')"  onkeyup="javascript:return KeyUp2(event,'txt_45')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_53" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_53')"  onkeyup="javascript:return KeyUp2(event,'txt_53')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_54" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_54')"  onkeyup="javascript:return KeyUp2(event,'txt_54')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_55" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_55')"  onkeyup="javascript:return KeyUp2(event,'txt_55')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
+                          <asp:TextBox ID="txt_33" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_33')"  onkeyup="javascript:return KeyUp2(event,'txt_33')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_34" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_34')"  onkeyup="javascript:return KeyUp2(event,'txt_34')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_35" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_35')"  onkeyup="javascript:return KeyUp2(event,'txt_35')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_43" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_43')"  onkeyup="javascript:return KeyUp2(event,'txt_43')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_44" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_44')"  onkeyup="javascript:return KeyUp2(event,'txt_44')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_45" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_45')"  onkeyup="javascript:return KeyUp2(event,'txt_45')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_53" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_53')"  onkeyup="javascript:return KeyUp2(event,'txt_53')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_54" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_54')"  onkeyup="javascript:return KeyUp2(event,'txt_54')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_55" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_55')"  onkeyup="javascript:return KeyUp2(event,'txt_55')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
                       </div>
 
                       <!--  -->
                       <div id="recuadro_5" class="box">
-                          <asp:TextBox ID="txt_36" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_36')"  onkeyup="javascript:return KeyUp2(event,'txt_36')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_37" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_37')"  onkeyup="javascript:return KeyUp2(event,'txt_37')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_38" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_38')"  onkeyup="javascript:return KeyUp2(event,'txt_38')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_46" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_46')"  onkeyup="javascript:return KeyUp2(event,'txt_46')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_47" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_47')"  onkeyup="javascript:return KeyUp2(event,'txt_47')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_48" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_48')"  onkeyup="javascript:return KeyUp2(event,'txt_48')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_56" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_56')"  onkeyup="javascript:return KeyUp2(event,'txt_56')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_57" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_57')"  onkeyup="javascript:return KeyUp2(event,'txt_57')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_58" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_58')"  onkeyup="javascript:return KeyUp2(event,'txt_58')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
+                          <asp:TextBox ID="txt_36" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_36')"  onkeyup="javascript:return KeyUp2(event,'txt_36')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_37" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_37')"  onkeyup="javascript:return KeyUp2(event,'txt_37')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_38" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_38')"  onkeyup="javascript:return KeyUp2(event,'txt_38')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_46" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_46')"  onkeyup="javascript:return KeyUp2(event,'txt_46')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_47" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_47')"  onkeyup="javascript:return KeyUp2(event,'txt_47')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_48" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_48')"  onkeyup="javascript:return KeyUp2(event,'txt_48')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_56" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_56')"  onkeyup="javascript:return KeyUp2(event,'txt_56')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_57" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_57')"  onkeyup="javascript:return KeyUp2(event,'txt_57')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_58" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_58')"  onkeyup="javascript:return KeyUp2(event,'txt_58')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
                       </div>
 
                       <!--  FILA 3-->
                       <div class="box">
-                          <asp:TextBox ID="txt_60" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_60')"  onkeyup="javascript:return KeyUp2(event,'txt_60')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_61" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_61')"  onkeyup="javascript:return KeyUp2(event,'txt_61')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_62" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_62')"  onkeyup="javascript:return KeyUp2(event,'txt_62')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_70" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_70')"  onkeyup="javascript:return KeyUp2(event,'txt_70')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_71" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_71')"  onkeyup="javascript:return KeyUp2(event,'txt_71')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_72" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_72')"  onkeyup="javascript:return KeyUp2(event,'txt_72')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_80" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_80')"  onkeyup="javascript:return KeyUp2(event,'txt_80')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_81" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_81')"  onkeyup="javascript:return KeyUp2(event,'txt_81')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_82" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_82')"  onkeyup="javascript:return KeyUp2(event,'txt_82')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
+                          <asp:TextBox ID="txt_60" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_60')"  onkeyup="javascript:return KeyUp2(event,'txt_60')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_61" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_61')"  onkeyup="javascript:return KeyUp2(event,'txt_61')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_62" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_62')"  onkeyup="javascript:return KeyUp2(event,'txt_62')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_70" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_70')"  onkeyup="javascript:return KeyUp2(event,'txt_70')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_71" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_71')"  onkeyup="javascript:return KeyUp2(event,'txt_71')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_72" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_72')"  onkeyup="javascript:return KeyUp2(event,'txt_72')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_80" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_80')"  onkeyup="javascript:return KeyUp2(event,'txt_80')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_81" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_81')"  onkeyup="javascript:return KeyUp2(event,'txt_81')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_82" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_82')"  onkeyup="javascript:return KeyUp2(event,'txt_82')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
                       </div>
 
                       <!--  -->
                       <div class="box">
-                          <asp:TextBox ID="txt_63" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_63')"  onkeyup="javascript:return KeyUp2(event,'txt_63')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_64" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_64')"  onkeyup="javascript:return KeyUp2(event,'txt_64')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_65" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_65')"  onkeyup="javascript:return KeyUp2(event,'txt_65')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_73" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_73')"  onkeyup="javascript:return KeyUp2(event,'txt_73')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_74" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_74')"  onkeyup="javascript:return KeyUp2(event,'txt_74')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_75" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_75')"  onkeyup="javascript:return KeyUp2(event,'txt_75')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_83" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_83')"  onkeyup="javascript:return KeyUp2(event,'txt_83')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_84" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_84')"  onkeyup="javascript:return KeyUp2(event,'txt_84')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_85" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_85')"  onkeyup="javascript:return KeyUp2(event,'txt_85')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
+                          <asp:TextBox ID="txt_63" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_63')"  onkeyup="javascript:return KeyUp2(event,'txt_63')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_64" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_64')"  onkeyup="javascript:return KeyUp2(event,'txt_64')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_65" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_65')"  onkeyup="javascript:return KeyUp2(event,'txt_65')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_73" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_73')"  onkeyup="javascript:return KeyUp2(event,'txt_73')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_74" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_74')"  onkeyup="javascript:return KeyUp2(event,'txt_74')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_75" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_75')"  onkeyup="javascript:return KeyUp2(event,'txt_75')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_83" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_83')"  onkeyup="javascript:return KeyUp2(event,'txt_83')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_84" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_84')"  onkeyup="javascript:return KeyUp2(event,'txt_84')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_85" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_85')"  onkeyup="javascript:return KeyUp2(event,'txt_85')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
                       </div>
 
                       <!--  -->
                       <div class="box">
-                          <asp:TextBox ID="txt_66" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_66')"  onkeyup="javascript:return KeyUp2(event,'txt_66')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_67" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_67')"  onkeyup="javascript:return KeyUp2(event,'txt_67')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_68" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_68')"  onkeyup="javascript:return KeyUp2(event,'txt_68')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_76" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_76')"  onkeyup="javascript:return KeyUp2(event,'txt_76')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_77" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_77')"  onkeyup="javascript:return KeyUp2(event,'txt_77')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_78" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_78')"  onkeyup="javascript:return KeyUp2(event,'txt_78')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
-                          <asp:TextBox ID="txt_86" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_86')"  onkeyup="javascript:return KeyUp2(event,'txt_86')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_87" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_87')"  onkeyup="javascript:return KeyUp2(event,'txt_87')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox> <asp:TextBox ID="txt_88" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_88')"  onkeyup="javascript:return KeyUp2(event,'txt_88')" onclick="javascript:return DrawingMarket(this)"  ReadOnly="true"></asp:TextBox>
+                          <asp:TextBox ID="txt_66" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_66')"  onkeyup="javascript:return KeyUp2(event,'txt_66')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_67" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_67')"  onkeyup="javascript:return KeyUp2(event,'txt_67')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_68" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_68')"  onkeyup="javascript:return KeyUp2(event,'txt_68')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_76" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_76')"  onkeyup="javascript:return KeyUp2(event,'txt_76')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_77" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_77')"  onkeyup="javascript:return KeyUp2(event,'txt_77')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_78" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_78')"  onkeyup="javascript:return KeyUp2(event,'txt_78')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
+                          <asp:TextBox ID="txt_86" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_86')"  onkeyup="javascript:return KeyUp2(event,'txt_86')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_87" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_87')"  onkeyup="javascript:return KeyUp2(event,'txt_87')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox> <asp:TextBox ID="txt_88" class="cTxt"  runat="server"  onkeypress="javascript:return KeyPress2(event,'txt_88')"  onkeyup="javascript:return KeyUp2(event,'txt_88')" onclick="javascript:return DrawingMarket(this)"  ></asp:TextBox>
                       </div>
 
 
@@ -227,11 +265,13 @@
             );
         });
 
+
+
         function KeyPress(e, id) {
             // console.log(id);
             var value = e.key
             if (value >= 0 && value <= 9) {
-               
+
             }
             else {
                 return false;
@@ -240,15 +280,16 @@
 
         function KeyUp(e, id) {
             //console.log(id);
-            var value = e.key
-            if ((value >= 0 && value <= 9) || value == 'Delete' || value == 'Backspace')
-            {
+            var value = e.key;
+
+
+            if ((value >= 0 && value <= 9) || value == 'Delete' || value == 'Backspace') {
                 if (value == 0)
                     TextZero(id || value == 'Delete' || value == 'Backspace');
                 else
                     TextNumero(id, value);
 
-                GuardarJuego(id, document.getElementById(id).value, false,2);
+                //GuardarJuego(id, document.getElementById(id).value, false, 2);
             }
             else if (value === 'ArrowUp' || value === 'ArrowDown' || value === 'ArrowLeft' || value === 'ArrowRight') {
                 var f = id.substring(3, 4);
@@ -258,18 +299,29 @@
                 DrawingMarket2(valueIdTxt);
             }
             else {
-                return false;
+               
             }
         }
-
+        //*********************************************************************************************************************
+        //*******************************************************************************************************************
         function KeyPress2(e, id) {
-         //console.log(id);
+            //console.log(id);
+            var number = $(id).val();
+            $('#number').val(number);
         }
 
         function KeyUp2(e, id) {
-         //console.log(id);  
+            //console.log(id); 
             var value = e.key
-            if (value === 'ArrowUp' || value === 'ArrowDown' || value === 'ArrowLeft' || value === 'ArrowRight') {
+            if ((value >= 0 && value <= 9) || value == 'Delete' || value == 'Backspace') {
+                if (value == 0)
+                    TextZero(id || value == 'Delete' || value == 'Backspace');
+                else
+                    TextNumero(id, value);
+
+                $('#number').val(value);
+            }
+            else if (value === 'ArrowUp' || value === 'ArrowDown' || value === 'ArrowLeft' || value === 'ArrowRight') {
                 var f = id.substring(4, 5);
                 var c = id.substring(5, 6);
                 Position2(value, f, c);
@@ -280,6 +332,13 @@
                 return false;
             }
         }
+
+        $('.cTxt').focus(function (evt) {
+            var id = '#' + evt.target.id;
+            $('#idTxt').val(id);
+            var number = $(id).val();
+            $('#number').val(number);
+        })
     </script>
 
 

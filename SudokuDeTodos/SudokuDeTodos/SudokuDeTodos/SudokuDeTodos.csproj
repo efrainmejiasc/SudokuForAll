@@ -161,6 +161,7 @@
     <Compile Include="Models\Game\LetrasJuego.cs" />
     <Compile Include="Models\Game\LetrasJuegoACB.cs" />
     <Compile Include="Models\Game\LetrasJuegoFEG.cs" />
+    <Compile Include="Models\Game\ValorPosicion.cs" />
     <Compile Include="Models\Sistema\EstructuraMail.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />
     <Compile Include="Models\Sistema\Respuesta.cs" />
@@ -194,6 +195,20 @@
     </Compile>
     <Compile Include="Vista\GameATwo.aspx.designer.cs">
       <DependentUpon>GameATwo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GameBOne.aspx.cs">
+      <DependentUpon>GameBOne.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\GameBOne.aspx.designer.cs">
+      <DependentUpon>GameBOne.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GameBTwo.aspx.cs">
+      <DependentUpon>GameBTwo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\GameBTwo.aspx.designer.cs">
+      <DependentUpon>GameBTwo.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +259,22 @@
     <Content Include="Content\templates\EmailBodyResetPassword.cshtml" />
     <Content Include="Content\templates\EmailBodyTest.cshtml" />
     <Content Include="Content\templates\TerminosCondiciones.pdf" />
+    <Content Include="bin\Release\Publish\Web.config" />
+    <Content Include="Vista\GameBOne.aspx" />
+    <Content Include="Vista\GameBTwo.aspx" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="bin\Release\Publish\Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="bin\Release\Publish\Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

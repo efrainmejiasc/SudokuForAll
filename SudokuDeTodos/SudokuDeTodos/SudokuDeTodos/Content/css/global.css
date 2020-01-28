@@ -202,6 +202,16 @@ input:valid {
     margin-left: 10%;
 }
 
+.btnGroupMarket {
+    float: left;
+    margin-left: 5%;
+
+}
+
+.lblCount {
+    font-size: 9px;
+}
+
 /*
     Marcadores
 */

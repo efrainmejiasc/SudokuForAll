@@ -294,4 +294,24 @@ function Position2(sentido, f, c) {
 }
 
 
+function GetNumero(tipo, id) {
+
+    var valor = $(id).val();
+    if (valor === '' || valor === null)
+        return false;
+    $.ajax({
+        type: "POST",
+        url: "/Process/ReturnValorPlantilla",
+        dataType: "json",
+        data: { tipo: tipo , id: id , valor : valor},
+        success: function (data) {
+            $(data.Id).val(data.Valor);
+        },
+        complete: function () {
+            console.log('ValorPlantilla');
+        }
+    });
+}
+
+
 

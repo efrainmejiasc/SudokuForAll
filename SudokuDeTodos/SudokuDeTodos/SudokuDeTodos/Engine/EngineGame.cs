@@ -381,6 +381,7 @@ namespace SudokuDeTodos.Engine
                     //cajaTexto[f, c].Font = new Font(EngineDataGame.TipoLetra, 8);
                     cajaTexto[f, c].ForeColor = Color.Red;
                     cajaTexto[f, c].Text = vEliminado[f, c];
+                    cajaTexto[f, c].Attributes.Add("autocomplete", "off");
                     //cajaTexto[f, c].TextAlign = HorizontalAlignment.Left;
                 }
             }
@@ -414,26 +415,29 @@ namespace SudokuDeTodos.Engine
             {
                 for (int c = 0; c <= 8; c++)
                 {
+                    cajaTexto[f, c].ReadOnly = true;
                     if (vIngresado[f, c] == null || vIngresado[f, c] == string.Empty)
                     {
                         if (vCandidatoSinEliminados[f, c].Contains(n))
                         {
                             //cajaTexto[f, c].Font = new Font(EngineDataGame.TipoLetra, 20);
                             cajaTexto[f, c].ForeColor = Color.Blue;
-                            cajaTexto[f, c].BackColor = Color.WhiteSmoke;
+                            cajaTexto[f, c].BackColor = Color.White;
                             cajaTexto[f, c].Text = n;
                             numFiltro[f, c] = n;
+                            cajaTexto[f, c].ReadOnly = true;
                         }
                         else
                         {
                             cajaTexto[f, c].Text = string.Empty;
                             numFiltro[f, c] = string.Empty;
-                            cajaTexto[f, c].BackColor = Color.WhiteSmoke;
+                            cajaTexto[f, c].BackColor = Color.White;
+                            cajaTexto[f, c].ReadOnly = true;
                         }
                     }
                     else
                     {
-                        cajaTexto[f, c].BackColor = Color.WhiteSmoke;
+                        cajaTexto[f, c].BackColor = Color.White;
                     }
 
                     //cajaTexto[f, c].TextAlign = HorizontalAlignment.Center;
@@ -2508,6 +2512,36 @@ namespace SudokuDeTodos.Engine
             return resultado;
         }
 
+        public bool GuardarJuego(string pathArchivo ,string [,] valorIngresado, string[,]  valorEliminado, string[,] valorInicio, string[,] valorSolucion)
+        {
+            bool resultado = false;
+            if (pathArchivo == string.Empty || pathArchivo == null) return resultado;
+            try
+            {
+                GuardarValoresIngresados(pathArchivo, valorIngresado);
+                GuardarValoresEliminados(pathArchivo, valorEliminado);
+                GuardarValoresInicio(pathArchivo, valorInicio);
+                GuardarValoresSolucion(pathArchivo, valorSolucion);
+                resultado = true;
+            }
+            catch
+            {}
+   
+            return resultado ;
+        }
+
+        public TextBox [,] TextReadOnly(TextBox [,] txtSudoku)
+        {
+            for (int i = 0; i <= 8; i++)
+            {
+                for (int j = 0; j <= 8; j++)
+                {
+                    txtSudoku[i, j].ReadOnly = true;
+                    txtSudoku[i, j].Attributes.Add("autocomplete", "off");
+                }
+            }
+            return txtSudoku;
+        }
 
     }
 }

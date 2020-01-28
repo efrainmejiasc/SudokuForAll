@@ -77,6 +77,7 @@ namespace SudokuDeTodos.Vista
             valorCandidato = Game.ElejiblesInstantaneos(valorIngresado, valorCandidato);
             valorCandidatoSinEliminados = Game.CandidatosSinEliminados(valorIngresado, valorCandidato, valorEliminado);
             txtSudoku2 = Game.SetearTextBoxEliminados(txtSudoku2, valorEliminado);
+            txtSudoku = Game.TextReadOnly(txtSudoku);
             ActualizarContadoresCandidatos();
         }
 

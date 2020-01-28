@@ -20,6 +20,7 @@
 
              <asp:HiddenField ID="idTxt" runat="server" />
              <asp:HiddenField ID="number" runat="server" />
+            <asp:HiddenField ID="number2" runat="server" />
 
             <div id="banner" class="divBanner container-fluid">
                         <img id="logSudoku"  class="logoInitial"/>
@@ -264,11 +265,13 @@
             );
         });
 
+
+
         function KeyPress(e, id) {
             // console.log(id);
             var value = e.key
             if (value >= 0 && value <= 9) {
-               
+
             }
             else {
                 return false;
@@ -277,12 +280,18 @@
 
         function KeyUp(e, id) {
             //console.log(id);
-            var value = e.key
-            if ((value >= 0 && value <= 9) || value == 'Delete' || value == 'Backspace')
-            {
+            var value = e.key;
+
+            if ($(id.val()) == '')
+                return false;
+
+            if ((value >= 0 && value <= 9) || value == 'Delete' || value == 'Backspace') {
                 if (value == 0)
                     TextZero(id || value == 'Delete' || value == 'Backspace');
+                else
+                    TextNumero(id, value);
 
+                //GuardarJuego(id, document.getElementById(id).value, false, 2);
             }
             else if (value === 'ArrowUp' || value === 'ArrowDown' || value === 'ArrowLeft' || value === 'ArrowRight') {
                 var f = id.substring(3, 4);
@@ -295,24 +304,24 @@
                 return false;
             }
         }
-
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //*********************************************************************************************************************
+        //*******************************************************************************************************************
         function KeyPress2(e, id) {
             //console.log(id);
-
+            var number = $(id).val();
+            $('#number').val(number);
         }
 
-
         function KeyUp2(e, id) {
-            //console.log(id);
+            //console.log(id); 
             var value = e.key
             if ((value >= 0 && value <= 9) || value == 'Delete' || value == 'Backspace') {
                 if (value == 0)
                     TextZero(id || value == 'Delete' || value == 'Backspace');
                 else
-                    var number = $(id).val();
-                    $('#number').val(number);
+                    TextNumero(id, value);
+
+                $('#number').val(value);
             }
             else if (value === 'ArrowUp' || value === 'ArrowDown' || value === 'ArrowLeft' || value === 'ArrowRight') {
                 var f = id.substring(4, 5);
@@ -326,18 +335,9 @@
             }
         }
 
-
-        $('.cTxt').focus(function () {
-            var id = $('.cTxt').attr('ID');
-            //console.log(id);
-            $('idTxt').val(id);
-        });
-
         $('.cTxt').focus(function (evt) {
             var id = '#' + evt.target.id;
             $('#idTxt').val(id);
-            var number = $(id).val();
-            $('#number').val(number);
         })
     </script>
 

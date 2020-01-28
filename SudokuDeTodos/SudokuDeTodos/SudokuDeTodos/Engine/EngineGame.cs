@@ -381,6 +381,7 @@ namespace SudokuDeTodos.Engine
                     //cajaTexto[f, c].Font = new Font(EngineDataGame.TipoLetra, 8);
                     cajaTexto[f, c].ForeColor = Color.Red;
                     cajaTexto[f, c].Text = vEliminado[f, c];
+                    cajaTexto[f, c].Attributes.Add("autocomplete", "off");
                     //cajaTexto[f, c].TextAlign = HorizontalAlignment.Left;
                 }
             }
@@ -429,6 +430,7 @@ namespace SudokuDeTodos.Engine
                             cajaTexto[f, c].Text = string.Empty;
                             numFiltro[f, c] = string.Empty;
                             cajaTexto[f, c].BackColor = Color.White;
+                            cajaTexto[f, c].ReadOnly = true;
                         }
                     }
                     else
@@ -2524,6 +2526,19 @@ namespace SudokuDeTodos.Engine
             {}
    
             return resultado ;
+        }
+
+        public TextBox [,] TextReadOnly(TextBox [,] txtSudoku)
+        {
+            for (int i = 0; i <= 8; i++)
+            {
+                for (int j = 0; j <= 8; j++)
+                {
+                    txtSudoku[i, j].ReadOnly = true;
+                    txtSudoku[i, j].Attributes.Add("autocomplete", "off");
+                }
+            }
+            return txtSudoku;
         }
 
     }

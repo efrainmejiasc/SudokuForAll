@@ -3,6 +3,7 @@ using SudokuDeTodos.Models.Game;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,14 +11,13 @@ using System.Web.UI.WebControls;
 
 namespace SudokuDeTodos.Vista
 {
-    public partial class GameATwo : System.Web.UI.Page
+    public partial class GameCOne : System.Web.UI.Page
     {
         private EngineGameChild Game = new EngineGameChild();
         private EngineDataGame ValorGame = EngineDataGame.Instance();
         private LetrasJuegoFEG LetrasJuegoFEG = new LetrasJuegoFEG();
         private LetrasJuegoACB LetrasJuegoACB = new LetrasJuegoACB();
         private TextBox[,] txtSudoku = new TextBox[9, 9]; //ARRAY CONTENTIVO DE LOS TEXTBOX DEL GRAFICO DEL SUDOKU
-        private TextBox[,] txtSudoku2 = new TextBox[9, 9]; 
         private string[,] valorIngresado = new string[9, 9];//ARRAY CONTENTIVO DE LOS VALORES INGRESADOS 
         private string[,] valorCandidato = new string[9, 9];//ARRAY CONTENTIVO DE LOS VALORES CANDIDATOS 
         private string[,] valorEliminado = new string[9, 9];//ARRAY CONTENTIVO DE LOS VALORES ELIMINADOS
@@ -33,10 +33,10 @@ namespace SudokuDeTodos.Vista
             if (!IsPostBack)
             {
                 txtSudoku = AsociarTxtMatriz(txtSudoku);
-                txtSudoku2 = AsociarTxtMatriz2(txtSudoku2);
                 txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);
-                txtSudoku2 = Game.SetearTextBoxLimpio(txtSudoku2);
                 AbrirJuego();
+                ContadorIngresado();
+                ProcesosContables();
             }
         }
 
@@ -77,7 +77,7 @@ namespace SudokuDeTodos.Vista
             valorCandidato = Game.ElejiblesInstantaneos(valorIngresado, valorCandidato);
             valorCandidatoSinEliminados = Game.CandidatosSinEliminados(valorIngresado, valorCandidato, valorEliminado);
             txtSudoku = Game.SetearTextBoxJuego(txtSudoku, valorIngresado, valorInicio);
-            txtSudoku2 = Game.SetearTextBoxNumeroEliminados(txtSudoku2, valorIngresado, valorEliminado);
+        
         }
 
         private void ContadorIngresado()
@@ -122,9 +122,9 @@ namespace SudokuDeTodos.Vista
             LetrasJuegoACB = Game.SetLetrasJuegoACB(solo, oculto);
             btnA.Text = LetrasJuegoACB.A.ToString();
             btnB.Text = LetrasJuegoACB.B.ToString();
-            if (LetrasJuegoACB.A + LetrasJuegoACB.B > 0)
+            if (LetrasJuegoACB.A + LetrasJuegoACB.B >= 0)
             {
-                btnBB.Visible = EngineDataGame.Falso;
+
                 btnBB.Visible = EngineDataGame.Verdadero;
             }
             else
@@ -139,7 +139,6 @@ namespace SudokuDeTodos.Vista
             else
             {
                 btnC.ImageUrl = "~/Content/imagen/UnLook.JPG";
-                btnBB.Visible = EngineDataGame.Falso;
                 btnBB.Visible = EngineDataGame.Verdadero;
             }
             return LetrasJuegoACB;
@@ -165,14 +164,29 @@ namespace SudokuDeTodos.Vista
             return LetrasJuegoFEG;
         }
 
+        private void ProcesosContables()
+        {
+            GridView1.DataSource = null;
+            DataTable dt = new DataTable();
+            dt = Game.CrearTabla1();
+            dt = Game.ContarGruposVacios(dt, valorIngresado);
+            dt = Game.MostrarSoloOculto(dt, solo, oculto);
+            DataTable tabla = new DataTable();
+            tabla = Game.OrdernadorLetraNumerico(dt);
+            GridView1.DataSource = tabla;
+            GridView1.DataBind();
+            //GridView1 = Game.FormatoDataGridView1(GridView1);
+        }
+
+        protected void btnAA_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("GameATwo.aspx");
+        }
+
         protected void btnBB_Click(object sender, EventArgs e)
         {
             Response.Redirect("GameBOne.aspx");
-        }
-
-        protected void btnCC_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("GameCOne.aspx");
         }
 
         private TextBox[,] AsociarTxtMatriz(TextBox[,] txtSudoku)
@@ -218,49 +232,6 @@ namespace SudokuDeTodos.Vista
             return txtSudoku;
         }
 
-        private TextBox[,] AsociarTxtMatriz2(TextBox[,] txtSudoku2)
-        {
-            /////////////////////////////////////////////////////////////////////////////
-            txtSudoku2[0, 0] = txt_00; txtSudoku2[0, 1] = txt_01; txtSudoku2[0, 2] = txt_02;
-            txtSudoku2[1, 0] = txt_10; txtSudoku2[1, 1] = txt_11; txtSudoku2[1, 2] = txt_12;
-            txtSudoku2[2, 0] = txt_20; txtSudoku2[2, 1] = txt_21; txtSudoku2[2, 2] = txt_22;
-
-            txtSudoku2[0, 3] = txt_03; txtSudoku2[0, 4] = txt_04; txtSudoku2[0, 5] = txt_05;
-            txtSudoku2[1, 3] = txt_13; txtSudoku2[1, 4] = txt_14; txtSudoku2[1, 5] = txt_15;
-            txtSudoku2[2, 3] = txt_23; txtSudoku2[2, 4] = txt_24; txtSudoku2[2, 5] = txt_25;
-
-            txtSudoku2[0, 6] = txt_06; txtSudoku2[0, 7] = txt_07; txtSudoku2[0, 8] = txt_08;
-            txtSudoku2[1, 6] = txt_16; txtSudoku2[1, 7] = txt_17; txtSudoku2[1, 8] = txt_18;
-            txtSudoku2[2, 6] = txt_26; txtSudoku2[2, 7] = txt_27; txtSudoku2[2, 8] = txt_28;
-            ////////////////////////////////////////////////////////////////////////////
-            txtSudoku2[3, 0] = txt_30; txtSudoku2[3, 1] = txt_31; txtSudoku2[3, 2] = txt_32;
-            txtSudoku2[4, 0] = txt_40; txtSudoku2[4, 1] = txt_41; txtSudoku2[4, 2] = txt_42;
-            txtSudoku2[5, 0] = txt_50; txtSudoku2[5, 1] = txt_51; txtSudoku2[5, 2] = txt_52;
-
-            txtSudoku2[3, 3] = txt_33; txtSudoku2[3, 4] = txt_34; txtSudoku2[3, 5] = txt_35;
-            txtSudoku2[4, 3] = txt_43; txtSudoku2[4, 4] = txt_44; txtSudoku2[4, 5] = txt_45;
-            txtSudoku2[5, 3] = txt_53; txtSudoku2[5, 4] = txt_54; txtSudoku2[5, 5] = txt_55;
-
-            txtSudoku2[3, 6] = txt_36; txtSudoku2[3, 7] = txt_37; txtSudoku2[3, 8] = txt_38;
-            txtSudoku2[4, 6] = txt_46; txtSudoku2[4, 7] = txt_47; txtSudoku2[4, 8] = txt_48;
-            txtSudoku2[5, 6] = txt_56; txtSudoku2[5, 7] = txt_57; txtSudoku2[5, 8] = txt58;
-            ////////////////////////////////////////////////////////////////////////////
-            txtSudoku2[6, 0] = txt_60; txtSudoku2[6, 1] = txt_61; txtSudoku2[6, 2] = txt_62;
-            txtSudoku2[7, 0] = txt_70; txtSudoku2[7, 1] = txt_71; txtSudoku2[7, 2] = txt_72;
-            txtSudoku2[8, 0] = txt_80; txtSudoku2[8, 1] = txt_81; txtSudoku2[8, 2] = txt_82;
-
-            txtSudoku2[6, 3] = txt_63; txtSudoku2[6, 4] = txt_64; txtSudoku2[6, 5] = txt_65;
-            txtSudoku2[7, 3] = txt_73; txtSudoku2[7, 4] = txt_74; txtSudoku2[7, 5] = txt_75;
-            txtSudoku2[8, 3] = txt_83; txtSudoku2[8, 4] = txt_84; txtSudoku2[8, 5] = txt_85;
-
-            txtSudoku2[6, 6] = txt_66; txtSudoku2[6, 7] = txt_67; txtSudoku2[6, 8] = txt_68;
-            txtSudoku2[7, 6] = txt_76; txtSudoku2[7, 7] = txt_77; txtSudoku2[7, 8] = txt_78;
-            txtSudoku2[8, 6] = txt_86; txtSudoku2[8, 7] = txt_87; txtSudoku2[8, 8] = txt_88;
-            ////////////////////////////////////////////////////////////////////////////
-
-            return txtSudoku2;
-        }
-
- 
+     
     }
 }

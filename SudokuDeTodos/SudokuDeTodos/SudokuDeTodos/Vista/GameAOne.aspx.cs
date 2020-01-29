@@ -182,7 +182,7 @@ namespace SudokuDeTodos.Vista
 
         protected void btnCC_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("GameCOne.aspx");
         }
 
         private TextBox[,] AsociarTxtMatriz(TextBox[,] txtSudoku)

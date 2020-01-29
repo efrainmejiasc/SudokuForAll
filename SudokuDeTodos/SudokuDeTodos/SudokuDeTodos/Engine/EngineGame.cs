@@ -2124,32 +2124,21 @@ namespace SudokuDeTodos.Engine
             return dt;
         }
 
-        /*
+ 
         // FORMATO DATAGRIDVIEW
-        public DataGridView FormatoDataGridView1(DataGridView dgv)
+        public GridView FormatoDataGridView1(GridView dgv)
         {
-            //dataGridView1.AutoGenerateColumns = EngineDataGame.Falso;
-            dgv.Columns[0].Width = 50;
-            dgv.Columns[1].Width = 50;
-            dgv.Columns[2].Width = 50;
-            dgv.Columns[3].Width = 50;
-            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv.ClearSelection();
+            dgv.AutoGenerateColumns = EngineDataGame.Falso;
             return dgv;
         }
 
-        public DataGridView FormatoDataGridView2(DataGridView dgv)
+        public GridView FormatoDataGridView2(GridView dgv)
         {
-            dgv.Columns[0].Width = 50;
-            dgv.Columns[1].Width = 50;
-            dgv.Columns[2].Width = 50;
-            dgv.Columns[3].Width = 50;
-            dgv.Columns[4].Width = 80;
-            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv.ClearSelection();
+
+            dgv.AutoGenerateColumns = EngineDataGame.Falso;
             return dgv;
         }
-        */
+        
 
         //CONTABILIZAR GRUPOS VACIOS
 

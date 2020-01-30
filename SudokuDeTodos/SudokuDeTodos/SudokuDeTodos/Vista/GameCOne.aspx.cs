@@ -168,16 +168,13 @@ namespace SudokuDeTodos.Vista
         {
             GridView1.DataSource = null;
             DataTable dt = new DataTable();
-            dt = Game.CrearTabla1();
-            dt = Game.ContarGruposVacios(dt, valorIngresado);
-            dt = Game.MostrarSoloOculto(dt, solo, oculto);
+            dt = Game.SetearTestC(valorIngresado, solo, oculto); 
             DataTable tabla = new DataTable();
             tabla = Game.OrdernadorLetraNumerico(dt);
             GridView1.DataSource = tabla;
             GridView1.DataBind();
             //GridView1 = Game.FormatoDataGridView1(GridView1);
         }
-
         protected void btnAA_Click(object sender, EventArgs e)
         {
 

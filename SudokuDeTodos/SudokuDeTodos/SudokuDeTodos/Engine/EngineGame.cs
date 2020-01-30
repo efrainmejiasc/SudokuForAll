@@ -2260,6 +2260,15 @@ namespace SudokuDeTodos.Engine
             return dt;
         }
 
+        public DataTable SetearTestC(string [,] vIngresado, string []solo , string [] oculto)
+        {
+            DataTable dt = new DataTable();
+            dt = CrearTabla1();
+            dt = ContarGruposVacios(dt, vIngresado);
+            dt = MostrarSoloOculto(dt, solo, oculto);
+            return dt;
+        }
+
         public DataTable OrdernadorLetraNumerico(DataTable dt)
         {
             DataTable cero = new DataTable();
@@ -2329,7 +2338,7 @@ namespace SudokuDeTodos.Engine
                 }
 
             }
-
+   
             foreach (DataRow r in dt.Rows)
             {
                 if (r[1].ToString().Substring(0, 1) == "C" && r[3].ToString() == "0")

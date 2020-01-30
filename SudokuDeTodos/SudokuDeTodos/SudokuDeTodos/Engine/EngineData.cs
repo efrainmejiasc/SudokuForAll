@@ -152,7 +152,7 @@ namespace SudokuDeTodos.Engine
         {
             string cultura = GetCultura();
             string titulo = string.Empty;
-            switch (lenguaje)
+            switch (cultura)
             {
                 case (CulturaEspañol):
                     titulo = "Columna";
@@ -171,7 +171,7 @@ namespace SudokuDeTodos.Engine
         {
             string cultura = GetCultura();
             string titulo = string.Empty;
-            switch (lenguaje)
+            switch (cultura)
             {
                 case (CulturaEspañol):
                     titulo = "Recuadro";

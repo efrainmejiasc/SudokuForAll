@@ -137,9 +137,12 @@
                      <label id="excluido" class="nameGrid2"></label>
                     </div>
                 <div class="grid">
-                  <div class="innerGrid">
-                      <asp:GridView ID="GridView1" runat="server"></asp:GridView>
-
+                  <div class="innerGrid" style="overflow:auto;">
+                   
+                          <asp:GridView ID="GridView1" runat="server" >
+                              <AlternatingRowStyle BackColor="PaleGreen" />
+                         </asp:GridView>
+                 
                             </div><!-- FIN INNERGRID -->
                   </div><!-- FIN GRID -->
               </div><!-- CONTAINER2-->

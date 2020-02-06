@@ -225,6 +225,7 @@ function GetLetrasJuego(contadorActivado,numGrilla) {
             $('#btnE').val(data.LetrasJuegoFEG.E);
             $('#btnG').val(data.LetrasJuegoFEG.G);
 
+        } ,complete: function () {
         }
     });
 }
@@ -308,9 +309,47 @@ function GetNumero(tipo, id) {
             $(data.Id).val(data.Valor);
         },
         complete: function () {
-            console.log('ValorPlantilla');
+            console.log('GetNumeroValorEnPlantilla');
         }
     });
+}
+
+function ProcesosContables() {
+    DeleteRows();
+    var fila = '';
+    $.ajax({
+        type: "POST",
+        url: "/Process/ProcesosContables",
+        dataType: "json",
+        success: function (data) {
+            $.each(data, function (index, val) {
+                fila = '<tr> <td> ' + val.Id + ' </td> <td> ' + val.Val1 + ' </td> <td> ' + val.Val2 + ' </td> <td> ' + val.Val3 + ' </td> <td>' + val.Itr + '</td> </tr>';
+                $('#tablaTest').append(fila);
+            });
+        },
+        complete: function () {
+            PintarTabla();
+            console.log('ProcesosContables');
+        }
+    });
+}
+
+function DeleteRows()
+{
+    $("#tablaTest tbody tr").remove();   
+}
+
+function PintarTabla() {
+    var fila = document.getElementsByTagName('tr');
+    for (var n = 1; n <= 27; n++) {
+        if (n % 2 === 0)
+            fila[n].style.backgroundColor = "green";
+        else
+            fila[n].style.backgroundColor = "white";
+
+        fila[n].style.fontWeight;
+    }
+ 
 }
 
 

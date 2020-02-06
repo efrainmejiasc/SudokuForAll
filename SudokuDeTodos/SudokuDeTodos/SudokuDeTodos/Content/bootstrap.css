@@ -3289,6 +3289,9 @@ input[type="button"].btn-block {
   position: relative;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
+    top: 0px;
+    left: 0px;
+    width: 41px;
 }
 
 .btn-group > .btn:hover,

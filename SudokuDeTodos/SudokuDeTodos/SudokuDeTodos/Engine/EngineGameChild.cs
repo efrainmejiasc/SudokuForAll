@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -98,6 +99,7 @@ namespace SudokuDeTodos.Engine
                 valor.Items.Clear();
             }
         }
+
         private LetrasJuego _SetLetrasJuegoACB(LetrasJuego LetrasJuego)
         {
             LetrasJuego.LetrasJuegoACB = SetLetrasJuegoACB(solo, oculto);
@@ -141,6 +143,36 @@ namespace SudokuDeTodos.Engine
             return LetrasJuego;
         }
 
+        public List<TableTest> _ProcesosContables()
+        {
+            ArrayList arrText = AbrirValoresArchivo(ValorGame.PathArchivo);
+            valorIngresado = SetValorIngresado(arrText, valorIngresado);
+            valorCandidato = ElejiblesInstantaneos(valorIngresado, valorCandidato);
+            valorEliminado = SetValorEliminado(arrText, valorEliminado);
+            valorInicio = SetValorInicio(arrText, valorInicio);
+            valorSolucion = SetValorSolucion(arrText, valorSolucion);
+            valorCandidatoSinEliminados = CandidatosSinEliminados(valorIngresado, valorCandidato, valorEliminado);
+            _SetSoloOculto();
 
+            DataTable dt = new DataTable();
+            dt = SetearTestC(valorIngresado, solo, oculto);
+            DataTable tabla = new DataTable();
+            tabla = OrdernadorLetraNumerico(dt);
+            List<TableTest> test = new List<TableTest>();
+            TableTest item = new TableTest();
+            int n = 0;
+            foreach (DataRow r in tabla.Rows)
+            {
+                item.Id = Convert.ToInt32(r[0]);
+                item.Val1 = r[1].ToString();
+                item.Val2 = r[2].ToString();
+                item.Val3 = r[3].ToString();
+                item.Itr = r[4].ToString();
+                test.Insert(n, item);
+                n++;
+                item = new TableTest();
+            }
+            return test;
+        }
     }
 }

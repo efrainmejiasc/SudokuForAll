@@ -161,6 +161,7 @@
     <Compile Include="Models\Game\LetrasJuego.cs" />
     <Compile Include="Models\Game\LetrasJuegoACB.cs" />
     <Compile Include="Models\Game\LetrasJuegoFEG.cs" />
+    <Compile Include="Models\Game\TableTest.cs" />
     <Compile Include="Models\Game\ValorPosicion.cs" />
     <Compile Include="Models\Sistema\EstructuraMail.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />
@@ -217,6 +218,20 @@
     <Compile Include="Vista\GameCOne.aspx.designer.cs">
       <DependentUpon>GameCOne.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\GameCTwo.aspx.cs">
+      <DependentUpon>GameCTwo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\GameCTwo.aspx.designer.cs">
+      <DependentUpon>GameCTwo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GameCThree.aspx.cs">
+      <DependentUpon>GameCThree.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\GameCThree.aspx.designer.cs">
+      <DependentUpon>GameCThree.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -270,6 +285,8 @@
     <Content Include="Vista\GameBOne.aspx" />
     <Content Include="Vista\GameBTwo.aspx" />
     <Content Include="Vista\GameCOne.aspx" />
+    <Content Include="Vista\GameCTwo.aspx" />
+    <Content Include="Vista\GameCThree.aspx" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

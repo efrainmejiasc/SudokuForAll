@@ -174,12 +174,14 @@ input:valid {
 */
 
 .arrowRight {
+    border-style: none;
+    border-color: inherit;
+    border-width: medium;
     cursor: pointer;
-    border: none;
-    width: 47px;
     height: auto;
     background: url('/Content/imagen/Der.JPG') no-repeat;
-    padding: 0%
+    padding: 0%;
+    width: auto;
 }
 
 .arrowLeft {

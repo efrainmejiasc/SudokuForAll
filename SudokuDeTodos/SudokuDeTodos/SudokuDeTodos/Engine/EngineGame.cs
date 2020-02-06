@@ -2427,7 +2427,8 @@ namespace SudokuDeTodos.Engine
                     nueve.Rows.Add(r[0], r[1], r[2], r[3], r[4]);
                 }
 
-            }
+                }
+            
 
             tabla.Merge(cero);
             tabla.Merge(uno);
@@ -2446,7 +2447,6 @@ namespace SudokuDeTodos.Engine
                 r[0] = n.ToString();
                 n++;
             }
-
             return tabla;
         }
         //CANDIDATOS 23

@@ -8,6 +8,7 @@ using SudokuDeTodos.Engine;
 using SudokuDeTodos.Models.DbSistema;
 using SudokuDeTodos.Models.Game;
 using System.Collections;
+using System.Data;
 
 namespace SudokuDeTodos.Controllers
 {
@@ -66,6 +67,20 @@ namespace SudokuDeTodos.Controllers
 
             I = FuncionGame._ContadorIngresado(contadorActivado,numGrilla);
             return Json(I);
+        }
+
+        [HttpPost]
+        public  JsonResult ProcesosContables()
+        {
+            List<TableTest> test = new List<TableTest>();
+            string pathArchivo = string.Empty;
+            if (System.Web.HttpContext.Current.Session["PathArchivo"] == null)
+                return Json(test);
+            else
+                pathArchivo = System.Web.HttpContext.Current.Session["PathArchivo"].ToString();
+
+            test = FuncionGame._ProcesosContables();
+            return Json(test);
         }
 
         [HttpPost]

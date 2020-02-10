@@ -233,6 +233,13 @@
     <Compile Include="Vista\GameCThree.aspx.designer.cs">
       <DependentUpon>GameCThree.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\NewGame.aspx.cs">
+      <DependentUpon>NewGame.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\NewGame.aspx.designer.cs">
+      <DependentUpon>NewGame.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -288,6 +295,7 @@
     <Content Include="Vista\GameCOne.aspx" />
     <Content Include="Vista\GameCTwo.aspx" />
     <Content Include="Vista\GameCThree.aspx" />
+    <Content Include="Vista\NewGame.aspx" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

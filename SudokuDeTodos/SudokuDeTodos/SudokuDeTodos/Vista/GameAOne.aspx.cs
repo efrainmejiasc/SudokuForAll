@@ -48,20 +48,9 @@ namespace SudokuDeTodos.Vista
                 txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);
                 bool existeFile = Game.CreateFile(ValorGame.PathSource, ValorGame.PathArchivo);
                 if (existeFile)
-                {
                     AbrirJuego();
-                }
                 else
-                {
-                    if (System.Web.HttpContext.Current.Session["ContadorIngresadoNuevoJuego"] == null)
-                        System.Web.HttpContext.Current.Session["ContadorIngresadoNuevoJuego"] = 0;
-                    else 
-                       ValorGame.contadorIngresadoNuevoJuego = (int) System.Web.HttpContext.Current.Session["ContadorIngresadoNuevoJuego"] ;
-                }
-            }
-            else
-            {
-                int n = ValorGame.contadorIngresadoNuevoJuego;
+                    Response.Redirect("NewGame.aspx");
             }
         }
 

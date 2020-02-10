@@ -69,7 +69,6 @@ namespace SudokuDeTodos.Engine
 
         public int contadorIngresado  { get; set; }
         public int contadorCandidatos { get; set; }
-        public int contadorIngresadoNuevoJuego { get; set; }
 
         //*************************************************************
 

@@ -44,10 +44,24 @@ namespace SudokuDeTodos.Vista
                 ValorGame.PathArchivo = Server.MapPath("~/GameFile/" + System.Web.HttpContext.Current.Session["Email"].ToString() + ".jll");
                 ValorGame.PathSource = Server.MapPath("~/GameFile/FileBlanck.jll");
                 System.Web.HttpContext.Current.Session["PathArchivo"] = ValorGame.PathArchivo;
-                bool existeFile = Game.CreateFile(ValorGame.PathSource,ValorGame.PathArchivo);
                 txtSudoku = AsociarTxtMatriz(txtSudoku);
                 txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);
-                AbrirJuego();
+                bool existeFile = Game.CreateFile(ValorGame.PathSource, ValorGame.PathArchivo);
+                if (existeFile)
+                {
+                    AbrirJuego();
+                }
+                else
+                {
+                    if (System.Web.HttpContext.Current.Session["ContadorIngresadoNuevoJuego"] == null)
+                        System.Web.HttpContext.Current.Session["ContadorIngresadoNuevoJuego"] = 0;
+                    else 
+                       ValorGame.contadorIngresadoNuevoJuego = (int) System.Web.HttpContext.Current.Session["ContadorIngresadoNuevoJuego"] ;
+                }
+            }
+            else
+            {
+                int n = ValorGame.contadorIngresadoNuevoJuego;
             }
         }
 

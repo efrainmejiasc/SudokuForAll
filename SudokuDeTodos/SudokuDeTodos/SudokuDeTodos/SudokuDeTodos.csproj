@@ -161,6 +161,7 @@
     <Compile Include="Models\Game\LetrasJuego.cs" />
     <Compile Include="Models\Game\LetrasJuegoACB.cs" />
     <Compile Include="Models\Game\LetrasJuegoFEG.cs" />
+    <Compile Include="Models\Game\NuevoJuego.cs" />
     <Compile Include="Models\Game\TableTest.cs" />
     <Compile Include="Models\Game\ValorPosicion.cs" />
     <Compile Include="Models\Sistema\EstructuraMail.cs" />

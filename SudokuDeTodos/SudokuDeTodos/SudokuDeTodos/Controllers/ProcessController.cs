@@ -109,6 +109,21 @@ namespace SudokuDeTodos.Controllers
         }
 
         [HttpPost]
+        public JsonResult ReturnIngresadoNuevoJuego(int numero)
+        {
+            NuevoJuego nuevoJuego = new NuevoJuego();
+            if (System.Web.HttpContext.Current.Session["ContadorIngresadoNuevoJuego"] != null)
+            {
+                nuevoJuego.ContadorIngresadoNuevojuego = (int)System.Web.HttpContext.Current.Session["ContadorIngresadoNuevoJuego"];
+            }
+            else
+            {
+                nuevoJuego.ContadorIngresadoNuevojuego = -1;
+            }
+            return Json(nuevoJuego);
+        }
+
+        [HttpPost]
         public JsonResult ReturnValorPlantilla (string tipo , string id , string valor)
         {
             int lnt = id.Length;

@@ -352,5 +352,7 @@ function PintarTabla() {
  
 }
 
+function ExisteJuego() {
 
+}
 

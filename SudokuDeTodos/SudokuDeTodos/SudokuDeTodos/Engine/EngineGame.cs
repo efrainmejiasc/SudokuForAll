@@ -18,14 +18,23 @@ namespace SudokuDeTodos.Engine
         private int recuadro = -1;
         private int[] pos = new int[2];
 
-        public bool CreateFile (string pathSource,string pathArchivo)
+        public bool CreateFile (string pathArchivo)
         {
             bool resultado = false;
             if (File.Exists(pathArchivo))
                 resultado = true;
-            else
-                System.IO.File.Copy(pathSource, pathArchivo, true);
 
+            return resultado;
+        }
+
+        public bool DeletFile (string pathArchivo)
+        {
+            bool resultado = false;
+            if (File.Exists(pathArchivo))
+            {
+                File.Delete(pathArchivo);
+                resultado = true;
+            }
             return resultado;
         }
 
@@ -42,6 +51,32 @@ namespace SudokuDeTodos.Engine
             v[7].BackColor = Color.LightSalmon;
             v[8].BackColor = Color.Orange;
             return v;
+        }
+
+        public string[,] SetNuevoJuego(TextBox[,] cajaTexto,string [,] plantilla)
+        {
+            for (int f = 0; f <= 8; f++)
+            {
+                for (int c = 0; c <= 8; c++)
+                {
+                    if (cajaTexto[f,c].Text != string.Empty && cajaTexto[f, c].Text != null)
+                        plantilla[f, c] = cajaTexto[f, c].Text;
+                }
+            }
+            return plantilla;
+        }
+
+        public TextBox[,] SetearTextBoxJuego(TextBox[,] cajaTexto)
+        {
+            for (int f = 0; f <= 8; f++)
+            {
+                for (int c = 0; c <= 8; c++)
+                {
+                   cajaTexto[f, c].Attributes.Add("autocomplete", "off");
+                   cajaTexto[f, c].ForeColor = Color.Black;
+                }
+            }
+            return cajaTexto;
         }
 
         public string[,] CandidatosJuego(string[,] vIngresado, string[,] valorCandidato)
@@ -300,6 +335,18 @@ namespace SudokuDeTodos.Engine
                 for (int c = 0; c <= 8; c++)
                 {
                     arreglo[f, c] = null;
+                }
+            }
+            return arreglo;
+        }
+
+        public string[,] IniciarArreglo(string[,] arreglo)
+        {
+            for (int f = 0; f <= 8; f++)
+            {
+                for (int c = 0; c <= 8; c++)
+                {
+                    arreglo[f, c] = "0";
                 }
             }
             return arreglo;

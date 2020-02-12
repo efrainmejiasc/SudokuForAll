@@ -35,18 +35,18 @@ namespace SudokuDeTodos.Vista
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            System.Web.HttpContext.Current.Session["Email"] = "efrainmejias@hotmail.com";
+            //System.Web.HttpContext.Current.Session["Email"] = "efrainmejias@hotmail.com";
             if (!IsPostBack)
             {
                 if (System.Web.HttpContext.Current.Session["Email"] == null)
                     Response.Redirect("~/Home/Index");
 
                 ValorGame.PathArchivo = Server.MapPath("~/GameFile/" + System.Web.HttpContext.Current.Session["Email"].ToString() + ".jll");
-                ValorGame.PathSource = Server.MapPath("~/GameFile/FileBlanck.jll");
+                //ValorGame.PathSource = Server.MapPath("~/GameFile/FileBlanck.jll");
                 System.Web.HttpContext.Current.Session["PathArchivo"] = ValorGame.PathArchivo;
                 txtSudoku = AsociarTxtMatriz(txtSudoku);
                 txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);
-                bool existeFile = Game.CreateFile(ValorGame.PathSource, ValorGame.PathArchivo);
+                bool existeFile = Game.CreateFile(ValorGame.PathArchivo);
                 if (existeFile)
                     AbrirJuego();
                 else

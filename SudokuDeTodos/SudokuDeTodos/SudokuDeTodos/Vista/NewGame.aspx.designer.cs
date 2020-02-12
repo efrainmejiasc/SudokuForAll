@@ -78,6 +78,15 @@ namespace SudokuDeTodos.Vista
         protected global::System.Web.UI.WebControls.TextBox btnG;
 
         /// <summary>
+        /// Control GuardarNuevoJuejo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button GuardarNuevoJuejo;
+
+        /// <summary>
         /// Control txt00.
         /// </summary>
         /// <remarks>

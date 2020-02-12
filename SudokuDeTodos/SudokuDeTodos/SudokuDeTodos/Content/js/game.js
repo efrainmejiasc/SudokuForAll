@@ -19,6 +19,12 @@ function TextZero(id) {
     }
 } 
 
+function TextZero2(id) {
+
+  document.getElementById(id).value = '';
+
+} 
+
 function Navegacion(page) {
     window.open(page, "_self");
 }
@@ -352,7 +358,22 @@ function PintarTabla() {
  
 }
 
-function ExisteJuego() {
+function ContadorIngresados() {
+    var obj = '#txt'; 
+    var contador = 0;
+    var txt = null;
 
+    for (i = 0; i <= 8; i++) {
+        for (j = 0; j <= 8; j++) {
+            obj = obj.concat(i, j);
+            txt = $(obj).val();
+            if (txt !== '' && txt !== null) { contador++; }
+            obj = '#txt';
+        }
+    }
+    console.log(contador);
+    if (contador >= 17) {
+        $('#GuardarNuevoJuejo').show();
+    }
 }
 

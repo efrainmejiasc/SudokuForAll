@@ -17,20 +17,26 @@ namespace SudokuDeTodos.App_Start
         {
             var container = new Container();
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
+            
             InitializeContainer(container);
-            container.RegisterMvcControllers(Assembly.GetExecutingAssembly()); 
-            container.Verify(); 
+
+            container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+            
+            container.Verify();
+            
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
         }
      
         private static void InitializeContainer(Container container)
         {
-          container.Register<IEngineDb, EngineDb>(Lifestyle.Transient);
-          container.Register<IEngineProyect, EngineProyect>(Lifestyle.Transient);
-          container.Register<IEngineGameProcess, EngineGameProcess>(Lifestyle.Transient);
-          container.Register<IEngineNotificacion, EngineNotificacion>(Lifestyle.Transient);
-          container.Register<EngineContext, EngineContext>(Lifestyle.Scoped);
-          container.Register<IEngineGameChild,EngineGameChild>(Lifestyle.Transient);
+            container.Register<IEngineDb, EngineDb>(Lifestyle.Transient);
+            container.Register<IEngineProyect, EngineProyect>(Lifestyle.Transient);
+            container.Register<IEngineGameProcess, EngineGameProcess>(Lifestyle.Transient);
+            container.Register<IEngineNotificacion, EngineNotificacion>(Lifestyle.Transient);
+            container.Register<EngineContext, EngineContext>(Lifestyle.Scoped);
+            container.Register<IEngineGameChild, EngineGameChild>(Lifestyle.Transient);
+            // For instance:
+            // container.Register<IUserRepository, SqlUserRepository>(Lifestyle.Scoped);
         }
     }
 }

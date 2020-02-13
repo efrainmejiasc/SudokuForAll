@@ -86,7 +86,7 @@ namespace SudokuDeTodos.Controllers
             respuesta.Status = Metodo.Autentificacion(password);
             respuesta.Id = -1;
             if (respuesta.Status)
-                return Redirect("/Vista/GameAOne.aspx");
+                return Redirect("/Vista/NewGame.aspx");
             else
                 return View(respuesta);
         }
@@ -164,7 +164,7 @@ namespace SudokuDeTodos.Controllers
             }
             else if (respuesta.Id == 2)
             {
-                return Redirect("/Vista/GameAOne.aspx"); // Ir a jugar prueba
+                return Redirect("/Vista/NewGame.aspx"); // Ir a jugar prueba
             }
             else if (respuesta.Id == 3)
             {

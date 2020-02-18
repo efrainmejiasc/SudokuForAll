@@ -30,8 +30,8 @@
          <div class="container-fluid">
               <div class="btn-group btnGroupA1" role="group" aria-label="Basic example">
                      <asp:Button ID="btnAA" runat="server" Text="A" cssClass="btn btn-success" OnClick="btnAA_Click" />
-                     <input id="image" type="button" class="btn btn-success arrowRight" onClick="Navegacion('GameCThree.aspx');"/>
-                     <input id="image2" type="button" class="btn btn-success arrowLeft" onClick="Navegacion('GameCOne.aspx');"/>
+                     <input id="image"  type="button"  class="btn btn-success arrowRight" onClick="Navegacion('GameCThree.aspx');"/>
+                     <input id="image2" type="button" class="btn btn-success arrowLeft"  onClick="Navegacion('GameCOne.aspx');"/>
               </div>
          </div>
 

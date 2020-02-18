@@ -178,10 +178,10 @@ input:valid {
     border-color: inherit;
     border-width: medium;
     cursor: pointer;
-    height: auto;
+    height: 32px;
     background: url('/Content/imagen/Der.JPG') no-repeat;
     padding: 0%;
-    width: auto;
+    /*width: auto;*/
 }
 
 .arrowLeft {
@@ -190,7 +190,8 @@ input:valid {
     width: 49px;
     height: auto;
     background: url('/Content/imagen/Izq.JPG') no-repeat;
-    padding: 0%
+    padding: 0%;
+    /*width: auto;*/
 }
 
 .btnGroupA1 {

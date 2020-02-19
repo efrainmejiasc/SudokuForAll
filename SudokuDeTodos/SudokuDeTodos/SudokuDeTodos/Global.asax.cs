@@ -39,7 +39,6 @@ namespace SudokuDeTodos
                 CultureInfo ci = new CultureInfo("es-ES");
                 Thread.CurrentThread.CurrentUICulture = ci;
                 Thread.CurrentThread.CurrentCulture = ci;
-
             }
         }
     }

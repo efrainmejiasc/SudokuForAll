@@ -35,8 +35,6 @@ namespace SudokuDeTodos.App_Start
             container.Register<IEngineNotificacion, EngineNotificacion>(Lifestyle.Transient);
             container.Register<EngineContext, EngineContext>(Lifestyle.Scoped);
             container.Register<IEngineGameChild, EngineGameChild>(Lifestyle.Transient);
-            // For instance:
-            // container.Register<IUserRepository, SqlUserRepository>(Lifestyle.Scoped);
         }
     }
 }

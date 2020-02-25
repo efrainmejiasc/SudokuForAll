@@ -359,6 +359,7 @@ function PintarTabla() {
 }
 
 function ContadorIngresados() {
+
     var obj = '#txt'; 
     var contador = 0;
     var txt = null;
@@ -376,4 +377,6 @@ function ContadorIngresados() {
         $('#GuardarNuevoJuejo').show();
     }
 }
+
+
 

@@ -35,6 +35,10 @@ namespace SudokuDeTodos.Vista
                 AsociarTxtMatriz(txtSudoku);
                 Game.SetearTextBoxJuego(txtSudoku);
             }
+            else
+            {
+                GuardarNuevoJuejo.Visible = false;
+            }
         }
 
         private void ContadorIngresado()

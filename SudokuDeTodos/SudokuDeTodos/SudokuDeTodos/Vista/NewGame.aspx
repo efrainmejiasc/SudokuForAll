@@ -21,7 +21,6 @@
 
                    <input type="hidden" id ="idTxt" />
 
-
             <div id="banner" class="divBanner container-fluid">
                         <img id="logSudoku"  class="logoInitial"/>
                           <ul class="row" style="margin-left:16%">   

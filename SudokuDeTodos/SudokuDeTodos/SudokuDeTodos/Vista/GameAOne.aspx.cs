@@ -38,10 +38,10 @@ namespace SudokuDeTodos.Vista
             //System.Web.HttpContext.Current.Session["Email"] = "efrainmejias@hotmail.com";
             if (!IsPostBack)
             {
-                if (System.Web.HttpContext.Current.Session["Email"] == null)
-                    Response.Redirect("~/Home/Index");
-
-                ValorGame.PathArchivo = Server.MapPath("~/GameFile/" + System.Web.HttpContext.Current.Session["Email"].ToString() + ".jll");
+                //if (System.Web.HttpContext.Current.Session["Email"] == null)
+                //Response.Redirect("~/Home/Index");
+                ValorGame.PathArchivo = Server.MapPath(@"~/GameFile/" + "efrainmejiasc@gmail.com.jll");
+                // ValorGame.PathArchivo = Server.MapPath("~/GameFile/" + System.Web.HttpContext.Current.Session["Email"].ToString() + ".jll");
                 //ValorGame.PathSource = Server.MapPath("~/GameFile/FileBlanck.jll");
                 System.Web.HttpContext.Current.Session["PathArchivo"] = ValorGame.PathArchivo;
                 txtSudoku = AsociarTxtMatriz(txtSudoku);

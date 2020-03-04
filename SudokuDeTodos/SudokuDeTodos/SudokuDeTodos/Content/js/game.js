@@ -378,5 +378,19 @@ function ContadorIngresados() {
     }
 }
 
-
+function FilaRecuadroColumna(tipo) {
+    $.ajax({
+        type: "POST",
+        url: "/Process/FilaRecuadroColumna",
+        dataType: "json",
+        data: { tipo: tipo},
+        success: function (data) {
+            console.log(data);
+            $('#txtNota').val();
+        },
+        complete: function () {
+            console.log('FilaRecuadroColumna');
+        }
+    });
+}
 

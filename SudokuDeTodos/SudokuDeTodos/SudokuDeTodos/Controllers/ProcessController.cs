@@ -134,6 +134,17 @@ namespace SudokuDeTodos.Controllers
             return Json(V);
         }
 
+
+        [HttpPost]
+        public JsonResult FilaRecuadroColumna (string tipo)
+        {
+            if (string.IsNullOrEmpty(tipo))
+                return Json(tipo);
+
+            System.Web.HttpContext.Current.Session["Circuito"] = tipo;
+            return Json(tipo);
+        }
+
         [HttpPost]
         public JsonResult EnviarNotificacionPrueba(string email)
         {

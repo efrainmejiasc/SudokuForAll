@@ -391,7 +391,7 @@ namespace SudokuDeTodos.Engine
             {
                 for (int c = 0; c <= 8; c++)
                 {
-                    cajaTexto[f, c].BackColor = Color.WhiteSmoke;
+                    cajaTexto[f, c].BackColor = Color.White;
                 }
             }
             return cajaTexto;
@@ -1325,6 +1325,9 @@ namespace SudokuDeTodos.Engine
                 for (int c = 0; c <= 8; c++)
                 {
                     cajaTexto[f, c].Text = plantilla[f, c];
+                    cajaTexto[f, c].ForeColor = Color.Black;
+                    cajaTexto[f, c].Attributes.Add("autocomplete", "off");
+                    cajaTexto[f, c].ReadOnly = true;
                 }
             }
             return cajaTexto;

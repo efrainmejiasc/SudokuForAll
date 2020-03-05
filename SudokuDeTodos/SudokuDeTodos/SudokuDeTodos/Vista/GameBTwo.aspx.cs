@@ -45,6 +45,15 @@ namespace SudokuDeTodos.Vista
             txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);
             txtSudoku2 = Game.SetearTextBoxLimpio(txtSudoku2);
             AbrirJuego();
+
+            if (IsPostBack)
+            {
+
+            }
+            else
+            {
+                txtNota2.Text = "0"; ;
+            }
         }
 
         public void AbrirJuego()
@@ -178,38 +187,23 @@ namespace SudokuDeTodos.Vista
             int row = Convert.ToInt32(txt.Substring(lnt - 2, 1));
             int col = Convert.ToInt32(txt.Substring(lnt - 1, 1));
             if (idTxt.Value == string.Empty || idTxt.Value == null) return;
-            // AbrirJuego();
+
             Button btn = (Button)sender;
             switch (btn.ID)
             {
                 case (EngineDataGame.eliminar):
                     if (lado != EngineDataGame.btnIzquierda) return;
+                    if (txtNota.Value == string.Empty) return;
                     string candidatoEliminar = number.Value;
                     if (candidatoEliminar == string.Empty) return;
-                    if (valorEliminado[row, col] != null && valorEliminado[row, col] != string.Empty)
-                    {
-                        if (valorEliminado[row, col].Contains(candidatoEliminar))
-                        {
-                            ActualizarContadoresCandidatos();
-                            SetearJuego();
-                            return;
-                        }
-                    }
-
-                    if (valorEliminado[row, col] != null && valorEliminado[row, col] != string.Empty)
-                    {
-                        valorEliminado[row, col] = valorEliminado[row, col].Trim() + " " + candidatoEliminar.Trim();
-                    }
-                    else
-                    {
-                        valorEliminado[row, col] = valorEliminado[row, col] + " " + candidatoEliminar.Trim();
-                    }
-
-                    valorEliminado[row, col] = Game.OrdenarCadena(valorEliminado[row, col]);
+                    int[] fc = new int[2];
+                    fc = ProcesoEliminar(row);
+                    valorEliminado[fc[0], fc[1]] = valorEliminado[fc[0], fc[1]] + " " + candidatoEliminar;
+                    valorEliminado[fc[0], fc[1]] = Game.OrdenarCadena(valorEliminado[fc[0], fc[1]]);
                     txtSudoku[row, col].BackColor = Color.White;
                     txtSudoku[row, col].Text = string.Empty;
-                    ActualizarContadoresCandidatos();
                     SetearJuego();
+                    GrupoActualizar();
                     break;
                 case (EngineDataGame.restablecer):
                     if (lado != EngineDataGame.btnDerecha) return;
@@ -227,15 +221,149 @@ namespace SudokuDeTodos.Vista
                     }
 
                     txtSudoku2[row, col].Text = valorEliminado[row, col];
-                    ActualizarContadoresCandidatos();
                     SetearJuego();
                     ActualizarCandidato(candidatoRestablecer);
-                    string[,] o = ValorGame.valorSolucion;
-                    int m = 0;
+                    GrupoActualizar();
                     break;
             }
             ContadorIngresado();
             Game.GuardarJuego(ValorGame.PathArchivo, valorIngresado, valorEliminado, valorInicio, valorSolucion);
+        }
+
+        public int[] ProcesoEliminar(int row)
+        {
+            int[] fc = new int[2];
+            string celda = string.Empty;
+            if (row == 0) { celda = tC1.Text; }
+            else if (row == 1) { celda = tC2.Text; }
+            else if (row == 2) { celda = tC3.Text; }
+            else if (row == 3) { celda = tC4.Text; }
+            else if (row == 4) { celda = tC5.Text; }
+            else if (row == 5) { celda = tC6.Text; }
+            else if (row == 6) { celda = tC7.Text; }
+            else if (row == 7) { celda = tC8.Text; }
+            else if (row == 8) { celda = tC9.Text; }
+            fc[0] = Convert.ToInt16(celda.Trim().Substring(0, 1)) - 1;
+            fc[1] = Convert.ToInt16(celda.Trim().Substring(1, 1)) - 1;
+            return fc;
+        }
+
+        private void GrupoActualizar()
+        {
+            string cadena = txtNota.Value;
+            string obj = string.Empty;
+            EventArgs eve = null;
+            switch (cadena)
+            {
+                case ("F1"):
+                    obj = "fila1ToolStripMenuItem";
+                    FilaEstado_Click(obj, eve);
+                    break;
+                case ("F2"):
+                    obj = "fila2ToolStripMenuItem";
+                    FilaEstado_Click(obj, eve);
+                    break;
+                case ("F3"):
+                    obj = "fila3ToolStripMenuItem";
+                    FilaEstado_Click(obj, eve);
+                    break;
+                case ("F4"):
+                    obj = "fila4ToolStripMenuItem";
+                    FilaEstado_Click(obj, eve);
+                    break;
+                case ("F5"):
+                    obj = "fila5ToolStripMenuItem";
+                    FilaEstado_Click(obj, eve);
+                    break;
+                case ("F6"):
+                    obj = "fila6ToolStripMenuItem";
+                    FilaEstado_Click(obj, eve);
+                    break;
+                case ("F7"):
+                    obj = "fila7ToolStripMenuItem";
+                    FilaEstado_Click(obj, eve);
+                    break;
+                case ("F8"):
+                    obj = "fila8ToolStripMenuItem";
+                    FilaEstado_Click(obj, eve);
+                    break;
+                case ("F9"):
+                    obj = "fila9ToolStripMenuItem";
+                    FilaEstado_Click(obj, eve);
+                    break;
+                case ("C1"):
+                    obj = "columna1ToolStripMenuItem";
+                    ColumnaEstado_Click(obj, eve);
+                    break;
+                case ("C2"):
+                    obj = "columna2ToolStripMenuItem";
+                    ColumnaEstado_Click(obj, eve);
+                    break;
+                case ("C3"):
+                    obj = "columna3ToolStripMenuItem";
+                    ColumnaEstado_Click(obj, eve);
+                    break;
+                case ("C4"):
+                    obj = "columna4ToolStripMenuItem";
+                    ColumnaEstado_Click(obj, eve);
+                    break;
+                case ("C5"):
+                    obj = "columna5ToolStripMenuItem";
+                    ColumnaEstado_Click(obj, eve);
+                    break;
+                case ("C6"):
+                    obj = "columna6ToolStripMenuItem";
+                    ColumnaEstado_Click(obj, eve);
+                    break;
+                case ("C7"):
+                    obj = "columna7ToolStripMenuItem";
+                    ColumnaEstado_Click(obj, eve);
+                    break;
+                case ("C8"):
+                    obj = "columna8ToolStripMenuItem";
+                    ColumnaEstado_Click(obj, eve);
+                    break;
+                case ("C9"):
+                    obj = "columna9ToolStripMenuItem";
+                    ColumnaEstado_Click(obj, eve);
+                    break;
+                case ("R1"):
+                    obj = "recuadro1ToolStripMenuItem";
+                    EstadoRecuadro_Click(obj, eve);
+                    break;
+                case ("R2"):
+                    obj = "recuadro2ToolStripMenuItem";
+                    EstadoRecuadro_Click(obj, eve);
+                    break;
+                case ("R3"):
+                    obj = "recuadro3ToolStripMenuItem";
+                    EstadoRecuadro_Click(obj, eve);
+                    break;
+                case ("R4"):
+                    obj = "recuadro4ToolStripMenuItem";
+                    EstadoRecuadro_Click(obj, eve);
+                    break;
+                case ("R5"):
+                    obj = "recuadro5ToolStripMenuItem";
+                    EstadoRecuadro_Click(obj, eve);
+                    break;
+                case ("R6"):
+                    obj = "recuadro6ToolStripMenuItem";
+                    EstadoRecuadro_Click(obj, eve);
+                    break;
+                case ("R7"):
+                    obj = "recuadro7ToolStripMenuItem";
+                    EstadoRecuadro_Click(obj, eve);
+                    break;
+                case ("R8"):
+                    obj = "recuadro8ToolStripMenuItem";
+                    EstadoRecuadro_Click(obj, eve);
+                    break;
+                case ("R9"):
+                    obj = "recuadro9ToolStripMenuItem";
+                    EstadoRecuadro_Click(obj, eve);
+                    break;
+            }
         }
 
         private void ActualizarCandidato(string v)
@@ -281,271 +409,6 @@ namespace SudokuDeTodos.Vista
             }
         }
 
-
-        private TextBox[,] AsociarTxtMatriz(TextBox[,] txtSudoku)
-        {
-            /////////////////////////////////////////////////////////////////////////////
-            txtSudoku[0, 0] = txt00; txtSudoku[0, 1] = txt01; txtSudoku[0, 2] = txt02;
-            txtSudoku[1, 0] = txt10; txtSudoku[1, 1] = txt11; txtSudoku[1, 2] = txt12;
-            txtSudoku[2, 0] = txt20; txtSudoku[2, 1] = txt21; txtSudoku[2, 2] = txt22;
-
-            txtSudoku[0, 3] = txt03; txtSudoku[0, 4] = txt04; txtSudoku[0, 5] = txt05;
-            txtSudoku[1, 3] = txt13; txtSudoku[1, 4] = txt14; txtSudoku[1, 5] = txt15;
-            txtSudoku[2, 3] = txt23; txtSudoku[2, 4] = txt24; txtSudoku[2, 5] = txt25;
-
-            txtSudoku[0, 6] = txt06; txtSudoku[0, 7] = txt07; txtSudoku[0, 8] = txt08;
-            txtSudoku[1, 6] = txt16; txtSudoku[1, 7] = txt17; txtSudoku[1, 8] = txt18;
-            txtSudoku[2, 6] = txt26; txtSudoku[2, 7] = txt27; txtSudoku[2, 8] = txt28;
-            ////////////////////////////////////////////////////////////////////////////
-            txtSudoku[3, 0] = txt30; txtSudoku[3, 1] = txt31; txtSudoku[3, 2] = txt32;
-            txtSudoku[4, 0] = txt40; txtSudoku[4, 1] = txt41; txtSudoku[4, 2] = txt42;
-            txtSudoku[5, 0] = txt50; txtSudoku[5, 1] = txt51; txtSudoku[5, 2] = txt52;
-
-            txtSudoku[3, 3] = txt33; txtSudoku[3, 4] = txt34; txtSudoku[3, 5] = txt35;
-            txtSudoku[4, 3] = txt43; txtSudoku[4, 4] = txt44; txtSudoku[4, 5] = txt45;
-            txtSudoku[5, 3] = txt53; txtSudoku[5, 4] = txt54; txtSudoku[5, 5] = txt55;
-
-            txtSudoku[3, 6] = txt36; txtSudoku[3, 7] = txt37; txtSudoku[3, 8] = txt38;
-            txtSudoku[4, 6] = txt46; txtSudoku[4, 7] = txt47; txtSudoku[4, 8] = txt48;
-            txtSudoku[5, 6] = txt56; txtSudoku[5, 7] = txt57; txtSudoku[5, 8] = txt58;
-            ////////////////////////////////////////////////////////////////////////////
-            txtSudoku[6, 0] = txt60; txtSudoku[6, 1] = txt61; txtSudoku[6, 2] = txt62;
-            txtSudoku[7, 0] = txt70; txtSudoku[7, 1] = txt71; txtSudoku[7, 2] = txt72;
-            txtSudoku[8, 0] = txt80; txtSudoku[8, 1] = txt81; txtSudoku[8, 2] = txt82;
-
-            txtSudoku[6, 3] = txt63; txtSudoku[6, 4] = txt64; txtSudoku[6, 5] = txt65;
-            txtSudoku[7, 3] = txt73; txtSudoku[7, 4] = txt74; txtSudoku[7, 5] = txt75;
-            txtSudoku[8, 3] = txt83; txtSudoku[8, 4] = txt84; txtSudoku[8, 5] = txt85;
-
-            txtSudoku[6, 6] = txt66; txtSudoku[6, 7] = txt67; txtSudoku[6, 8] = txt68;
-            txtSudoku[7, 6] = txt76; txtSudoku[7, 7] = txt77; txtSudoku[7, 8] = txt78;
-            txtSudoku[8, 6] = txt86; txtSudoku[8, 7] = txt87; txtSudoku[8, 8] = txt88;
-            ////////////////////////////////////////////////////////////////////////////
-
-            return txtSudoku;
-        }
-
-        private TextBox[,] AsociarTxtMatriz2(TextBox[,] txtSudoku2)
-        {
-            /////////////////////////////////////////////////////////////////////////////
-            txtSudoku2[0, 0] = txt_00; txtSudoku2[0, 1] = txt_01; txtSudoku2[0, 2] = txt_02;
-            txtSudoku2[1, 0] = txt_10; txtSudoku2[1, 1] = txt_11; txtSudoku2[1, 2] = txt_12;
-            txtSudoku2[2, 0] = txt_20; txtSudoku2[2, 1] = txt_21; txtSudoku2[2, 2] = txt_22;
-
-            txtSudoku2[0, 3] = txt_03; txtSudoku2[0, 4] = txt_04; txtSudoku2[0, 5] = txt_05;
-            txtSudoku2[1, 3] = txt_13; txtSudoku2[1, 4] = txt_14; txtSudoku2[1, 5] = txt_15;
-            txtSudoku2[2, 3] = txt_23; txtSudoku2[2, 4] = txt_24; txtSudoku2[2, 5] = txt_25;
-
-            txtSudoku2[0, 6] = txt_06; txtSudoku2[0, 7] = txt_07; txtSudoku2[0, 8] = txt_08;
-            txtSudoku2[1, 6] = txt_16; txtSudoku2[1, 7] = txt_17; txtSudoku2[1, 8] = txt_18;
-            txtSudoku2[2, 6] = txt_26; txtSudoku2[2, 7] = txt_27; txtSudoku2[2, 8] = txt_28;
-            ////////////////////////////////////////////////////////////////////////////
-            txtSudoku2[3, 0] = txt_30; txtSudoku2[3, 1] = txt_31; txtSudoku2[3, 2] = txt_32;
-            txtSudoku2[4, 0] = txt_40; txtSudoku2[4, 1] = txt_41; txtSudoku2[4, 2] = txt_42;
-            txtSudoku2[5, 0] = txt_50; txtSudoku2[5, 1] = txt_51; txtSudoku2[5, 2] = txt_52;
-
-            txtSudoku2[3, 3] = txt_33; txtSudoku2[3, 4] = txt_34; txtSudoku2[3, 5] = txt_35;
-            txtSudoku2[4, 3] = txt_43; txtSudoku2[4, 4] = txt_44; txtSudoku2[4, 5] = txt_45;
-            txtSudoku2[5, 3] = txt_53; txtSudoku2[5, 4] = txt_54; txtSudoku2[5, 5] = txt_55;
-
-            txtSudoku2[3, 6] = txt_36; txtSudoku2[3, 7] = txt_37; txtSudoku2[3, 8] = txt_38;
-            txtSudoku2[4, 6] = txt_46; txtSudoku2[4, 7] = txt_47; txtSudoku2[4, 8] = txt_48;
-            txtSudoku2[5, 6] = txt_56; txtSudoku2[5, 7] = txt_57; txtSudoku2[5, 8] = txt58;
-            ////////////////////////////////////////////////////////////////////////////
-            txtSudoku2[6, 0] = txt_60; txtSudoku2[6, 1] = txt_61; txtSudoku2[6, 2] = txt_62;
-            txtSudoku2[7, 0] = txt_70; txtSudoku2[7, 1] = txt_71; txtSudoku2[7, 2] = txt_72;
-            txtSudoku2[8, 0] = txt_80; txtSudoku2[8, 1] = txt_81; txtSudoku2[8, 2] = txt_82;
-
-            txtSudoku2[6, 3] = txt_63; txtSudoku2[6, 4] = txt_64; txtSudoku2[6, 5] = txt_65;
-            txtSudoku2[7, 3] = txt_73; txtSudoku2[7, 4] = txt_74; txtSudoku2[7, 5] = txt_75;
-            txtSudoku2[8, 3] = txt_83; txtSudoku2[8, 4] = txt_84; txtSudoku2[8, 5] = txt_85;
-
-            txtSudoku2[6, 6] = txt_66; txtSudoku2[6, 7] = txt_67; txtSudoku2[6, 8] = txt_68;
-            txtSudoku2[7, 6] = txt_76; txtSudoku2[7, 7] = txt_77; txtSudoku2[7, 8] = txt_78;
-            txtSudoku2[8, 6] = txt_86; txtSudoku2[8, 7] = txt_87; txtSudoku2[8, 8] = txt_88;
-            ////////////////////////////////////////////////////////////////////////////
-
-            return txtSudoku2;
-        }
-
-        protected void btnGrup_Click(object sender, ImageClickEventArgs e)
-        {
-            if (System.Web.HttpContext.Current.Session["Circuito"] != null)
-                circuito = System.Web.HttpContext.Current.Session["Circuito"].ToString();
-            else
-                return;
-
-            string cadena = txtNota.Value;
-            string obj = string.Empty;
-            EventArgs eve = null;
-
-            if (circuito == "FILA")
-            {
-                if (cadena == string.Empty || cadena.Contains("C") || cadena.Contains("R"))
-                {
-                    cadena = "F1";
-                    txtNota.Value = cadena;
-                    obj = "fila1ToolStripMenuItem";
-                }
-                else
-                {
-                    switch (cadena)
-                    {
-                        case ("F1"):
-                            txtNota.Value = "F2";
-                            obj = "fila2ToolStripMenuItem";
-                            break;
-                        case ("F2"):
-                            txtNota.Value = "F3";
-                            obj = "fila3ToolStripMenuItem";
-                            break;
-                        case ("F3"):
-                            txtNota.Value = "F4";
-                            obj = "fila4ToolStripMenuItem";
-                            break;
-                        case ("F4"):
-                            txtNota.Value = "F5";
-                            obj = "fila5ToolStripMenuItem";
-                            break;
-                        case ("F5"):
-                            txtNota.Value = "F6";
-                            obj = "fila6ToolStripMenuItem";
-                            break;
-                        case ("F6"):
-                            txtNota.Value = "F7";
-                            obj = "fila7ToolStripMenuItem";
-                            break;
-                        case ("F7"):
-                            txtNota.Value = "F8";
-                            obj = "fila8ToolStripMenuItem";
-                            break;
-                        case ("F8"):
-                            txtNota.Value = "F9";
-                            obj = "fila9ToolStripMenuItem";
-                            break;
-                        case ("F9"):
-                            txtNota.Value = "F1";
-                            obj = "fila1ToolStripMenuItem";
-                            break;
-                    }
-                }
-                FilaEstado_Click(obj, eve);
-            }
-            else if (circuito == "COLUMNA")
-            {
-                if (cadena == string.Empty || cadena.Contains("F") || cadena.Contains("R"))
-                {
-                    cadena = "C1";
-                    txtNota.Value = cadena;
-                    obj = "columna1ToolStripMenuItem";
-                }
-                else
-                {
-                    switch (cadena)
-                    {
-                        case ("C1"):
-                            txtNota.Value = "C2";
-                            obj = "columna2ToolStripMenuItem";
-                            break;
-                        case ("C2"):
-                            txtNota.Value = "C3";
-                            obj = "columna3ToolStripMenuItem";
-                            break;
-                        case ("C3"):
-                            txtNota.Value = "C4";
-                            obj = "columna4ToolStripMenuItem";
-                            break;
-                        case ("C4"):
-                            txtNota.Value = "C5";
-                            obj = "columna5ToolStripMenuItem";
-                            break;
-                        case ("C5"):
-                            txtNota.Value = "C6";
-                            obj = "columna6ToolStripMenuItem";
-                            break;
-                        case ("C6"):
-                            txtNota.Value = "C7";
-                            obj = "columna7ToolStripMenuItem";
-                            break;
-                        case ("C7"):
-                            txtNota.Value = "C8";
-                            obj = "columna8ToolStripMenuItem";
-                            break;
-                        case ("C8"):
-                            txtNota.Value = "C9";
-                            obj = "columna9ToolStripMenuItem";
-                            break;
-                        case ("C9"):
-                            txtNota.Value = "C1";
-                            obj = "columna1ToolStripMenuItem";
-                            break;
-                    }
-                }
-                ColumnaEstado_Click(obj, eve);
-            }
-            else if (circuito == "RECUADRO")
-            {
-                if (cadena == string.Empty || cadena.Contains("F") || cadena.Contains("C"))
-                {
-                    cadena = "R1";
-                    txtNota.Value = cadena;
-                    obj = "recuadro1ToolStripMenuItem";
-                }
-                else
-                {
-                    switch (cadena)
-                    {
-                        case ("R1"):
-                            txtNota.Value = "R2";
-                            obj = "recuadro2ToolStripMenuItem";
-                            break;
-                        case ("R2"):
-                            txtNota.Value = "R3";
-                            obj = "recuadro3ToolStripMenuItem";
-                            break;
-                        case ("R3"):
-                            txtNota.Value = "R4";
-                            obj = "recuadro4ToolStripMenuItem";
-                            break;
-                        case ("R4"):
-                            txtNota.Value = "R5";
-                            obj = "recuadro5ToolStripMenuItem";
-                            break;
-                        case ("R5"):
-                            txtNota.Value = "R6";
-                            obj = "recuadro6ToolStripMenuItem";
-                            break;
-                        case ("R6"):
-                            txtNota.Value = "R7";
-                            obj = "recuadro7ToolStripMenuItem";
-                            break;
-                        case ("R7"):
-                            txtNota.Value = "R8";
-                            obj = "recuadro8ToolStripMenuItem";
-                            break;
-                        case ("R8"):
-                            txtNota.Value = "R9";
-                            obj = "recuadro9ToolStripMenuItem";
-                            break;
-                        case ("R9"):
-                            txtNota.Value = "R1";
-                            obj = "recuadro1ToolStripMenuItem";
-                            break;
-                    }
-                }
-                EstadoRecuadro_Click(obj, eve);
-            }
-            else
-            {
-              
-
-            }
-            obj2 = obj;
-            label1.Value = "filaRecuadroColumna";
-            txtSudoku = Game.SetearTextColorInicio(txtSudoku);
-        }
-
-     
 
         private void FilaEstado_Click(string sender, EventArgs e)
         {
@@ -681,7 +544,7 @@ namespace SudokuDeTodos.Vista
             public string Name { get; set; }
         }
 
-        protected void btnGrup2_Click(object sender, ImageClickEventArgs e)
+        protected void btnGrup_Click(object sender, ImageClickEventArgs e)
         {
             if (System.Web.HttpContext.Current.Session["Circuito"] != null)
                 circuito = System.Web.HttpContext.Current.Session["Circuito"].ToString();
@@ -854,6 +717,276 @@ namespace SudokuDeTodos.Vista
             obj2 = obj;
             label1.Value = "filaRecuadroColumna";
             txtSudoku = Game.SetearTextColorInicio(txtSudoku);
+        }
+
+
+        protected void btnGrup2_Click(object sender, ImageClickEventArgs e)
+        {
+
+            if (System.Web.HttpContext.Current.Session["Circuito"] != null)
+                circuito = System.Web.HttpContext.Current.Session["Circuito"].ToString();
+            else
+                return;
+
+            string cadena = txtNota.Value;
+            string obj = string.Empty;
+            EventArgs eve = null;
+
+            if (circuito == "FILA")
+            {
+                if (cadena == string.Empty || cadena.Contains("C") || cadena.Contains("R"))
+                {
+                    cadena = "F1";
+                    txtNota.Value = cadena;
+                    obj = "fila1ToolStripMenuItem";
+                }
+                else
+                {
+                    switch (cadena)
+                    {
+                        case ("F1"):
+                            txtNota.Value = "F2";
+                            obj = "fila2ToolStripMenuItem";
+                            break;
+                        case ("F2"):
+                            txtNota.Value = "F3";
+                            obj = "fila3ToolStripMenuItem";
+                            break;
+                        case ("F3"):
+                            txtNota.Value = "F4";
+                            obj = "fila4ToolStripMenuItem";
+                            break;
+                        case ("F4"):
+                            txtNota.Value = "F5";
+                            obj = "fila5ToolStripMenuItem";
+                            break;
+                        case ("F5"):
+                            txtNota.Value = "F6";
+                            obj = "fila6ToolStripMenuItem";
+                            break;
+                        case ("F6"):
+                            txtNota.Value = "F7";
+                            obj = "fila7ToolStripMenuItem";
+                            break;
+                        case ("F7"):
+                            txtNota.Value = "F8";
+                            obj = "fila8ToolStripMenuItem";
+                            break;
+                        case ("F8"):
+                            txtNota.Value = "F9";
+                            obj = "fila9ToolStripMenuItem";
+                            break;
+                        case ("F9"):
+                            txtNota.Value = "F1";
+                            obj = "fila1ToolStripMenuItem";
+                            break;
+                    }
+                }
+                FilaEstado_Click(obj, eve);
+            }
+            else if (circuito == "COLUMNA")
+            {
+                if (cadena == string.Empty || cadena.Contains("F") || cadena.Contains("R"))
+                {
+                    cadena = "C1";
+                    txtNota.Value = cadena;
+                    obj = "columna1ToolStripMenuItem";
+                }
+                else
+                {
+                    switch (cadena)
+                    {
+                        case ("C1"):
+                            txtNota.Value = "C2";
+                            obj = "columna2ToolStripMenuItem";
+                            break;
+                        case ("C2"):
+                            txtNota.Value = "C3";
+                            obj = "columna3ToolStripMenuItem";
+                            break;
+                        case ("C3"):
+                            txtNota.Value = "C4";
+                            obj = "columna4ToolStripMenuItem";
+                            break;
+                        case ("C4"):
+                            txtNota.Value = "C5";
+                            obj = "columna5ToolStripMenuItem";
+                            break;
+                        case ("C5"):
+                            txtNota.Value = "C6";
+                            obj = "columna6ToolStripMenuItem";
+                            break;
+                        case ("C6"):
+                            txtNota.Value = "C7";
+                            obj = "columna7ToolStripMenuItem";
+                            break;
+                        case ("C7"):
+                            txtNota.Value = "C8";
+                            obj = "columna8ToolStripMenuItem";
+                            break;
+                        case ("C8"):
+                            txtNota.Value = "C9";
+                            obj = "columna9ToolStripMenuItem";
+                            break;
+                        case ("C9"):
+                            txtNota.Value = "C1";
+                            obj = "columna1ToolStripMenuItem";
+                            break;
+                    }
+                }
+                ColumnaEstado_Click(obj, eve);
+            }
+            else if (circuito == "RECUADRO")
+            {
+                if (cadena == string.Empty || cadena.Contains("F") || cadena.Contains("C"))
+                {
+                    cadena = "R1";
+                    txtNota.Value = cadena;
+                    obj = "recuadro1ToolStripMenuItem";
+                }
+                else
+                {
+                    switch (cadena)
+                    {
+                        case ("R1"):
+                            txtNota.Value = "R2";
+                            obj = "recuadro2ToolStripMenuItem";
+                            break;
+                        case ("R2"):
+                            txtNota.Value = "R3";
+                            obj = "recuadro3ToolStripMenuItem";
+                            break;
+                        case ("R3"):
+                            txtNota.Value = "R4";
+                            obj = "recuadro4ToolStripMenuItem";
+                            break;
+                        case ("R4"):
+                            txtNota.Value = "R5";
+                            obj = "recuadro5ToolStripMenuItem";
+                            break;
+                        case ("R5"):
+                            txtNota.Value = "R6";
+                            obj = "recuadro6ToolStripMenuItem";
+                            break;
+                        case ("R6"):
+                            txtNota.Value = "R7";
+                            obj = "recuadro7ToolStripMenuItem";
+                            break;
+                        case ("R7"):
+                            txtNota.Value = "R8";
+                            obj = "recuadro8ToolStripMenuItem";
+                            break;
+                        case ("R8"):
+                            txtNota.Value = "R9";
+                            obj = "recuadro9ToolStripMenuItem";
+                            break;
+                        case ("R9"):
+                            txtNota.Value = "R1";
+                            obj = "recuadro1ToolStripMenuItem";
+                            break;
+                    }
+                }
+                EstadoRecuadro_Click(obj, eve);
+            }
+            else
+            {
+
+
+            }
+            obj2 = obj;
+            label1.Value = "filaRecuadroColumna";
+            txtSudoku = Game.SetearTextColorInicio(txtSudoku);
+        }
+
+        private TextBox[,] AsociarTxtMatriz(TextBox[,] txtSudoku)
+        {
+            /////////////////////////////////////////////////////////////////////////////
+            txtSudoku[0, 0] = txt00; txtSudoku[0, 1] = txt01; txtSudoku[0, 2] = txt02;
+            txtSudoku[1, 0] = txt10; txtSudoku[1, 1] = txt11; txtSudoku[1, 2] = txt12;
+            txtSudoku[2, 0] = txt20; txtSudoku[2, 1] = txt21; txtSudoku[2, 2] = txt22;
+
+            txtSudoku[0, 3] = txt03; txtSudoku[0, 4] = txt04; txtSudoku[0, 5] = txt05;
+            txtSudoku[1, 3] = txt13; txtSudoku[1, 4] = txt14; txtSudoku[1, 5] = txt15;
+            txtSudoku[2, 3] = txt23; txtSudoku[2, 4] = txt24; txtSudoku[2, 5] = txt25;
+
+            txtSudoku[0, 6] = txt06; txtSudoku[0, 7] = txt07; txtSudoku[0, 8] = txt08;
+            txtSudoku[1, 6] = txt16; txtSudoku[1, 7] = txt17; txtSudoku[1, 8] = txt18;
+            txtSudoku[2, 6] = txt26; txtSudoku[2, 7] = txt27; txtSudoku[2, 8] = txt28;
+            ////////////////////////////////////////////////////////////////////////////
+            txtSudoku[3, 0] = txt30; txtSudoku[3, 1] = txt31; txtSudoku[3, 2] = txt32;
+            txtSudoku[4, 0] = txt40; txtSudoku[4, 1] = txt41; txtSudoku[4, 2] = txt42;
+            txtSudoku[5, 0] = txt50; txtSudoku[5, 1] = txt51; txtSudoku[5, 2] = txt52;
+
+            txtSudoku[3, 3] = txt33; txtSudoku[3, 4] = txt34; txtSudoku[3, 5] = txt35;
+            txtSudoku[4, 3] = txt43; txtSudoku[4, 4] = txt44; txtSudoku[4, 5] = txt45;
+            txtSudoku[5, 3] = txt53; txtSudoku[5, 4] = txt54; txtSudoku[5, 5] = txt55;
+
+            txtSudoku[3, 6] = txt36; txtSudoku[3, 7] = txt37; txtSudoku[3, 8] = txt38;
+            txtSudoku[4, 6] = txt46; txtSudoku[4, 7] = txt47; txtSudoku[4, 8] = txt48;
+            txtSudoku[5, 6] = txt56; txtSudoku[5, 7] = txt57; txtSudoku[5, 8] = txt58;
+            ////////////////////////////////////////////////////////////////////////////
+            txtSudoku[6, 0] = txt60; txtSudoku[6, 1] = txt61; txtSudoku[6, 2] = txt62;
+            txtSudoku[7, 0] = txt70; txtSudoku[7, 1] = txt71; txtSudoku[7, 2] = txt72;
+            txtSudoku[8, 0] = txt80; txtSudoku[8, 1] = txt81; txtSudoku[8, 2] = txt82;
+
+            txtSudoku[6, 3] = txt63; txtSudoku[6, 4] = txt64; txtSudoku[6, 5] = txt65;
+            txtSudoku[7, 3] = txt73; txtSudoku[7, 4] = txt74; txtSudoku[7, 5] = txt75;
+            txtSudoku[8, 3] = txt83; txtSudoku[8, 4] = txt84; txtSudoku[8, 5] = txt85;
+
+            txtSudoku[6, 6] = txt66; txtSudoku[6, 7] = txt67; txtSudoku[6, 8] = txt68;
+            txtSudoku[7, 6] = txt76; txtSudoku[7, 7] = txt77; txtSudoku[7, 8] = txt78;
+            txtSudoku[8, 6] = txt86; txtSudoku[8, 7] = txt87; txtSudoku[8, 8] = txt88;
+            ////////////////////////////////////////////////////////////////////////////
+
+            return txtSudoku;
+        }
+
+        private TextBox[,] AsociarTxtMatriz2(TextBox[,] txtSudoku2)
+        {
+            /////////////////////////////////////////////////////////////////////////////
+            txtSudoku2[0, 0] = txt_00; txtSudoku2[0, 1] = txt_01; txtSudoku2[0, 2] = txt_02;
+            txtSudoku2[1, 0] = txt_10; txtSudoku2[1, 1] = txt_11; txtSudoku2[1, 2] = txt_12;
+            txtSudoku2[2, 0] = txt_20; txtSudoku2[2, 1] = txt_21; txtSudoku2[2, 2] = txt_22;
+
+            txtSudoku2[0, 3] = txt_03; txtSudoku2[0, 4] = txt_04; txtSudoku2[0, 5] = txt_05;
+            txtSudoku2[1, 3] = txt_13; txtSudoku2[1, 4] = txt_14; txtSudoku2[1, 5] = txt_15;
+            txtSudoku2[2, 3] = txt_23; txtSudoku2[2, 4] = txt_24; txtSudoku2[2, 5] = txt_25;
+
+            txtSudoku2[0, 6] = txt_06; txtSudoku2[0, 7] = txt_07; txtSudoku2[0, 8] = txt_08;
+            txtSudoku2[1, 6] = txt_16; txtSudoku2[1, 7] = txt_17; txtSudoku2[1, 8] = txt_18;
+            txtSudoku2[2, 6] = txt_26; txtSudoku2[2, 7] = txt_27; txtSudoku2[2, 8] = txt_28;
+            ////////////////////////////////////////////////////////////////////////////
+            txtSudoku2[3, 0] = txt_30; txtSudoku2[3, 1] = txt_31; txtSudoku2[3, 2] = txt_32;
+            txtSudoku2[4, 0] = txt_40; txtSudoku2[4, 1] = txt_41; txtSudoku2[4, 2] = txt_42;
+            txtSudoku2[5, 0] = txt_50; txtSudoku2[5, 1] = txt_51; txtSudoku2[5, 2] = txt_52;
+
+            txtSudoku2[3, 3] = txt_33; txtSudoku2[3, 4] = txt_34; txtSudoku2[3, 5] = txt_35;
+            txtSudoku2[4, 3] = txt_43; txtSudoku2[4, 4] = txt_44; txtSudoku2[4, 5] = txt_45;
+            txtSudoku2[5, 3] = txt_53; txtSudoku2[5, 4] = txt_54; txtSudoku2[5, 5] = txt_55;
+
+            txtSudoku2[3, 6] = txt_36; txtSudoku2[3, 7] = txt_37; txtSudoku2[3, 8] = txt_38;
+            txtSudoku2[4, 6] = txt_46; txtSudoku2[4, 7] = txt_47; txtSudoku2[4, 8] = txt_48;
+            txtSudoku2[5, 6] = txt_56; txtSudoku2[5, 7] = txt_57; txtSudoku2[5, 8] = txt58;
+            ////////////////////////////////////////////////////////////////////////////
+            txtSudoku2[6, 0] = txt_60; txtSudoku2[6, 1] = txt_61; txtSudoku2[6, 2] = txt_62;
+            txtSudoku2[7, 0] = txt_70; txtSudoku2[7, 1] = txt_71; txtSudoku2[7, 2] = txt_72;
+            txtSudoku2[8, 0] = txt_80; txtSudoku2[8, 1] = txt_81; txtSudoku2[8, 2] = txt_82;
+
+            txtSudoku2[6, 3] = txt_63; txtSudoku2[6, 4] = txt_64; txtSudoku2[6, 5] = txt_65;
+            txtSudoku2[7, 3] = txt_73; txtSudoku2[7, 4] = txt_74; txtSudoku2[7, 5] = txt_75;
+            txtSudoku2[8, 3] = txt_83; txtSudoku2[8, 4] = txt_84; txtSudoku2[8, 5] = txt_85;
+
+            txtSudoku2[6, 6] = txt_66; txtSudoku2[6, 7] = txt_67; txtSudoku2[6, 8] = txt_68;
+            txtSudoku2[7, 6] = txt_76; txtSudoku2[7, 7] = txt_77; txtSudoku2[7, 8] = txt_78;
+            txtSudoku2[8, 6] = txt_86; txtSudoku2[8, 7] = txt_87; txtSudoku2[8, 8] = txt_88;
+            ////////////////////////////////////////////////////////////////////////////
+
+            return txtSudoku2;
+        }
+
+        protected void btnAA_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("GameATwo.aspx");
         }
     }
 }

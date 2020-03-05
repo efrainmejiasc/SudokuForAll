@@ -379,6 +379,7 @@ function ContadorIngresados() {
 }
 
 function FilaRecuadroColumna(tipo) {
+    $('#txtNota2').val('0');
     $.ajax({
         type: "POST",
         url: "/Process/FilaRecuadroColumna",

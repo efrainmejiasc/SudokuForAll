@@ -286,8 +286,8 @@
             if ((value >= 0 && value <= 9) || value == 'Delete' || value == 'Backspace') {
                 if (value == 0)
                     TextZero(id || value == 'Delete' || value == 'Backspace');
-                else
-                    TextNumero(id, value);
+               // else
+                   // TextNumero(id, value);
 
                 //GuardarJuego(id, document.getElementById(id).value, false, 2);
             }
@@ -316,8 +316,8 @@
             if ((value >= 0 && value <= 9) || value == 'Delete' || value == 'Backspace') {
                 if (value == 0)
                     TextZero(id || value == 'Delete' || value == 'Backspace');
-                else
-                    TextNumero(id, value);
+               // else
+                    //TextNumero(id, value);
 
                 $('#number').val(value);
             }

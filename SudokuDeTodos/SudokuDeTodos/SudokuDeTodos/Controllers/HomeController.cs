@@ -71,7 +71,7 @@ namespace SudokuDeTodos.Controllers
             }
             return View("ResponseMessage", respuesta);
         }
-
+        
         public ActionResult Login(string password = "")
         {
             if (System.Web.HttpContext.Current.Session["EMAIL"] == null)

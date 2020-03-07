@@ -63,15 +63,15 @@
             var a = $('#password').val();
             var b = $('#password2').val();
             if (a.indexOf(' ') !== -1) {
-                CancelarSubmit(e, '@Resources.ContraseñaDebeEspacioBlanco')
+                CancelarSubmit(e, '@Resources.ContraseñaDebeEspacioBlanco');
                 return false;
             }
             if (a.length < 10) {
-                CancelarSubmit(e,'@Resources.FormatContraseña')
+                CancelarSubmit(e, '@Resources.FormatContraseña');
                 return false;
             }
             if (a != b) {
-               CancelarSubmit(e,'@Resources.ContraseñaDebeIdentica')
+                CancelarSubmit(e, '@Resources.ContraseñaDebeIdentica');
                return false;
             }
 
@@ -89,11 +89,11 @@
             }
 
             if (minuscula === false && mayuscula === false) {
-                CancelarSubmit(e,'@Resources.ContraseñaDebeLetra')
+                CancelarSubmit(e, '@Resources.ContraseñaDebeLetra');
                 return false;
             }
             if (numero === false) {
-                CancelarSubmit(e,'@Resources.ContraseñaDebeNumero')
+                CancelarSubmit(e, '@Resources.ContraseñaDebeNumero');
                 return false;
             }
         });

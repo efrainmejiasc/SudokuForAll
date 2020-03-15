@@ -265,6 +265,8 @@
     <Content Include="Content\imagen\Izq.JPG" />
     <Content Include="Content\imagen\logo.png" />
     <Content Include="Content\imagen\Look.JPG" />
+    <Content Include="Content\imagen\Nada.JPG" />
+    <Content Include="Content\imagen\Numero.JPG" />
     <Content Include="Content\imagen\UnLook.JPG" />
     <Content Include="Content\js\game.js" />
     <Content Include="Content\js\global.js" />

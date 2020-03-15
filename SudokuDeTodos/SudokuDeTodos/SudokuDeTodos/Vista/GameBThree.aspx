@@ -60,11 +60,11 @@
                      <input id="" type="button" value="" class="btn naranjaClaro" onclick="Marcador('btn naranjaClaroX whiteLar', 'bisque');"/>
                      <input id="" type="button" value="" class="btn orange" onclick="Marcador('btn orangeX whiteLar', 'orange');"/>
                      <input id="marcador" type="button" value="" class="btn bg-light whiteLar"/></div><br /><br />
-
-                     <input id="btnRes23" type="button" class="" onClick=""/>
-                     <input id="btnDos"  type="button" class="btn btn-success Dos" onClick=""/>
-                     <input id="btnTres" type="button" class="btn btn-success Tres" onClick=""/>
-                     <input id="btnN" type="button" class="" onClick=""/>
+                     <asp:ImageButton ID="btnReset23" runat="server" ImageUrl="~/Content/imagen/Nada.JPG" Height="31px" />
+                     <asp:ImageButton ID="btnDos" runat="server" ImageUrl="~/Content/imagen/D2.JPG" />
+                     <asp:ImageButton ID="btnTres" runat="server" ImageUrl="~/Content/imagen/D3.JPG" />
+                     <asp:ImageButton ID="btnN" runat="server" ImageUrl="~/Content/imagen/Numero.JPG" Height="30px" Width="31px" />
+                    
                   </div>
                </div>
                 <br /><br /> <br />

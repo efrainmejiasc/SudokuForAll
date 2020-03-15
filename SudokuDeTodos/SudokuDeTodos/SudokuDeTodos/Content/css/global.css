@@ -247,7 +247,7 @@ input:valid {
 .btnGroupMarket {
     float: left;
     margin-left: 5%;
-
+    background-color:white;
 }
 
 .lblCount {

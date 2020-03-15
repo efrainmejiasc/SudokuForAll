@@ -163,6 +163,7 @@
     <Compile Include="Models\Game\LetrasJuegoFEG.cs" />
     <Compile Include="Models\Game\NuevoJuego.cs" />
     <Compile Include="Models\Game\TableTest.cs" />
+    <Compile Include="Models\Game\TextBoxOne.cs" />
     <Compile Include="Models\Game\ValorPosicion.cs" />
     <Compile Include="Models\Sistema\EstructuraMail.cs" />
     <Compile Include="Models\Sistema\Idiomas.cs" />

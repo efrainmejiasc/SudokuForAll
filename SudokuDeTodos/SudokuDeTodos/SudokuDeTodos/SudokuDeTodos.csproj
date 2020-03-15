@@ -258,6 +258,8 @@
     <Content Include="Content\css\global.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\imagen\Blanck.JPG" />
+    <Content Include="Content\imagen\D2.JPG" />
+    <Content Include="Content\imagen\D3.JPG" />
     <Content Include="Content\imagen\Der.JPG" />
     <Content Include="Content\imagen\initSudoku.mp4" />
     <Content Include="Content\imagen\Izq.JPG" />

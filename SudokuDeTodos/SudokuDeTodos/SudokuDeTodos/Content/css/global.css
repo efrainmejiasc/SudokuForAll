@@ -218,6 +218,26 @@ input:valid {
     margin-left:19%;
 }
 
+.Dos {
+    border-style: none;
+    border-color: inherit;
+    border-width: medium;
+    cursor: pointer;
+    height: 100px;
+    background: url('/Content/imagen/D2.JPG') no-repeat;
+    padding: 0%;
+}
+
+.Tres {
+    border-style: none;
+    border-color: inherit;
+    border-width: medium;
+    cursor: pointer;
+    height: 100px;
+    background: url('/Content/imagen/D3.JPG') no-repeat;
+    padding: 0%;
+}
+
 
 .btnGroupA2 {
     float: left;

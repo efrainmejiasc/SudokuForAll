@@ -33,6 +33,8 @@ namespace SudokuDeTodos.Vista
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ValorGame.PathArchivo = Server.MapPath("~/GameFile/" + "efrainmejiasc@gmail.com" + ".jll");
+            System.Web.HttpContext.Current.Session["PathArchivo"] = ValorGame.PathArchivo;
             txtSudoku = AsociarTxtMatriz(txtSudoku);
             txtSudoku2 = AsociarTxtMatriz2(txtSudoku2);
             txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);

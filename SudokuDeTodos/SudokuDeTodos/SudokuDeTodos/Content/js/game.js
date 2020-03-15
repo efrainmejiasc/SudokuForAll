@@ -395,3 +395,61 @@ function FilaRecuadroColumna(tipo) {
     });
 }
 
+function SizeFontTxt() {
+    var obj = '#txt_';
+
+
+    for (i = 0; i <= 8; i++) {
+        for (j = 0; j <= 8; j++) {
+            obj = obj.concat(i, j);
+            $(obj).css("fontSize", 10);
+           
+            obj = '#txt_';
+        }
+    }
+}
+
+function DosLenght() {
+    var obj = '#txt_';
+    var content = null;
+    for (i = 0; i <= 8; i++) {
+        for (j = 0; j <= 8; j++) {
+            obj = obj.concat(i, j);
+            content = $(obj).val();
+            if (content.length === 4) {
+                $(obj).css('background-color', 'Chartreuse');
+            }
+            obj = '#txt_';
+        }
+    }
+    return false;
+}
+
+function TresLenght() {
+    var obj = '#txt_';
+    var content = null;
+    for (i = 0; i <= 8; i++) {
+        for (j = 0; j <= 8; j++) {
+            obj = obj.concat(i, j);
+            content = $(obj).val();
+            if (content.length === 6) {
+                $(obj).css('background-color', 'Orange');
+            }
+            obj = '#txt_';
+        }
+    }
+    return false;
+}
+
+function Reset23() {
+    var obj = '#txt_';
+
+    for (i = 0; i <= 8; i++) {
+        for (j = 0; j <= 8; j++) {
+            obj = obj.concat(i, j);
+            $(obj).css('background-color', 'White');
+            obj = '#txt_';
+        }
+    }
+    return false;
+}

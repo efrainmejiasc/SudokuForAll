@@ -2584,6 +2584,7 @@ namespace SudokuDeTodos.Engine
             {
                 for (int j = 0; j <= 8; j++)
                 {
+                    txtSudoku[i, j].Text = string.Empty;
                     txtSudoku[i, j].ReadOnly = true;
                     txtSudoku[i, j].Attributes.Add("autocomplete", "off");
                 }

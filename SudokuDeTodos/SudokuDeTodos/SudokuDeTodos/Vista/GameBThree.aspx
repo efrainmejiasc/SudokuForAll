@@ -60,10 +60,10 @@
                      <input id="" type="button" value="" class="btn naranjaClaro" onclick="Marcador('btn naranjaClaroX whiteLar', 'bisque');"/>
                      <input id="" type="button" value="" class="btn orange" onclick="Marcador('btn orangeX whiteLar', 'orange');"/>
                      <input id="marcador" type="button" value="" class="btn bg-light whiteLar"/></div><br /><br />
-                     <asp:ImageButton ID="btnReset23" runat="server" ImageUrl="~/Content/imagen/Nada.JPG"  OnClientClick="return Reset23();" Height="30px" Width="31px" />
+                     <asp:ImageButton ID="btnReset23" runat="server" ImageUrl="~/Content/imagen/Nada.JPG" Height="32px" Width="31px" OnClick="btnN_Click" />
                      <asp:ImageButton ID="btnDos" runat="server" ImageUrl="~/Content/imagen/D2.JPG" OnClientClick="return DosLenght();" Height="30px" Width="31px" />
                      <asp:ImageButton ID="btnTres" runat="server" ImageUrl="~/Content/imagen/D3.JPG" OnClientClick="return TresLenght();" Height="30px" Width="31px" />
-                     <asp:ImageButton ID="btnN" runat="server" ImageUrl="~/Content/imagen/Numero.JPG" OnClientClick="" Height="30px" Width="31px" />
+                     <asp:ImageButton ID="btnN" runat="server" ImageUrl="~/Content/imagen/Numero.JPG" OnClientClick="return NumeroIngresado();" Height="30px" Width="31px" />
                     
                   </div>
                </div>

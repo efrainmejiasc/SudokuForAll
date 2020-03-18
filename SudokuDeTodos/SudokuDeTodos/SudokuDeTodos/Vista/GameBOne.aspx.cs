@@ -34,6 +34,12 @@ namespace SudokuDeTodos.Vista
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (System.Web.HttpContext.Current.Session["Email"] == null)
+                    Response.Redirect("~/Home/Index");
+            }
+
             txtSudoku = AsociarTxtMatriz(txtSudoku);
             txtSudoku2 = AsociarTxtMatriz2(txtSudoku2);
             txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);
@@ -417,7 +423,7 @@ namespace SudokuDeTodos.Vista
 
             txtSudoku2[3, 6] = txt_36; txtSudoku2[3, 7] = txt_37; txtSudoku2[3, 8] = txt_38;
             txtSudoku2[4, 6] = txt_46; txtSudoku2[4, 7] = txt_47; txtSudoku2[4, 8] = txt_48;
-            txtSudoku2[5, 6] = txt_56; txtSudoku2[5, 7] = txt_57; txtSudoku2[5, 8] = txt58;
+            txtSudoku2[5, 6] = txt_56; txtSudoku2[5, 7] = txt_57; txtSudoku2[5, 8] = txt_58;
             ////////////////////////////////////////////////////////////////////////////
             txtSudoku2[6, 0] = txt_60; txtSudoku2[6, 1] = txt_61; txtSudoku2[6, 2] = txt_62;
             txtSudoku2[7, 0] = txt_70; txtSudoku2[7, 1] = txt_71; txtSudoku2[7, 2] = txt_72;

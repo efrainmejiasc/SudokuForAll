@@ -18,5 +18,12 @@ namespace SudokuDeTodos.Engine
         string[,] SetearTextBoxNumero(string[,] cajaTexto, string[,] vIngresado);
         string[,] SetearTextBoxEliminado(string[,] cajaTexto, string[,] vEliminado);
         DataTable SetearTestC(string[,] vIngresado, string[] solo, string[] oculto);
+        string[,] CandidatosSinEliminados(string[,] valorIngresado, string[,] valorCandidato, string[,] valorEliminado);
+        string[,] ElejiblesInstantaneos(string[,] valorIngresado, string[,] valorCandidato);
+        ArrayList AbrirValoresArchivo(string pathArchivo);
+        string[,] SetValorIngresado(ArrayList arrText, string[,] valorIngresado);
+        string[,] SetValorEliminado(ArrayList arrText, string[,] valorEliminado);
+        string[,] SetValorInicio(ArrayList arrText, string[,] valorInicio);
+        string[,] SetValorSolucion(ArrayList arrText, string[,] valorSolucion);
     }
 }

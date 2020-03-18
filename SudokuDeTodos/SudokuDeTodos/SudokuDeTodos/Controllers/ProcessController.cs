@@ -48,6 +48,7 @@ namespace SudokuDeTodos.Controllers
             this.Proceso.GuardarValoresEliminados(pathArchivo, ValorGame.valorEliminado);
             this.Proceso.GuardarValoresInicio(pathArchivo, ValorGame.valorInicio);
             this.Proceso.GuardarValoresSolucion(pathArchivo, ValorGame.valorSolucion);
+            ValorGame.valorCandidatoSinEliminados = FuncionGame.CandidatosSinEliminados(ValorGame.valorIngresado, ValorGame.valorCandidato, ValorGame.valorEliminado);
             resultado = true;
             Respuesta response = new Respuesta();
             response.Status = resultado;
@@ -339,6 +340,454 @@ namespace SudokuDeTodos.Controllers
             }
 
             return View(respuesta);
+        }
+
+
+        [HttpPost]
+
+        public ActionResult NumeroIngresado()
+        {
+            string[,] valorInicio = new string[9, 9];
+            string[,] valorIngresado = new string[9, 9];
+            string[,] valorCandidato = new string[9, 9];
+            string[,] valorEliminado = new string[9, 9];
+            string[,] valorSolucion = new string[9, 9];
+            string[,] v = new string[9, 9];
+            string[,] c = new string[9, 9];
+            EngineDataGame ValorGame = EngineDataGame.Instance();
+            ArrayList arrText = FuncionGame.AbrirValoresArchivo(ValorGame.PathArchivo);
+            ValorGame.valorIngresado = FuncionGame.SetValorIngresado(arrText,valorIngresado);
+            ValorGame.valorEliminado = FuncionGame.SetValorEliminado(arrText, valorEliminado);
+            ValorGame.valorInicio = FuncionGame.SetValorInicio(arrText, valorInicio);
+            ValorGame.valorSolucion = FuncionGame.SetValorSolucion(arrText, valorSolucion);
+            ValorGame.valorCandidato = FuncionGame.ElejiblesInstantaneos(ValorGame.valorIngresado, valorCandidato);
+            c = FuncionGame.CandidatosSinEliminados(ValorGame.valorIngresado, valorCandidato, ValorGame.valorEliminado);
+            v = ValorGame.valorIngresado;
+
+            TextBoxOne t = new TextBoxOne();
+
+            // FILA 0
+            if (!string.IsNullOrEmpty(v[0, 0]))
+                t.txt00 = v[0, 0]; 
+            else
+              t.txt00 = c[0, 0];
+
+            if (!string.IsNullOrEmpty(v[0, 1]))
+                t.txt01 = v[0, 1];
+            else
+                t.txt01 = c[0, 1];
+
+            if (!string.IsNullOrEmpty(v[0, 2]))
+                t.txt02 = v[0, 2];
+            else
+                t.txt02 = c[0, 2];
+
+            if (!string.IsNullOrEmpty(v[0, 3]))
+                t.txt03 = v[0, 3];
+            else
+                t.txt03 = c[0, 3];
+
+            if (!string.IsNullOrEmpty(v[0, 4]))
+                t.txt04 = v[0, 4];
+            else
+                t.txt04 = c[0, 4];
+
+            if (!string.IsNullOrEmpty(v[0, 5]))
+                t.txt05 = v[0, 5];
+            else
+                t.txt05 = c[0, 5];
+
+            if (!string.IsNullOrEmpty(v[0, 6]))
+                t.txt06 = v[0, 6];
+            else
+                t.txt06 = c[0, 6];
+
+            if (!string.IsNullOrEmpty(v[0, 7]))
+                t.txt07 = v[0, 7];
+            else
+                t.txt07 = c[0, 7];
+
+            if (!string.IsNullOrEmpty(v[0, 8]))
+                t.txt08 = v[0, 8];
+            else
+                t.txt08 = c[0, 8];
+
+            //FILA 1
+
+            if (!string.IsNullOrEmpty(v[1, 0]))
+                t.txt10 = v[1, 0];
+            else
+                t.txt10 = c[1, 0];
+
+            if (!string.IsNullOrEmpty(v[1, 1]))
+                t.txt11 = v[1, 1];
+            else
+                t.txt11 = c[1, 1];
+
+            if (!string.IsNullOrEmpty(v[1, 2]))
+                t.txt12 = v[1, 2];
+            else
+                t.txt12 = c[1, 2];
+
+            if (!string.IsNullOrEmpty(v[1, 3]))
+                t.txt13 = v[1, 3];
+            else
+                t.txt13 = c[1, 3];
+
+            if (!string.IsNullOrEmpty(v[1, 4]))
+                t.txt14 = v[1, 4];
+            else
+                t.txt14 = c[1, 4];
+
+            if (!string.IsNullOrEmpty(v[1, 5]))
+                t.txt15 = v[1, 5];
+            else
+                t.txt15 = c[1, 5];
+
+            if (!string.IsNullOrEmpty(v[1, 6]))
+                t.txt16 = v[1, 6];
+            else
+                t.txt16 = c[1, 6];
+
+            if (!string.IsNullOrEmpty(v[1, 7]))
+                t.txt17 = v[1, 7];
+            else
+                t.txt17 = c[1, 7];
+
+            if (!string.IsNullOrEmpty(v[1, 8]))
+                t.txt18 = v[1, 8];
+            else
+                t.txt18 = c[1, 8];
+
+            //FILA 2
+            if (!string.IsNullOrEmpty(v[2, 0]))
+                t.txt20 = v[2, 0];
+            else
+                t.txt20 = c[2, 0];
+
+            if (!string.IsNullOrEmpty(v[2, 1]))
+                t.txt21 = v[2, 1];
+            else
+                t.txt21 = c[2, 1];
+
+            if (!string.IsNullOrEmpty(v[2, 2]))
+                t.txt22 = v[2, 2];
+            else
+                t.txt22 = c[2, 2];
+
+            if (!string.IsNullOrEmpty(v[2, 3]))
+                t.txt23 = v[2, 3];
+            else
+                t.txt23 = c[2, 3];
+
+            if (!string.IsNullOrEmpty(v[2, 4]))
+                t.txt24 = v[2, 4];
+            else
+                t.txt24 = c[2, 4];
+
+            if (!string.IsNullOrEmpty(v[2, 5]))
+                t.txt25 = v[2, 5];
+            else
+                t.txt25 = c[2, 5];
+
+            if (!string.IsNullOrEmpty(v[2, 6]))
+                t.txt26 = v[2, 6];
+            else
+                t.txt26 = c[2, 6];
+
+            if (!string.IsNullOrEmpty(v[2, 7]))
+                t.txt27 = v[2, 7];
+            else
+                t.txt27 = c[2, 7];
+
+            if (!string.IsNullOrEmpty(v[2, 8]))
+                t.txt28 = v[2, 8];
+            else
+                t.txt28 = c[2, 8];
+
+            // FILA 3
+
+            if (!string.IsNullOrEmpty(v[3, 0]))
+                t.txt30 = v[3, 0];
+            else
+                t.txt30 = c[3, 0];
+
+            if (!string.IsNullOrEmpty(v[3, 1]))
+                t.txt31 = v[3, 1];
+            else
+                t.txt31 = c[3, 1];
+
+            if (!string.IsNullOrEmpty(v[3, 2]))
+                t.txt32 = v[3, 2];
+            else
+                t.txt32 = c[3, 2];
+
+            if (!string.IsNullOrEmpty(v[3, 3]))
+                t.txt33 = v[3, 3];
+            else
+                t.txt33 = c[3, 3];
+
+            if (!string.IsNullOrEmpty(v[3, 4]))
+                t.txt34 = v[3, 4];
+            else
+                t.txt34 = c[3, 4];
+
+            if (!string.IsNullOrEmpty(v[3, 5]))
+                t.txt35 = v[3, 5];
+            else
+                t.txt35 = c[3, 5];
+
+            if (!string.IsNullOrEmpty(v[3, 6]))
+                t.txt36 = v[3, 6];
+            else
+                t.txt36 = c[3, 6];
+
+            if (!string.IsNullOrEmpty(v[3, 7]))
+                t.txt37 = v[3, 7];
+            else
+                t.txt37 = c[3, 7];
+
+            if (!string.IsNullOrEmpty(v[3, 8]))
+                t.txt38 = v[3, 8];
+            else
+                t.txt38 = c[3, 8];
+
+            // FILA 4
+
+            if (!string.IsNullOrEmpty(v[4, 0]))
+                t.txt40 = v[4, 0];
+            else
+                t.txt40 = c[4, 0];
+
+            if (!string.IsNullOrEmpty(v[4, 1]))
+                t.txt41 = v[4, 1];
+            else
+                t.txt41 = c[4, 1];
+
+            if (!string.IsNullOrEmpty(v[4, 2]))
+                t.txt42 = v[4, 2];
+            else
+                t.txt42 = c[4, 2];
+
+            if (!string.IsNullOrEmpty(v[4, 3]))
+                t.txt43 = v[4, 3];
+            else
+                t.txt43 = c[4, 3];
+
+            if (!string.IsNullOrEmpty(v[4, 4]))
+                t.txt44 = v[4, 4];
+            else
+                t.txt44 = c[4, 4];
+
+            if (!string.IsNullOrEmpty(v[4, 5]))
+                t.txt45 = v[4, 5];
+            else
+                t.txt45 = c[4, 5];
+
+            if (!string.IsNullOrEmpty(v[4, 6]))
+                t.txt46 = v[4, 6];
+            else
+                t.txt46 = c[4, 6];
+
+            if (!string.IsNullOrEmpty(v[4, 7]))
+                t.txt47 = v[4, 7];
+            else
+                t.txt47 = c[4, 7];
+
+            if (!string.IsNullOrEmpty(v[4, 8]))
+                t.txt48 = v[4, 8];
+            else
+                t.txt48 = c[4, 8];
+
+            // FILA 5
+            if (!string.IsNullOrEmpty(v[5, 0]))
+                t.txt50 = v[5, 0];
+            else
+                t.txt50 = c[5, 0];
+
+            if (!string.IsNullOrEmpty(v[5, 1]))
+                t.txt51 = v[5, 1];
+            else
+                t.txt51 = c[5, 1];
+
+            if (!string.IsNullOrEmpty(v[5, 2]))
+                t.txt52 = v[5, 2];
+            else
+                t.txt52 = c[5, 2];
+
+            if (!string.IsNullOrEmpty(v[5, 3]))
+                t.txt53 = v[5, 3];
+            else
+                t.txt53 = c[5, 3];
+
+            if (!string.IsNullOrEmpty(v[5, 4]))
+                t.txt54 = v[5, 4];
+            else
+                t.txt54 = c[5, 4];
+
+            if (!string.IsNullOrEmpty(v[5, 5]))
+                t.txt55 = v[5, 5];
+            else
+                t.txt55 = c[5, 5];
+
+            if (!string.IsNullOrEmpty(v[5, 6]))
+                t.txt56 = v[5, 6];
+            else
+                t.txt56 = c[5, 6];
+
+            if (!string.IsNullOrEmpty(v[5, 7]))
+                t.txt57 = v[5, 7];
+            else
+                t.txt57 = c[5, 7];
+
+            if (!string.IsNullOrEmpty(v[5, 8]))
+                t.txt58 = v[5, 8];
+            else
+                t.txt58 = c[5, 8];
+
+            // FILA 6
+            if (!string.IsNullOrEmpty(v[6, 0]))
+                t.txt60 = v[6, 0];
+            else
+                t.txt60 = c[6, 0];
+
+            if (!string.IsNullOrEmpty(v[6, 1]))
+                t.txt61 = v[6, 1];
+            else
+                t.txt61 = c[6, 1];
+
+            if (!string.IsNullOrEmpty(v[6, 2]))
+                t.txt62 = v[6, 2];
+            else
+                t.txt62 = c[6, 2];
+
+            if (!string.IsNullOrEmpty(v[6, 3]))
+                t.txt63 = v[6, 3];
+            else
+                t.txt63 = c[6, 3];
+
+            if (!string.IsNullOrEmpty(v[6, 4]))
+                t.txt64 = v[6, 4];
+            else
+                t.txt64 = c[6, 4];
+
+            if (!string.IsNullOrEmpty(v[6, 5]))
+                t.txt65 = v[6, 5];
+            else
+                t.txt65 = c[6, 5];
+
+            if (!string.IsNullOrEmpty(v[6, 6]))
+                t.txt66 = v[6, 6];
+            else
+                t.txt66 = c[6, 6];
+
+            if (!string.IsNullOrEmpty(v[6, 7]))
+                t.txt67 = v[6, 7];
+            else
+                t.txt67 = c[6, 7];
+
+            if (!string.IsNullOrEmpty(v[6, 8]))
+                t.txt68 = v[6, 8];
+            else
+                t.txt68 = c[6, 8];
+
+            //FILA 7
+
+            if (!string.IsNullOrEmpty(v[7, 0]))
+                t.txt70 = v[7, 0];
+            else
+                t.txt70 = c[7, 0];
+
+            if (!string.IsNullOrEmpty(v[7, 1]))
+                t.txt71 = v[7, 1];
+            else
+                t.txt71 = c[7, 1];
+
+            if (!string.IsNullOrEmpty(v[7, 2]))
+                t.txt72 = v[7, 2];
+            else
+                t.txt72 = c[7, 2];
+
+            if (!string.IsNullOrEmpty(v[7, 3]))
+                t.txt73 = v[7, 3];
+            else
+                t.txt73 = c[7, 3];
+
+            if (!string.IsNullOrEmpty(v[7, 4]))
+                t.txt74 = v[7, 4];
+            else
+                t.txt74 = c[7, 4];
+
+            if (!string.IsNullOrEmpty(v[7, 5]))
+                t.txt75 = v[7, 5];
+            else
+                t.txt75 = c[7, 5];
+
+            if (!string.IsNullOrEmpty(v[7, 6]))
+                t.txt76 = v[7, 6];
+            else
+                t.txt76 = c[7, 6];
+
+            if (!string.IsNullOrEmpty(v[7, 7]))
+                t.txt77 = v[7, 7];
+            else
+                t.txt77 = c[7, 7];
+
+            if (!string.IsNullOrEmpty(v[7, 8]))
+                t.txt78 = v[7, 8];
+            else
+                t.txt78 = c[7, 8];
+
+
+            //FILA 8
+
+            if (!string.IsNullOrEmpty(v[8, 0]))
+                t.txt80 = v[8, 0];
+            else
+                t.txt80 = c[8, 0];
+
+            if (!string.IsNullOrEmpty(v[8, 1]))
+                t.txt81 = v[8, 1];
+            else
+                t.txt81 = c[8, 1];
+
+            if (!string.IsNullOrEmpty(v[8, 2]))
+                t.txt82 = v[8, 2];
+            else
+                t.txt82 = c[8, 2];
+
+            if (!string.IsNullOrEmpty(v[8, 3]))
+                t.txt83 = v[8, 3];
+            else
+                t.txt83 = c[8, 3];
+
+            if (!string.IsNullOrEmpty(v[8, 4]))
+                t.txt84 = v[8, 4];
+            else
+                t.txt84 = c[8, 4];
+
+            if (!string.IsNullOrEmpty(v[8, 5]))
+                t.txt85 = v[8, 5];
+            else
+                t.txt85 = c[8, 5];
+
+            if (!string.IsNullOrEmpty(v[8, 6]))
+                t.txt86 = v[8, 6];
+            else
+                t.txt86 = c[8, 6];
+
+            if (!string.IsNullOrEmpty(v[8, 7]))
+                t.txt87 = v[8, 7];
+            else
+                t.txt87 = c[8, 7];
+
+            if (!string.IsNullOrEmpty(v[8, 8]))
+                t.txt88 = v[8, 8];
+            else
+                t.txt88 = c[8, 8];
+
+
+            return Json(t);
         }
     }
 }

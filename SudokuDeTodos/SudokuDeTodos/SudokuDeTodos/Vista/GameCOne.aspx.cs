@@ -32,6 +32,9 @@ namespace SudokuDeTodos.Vista
         {
             if (!IsPostBack)
             {
+                if (System.Web.HttpContext.Current.Session["Email"] == null)
+                 Response.Redirect("~/Home/Index");
+
                 txtSudoku = AsociarTxtMatriz(txtSudoku);
                 txtSudoku = Game.SetearTextBoxLimpio(txtSudoku);
                 AbrirJuego();
@@ -77,7 +80,6 @@ namespace SudokuDeTodos.Vista
             valorCandidato = Game.ElejiblesInstantaneos(valorIngresado, valorCandidato);
             valorCandidatoSinEliminados = Game.CandidatosSinEliminados(valorIngresado, valorCandidato, valorEliminado);
             txtSudoku = Game.SetearTextBoxJuego(txtSudoku, valorIngresado, valorInicio);
-        
         }
 
         private void ContadorIngresado()

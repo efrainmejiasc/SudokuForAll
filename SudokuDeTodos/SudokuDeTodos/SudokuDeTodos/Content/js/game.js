@@ -453,3 +453,41 @@ function Reset23() {
     }
     return false;
 }
+
+function NumeroIngresado() {
+    $.ajax({
+        type: "POST",
+        url: "/Process/NumeroIngresado",
+        contentType: "application/json; chartset=utf-8",
+        datatype: "json",
+        success: function (r) {
+            var obj = '#txt_';
+            console.log(r);
+            $('#txt_00').val(r.txt00); $('#txt_01').val(r.txt01); $('#txt_02').val(r.txt02); $('#txt_03').val(r.txt03); $('#txt_04').val(r.txt04); $('#txt_05').val(r.txt05); $('#txt_06').val(r.txt06); $('#txt_07').val(r.txt07); $('#txt_08').val(r.txt08);
+            $('#txt_10').val(r.txt10); $('#txt_11').val(r.txt11); $('#txt_12').val(r.txt12); $('#txt_13').val(r.txt13); $('#txt_14').val(r.txt14); $('#txt_15').val(r.txt15); $('#txt_16').val(r.txt16); $('#txt_17').val(r.txt17); $('#txt_18').val(r.txt18);
+            $('#txt_20').val(r.txt20); $('#txt_21').val(r.txt21); $('#txt_22').val(r.txt22); $('#txt_23').val(r.txt23); $('#txt_24').val(r.txt24); $('#txt_25').val(r.txt25); $('#txt_26').val(r.txt26); $('#txt_27').val(r.txt27); $('#txt_28').val(r.txt28);
+            $('#txt_30').val(r.txt30); $('#txt_31').val(r.txt31); $('#txt_32').val(r.txt32); $('#txt_33').val(r.txt33); $('#txt_34').val(r.txt34); $('#txt_35').val(r.txt35); $('#txt_36').val(r.txt36); $('#txt_37').val(r.txt37); $('#txt_38').val(r.txt38);
+            $('#txt_40').val(r.txt40); $('#txt_41').val(r.txt41); $('#txt_42').val(r.txt42); $('#txt_43').val(r.txt43); $('#txt_44').val(r.txt44); $('#txt_45').val(r.txt45); $('#txt_46').val(r.txt46); $('#txt_47').val(r.txt47); $('#txt_48').val(r.txt48);
+            $('#txt_50').val(r.txt50); $('#txt_51').val(r.txt51); $('#txt_52').val(r.txt52); $('#txt_53').val(r.txt53); $('#txt_54').val(r.txt54); $('#txt_55').val(r.txt55); $('#txt_56').val(r.txt56); $('#txt_57').val(r.txt57); $('#txt_58').val(r.txt58);
+            $('#txt_60').val(r.txt60); $('#txt_61').val(r.txt61); $('#txt_62').val(r.txt62); $('#txt_63').val(r.txt63); $('#txt_64').val(r.txt64); $('#txt_65').val(r.txt65); $('#txt_66').val(r.txt66); $('#txt_67').val(r.txt67); $('#txt_68').val(r.txt68);
+            $('#txt_70').val(r.txt70); $('#txt_71').val(r.txt71); $('#txt_72').val(r.txt72); $('#txt_73').val(r.txt73); $('#txt_74').val(r.txt74); $('#txt_75').val(r.txt75); $('#txt_76').val(r.txt76); $('#txt_77').val(r.txt77); $('#txt_78').val(r.txt78);
+            $('#txt_80').val(r.txt80); $('#txt_81').val(r.txt81); $('#txt_82').val(r.txt82); $('#txt_83').val(r.txt83); $('#txt_84').val(r.txt84); $('#txt_85').val(r.txt85); $('#txt_86').val(r.txt86); $('#txt_87').val(r.txt87); $('#txt_88').val(r.txt88);
+        },
+        complete: function () {
+           
+        }
+    });
+    return false;
+}
+
+/* 
+    $('#txt00').val(); $('#txt01').val(); $('#txt02').val(); $('#txt03').val(); $('#txt04').val(); $('#txt05').val(); $('#txt06').val(); $('#txt07').val(); $('#txt08').val();
+    $('#txt10').val(); $('#txt11').val(); $('#txt12').val(); $('#txt13').val(); $('#txt14').val(); $('#txt15').val(); $('#txt16').val(); $('#txt17').val(); $('#txt18').val();
+    $('#txt20').val(); $('#txt21').val(); $('#txt22').val(); $('#txt23').val(); $('#txt24').val(); $('#txt25').val(); $('#txt26').val(); $('#txt27').val(); $('#txt28').val();
+    $('#txt30').val(); $('#txt31').val(); $('#txt32').val(); $('#txt33').val(); $('#txt34').val(); $('#txt35').val(); $('#txt36').val(); $('#txt37').val(); $('#txt38').val();
+    $('#txt40').val(); $('#txt41').val(); $('#txt42').val(); $('#txt43').val(); $('#txt44').val(); $('#txt45').val(); $('#txt46').val(); $('#txt47').val(); $('#txt48').val();
+    $('#txt50').val(); $('#txt51').val(); $('#txt52').val(); $('#txt53').val(); $('#txt54').val(); $('#txt55').val(); $('#txt56').val(); $('#txt57').val(); $('#txt58').val();
+    $('#txt60').val(); $('#txt61').val(); $('#txt62').val(); $('#txt63').val(); $('#txt64').val(); $('#txt65').val(); $('#txt66').val(); $('#txt67').val(); $('#txt68').val();
+    $('#txt70').val(); $('#txt71').val(); $('#txt72').val(); $('#txt73').val(); $('#txt74').val(); $('#txt75').val(); $('#txt76').val(); $('#txt77').val(); $('#txt78').val();
+    $('#txt80').val(); $('#txt81').val(); $('#txt82').val(); $('#txt83').val(); $('#txt84').val(); $('#txt85').val(); $('#txt86').val(); $('#txt87').val(); $('#txt88').val();
+ */

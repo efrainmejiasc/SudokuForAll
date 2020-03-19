@@ -56,7 +56,8 @@ namespace SudokuDeTodos.Vista
         {
             valorCandidato = Game.ElejiblesInstantaneos(valorIngresado, valorCandidato);
             valorCandidatoSinEliminados = Game.CandidatosSinEliminados(valorIngresado, valorCandidato, valorEliminado);
-            txtSudoku = Game.SetearTextBoxJuegoInicio(txtSudoku, valorSolucion, valorInicio);
+            txtSudoku = Game.SetearTextBoxJuego(txtSudoku, valorIngresado, valorInicio);
+            // txtSudoku = Game.SetearTextBoxJuegoInicio(txtSudoku, valorSolucion, valorInicio);
             txtSudoku2 = Game.SetearTextBoxEliminados(txtSudoku2, valorEliminado);
         }
 

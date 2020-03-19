@@ -60,7 +60,7 @@
        <div class="container-fluid" >
              <div class="container" align="center" style="margin-left:16%;float:left;width:500px;">
                   <div style="align-content:center">           
-                     <label id="numero" class="nameGrid2">Números</label>
+                     <label id="titulo" class="nameGrid2"> </label>
                 </div>
               <div class="grid">
                   <div class="innerGrid">
@@ -172,6 +172,7 @@
   <script>
       $(document).ready(function () {
           StyleTxtFully();
+          SetTitulo('GameCOne');
           OcultarObjeto('inicio');
           OcultarObjeto('entrar');
           document.documentElement.style.overflowX = 'hidden';

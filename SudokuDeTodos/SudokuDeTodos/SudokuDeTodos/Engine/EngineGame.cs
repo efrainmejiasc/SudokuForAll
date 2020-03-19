@@ -704,6 +704,8 @@ namespace SudokuDeTodos.Engine
         // SIN ELIMINADOS
         public string[,] CandidatosSinEliminados(string[,] valorIngresado, string[,] valorCandidato, string[,] valorEliminado)
         {
+            if (valorCandidato == null) valorCandidato = new string [9,9];
+
             System.Windows.Forms.ListBox candidatosOrganizados = new System.Windows.Forms.ListBox();
             System.Windows.Forms.ListBox eliminarOrganizados = new System.Windows.Forms.ListBox();
             string[,] valorCandidatoSinEliminados = new string[9, 9];
@@ -2146,9 +2148,9 @@ namespace SudokuDeTodos.Engine
         private DataTable AgregarFilas(DataTable dt, int nF, string tabla)
         {
             string nombreIdioma = ValorGame.GetNombreIdioma();
-            string fila = Valor.Fila(nombreIdioma);
-            string columna = Valor.Columna(nombreIdioma);
-            string recuadro = Valor.Recuadro(nombreIdioma);
+            string fila = Valor.Fila();
+            string columna = Valor.Columna();
+            string recuadro = Valor.Recuadro();
 
             for (int i = 1; i <= nF; i++)
             {

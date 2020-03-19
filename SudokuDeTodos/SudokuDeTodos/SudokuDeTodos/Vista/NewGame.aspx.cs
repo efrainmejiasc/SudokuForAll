@@ -126,6 +126,7 @@ namespace SudokuDeTodos.Vista
         protected void GuardarNuevoJuejo_Click(object sender, EventArgs e)
         {
             string pathArchivo = Server.MapPath("~/GameFile/" + System.Web.HttpContext.Current.Session["Email"].ToString() + ".jll");
+            ValorGame.PathArchivo = pathArchivo;
             Game.DeletFile(pathArchivo);
             IniciarArreglos();
             AsociarTxtMatriz(txtSudoku);

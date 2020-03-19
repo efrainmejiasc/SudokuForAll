@@ -393,6 +393,8 @@ function FilaRecuadroColumna(tipo) {
             console.log('FilaRecuadroColumna');
         }
     });
+
+    return false;
 }
 
 function SizeFontTxt() {
@@ -461,7 +463,6 @@ function NumeroIngresado() {
         contentType: "application/json; chartset=utf-8",
         datatype: "json",
         success: function (r) {
-            var obj = '#txt_';
             console.log(r);
             $('#txt_00').val(r.txt00); $('#txt_01').val(r.txt01); $('#txt_02').val(r.txt02); $('#txt_03').val(r.txt03); $('#txt_04').val(r.txt04); $('#txt_05').val(r.txt05); $('#txt_06').val(r.txt06); $('#txt_07').val(r.txt07); $('#txt_08').val(r.txt08);
             $('#txt_10').val(r.txt10); $('#txt_11').val(r.txt11); $('#txt_12').val(r.txt12); $('#txt_13').val(r.txt13); $('#txt_14').val(r.txt14); $('#txt_15').val(r.txt15); $('#txt_16').val(r.txt16); $('#txt_17').val(r.txt17); $('#txt_18').val(r.txt18);
@@ -473,9 +474,25 @@ function NumeroIngresado() {
             $('#txt_70').val(r.txt70); $('#txt_71').val(r.txt71); $('#txt_72').val(r.txt72); $('#txt_73').val(r.txt73); $('#txt_74').val(r.txt74); $('#txt_75').val(r.txt75); $('#txt_76').val(r.txt76); $('#txt_77').val(r.txt77); $('#txt_78').val(r.txt78);
             $('#txt_80').val(r.txt80); $('#txt_81').val(r.txt81); $('#txt_82').val(r.txt82); $('#txt_83').val(r.txt83); $('#txt_84').val(r.txt84); $('#txt_85').val(r.txt85); $('#txt_86').val(r.txt86); $('#txt_87').val(r.txt87); $('#txt_88').val(r.txt88);
         },
-        complete: function () {
-           
+        complete: function ()
+        {
+            var obj = '#txt_';
+            var color = null;
+            for (i = 0; i <= 8; i++) {
+                for (j = 0; j <= 8; j++) {
+                    obj = obj.concat(i, j);
+                    color = $(obj).css("color");
+                    console.log(color);
+                    if (color === 'rgb(0, 0, 0)') {
+                        $(obj).css("font-size", "32px");
+                    } else if (color === 'rgb(0, 0, 255)') {
+                        $(obj).css("font-size", "10px");
+                    } 
+                    obj = '#txt_';
+                }
+            } 
         }
+
     });
     return false;
 }

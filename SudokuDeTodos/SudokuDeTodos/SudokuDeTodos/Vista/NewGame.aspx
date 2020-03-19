@@ -43,7 +43,7 @@
                 </div>
 
                 <div>
-                     <label id="numero" class="nameGrid">Números</label>
+                     <label id="titulo" class="nameGrid"> </label>
                 </div>
            
              <div class="container" align="center">
@@ -130,6 +130,7 @@
     <script>
         $(document).ready(function () {
             StyleTxtFully();
+            SetTitulo('NewGame');
             OcultarObjeto('inicio');
             OcultarObjeto('entrar');
             OcultarObjeto('GuardarNuevoJuejo');

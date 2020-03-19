@@ -39,6 +39,7 @@ $('#traductor').on('change', function (e) {
              SetObjectsLayount(index);
         }
     });
+    return false;
 }); 
 
 function GetIdiomas() {
@@ -62,6 +63,7 @@ function GetIdiomas() {
             SenialTraductor();
         }
     });
+    return false;
 }
 
 function SetObjectsLayount(index) {
@@ -87,6 +89,7 @@ function SetObjectsLayount(index) {
             Stop();
         }
     });
+    return false;
 }
 
 var nueva = null;
@@ -139,5 +142,52 @@ function GetEmailSession(nameVar) {
             $('#mail').val(data.Descripcion);
         }
     });
+    return false;
+}
+
+function SetTitulo(page) {
+    $.ajax({
+        type: "POST",
+        url: "/Process/TagForm",
+        datatype: "json",
+        success: function (data) {
+            console.log(data);
+            if (page === 'GameAOne' || page === 'GameCOne') {
+                $('#titulo').html(data.Numeros);
+            }
+            else if (page === 'GameATwo'){
+                $('#titulo').html(data.Numeros);
+                $('#titulo2').html(data.NummerosYCandidatosExcluidos);
+            }
+            else if (page === 'GameBOne') {
+                $('#titulo').html(data.CandidatosIndividuales);
+                $('#titulo2').html(data.CandidatosExcluidos);
+            }
+            else if (page === 'GameBTwo') {
+                $('#titulo').html(data.CandidatosOrganizados);
+                $('#titulo2').html(data.CandidatosExcluidos);
+                $('#Button1').val(data.Fila);
+                $('#Button2').val(data.Columna);
+                $('#Button3').val(data.Recuadro);
+            }
+            else if (page === 'GameBThree') {
+                $('#titulo').html(data.CandidatosIndividuales);
+                $('#titulo2').html(data.Candidatos);
+            }
+            else if (page === 'GameCTwo') {
+                $('#titulo').html(data.Solucion);
+                $('#titulo2').html(data.Numeros);
+            }
+            else if (page === 'GameCThree') {
+                $('#titulo').html(data.Solucion);
+                $('#titulo2').html(data.CandidatosExcluidos);
+            }
+            else if (page === 'NewGame') {
+                $('#titulo').html(data.Solucion);
+            }
+               
+        }
+    });
+    return false;
 }
 

@@ -56,7 +56,8 @@ namespace SudokuDeTodos.Vista
 
         private void SetearJuego()
         {
-            txtSudoku = Game.SetearTextBoxJuegoInicio(txtSudoku, valorSolucion, valorInicio);
+            txtSudoku = Game.SetearTextBoxJuego(txtSudoku, valorIngresado, valorInicio);
+            // txtSudoku = Game.SetearTextBoxJuegoInicio(txtSudoku, valorSolucion, valorInicio);
             txtSudoku2 = Game.SetearTextBoxJuegoNumerosInicioMasIngresados(txtSudoku2, valorIngresado, valorInicio);
         }
 

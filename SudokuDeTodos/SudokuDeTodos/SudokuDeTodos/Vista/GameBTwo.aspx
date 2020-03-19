@@ -75,7 +75,7 @@
        <div class="container-fluid" >
              <div class="container" align="center" style="margin-left:16%;float:left;width:500px;">
                   <div style="align-content:center">           
-                     <label id="numero" class="nameGrid2">Candidatos Organizados</label>
+                     <label id="titulo" class="nameGrid2"> </label>
                 </div>
               <div class="grid">
                       
@@ -150,7 +150,7 @@
 
              <div class="container" style="margin-right:16%; float:right;;width:500px;">
                     <div style="align-content:center">           
-                     <label id="excluido" class="nameGrid2">Candidatos Excluidos</label>
+                     <label id="titulo2" class="nameGrid2"> </label>
                     </div>
                 <div class="grid">
                   <div class="innerGrid">
@@ -255,6 +255,7 @@
 <script>
     $(document).ready(function () {
         StyleTxt();
+        SetTitulo('GameBTwo')
         OcultarObjeto('inicio');
         OcultarObjeto('entrar');
         document.documentElement.style.overflowX = 'hidden';

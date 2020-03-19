@@ -344,7 +344,27 @@ namespace SudokuDeTodos.Controllers
 
 
         [HttpPost]
+        public JsonResult TagForm ()
+        {
+            EngineData Valor = EngineData.Instance();
+            TagForms tag = new TagForms()
+            {
+                Fila = Valor.Fila(),
+                Columna = Valor.Columna(),
+                Recuadro = Valor.Recuadro(),
+                Numeros = Valor.Numeros(),
+                Candidatos = Valor.Candidatos(),
+                Solucion = Valor.Solucion(),
+                JuegoNuevo = Valor.JuegoNuevo(),
+                CandidatosExcluidos = Valor.CandidatosExcluidos(),
+                CandidatosOrganizados = Valor.CandidatosOrganizados(),
+                CandidatosIndividuales = Valor.CandidatosIndividuales(),
+                NummerosYCandidatosExcluidos = Valor.NumerosYCandidatosExcluidos()
+            };
+            return Json(tag);
+        }
 
+        [HttpPost]
         public ActionResult NumeroIngresado()
         {
             string[,] valorInicio = new string[9, 9];

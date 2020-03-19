@@ -175,5 +175,5 @@
   <resource culture="es-es" name="MsjModificarPassword" value="¿Desea modificar su contraseña?"></resource>
   <resource culture="en-us" name="MsjModificarPassword" value="Do you want to change your password?"></resource>
   <resource culture="pt-pt" name="MsjModificarPassword" value="Deseja alterar sua senha?"></resource>
-
+  
 </resources>

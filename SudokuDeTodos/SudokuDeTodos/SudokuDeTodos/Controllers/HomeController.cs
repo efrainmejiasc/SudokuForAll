@@ -86,7 +86,7 @@ namespace SudokuDeTodos.Controllers
             respuesta.Status = Metodo.Autentificacion(password);
             respuesta.Id = -1;
             if (respuesta.Status)
-                return Redirect("/Vista/NewGame.aspx");
+                return Redirect("/Vista/GameAOne.aspx");
             else
                 return View(respuesta);
         }

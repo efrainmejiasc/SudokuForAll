@@ -1,4 +1,5 @@
-﻿using SudokuDeTodos.Models.Sistema;
+﻿using Newtonsoft.Json;
+using SudokuDeTodos.Models.Sistema;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -129,7 +130,7 @@ namespace SudokuDeTodos.Engine
             return cultura = System.Web.HttpContext.Current.Session["Cultura"].ToString();
         }
 
-        public string Fila(string lenguaje)
+        public string Fila()
         {
             string cultura = GetCultura();
             string titulo = string.Empty;
@@ -148,7 +149,7 @@ namespace SudokuDeTodos.Engine
             return titulo;
         }
 
-        public string Columna(string lenguaje)
+        public string Columna()
         {
             string cultura = GetCultura();
             string titulo = string.Empty;
@@ -167,7 +168,7 @@ namespace SudokuDeTodos.Engine
             return titulo;
         }
 
-        public string Recuadro(string lenguaje)
+        public string Recuadro()
         {
             string cultura = GetCultura();
             string titulo = string.Empty;
@@ -185,6 +186,205 @@ namespace SudokuDeTodos.Engine
             }
             return titulo;
         }
+
+        public string JuegoNuevo()
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    titulo = "Juego Nuevo";
+                    break;
+                case (CulturaIngles):
+                    titulo = "New Game";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Novo Jogo";
+                    break;
+                default:
+                    titulo = "JuegoNuevo";
+                    break;
+            }
+            return titulo;
+        }
+
+        public string Numeros()
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    titulo = "Números";
+                    break;
+                case (CulturaIngles):
+                    titulo = "Numbers";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Números";
+                    break;
+                default:
+                    titulo = "Números";
+                    break;
+            }
+            return titulo;
+        }
+
+        public string Candidatos()
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    titulo = "Candidatos";
+                    break;
+                case (CulturaIngles):
+                    titulo = "Candidates";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Candidatos";
+                    break;
+                default:
+                    titulo = "Candidatos";
+                    break;
+            }
+            return titulo;
+        }
+
+        public string NumerosYCandidatos()
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    titulo = "Números y Candidatos";
+                    break;
+                case (CulturaIngles):
+                    titulo = "Numbers and Candidates";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Números e Candidatos";
+                    break;
+                default:
+                    titulo = "Números y Candidatos";
+                    break;
+            }
+            return titulo;
+        }
+
+        public string NumerosYCandidatosExcluidos()
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    titulo = "Números y Candidatos Excluidos";
+                    break;
+                case (CulturaIngles):
+                    titulo = "Numbers and Excluded Candidates";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Números e Candidatos Excluídos";
+                    break;
+                default:
+                    titulo = "Números y Candidatos Excluidos";
+                    break;
+            }
+            return titulo;
+        }
+
+        public string CandidatosIndividuales()
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    titulo = "Candidatos Individuales";
+                    break;
+                case (CulturaIngles):
+                    titulo = "Individual Candidates";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Candidatos Individuais";
+                    break;
+                default:
+                    titulo = "Candidatos Individuales";
+                    break;
+            }
+            return titulo;
+        }
+
+        public string CandidatosExcluidos()
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    titulo = "Candidatos Excluidos";
+                    break;
+                case (CulturaIngles):
+                    titulo = "Excluded Candidates";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Candidatos Excluídos";
+                    break;
+                default:
+                    titulo = "Candidatos Excluidos";
+                    break;
+            }
+            return titulo;
+        }
+
+        public string CandidatosOrganizados()
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    titulo = "Candidatos Organizados";
+                    break;
+                case (CulturaIngles):
+                    titulo = "Organized Candidates";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Candidatos Organizados";
+                    break;
+                default:
+                    titulo = "Candidatos Organizados";
+                    break;
+            }
+            return titulo;
+        }
+
+        public string Solucion()
+        {
+            string cultura = GetCultura();
+            string titulo = string.Empty;
+            switch (cultura)
+            {
+                case (CulturaEspañol):
+                    titulo = "Solucion";
+                    break;
+                case (CulturaIngles):
+                    titulo = "Solution";
+                    break;
+                case (CulturaPortugues):
+                    titulo = "Solução";
+                    break;
+                default:
+                    titulo = "Solucion";
+                    break;
+            }
+            return titulo;
+        }
+
 
         //Mensajes Index 
         public static string EmailNoValido()

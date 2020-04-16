@@ -1,10 +1,11 @@
 ﻿using SudokuDeTodos.Models.DbSistema;
+using SudokuDeTodos.Models.Sistema;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SudokuDeTodos.Engine
+namespace SudokuDeTodos.Engine.Interfaces
 {
     public interface  IEngineDb
     {
@@ -22,5 +23,7 @@ namespace SudokuDeTodos.Engine
         int UpdatePasswordCliente(string email, string password);
         bool UpdateCodigoResetPassword(string email, string codigo);
         bool ValidarCodigoResetPassword(string email, string codigo);
+        bool EditarClientePagoFechaVencimiento(int id, DateTime fechaVencimiento);
+        List<ConsultaReporte> ConsultaReporte(DateTime fechaInicial, DateTime fechaFinal);
     }
 }

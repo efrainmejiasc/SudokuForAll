@@ -1,4 +1,5 @@
 ﻿using SudokuDeTodos.Engine;
+using SudokuDeTodos.Engine.Interfaces;
 using SudokuDeTodos.Models.DbSistema;
 using SudokuDeTodos.Models.Sistema;
 using System;
@@ -37,9 +38,6 @@ namespace SudokuDeTodos.Controllers
             if (Request.Cookies["GalletaSudokuForAllId"] != null)
             {
                 HttpCookie MiGalletaId = Request.Cookies["GalletaSudokuForAllId"];
-                HttpCookie MiGalletaExpire = Request.Cookies["GalletaSudokuForAllExpire"];
-                string identificadorGalleta = MiGalletaId.Value;
-                string fechaExpiracion = MiGalletaExpire.Value;
                 System.Web.HttpContext.Current.Session["MiGalleta"] = true;
             }
             else

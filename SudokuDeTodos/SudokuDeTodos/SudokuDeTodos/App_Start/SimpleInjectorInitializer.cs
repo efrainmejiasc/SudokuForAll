@@ -9,6 +9,7 @@ namespace SudokuDeTodos.App_Start
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
     using SudokuDeTodos.Engine;
+    using SudokuDeTodos.Engine.Interfaces;
 
     public static class SimpleInjectorInitializer
     {

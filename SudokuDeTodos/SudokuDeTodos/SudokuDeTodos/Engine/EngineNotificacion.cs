@@ -1,4 +1,5 @@
-﻿using SudokuDeTodos.Models.Sistema;
+﻿using SudokuDeTodos.Engine.Interfaces;
+using SudokuDeTodos.Models.Sistema;
 using System;
 using System.Collections.Generic;
 using System.IO;

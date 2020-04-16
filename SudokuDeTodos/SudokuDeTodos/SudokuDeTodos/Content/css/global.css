@@ -7,13 +7,11 @@
 }
 
 .logoInitial {
-    //height: 14vh;
-    // width: 180px;
+ 
     height: 7vh;
     width: 80px;
     margin-right: 100%;
     padding-top: 1%;
-    //margin-left: 19%;
     margin-left: 20%;
     margin-top: 0%;
 }
@@ -430,3 +428,46 @@ input:valid {
 .vtnn{
     width:auto;
 }
+
+/******************************************/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding: 50px;
+    left: 0;
+    top: 0;
+    width: 40%;
+    height:50%;
+    overflow: no-display;
+    background-color: rgb(0,0,0,);
+    background-color: rgba(0,0,0,0.4);
+    margin-top: 8%;
+    margin-left: 27%;
+}
+
+.modal-content {
+    background-color: palegreen;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid #888;
+    width: auto;
+    height:auto;
+    margin-top: 5%;
+    margin-left: 4%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }

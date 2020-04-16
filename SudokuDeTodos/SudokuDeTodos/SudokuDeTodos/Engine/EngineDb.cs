@@ -1,4 +1,6 @@
-﻿using SudokuDeTodos.Models.DbSistema;
+﻿using SudokuDeTodos.Engine.Interfaces;
+using SudokuDeTodos.Models.DbSistema;
+using SudokuDeTodos.Models.Sistema;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -165,6 +167,31 @@ namespace SudokuDeTodos.Engine
             {
                 resultado = false;
                 InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/UpdateClienteTest*" + email));
+            }
+            return resultado;
+        }
+
+
+        public bool EditarClientePagoFechaVencimiento(int id, DateTime fechaVencimiento)
+        {
+            bool resultado = false;
+            ClientePago C = new ClientePago();
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    C = Context.ClientePago.Where(s => s.Id == id).FirstOrDefault();
+                    Context.ClientePago.Attach(C);
+                    C.FechaVencimiento = fechaVencimiento;
+                    Context.Configuration.ValidateOnSaveEnabled = false;
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado = false;
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/EditarClientePagoFechaVencimiento*" + id.ToString()));
             }
             return resultado;
         }
@@ -343,6 +370,49 @@ namespace SudokuDeTodos.Engine
                 InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/UpdateCodigoResetPassword*" + email));
             }
             return resultado;
+        }
+
+        public List<ConsultaReporte> ConsultaReporte(DateTime fechaInicial , DateTime fechaFinal)
+        {
+            List<ConsultaReporte> consulta = new List<ConsultaReporte>();
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+
+                    consulta = (from Cliente in Context.Cliente
+                              join ClientePago in Context.ClientePago
+                              on Cliente.Id equals ClientePago.IdCliente
+                              where ClientePago.FechaPago >= fechaInicial && ClientePago.FechaPago <= fechaFinal
+                              select new ConsultaReporte()
+                              {
+                                  Id = Cliente.Id,
+                                  IdClientePago = ClientePago.Id,
+                                  Email = Cliente.Email,
+                                  FP = ClientePago.FechaPago,
+                                  FV = ClientePago.FechaVencimiento,
+                                  MontoPago = ClientePago.MontoPago,
+                                  Impuesto = ClientePago.Impuesto,
+                                  MontoTotal =ClientePago.MontoTotal
+                              }).ToList();
+                }
+
+                foreach (ConsultaReporte item in consulta)
+                {
+                    if (DateTime.UtcNow > item.FV)
+                        item.Estado = "Vencido";
+                    else
+                        item.Estado = "Activo";
+
+                    item.FechaPago = item.FP.ToString("dd/MM/yyyy");
+                    item.FechaVencimiento = item.FV.ToString("dd/MM/yyyy");
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/ConsultaReporte*" + ""));
+            }
+            return consulta ;
         }
 
         public bool InsertarSucesoLog(SucesoLog model)

@@ -191,3 +191,153 @@ function SetTitulo(page) {
     return false;
 }
 
+function EstablecerFechas() {
+    var today = new Date();
+    var fecha = today.toISOString().substr(0, 10);
+    $('#fechaInicial').val(fecha);
+    $('#fechaFinal').val(fecha);
+}
+
+
+function ReportePago() {
+    var fechaInicial = $('#fechaInicial').val();
+    var fechaFinal = $('#fechaFinal').val();
+  
+    if (fechaInicial === '' || fechaFinal === '' ) {
+        alert('Seleccione fechas');
+        return false;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/Manager/ReportePago",
+        datatype: "json",
+        data: { fechaInicial: fechaInicial, fechaFinal: fechaFinal },
+        success: function (data) {
+      
+            CrearTabla(data);
+        },
+        complete: function () {
+            TablaPlus();
+            console.log('REPORTEPAGO');
+        }
+    });
+    return false;
+}
+
+function CrearTabla(emp) {
+    var subtotal = 0;
+    var impuesto = 0;
+    var total = 0;
+    $('#tableReport tbody tr').remove();
+    $.each(emp, function (index, item) {
+        subtotal = subtotal + item.MontoPago;
+        impuesto = impuesto + item.Impuesto;
+        total = total + item.MontoTotal;
+        let tr = `<tr> 
+                      <td style="text-align: center;"> ${index + 1} </td>
+                      <td style="text-align: justify;"> ${item.Email} </td>
+                      <td style="text-align: justify;"> ${item.FechaPago} </td>
+                      <td style="text-align: justify;"> ${item.FechaVencimiento} </td>
+                      <td style="text-align: justify;"> ${item.MontoPago} </td>
+                      <td style="text-align: justify;"> ${item.Impuesto} </td>
+                      <td style="text-align: justify;"> ${item.MontoTotal} </td>
+                      <td style="text-align: justify;"> ${item.Estado} </td>
+                      <td style="text-align: center;"> <input type="button" value="Editar" class="btn btn-primary" style="width:80px;" onclick="PreEdit('${item.IdClientePago}','${item.Email}','${item.FechaPago}','${item.FechaVencimiento}');"> </td>
+                      </tr>`;
+        $('#tableReport tbody').append(tr);
+
+        $('#subtotal').val(subtotal);
+        $('#totalTax').val(impuesto);
+        $('#total').val(total);
+    });
+}
+
+
+function TablaPlus() {
+    var initDataTable = $('#initDataTable').val();
+    if (initDataTable === 'yes') return false;
+
+    $('#tableReport').DataTable({
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+        },
+        responsive: "true",
+        dom: 'Bfrtilp',
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                text: '<i class="fas fa-file-excel"></i> ',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-success',
+            },
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="fas fa-file-pdf"></i> ',
+                titleAttr: 'Exportar a PDF',
+                className: 'btn btn-danger'
+            },
+            {
+                extend: 'print',
+                text: '<i class="fa fa-print"></i> ',
+                titleAttr: 'Imprimir',
+                className: 'btn btn-info'
+            },
+
+        ],
+
+    });
+    $('#initDataTable').val('yes');
+}
+
+
+function PreEdit(idClientePago, email, fechaPago, vencimiento) {
+
+    $('#id').val(idClientePago);
+    $('#email').val(email);
+    $('#fechaPago').val(fechaPago);
+
+    var parts = vencimiento.split('/');
+    var fechaVencimiento = new Date(parts[2] + "-" + parts[1] + "-" + parts[0]);
+    fechaVencimiento = fechaVencimiento.toISOString().substr(0, 10);
+    $('#fechaVencimiento').val(fechaVencimiento);
+    MostrarModalT();
+    return false;
+}
+
+function EditarClientePagoFechaVencimiento() {
+
+    var idClientePago = $('#id').val();
+    var fechaVencimiento=  $('#fechaVencimiento').val();
+    $.ajax({
+        type: "POST",
+        url: "/Manager/EditarClientePagoFechaVencimiento",
+        datatype: "json",
+        data: { idClientePago: idClientePago, fechaVencimiento: fechaVencimiento },
+        success: function (data) {
+            if (data.Descripcion === "Transaccion Exitosa") {
+                ReportePago();
+                alert(data.Descripcion);
+                CerrarModalT();
+            }
+            else {
+                alert(data.Descripcion);
+            }
+        },
+        complete: function () {
+            console.log('EDITARCLIENTEPAGOFECHAVENCIMIENTO');
+        }
+    });
+    return false;
+
+}
+
+function MostrarModalT() {
+    var modal = document.getElementById('myModal');
+    modal.style.display = 'block';
+}
+
+function CerrarModalT() {
+    var modal = document.getElementById('myModal');
+    modal.style.display = "none";
+}

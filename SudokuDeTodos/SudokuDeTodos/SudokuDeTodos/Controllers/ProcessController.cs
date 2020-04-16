@@ -9,6 +9,7 @@ using SudokuDeTodos.Models.DbSistema;
 using SudokuDeTodos.Models.Game;
 using System.Collections;
 using System.Data;
+using SudokuDeTodos.Engine.Interfaces;
 
 namespace SudokuDeTodos.Controllers
 {

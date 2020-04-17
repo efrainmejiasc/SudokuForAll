@@ -470,5 +470,18 @@ namespace SudokuDeTodos.Engine
             return n;
         }
 
+        public Administrador BuilAdministrador (string email , string newEmail)
+        {
+            Administrador Adm = new Administrador()
+            {
+                Email = newEmail,
+                CreateDate = DateTime.UtcNow,
+                Estado = true,
+                CreadorEmail = email,
+                Nivel = 1
+            };
+            return Adm;
+        }
+
     }
 }

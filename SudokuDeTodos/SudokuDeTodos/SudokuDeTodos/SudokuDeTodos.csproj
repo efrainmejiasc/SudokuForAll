@@ -154,6 +154,7 @@
     <Compile Include="Engine\Interfaces\IEngineGameProcess.cs" />
     <Compile Include="Engine\Interfaces\IEngineNotificacion.cs" />
     <Compile Include="Engine\Interfaces\IEngineProyect.cs" />
+    <Compile Include="Models\DbSistema\Administrador.cs" />
     <Compile Include="Models\DbSistema\Cliente.cs" />
     <Compile Include="Models\DbSistema\ClientePago.cs" />
     <Compile Include="Models\Sistema\ConsultaReporte.cs" />
@@ -470,6 +471,7 @@
     <Content Include="Content\datatables\Buttons-1.6.1\css\mixins.scss" />
     <Content Include="Content\datatables\pdfmake-0.1.36\pdfmake.min.js.map" />
     <Content Include="Content\datatables\pdfmake.min.js.map" />
+    <Content Include="Views\Manager\CreateManager.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -505,7 +507,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Manager\Index.cshtml" />
-    <Content Include="Views\Manager\Login.cshtml" />
+    <Content Include="Views\Manager\MenuManager.cshtml" />
     <Content Include="Views\Manager\MainManager.cshtml" />
     <Content Include="Views\Shared\_Message.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />

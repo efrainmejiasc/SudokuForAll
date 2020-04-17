@@ -21,6 +21,8 @@ namespace SudokuDeTodos.Engine
 
         public DbSet<SucesoLog> SucesoLog { get; set; }
 
+        public DbSet<Administrador> Administrador { get; set; }
+
         // 1. Instalar Entity Framework
         // 2. Crear clase que herede de DbContext
         // 3. Ejecutar enable-migratios

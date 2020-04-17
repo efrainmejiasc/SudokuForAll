@@ -30,13 +30,16 @@
             <div class="row" id="searchDiv">
                 <div class="form-group">
                     <div class="input-group" style="float:right;">
+                        <input type="button" id="menur" value="&nbsp;Menu&nbsp;" class="btn btn-primary" onclick="Redireccionamiento('/Manager/MenuManager');" />
+                        <span class="input-group-addon" style="background-color:white;border-color:white;"> </span> &nbsp;&nbsp;&nbsp;
+
                         <input type="date" id="fechaInicial" name="fechaInicial" value="" min="" max="" class="form form-control" style="width:900px">
                         <span class="input-group-addon" style="background-color:white;border-color:white;"> </span>&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="date" id="fechaFinal" name="fechaFinal" value="" min="" max="" class="form form-control" style="width:900px">
                         <span class="input-group-addon" style="background-color:white;border-color:white;"> </span>
 
                         <span class="input-group-addon" style="background-color:white;border-color:white;"> </span> &nbsp;&nbsp;&nbsp;
-                        <input type="button" id="buscar" value="Buscar" class="btn btn-primary" style="width:160px;" onclick="ReportePago();" />
+                        <input type="button" id="buscar" value="Buscar" class="btn btn-success" onclick="ReportePago();" />
                     </div>
                 </div>
             </div>
@@ -69,6 +72,7 @@
             </div>
         </div>
         <br />
+
         <div style="text-align:justify" ;>
             <label class="form form-control" style="font-weight:bold;"> Sub - Total </label>
             <input type="text" id="subtotal" class="form form-control" readonly /><br />
@@ -107,6 +111,7 @@
         $(document).ready(function () {
             OcultarObjeto('traductor');
             OcultarObjeto('entrar');
+              OcultarObjeto('inicio');
             OcultarObjeto('olvidoPassword');
             OcultarObjeto('equipo');
             EstablecerFechas();

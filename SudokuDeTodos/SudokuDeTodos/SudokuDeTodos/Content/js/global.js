@@ -341,3 +341,21 @@ function CerrarModalT() {
     var modal = document.getElementById('myModal');
     modal.style.display = "none";
 }
+
+function NavAdmin(page) {
+    $.ajax({
+        type: "POST",
+        url: "/Manager/ReturnVarGerente",
+        dataType: "json",
+        success: function (data) {
+            if (data.Descripcion === 'ACTIVO')
+                Redireccionamiento(page);
+            else
+                Redireccionamiento('/Manager/Index');
+        },
+        complete: function () {
+            console.log('NAVADMIN');
+        }
+    });
+    return false;
+}

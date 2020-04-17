@@ -28,6 +28,7 @@ namespace SudokuDeTodos.Engine.Interfaces
         Cliente ConstruirCliente(string email, Guid identidad);
         string ConstruirEnlazePrueba(string email, Guid identidad);
         ResetPassword SetResetPassword(string email, string codigo);
+        Administrador BuilAdministrador(string email, string newEmail);
         bool EstatusLink(DateTime fechaEnvio, DateTime fechaActivacion);
         EstructuraMail SetEstructuraMailTest(string enlaze, string email);
         string ConstruirEnlazeRegistroGerente(string email, Guid identidad);

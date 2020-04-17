@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "";
+}
+
+
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/css/global.css" rel="stylesheet" />
+<script src="../Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="../Content/js/global.js" type="text/javascript"></script>
+
+<div class="divEmail">
+    @using (Html.BeginForm("CreateManager", "Manager"))
+    {
+        <div style="margin-left:5%;">
+            <h4 class="text-success"> Nuevo Administrador</h4>
+        </div>
+        <label class="checkbox-inline;" style="margin-left:10%;"><input type="checkbox" id="chxNoSoy" name="chxNosoy" class="btn btn btn-default active" required oninvalid="setCustomValidity('Campo Requerido')" oninput="setCustomValidity('')" /> No soy un robot </label>
+        <input type="email" id="email" name="email" placeholder="Ingrese Email Administrador" class="boxTxt  form-control" required oninvalid="setCustomValidity('Email Requerido')" oninput="setCustomValidity('')" /><br />
+        <input type="email" id="emailNuevo" name="emailNuevo" placeholder="Ingrese Email Nuevo Administrador" class="boxTxt  form-control" required oninvalid="setCustomValidity('Email Requerido')" oninput="setCustomValidity('')" /><br />
+        <input type="submit" id="sendMail" name="sendMail" value="Enviar" class="btn btn-success voton" /><br /><br />
+    }
+    <input type="submit" id="cancelar" name="cancelar" value="Cancelar" class="btn btn-danger voton" onclick="Redireccionamiento('/Manager/Index');"/>
+    <br />
+</div>
+
+
+<script>
+       $(document).ready(function () {
+            OcultarObjeto('traductor');
+            OcultarObjeto('inicio');
+            OcultarObjeto('entrar');
+            OcultarObjeto('olvidoPassword');
+            OcultarObjeto('equipo');
+            EstablecerFechas();
+            document.documentElement.style.overflowX = 'hidden';
+           let respuesta = '@ViewBag.Respuesta';
+           if (respuesta != '')
+              alert(respuesta);
+         });
+</script>

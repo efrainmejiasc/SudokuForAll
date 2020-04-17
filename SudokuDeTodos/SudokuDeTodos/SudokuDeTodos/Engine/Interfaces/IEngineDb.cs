@@ -12,10 +12,13 @@ namespace SudokuDeTodos.Engine.Interfaces
         int VerificarEmail(string email);
         bool InsertarCliente(Cliente model);
         bool Autentificacion(string password);
+        string GetAdministrador(string email);
         Guid GetIdentidadCliente(string email);
         int VerificarClientePago(string email);
+        bool ValidarAdministrador(string email);
         bool InsertarClientePago(ClientePago model);
         bool DeleteCodigoResetPassword(string email);
+        bool CreateAdministrador(Administrador modelo);
         bool UpdateClienteTest(string email, int status);
         bool UpdatePassword(string email, string password);
         bool UpdateClienteRegister(string email, int status);

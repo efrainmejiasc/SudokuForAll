@@ -415,6 +415,65 @@ namespace SudokuDeTodos.Engine
             return consulta ;
         }
 
+        public bool CreateAdministrador (Administrador modelo)
+        {
+            bool resultado = false;
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    Context.Administrador.Add(modelo);
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/CreateAdministrador*" + modelo.Email));
+            }
+            return resultado;
+
+        }
+
+        public string GetAdministrador (string email)
+        {
+            Administrador Adm = new Administrador();
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    Adm = Context.Administrador.Where(s => s.Email == email).FirstOrDefault();
+                    if (Adm.Email != null)
+                        return Adm.Email;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/GetAdministrador*" + email));
+            }
+            return string.Empty;
+        }
+
+        public bool ValidarAdministrador(string email)
+        {
+            Administrador Adm = new Administrador();
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    Adm = Context.Administrador.Where(s => s.Email == email && s.Nivel == 0).FirstOrDefault();
+                    if (Adm.Id > 0)
+                        return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/CreateAdministrador*" + email));
+            }
+            return false;
+        }
+
+
         public bool InsertarSucesoLog(SucesoLog model)
         {
             bool resultado = false;

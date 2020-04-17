@@ -43,9 +43,22 @@
     display: inline-block;
 }
 
+.divCenter {
+    margin-top: 10%;
+    width: 100%;
+    display: inline-block;
+    text-align:center;
+}
+
 .boxTxt {
     text-align: center;
     width: 35%;
+}
+
+.boxTxt2 {
+    text-align: center;
+    width: 35%;
+    margin-left:45%;
 }
 
 .voton {

@@ -55,7 +55,7 @@
                 datatype: "json",
                 success: function (data) {
                     if (data.Descripcion == '')
-                        window.location.href = "/Manager/Login";
+                        window.location.href = "/Manager/Index";
                     else
                         AlertaDeGalleta(data.Descripcion);
                 }
@@ -64,7 +64,7 @@
         function AlertaDeGalleta(value) {
             var r = confirm(value);
             if (r == true)
-                window.location.href = "/Manager/Login";
+                window.location.href = "/Manager/Index";
         }
     </script>
 </body>

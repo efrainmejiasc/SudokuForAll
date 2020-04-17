@@ -20,20 +20,66 @@ namespace SudokuDeTodos.Controllers
             this.Funcion = _Funcion;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string email = "")
         {
+            ViewBag.Respuesta = null;
+            if (Request.HttpMethod == "GET" || email == string.Empty)
             return View();
+
+            string Adm = Metodo.GetAdministrador(email);
+            if (!string.IsNullOrEmpty(Adm))
+            {
+                System.Web.HttpContext.Current.Session["GERENTE"] = email;
+                return RedirectToAction("MenuManager", "Manager");
+            }
+            else
+            {
+                ViewBag.Respuesta = "Autentificacion Fallida";
+                return View();
+            }
+              
         }
 
-        public ActionResult Login()
+        public ActionResult MenuManager()
         {
+            //CreateGalleta();
             return View();
         }
 
         public ActionResult MainManager()
         {
-            //CreateGalleta();
             return View();
+        }
+
+
+        public ActionResult CreateManager (string email = "" , string emailNuevo = "")
+        {
+            ViewBag.Respuesta = null;
+            if (Request.HttpMethod == "GET" || email == string.Empty || emailNuevo == string.Empty)
+                return View();
+
+            bool resultado = Funcion.EmailEsValido(emailNuevo);
+            if (!resultado)
+            {
+                ViewBag.Respuesta = "Email No Valido";
+                return View();
+            }
+            resultado = Metodo.ValidarAdministrador(email);
+            if (!resultado)
+            {
+                ViewBag.Respuesta = "Email Administrador No Valido";
+                return View();
+            }
+
+            Administrador Adm = Funcion.BuilAdministrador(email, emailNuevo);
+            resultado = Metodo.CreateAdministrador(Adm);
+            if (!resultado)
+                ViewBag.Respuesta = "Transaccion Fallida";
+            else
+                ViewBag.Respuesta = "Administrador Creado Satisfactoriamente";
+
+            return View();
+
         }
 
         public void CreateGalleta()
@@ -41,7 +87,7 @@ namespace SudokuDeTodos.Controllers
             if (Request.Cookies["GalletaSudokuForAllId"] == null)
             {
                 HttpCookie MiGalletaId = new HttpCookie("GalletaSudokuForAllId");
-                MiGalletaId.Value = System.Web.HttpContext.Current.Session["Gerente"].ToString();
+                MiGalletaId.Value = System.Web.HttpContext.Current.Session["GERENTE"].ToString();
                 MiGalletaId.Expires = DateTime.UtcNow.AddDays(1);
                 Response.Cookies.Add(MiGalletaId);
             }
@@ -74,6 +120,18 @@ namespace SudokuDeTodos.Controllers
                 R.Descripcion = "Transaccion Fallida";
 
             return Json(R);
+        }
+
+        [HttpPost]
+        public JsonResult ReturnVarGerente()
+        {
+            Respuesta respuesta = new Respuesta();
+            if (System.Web.HttpContext.Current.Session["GERENTE"] != null)
+                respuesta.Descripcion = "ACTIVO";
+            else
+                respuesta.Descripcion = "INACTIVO";
+
+            return Json(respuesta);
         }
     }
 }

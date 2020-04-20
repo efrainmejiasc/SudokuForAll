@@ -119,6 +119,28 @@ namespace SudokuDeTodos.Engine
             return resultado;
         }
 
+        public bool InsertarCliente (Cliente cliente , ClientePago clientePago)
+        {
+            bool resultado = false;
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    Context.Cliente.Add(cliente);
+                    Context.SaveChanges();
+                    clientePago.IdCliente = cliente.Id;
+                    Context.ClientePago.Add(clientePago);
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/InsertarClienteInvitado*" + cliente.Email));
+            }
+            return resultado;
+        }
+
         public Guid GetIdentidadCliente(string email)
         {
             Cliente C = new Cliente();

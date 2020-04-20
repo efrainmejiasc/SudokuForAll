@@ -174,6 +174,23 @@ namespace SudokuDeTodos.Engine
             return R;
         }
 
+        public Cliente ConstruirCliente(string email,string cultura)
+        {
+            Cliente R = new Cliente()
+            {
+                Email = email,
+                FechaRegistroPrueba = DateTime.UtcNow,
+                FechaActivacion = DateTime.UtcNow,
+                FechaActivacionPrueba = DateTime.UtcNow,
+                FechaRegistro = DateTime.UtcNow,
+                Estatus = true,
+                EstatusEnvioNotificacion = true,
+                Identidad = IdentificadorReg(),
+                Cultura = cultura
+            };
+            return R;
+        }
+
         public Cliente ConstruirCliente(string email,Guid identidad)
         {
             Cliente R = new Cliente()
@@ -198,6 +215,20 @@ namespace SudokuDeTodos.Engine
                 IdCliente = idCliente,
                 FechaPago = DateTime.UtcNow,
                 FechaVencimiento = DateTime.UtcNow.AddDays(30),
+                MontoPago = 0,
+                Impuesto = 0,
+                MontoTotal = 0
+            };
+            return R;
+        }
+
+        public ClientePago ConstruirClientePago(int idCliente, int dias)
+        {
+            ClientePago R = new ClientePago()
+            {
+                IdCliente = idCliente,
+                FechaPago = DateTime.UtcNow,
+                FechaVencimiento = DateTime.UtcNow.AddDays(dias),
                 MontoPago = 0,
                 Impuesto = 0,
                 MontoTotal = 0

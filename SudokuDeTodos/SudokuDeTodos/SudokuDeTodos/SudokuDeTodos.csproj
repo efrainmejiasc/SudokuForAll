@@ -472,6 +472,7 @@
     <Content Include="Content\datatables\pdfmake-0.1.36\pdfmake.min.js.map" />
     <Content Include="Content\datatables\pdfmake.min.js.map" />
     <Content Include="Views\Manager\CreateManager.cshtml" />
+    <Content Include="Views\Manager\InvitedManager.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

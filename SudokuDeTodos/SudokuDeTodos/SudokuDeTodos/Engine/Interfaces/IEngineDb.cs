@@ -26,6 +26,7 @@ namespace SudokuDeTodos.Engine.Interfaces
         int UpdatePasswordCliente(string email, string password);
         bool UpdateCodigoResetPassword(string email, string codigo);
         bool ValidarCodigoResetPassword(string email, string codigo);
+        bool InsertarCliente(Cliente cliente, ClientePago clientePago);
         bool EditarClientePagoFechaVencimiento(int id, DateTime fechaVencimiento);
         List<ConsultaReporte> ConsultaReporte(DateTime fechaInicial, DateTime fechaFinal);
     }

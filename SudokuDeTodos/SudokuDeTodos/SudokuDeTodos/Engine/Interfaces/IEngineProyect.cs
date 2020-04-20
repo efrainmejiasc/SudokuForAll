@@ -25,7 +25,9 @@ namespace SudokuDeTodos.Engine.Interfaces
         bool ValidacionTypeTransaccion(string type);
         string DecodeBase64(string base64EncodedData);
         ClientePago ConstruirClientePago(int idCliente);
+        Cliente ConstruirCliente(string email, string cultura);
         Cliente ConstruirCliente(string email, Guid identidad);
+        ClientePago ConstruirClientePago(int idCliente, int dias);
         string ConstruirEnlazePrueba(string email, Guid identidad);
         ResetPassword SetResetPassword(string email, string codigo);
         Administrador BuilAdministrador(string email, string newEmail);

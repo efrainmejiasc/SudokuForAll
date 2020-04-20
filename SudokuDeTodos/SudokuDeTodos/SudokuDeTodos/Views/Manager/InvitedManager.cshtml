@@ -1,0 +1,57 @@
+﻿@{
+                /**/
+
+                ViewBag.Title = "";
+}
+
+
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/css/global.css" rel="stylesheet" />
+<script src="../Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="../Content/js/global.js" type="text/javascript"></script>
+
+<div class="container" style="margin-top:8%;text-align:center;">
+
+    @using (Html.BeginForm("InvitedManager", "Manager"))
+    {
+    <div align="center">
+        <h4 class="text-success"> Registrar Invitado </h4>
+
+        <input type="email" id="email" name="email" placeholder="Ingrese Email Invitado" class="form form-control" required oninvalid="setCustomValidity('Email Requerido')" oninput="setCustomValidity('')" style="width:25vw;text-align:center;" /><br />
+        <select id="tiempo" name="tiempo"  class="form-control btn-primary" style="width:25vw;text-align:center;">
+            <option selected disabled value="0"> Tiempo de invitacion </option>
+            <option value="1"> 1 Mes </option>
+            <option value="2"> 2 Meses </option>
+            <option value="3"> 3 Meses </option>
+        </select> <br />
+        <select id="cultura" name="cultura" class="form-control btn-primary" style="width:25vw;text-align:center;">
+            <option selected disabled value="0"> Idioma </option>
+            <option value="es-ES"> Español </option>
+            <option value="en-US"> Ingles </option>
+            <option value="pt-PT"> Portugues </option>
+        </select>
+
+        <br /><br />
+        <input type="submit" id="send" name="send" value="Enviar" class="btn btn-success voton" style="width:25vw;text-align:center;" /><br /><br />
+    </div>
+    }
+    <input type="submit" id="cancelar" name="cancelar" value="Cancelar" class="btn btn-danger voton" onclick="Redireccionamiento('/Manager/Index');" style="width:25vw;text-align:center;"/>
+</div>
+
+
+<script>
+       $(document).ready(function () {
+            OcultarObjeto('traductor');
+            OcultarObjeto('inicio');
+            OcultarObjeto('entrar');
+            OcultarObjeto('olvidoPassword');
+            OcultarObjeto('equipo');
+            EstablecerFechas();
+            document.documentElement.style.overflowX = 'hidden';
+           let respuesta = '@ViewBag.Respuesta';
+           if (respuesta != '')
+              alert(respuesta);
+        });
+</script>

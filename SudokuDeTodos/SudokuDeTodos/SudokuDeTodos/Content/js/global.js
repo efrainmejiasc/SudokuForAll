@@ -146,6 +146,7 @@ function GetEmailSession(nameVar) {
 }
 
 function SetTitulo(page) {
+    console.log(page);
     $.ajax({
         type: "POST",
         url: "/Process/TagForm",
@@ -183,7 +184,7 @@ function SetTitulo(page) {
                 $('#titulo2').html(data.CandidatosExcluidos);
             }
             else if (page === 'NewGame') {
-                $('#titulo').html(data.Solucion);
+                $('#titulo').html(data.JuegoNuevo);
             }
                
         }

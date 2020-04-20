@@ -20,7 +20,7 @@ namespace SudokuDeTodos.Controllers
             this.Funcion = _Funcion;
         }
 
-        public ActionResult Index(string email = "")
+        public ActionResult Index(string email = "") //AUTENTIFICACION
         {
             ViewBag.Respuesta = null;
             if (Request.HttpMethod == "GET" || email == string.Empty)
@@ -40,20 +40,59 @@ namespace SudokuDeTodos.Controllers
               
         }
 
-        public ActionResult MenuManager()
+        public ActionResult MenuManager() //MENU
         {
-            //CreateGalleta();
+            CreateGalleta();
             return View();
         }
 
-        public ActionResult MainManager()
+        public ActionResult MainManager() //REPORTES
         {
+            if (System.Web.HttpContext.Current.Session["GERENTE"] == null)
+                return RedirectToAction("Index", "Manager");
+
+            return View();
+        }
+
+        public ActionResult InvitedManager(string email = "",string tiempo = "" ,string cultura = "")  //REGISTRAR INVITADO
+        {
+            if (System.Web.HttpContext.Current.Session["GERENTE"] == null)
+                return RedirectToAction("Index", "Manager");
+
+            ViewBag.Respuesta = null;
+            if (Request.HttpMethod == "GET" || email == string.Empty || tiempo == string.Empty || cultura == string.Empty)
+                return View();
+
+            Guid ide = Metodo.GetIdentidadCliente(email);
+            if (ide != Guid.Empty)
+            {
+                ViewBag.Respuesta = "El email ya se encuentra registrado";
+                return View();
+            }
+
+            int dias = 30;
+            if (tiempo == "2")
+                dias = 60;
+            else if (tiempo == "3")
+               dias = 90;
+
+            Cliente cliente = Funcion.ConstruirCliente(email, cultura);
+            ClientePago clientePago = Funcion.ConstruirClientePago(0, dias);
+            bool resultado = Metodo.InsertarCliente(cliente, clientePago);
+            if (resultado)
+                ViewBag.Respuesta = "Transaccion Exitosa";
+           else
+                ViewBag.Respuesta = "Transaccion Fallida";
+
             return View();
         }
 
 
-        public ActionResult CreateManager (string email = "" , string emailNuevo = "")
+        public ActionResult CreateManager (string email = "" , string emailNuevo = "") //CREAR ADMINISTRADOR
         {
+            if (System.Web.HttpContext.Current.Session["GERENTE"] == null)
+                return RedirectToAction("Index", "Manager");
+
             ViewBag.Respuesta = null;
             if (Request.HttpMethod == "GET" || email == string.Empty || emailNuevo == string.Empty)
                 return View();

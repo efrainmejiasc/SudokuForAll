@@ -16,6 +16,7 @@ namespace SudokuDeTodos.Engine.Interfaces
         Guid GetIdentidadCliente(string email);
         int VerificarClientePago(string email);
         bool ValidarAdministrador(string email);
+        Models.DbSistema.Producto GetProducto();
         bool InsertarClientePago(ClientePago model);
         bool DeleteCodigoResetPassword(string email);
         bool CreateAdministrador(Administrador modelo);

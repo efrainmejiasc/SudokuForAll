@@ -43,6 +43,14 @@
     display: inline-block;
 }
 
+.divDerecha {
+    float: right;
+}
+
+.divIzquierda {
+    float: left;
+}
+
 .divCenter {
     margin-top: 10%;
     width: 100%;
@@ -484,3 +492,7 @@ input:valid {
         text-decoration: none;
         cursor: pointer;
     }
+
+table th {
+    text-align: center;
+}

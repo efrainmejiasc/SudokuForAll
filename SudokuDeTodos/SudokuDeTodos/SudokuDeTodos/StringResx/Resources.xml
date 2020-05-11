@@ -176,4 +176,40 @@
   <resource culture="en-us" name="MsjModificarPassword" value="Do you want to change your password?"></resource>
   <resource culture="pt-pt" name="MsjModificarPassword" value="Deseja alterar sua senha?"></resource>
   
+  <resource culture="es-es" name="Producto" value="Producto"></resource>
+  <resource culture="en-us" name="Producto" value="Product"></resource>
+  <resource culture="pt-pt" name="Producto" value="Produto"></resource>
+  
+  <resource culture="es-es" name="Codigo" value="Código"></resource>
+  <resource culture="en-us" name="Codigo" value="Code"></resource>
+  <resource culture="pt-pt" name="Codigo" value="Código"></resource>
+  
+  <resource culture="es-es" name="Descripcion" value="Descripción "></resource>
+  <resource culture="en-us" name="Descripcion" value="Description"></resource>
+  <resource culture="pt-pt" name="Descripcion" value="Descrição"></resource>
+  
+  <resource culture="es-es" name="FechaActivacion" value="Fecha Activación"></resource>
+  <resource culture="en-us" name="FechaActivacion" value="Activation Date"></resource>
+  <resource culture="pt-pt" name="FechaActivacion" value="Data de Ativação"></resource>
+  
+  <resource culture="es-es" name="FechaExpiracion" value="Fecha Expiración"></resource>
+  <resource culture="en-us" name="FechaExpiracion" value="Expiration Date"></resource>
+  <resource culture="pt-pt" name="FechaExpiracion" value="Data de Validade"></resource>
+  
+  <resource culture="es-es" name="Precio" value="Precio"></resource>
+  <resource culture="en-us" name="Precio" value="Price"></resource>
+  <resource culture="pt-pt" name="Precio" value="Preço"></resource>
+  
+  <resource culture="es-es" name="Impuesto" value="% Impuesto"></resource>
+  <resource culture="en-us" name="Impuesto" value="% Tax"></resource>
+  <resource culture="pt-pt" name="Impuesto" value="% Imposto"></resource>
+  
+  <resource culture="es-es" name="Total" value="Total"></resource>
+  <resource culture="en-us" name="Total" value="Total"></resource>
+  <resource culture="pt-pt" name="Total" value="Total"></resource>
+
+  <resource culture="es-es" name="Moneda" value="Moneda"></resource>
+  <resource culture="en-us" name="Moneda" value="Currency"></resource>
+  <resource culture="pt-pt" name="Moneda" value="Moeda"></resource>
+  
 </resources>

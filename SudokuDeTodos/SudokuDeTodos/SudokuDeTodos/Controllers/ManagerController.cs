@@ -127,14 +127,14 @@ namespace SudokuDeTodos.Controllers
             {
                 HttpCookie MiGalletaId = new HttpCookie("GalletaSudokuForAllId");
                 MiGalletaId.Value = System.Web.HttpContext.Current.Session["GERENTE"].ToString();
-                MiGalletaId.Expires = DateTime.UtcNow.AddDays(1);
+                MiGalletaId.Expires = DateTime.UtcNow.AddDays(8);
                 Response.Cookies.Add(MiGalletaId);
             }
             else
             {
                 HttpCookie MiGalleta = Request.Cookies["GalletaSudokuForAllExpire"];
                 HttpCookie MiGalletaId = new HttpCookie("Entrepidus");
-                MiGalletaId.Expires = DateTime.UtcNow.AddDays(1);
+                MiGalletaId.Expires = DateTime.UtcNow.AddDays(8);
                 Response.SetCookie(MiGalletaId);
                 Response.Flush();
             }

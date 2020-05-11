@@ -1,5 +1,79 @@
-﻿
-@{
-    Layout = "";
-}
+﻿@using SudokuDeTodos.StringResx;
 
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/css/global.css" rel="stylesheet" />
+<script src="../Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="../Content/js/global.js" type="text/javascript"></script>
+
+
+
+<div aling="center" style="margin-top:5%;">
+
+    <div id="tablaProducto">
+        <table id="tblProducto" class="display table table-bordered table-hover" cellspacing="0" width="100%" style="color:green;font-weight:bold;">
+            <thead>
+                <tr>
+                    <th> @Resources.Producto </th>
+                    <th> @Resources.Codigo </th>
+                    <th> @Resources.Descripcion </th>
+                    <th> @Resources.FechaActivacion</th>
+                    <th> @Resources.FechaExpiracion </th>
+                    <th> @Resources.Precio </th>
+                    <th> @Resources.Impuesto </th>
+                    <th> @Resources.Total </th>
+                    <th> @Resources.Moneda </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <br /><br />
+
+    <div id="comprarAhora" class="divIzquierda">
+        <!-- Comprar Ahora -->
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="XXQPJDJJZLRBE">
+            <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal, la forma rápida y segura de pagar en Internet.">
+            <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
+        </form>
+        <!--https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XXQPJDJJZLRBE -->
+    </div>
+
+    <div id="subcripcion" class="divDerecha">
+        <!-- Subcripcion-->
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="6D8R9ZT8S939L">
+            <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal, la forma rápida y segura de pagar en Internet.">
+            <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
+        </form>
+        <!--https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6D8R9ZT8S939L -->
+    </div>
+    <br /><br />
+</div>
+
+<div id="cancelarSubcripcion" align="center">
+
+    <!-- Cancelar Subcripcion-->
+    <A HREF="https://www.paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=J54EPFNPQC8WG">
+        <IMG SRC="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_unsubscribe_LG.gif" BORDER="0">
+    </A>
+    <!--https://www.paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=J54EPFNPQC8WG -->
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#traductor').removeClass('btn-primary');
+        OcultarObjeto('traductor');
+        OcultarObjeto('inicio');
+        OcultarObjeto('entrar');
+        OcultarObjeto('olvidoPassword');
+        OcultarObjeto('equipo');
+        document.documentElement.style.overflowX = 'hidden';
+        GetProducto();
+    });
+</script>

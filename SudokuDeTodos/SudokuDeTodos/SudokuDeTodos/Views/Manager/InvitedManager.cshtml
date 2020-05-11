@@ -37,12 +37,13 @@
         <input type="submit" id="send" name="send" value="Enviar" class="btn btn-success voton" style="width:25vw;text-align:center;" /><br /><br />
     </div>
     }
-    <input type="submit" id="cancelar" name="cancelar" value="Cancelar" class="btn btn-danger voton" onclick="Redireccionamiento('/Manager/Index');" style="width:25vw;text-align:center;"/>
+    <input type="submit" id="cancelar" name="cancelar" value="Cancelar" class="btn btn-danger voton" onclick="Redireccionamiento('/Manager/MenuManager');" style="width:25vw;text-align:center;"/>
 </div>
 
 
 <script>
        $(document).ready(function () {
+            $('#traductor').removeClass('btn-primary');
             OcultarObjeto('traductor');
             OcultarObjeto('inicio');
             OcultarObjeto('entrar');

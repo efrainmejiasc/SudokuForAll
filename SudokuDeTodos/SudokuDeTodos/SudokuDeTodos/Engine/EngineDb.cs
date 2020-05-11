@@ -495,6 +495,23 @@ namespace SudokuDeTodos.Engine
             return false;
         }
 
+        public Models.DbSistema.Producto GetProducto ()
+        {
+            Models.DbSistema.Producto producto = new Models.DbSistema.Producto();
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    producto = Context.Producto.Where(s => s.Estado == true).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString() + "*EngineDb/GetProducto*" + "producto"));
+            }
+            return producto;
+        }
+
 
         public bool InsertarSucesoLog(SucesoLog model)
         {

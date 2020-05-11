@@ -22,13 +22,14 @@
         <input type="email" id="emailNuevo" name="emailNuevo" placeholder="Ingrese Email Nuevo Administrador" class="boxTxt  form-control" required oninvalid="setCustomValidity('Email Requerido')" oninput="setCustomValidity('')" /><br />
         <input type="submit" id="sendMail" name="sendMail" value="Enviar" class="btn btn-success voton" /><br /><br />
     }
-    <input type="submit" id="cancelar" name="cancelar" value="Cancelar" class="btn btn-danger voton" onclick="Redireccionamiento('/Manager/Index');"/>
+    <input type="submit" id="cancelar" name="cancelar" value="Cancelar" class="btn btn-danger voton" onclick="Redireccionamiento('/Manager/MenuManager');"/>
     <br />
 </div>
 
 
 <script>
-       $(document).ready(function () {
+    $(document).ready(function () {
+            $('#traductor').removeClass('btn-primary');
             OcultarObjeto('traductor');
             OcultarObjeto('inicio');
             OcultarObjeto('entrar');

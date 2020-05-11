@@ -360,3 +360,40 @@ function NavAdmin(page) {
     });
     return false;
 }
+
+
+function GetProducto() {
+
+    $.ajax({
+        type: "POST",
+        url: "/Payment/GetProducto",
+        datatype: "json",
+        success: function (data) {
+            console.log(data);
+            CrearTablaProducto(data);
+         },
+        complete: function () {
+            console.log('GetProducto');
+        }
+    });
+    return false;
+}
+
+function CrearTablaProducto(emp) {
+    $('#tblProducto tbody tr').remove();
+    $.each(emp, function (index, item) {
+        if (item.Status === true) estado = 'Asistente'; else estado = 'Inasistente';
+        let tr = `<tr> 
+                      <td style="text-align: center; color: Blue;"> ${item.Nombre} </td>
+                      <td style="text-align: center; color: Blue;"> ${item.Codigo} </td>
+                      <td style="text-align: center; color: Blue;"> ${item.Descripcion} </td>
+                      <td style="text-align: center; color: Blue;"> ${item.FechaActivacion} </td>
+                      <td style="text-align: center; color: Blue;"> ${item.FechaExpiracion} </td>
+                      <td style="text-align: center; color: Blue;"> ${item.Precio} </td>
+                      <td style="text-align: center; color: Blue;"> ${item.Impuesto} </td>
+                      <td style="text-align: center; color: Blue;"> ${item.Total} </td>
+                      <td style="text-align: center; color: Blue;"> ${item.Moneda} </td>
+                     </tr>`;
+        $('#tblProducto tbody').append(tr);
+    });
+}

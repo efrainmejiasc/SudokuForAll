@@ -219,6 +219,7 @@ namespace SudokuDeTodos.StringResx
         {
             get { return resourceProvider.GetResource("Auth", CultureInfo.CurrentUICulture.Name) as String; }
         }
+
         public static string PasswordInvalido
         {
             get { return resourceProvider.GetResource("PasswordInvalido", CultureInfo.CurrentUICulture.Name) as String; }
@@ -227,6 +228,51 @@ namespace SudokuDeTodos.StringResx
         public static string MsjModificarPassword
         {
             get { return resourceProvider.GetResource("MsjModificarPassword", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string Codigo
+        {
+            get { return resourceProvider.GetResource("Codigo", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string Producto
+        {
+            get { return resourceProvider.GetResource("Producto", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string Descripcion
+        {
+            get { return resourceProvider.GetResource("Descripcion", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string FechaActivacion
+        {
+            get { return resourceProvider.GetResource("FechaActivacion", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string FechaExpiracion
+        {
+            get { return resourceProvider.GetResource("FechaExpiracion", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string Precio
+        {
+            get { return resourceProvider.GetResource("Precio", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string Impuesto
+        {
+            get { return resourceProvider.GetResource("Impuesto", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string Total
+        {
+            get { return resourceProvider.GetResource("Total", CultureInfo.CurrentUICulture.Name) as String; }
+        }
+
+        public static string Moneda
+        {
+            get { return resourceProvider.GetResource("Moneda", CultureInfo.CurrentUICulture.Name) as String; }
         }
     }
 }

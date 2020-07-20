@@ -158,6 +158,8 @@
     <Compile Include="Models\DbSistema\Cliente.cs" />
     <Compile Include="Models\DbSistema\ClientePago.cs" />
     <Compile Include="Models\DbSistema\Producto.cs" />
+    <Compile Include="Models\DbSistema\TransaccionPaypal.cs" />
+    <Compile Include="Models\DbSistema\VALOR_CRIPTOMONEDA_DIARIO.cs" />
     <Compile Include="Models\Sistema\ConsultaReporte.cs" />
     <Compile Include="Models\DbSistema\ResetPassword.cs" />
     <Compile Include="Models\DbSistema\SucesoLog.cs" />

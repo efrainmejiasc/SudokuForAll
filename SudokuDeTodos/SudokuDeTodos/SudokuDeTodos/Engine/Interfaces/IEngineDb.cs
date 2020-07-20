@@ -24,6 +24,7 @@ namespace SudokuDeTodos.Engine.Interfaces
         bool UpdatePassword(string email, string password);
         bool UpdateClienteRegister(string email, int status);
         bool InsertarCodigoResetPassword(ResetPassword model);
+        bool InsertarTransaccionPaypal(TransaccionPaypal model);
         int UpdatePasswordCliente(string email, string password);
         bool UpdateCodigoResetPassword(string email, string codigo);
         bool ValidarCodigoResetPassword(string email, string codigo);

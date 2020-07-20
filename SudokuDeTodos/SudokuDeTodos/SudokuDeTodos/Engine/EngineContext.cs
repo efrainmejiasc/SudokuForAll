@@ -15,15 +15,19 @@ namespace SudokuDeTodos.Engine
 
         public DbSet<Cliente> Cliente { get; set; }
 
+        public DbSet<Producto> Producto { get; set; }
+
+        public DbSet<SucesoLog> SucesoLog { get; set; }
+
         public DbSet<ClientePago> ClientePago { get; set; }
 
         public DbSet<ResetPassword> ResetPassword { get; set; }
 
-        public DbSet<SucesoLog> SucesoLog { get; set; }
-
         public DbSet<Administrador> Administrador { get; set; }
 
-        public DbSet<Producto> Producto { get; set; }
+        public DbSet<TransaccionPaypal> TransaccionPaypal { get; set; }
+
+        public DbSet<VALOR_CRIPTOMONEDA_DIARIO> VALOR_CRIPTOMONEDA_DIARIO { get; set; } //NOQUITAR
 
         // 1. Instalar Entity Framework
         // 2. Crear clase que herede de DbContext

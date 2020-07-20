@@ -512,6 +512,25 @@ namespace SudokuDeTodos.Engine
             return producto;
         }
 
+        public bool InsertarTransaccionPaypal(TransaccionPaypal model)
+        {
+            bool resultado = false;
+            try
+            {
+                using (this.Context = new EngineContext())
+                {
+                    Context.TransaccionPaypal.Add(model);
+                    Context.SaveChanges();
+                    resultado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                InsertarSucesoLog(Funcion.ConstruirSucesoLog(ex.ToString().Substring(0, 300) + "*EngineDb/InsertarTransaccionPaypal*"));
+            }
+            return resultado;
+        }
+
 
         public bool InsertarSucesoLog(SucesoLog model)
         {
@@ -528,5 +547,8 @@ namespace SudokuDeTodos.Engine
             catch { }
             return resultado;
         }
+
+
+
     }
 }

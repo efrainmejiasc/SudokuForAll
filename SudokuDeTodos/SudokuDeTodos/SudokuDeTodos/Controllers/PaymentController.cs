@@ -1,7 +1,9 @@
 ﻿using SudokuDeTodos.Engine.Interfaces;
 using SudokuDeTodos.Models;
+using SudokuDeTodos.Models.DbSistema;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -46,6 +48,27 @@ namespace SudokuDeTodos.Controllers
             List<Models.Sistema.Producto> productoResult = new List<Models.Sistema.Producto>();
             productoResult.Add(productoItem);
             return Json(productoResult);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public void WebHookPayment()
+        {
+            string cadena = string.Empty;
+            if (Request.RequestType.Equals("POST"))
+            {
+                var stream = new StreamReader(Request.InputStream);
+                stream.BaseStream.Seek(0, SeekOrigin.Begin);
+                cadena = stream.ReadToEnd();
+            }
+            TransaccionPaypal modelo = new TransaccionPaypal();
+            if (cadena != string.Empty)
+                modelo.Descripcion = cadena;
+            else
+                modelo.Descripcion = "sin respuesta";
+
+            modelo.Fecha = DateTime.UtcNow;
+            Metodo.InsertarTransaccionPaypal(modelo);
         }
     }
 }

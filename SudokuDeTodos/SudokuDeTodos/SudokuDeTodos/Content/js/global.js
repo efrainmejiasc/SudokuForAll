@@ -1,4 +1,4 @@
-﻿function OcultarObjeto(name) {
+﻿setTimeOutfunction OcultarObjeto(name) {
     var objeto = '#'.concat(name);
     $(objeto).hide();
 }
